@@ -1,0 +1,4 @@
+db/*.zip
+venv/
+.idea/
+__pycache__/

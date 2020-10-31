@@ -1,0 +1,15 @@
+{% extends "basic.html" %}
+
+
+{% block script %}
+{{ super() }}
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}
+
+
+{% block body %}
+<h1>Welcome, drop here you file!</h1>
+<form id="myDropzone" action="{{ url_for('main.index_post') }}" class="dropzone">
+</form>
+<div id="graphs"></div>
+{% endblock %}
