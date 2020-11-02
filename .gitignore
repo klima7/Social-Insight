@@ -1,4 +1,5 @@
-db/*.zip
+db/base.db
+uploads/*.zip
 venv/
 .idea/
 __pycache__/

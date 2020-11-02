@@ -3,7 +3,7 @@ from threading import Thread
 from flask import request, render_template
 from flask import session as flask_session
 
-import analystic
+import analytics
 import uploads
 from db import *
 from . import main
@@ -27,7 +27,7 @@ def index_post():
     path = uploads.get_path_for_pack(pack.id)
     uploaded_file.save(path)
 
-    thread = Thread(target=analystic.analyse, args=[pack.id])
+    thread = Thread(target=analytics.analyse, args=[pack.id])
     thread.start()
 
     return "", 204
