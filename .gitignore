@@ -1,5 +1,10 @@
+# Pliki projektu
 db/base.db
 uploads/*.zip
+frontend/translations/messages.pot
+**/messages.mo
+
+# Pliki konfiguracyjne Pycharma
 venv/
 .idea/
 __pycache__/

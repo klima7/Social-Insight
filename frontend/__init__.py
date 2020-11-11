@@ -1,15 +1,18 @@
-from flask import Flask
+from flask import Flask, request
 from config import config
 from flask_login import LoginManager
+from flask_babel import Babel
 
 
 login = LoginManager()
+babel = Babel()
 
 
 def create_app():
     app = Flask(__name__)
 
     login.init_app(app)
+    babel.init_app(app)
 
     app.config.from_object(config)
 
@@ -26,3 +29,8 @@ def create_app():
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
     return app
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(config.LANGUAGES)

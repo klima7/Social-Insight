@@ -8,7 +8,7 @@
 
 
 {% block body %}
-<h1>Welcome, drop here you file!</h1>
+<h1>{{ _('Welcome, drop here you file!') }}</h1>
 <form id="myDropzone" action="{{ url_for('main.index_post') }}" class="dropzone">
 </form>
 <div id="graphs"></div>
