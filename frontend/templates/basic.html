@@ -7,3 +7,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% endblock %}
+
+{% block body %}
+<p style="text-align: right">
+    <a href="{{ url_for('main.change_language', lang='en') }}">en</a>
+    <a href="{{ url_for('main.change_language', lang='pl') }}">pl</a>
+</p>
+{% block content %} {% endblock %}
+{% endblock %}

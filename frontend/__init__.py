@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from config import config
 from flask_login import LoginManager
 from flask_babel import Babel
@@ -33,4 +33,6 @@ def create_app():
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(config.LANGUAGES)
+    default_lang = request.accept_languages.best_match(config.LANGUAGES)
+    print(default_lang)
+    return session.get('lang', default_lang)
