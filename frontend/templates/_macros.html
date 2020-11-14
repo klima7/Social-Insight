@@ -1,0 +1,8 @@
+{% macro static(name) -%}
+{% if config.CACHING_DISABLED %}
+{{ url_for('static', filename=name, time=cache_suffix()) }}
+{% else %}
+{{ url_for('static', filename=name) }}
+{% endif %}
+{% endmacro -%}
+

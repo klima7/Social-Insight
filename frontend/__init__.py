@@ -1,7 +1,9 @@
+from time import time_ns
 from flask import Flask, request, session
 from config import config
 from flask_login import LoginManager
 from flask_babel import Babel
+from lorem_text import lorem
 
 
 login = LoginManager()
@@ -28,6 +30,8 @@ def create_app():
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
+    add_jinja_commands(app)
+
     return app
 
 
@@ -36,3 +40,14 @@ def get_locale():
     default_lang = request.accept_languages.best_match(config.LANGUAGES)
     print(default_lang)
     return session.get('lang', default_lang)
+
+
+def cache_suffix():
+    if not config.CACHING_DISABLED:
+        return ''
+    return str(time_ns())
+
+
+def add_jinja_commands(app):
+    app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem)
+

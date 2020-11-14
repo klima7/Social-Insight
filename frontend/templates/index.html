@@ -1,15 +1,104 @@
 {% extends "basic.html" %}
 
+{% block sections %}
+        <!-- Header-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Title-->
+                <h1 class="masthead-heading mb-4">Social Insight</h1>
 
-{% block script %}
-{{ super() }}
-<script src="{{ url_for('static', filename='index.js') }}"></script>
-{% endblock %}
+                <!-- Upload zone-->
+                <form id="uploadZone" action="{{ url_for('main.index_post') }}" class="dropzone">
+                    <a href=""><img id="uploadLogo" class="masthead-avatar mb-5 dz-clickable needsclick" src="{{ m.static('images/logo_white_icon.png') }}" alt=""></a>
+                    <div class="dz-message" style="margin: 0px; padding: 0px;" data-dz-message>
+                        <span style="font-weight: bold">Drop here your data file!</span><br />
+                        <span><a class="js-scroll-trigger" href="#howToGetSection" style="color: white;"><small>How to get it?</small></a></span>
+                    </div>
+                </form>
 
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
 
-{% block content %}
-<h1>{{ _('Welcome, drop here you file!') }}</h1>
-<form id="myDropzone" action="{{ url_for('main.index_post') }}" class="dropzone">
-</form>
-<div id="graphs"></div>
+                <!-- Subheading-->
+                <p class="pre-wrap masthead-subheading font-weight-light">Let us analyse you data</p>
+                <p>Or check sample output <strong>here!</strong></p>
+            </div>
+        </header>
+
+        <!-- Features section -->
+         <section class="page-section portfolio" id="featuresSection">
+            <div class="container">
+
+                <!-- Heading -->
+                <div class="text-center">
+                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block">FEATURES</h2>
+                </div>
+
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- features row -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-5">
+                        <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                    </div>
+                </div>
+
+                <!-- features row -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 mb-5  order-md-2">
+                        <div class="portfolio-item mx-auto">
+                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-5 order-md-1">
+                        <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to get file Section -->
+         <section class="page-section bg-primary text-white portfolio" id="howToGetSection">
+            <div class="container">
+
+                <!-- Heading -->
+                <div class="text-center">
+                    <h2 class="page-section-heading text-white mb-0 d-inline-block">HOW TO GET DATA FILE?
+                    <br /><small style="font-size: 50%">Very simple :)</small></h2>
+                </div>
+
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- How to get row -->
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-5">
+                        <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 {% endblock %}

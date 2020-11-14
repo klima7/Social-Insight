@@ -41,4 +41,3 @@ def change_language(lang):
     return redirect(url_for('main.index'))
 
 
-
