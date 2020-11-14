@@ -3,3 +3,7 @@
     border: 2px dashed white;
     border-radius: 5px;
 }
+
+.language-tile img {
+	width: 200px;
+}

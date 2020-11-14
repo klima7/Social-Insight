@@ -6,3 +6,9 @@
 {% endif %}
 {% endmacro -%}
 
+{% macro script(name) -%}
+<script type="text/javascript">
+{% include name %}
+</script>
+{% endmacro -%}
+

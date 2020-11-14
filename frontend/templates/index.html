@@ -1,5 +1,9 @@
 {% extends "basic.html" %}
 
+{% block bottomscripts %}
+        {{ m.script("_dropzone.js") }}
+{% endblock %}
+
 {% block sections %}
         <!-- Header-->
         <header class="masthead bg-primary text-white text-center">
