@@ -13,7 +13,7 @@
 
                 <!-- Upload zone-->
                 <form id="uploadZone" action="{{ url_for('main.index_post') }}" class="dropzone">
-                    <a href=""><img id="uploadLogo" class="masthead-avatar mb-5 dz-clickable needsclick" src="{{ m.static('images/logo_white_icon.png') }}" data-aos="fade-down" data-aos-duration="2000"></a>
+                    <a href=""><img id="uploadLogo" class="masthead-avatar mb-5 dz-clickable needsclick" src="{{ m.static('images/logo_white_icon.png') }}" alt="" data-aos="fade-down" data-aos-duration="2000"></a>
                     <div class="dz-message" style="margin: 0px; padding: 0px;" data-dz-message>
                         <span style="font-weight: bold">Drop here your data file!</span><br />
                         <span><a class="js-scroll-trigger" href="#howToGetSection" style="color: white;"><small>How to get it?</small></a></span>
@@ -52,8 +52,8 @@
                 <!-- features row -->
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 mb-5">
-                        <div class="portfolio-item mx-auto" data-aos="fade-left">
-                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" />
+                        <div class="portfolio-item mx-auto">
+                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-left"/>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-5">
@@ -64,8 +64,8 @@
                 <!-- features row -->
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-6 mb-5  order-md-2">
-                        <div class="portfolio-item mx-auto" data-aos="fade-right">
-                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" />
+                        <div class="portfolio-item mx-auto">
+                            <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-right"/>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-5 order-md-1">
