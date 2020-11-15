@@ -39,5 +39,3 @@ def change_language(lang):
         return abort(404)
     session['lang'] = lang
     return redirect(url_for('main.index'))
-
-
