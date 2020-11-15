@@ -7,3 +7,19 @@
 .language-tile img {
 	width: 200px;
 }
+
+.first-section {
+	padding-top: 2rem;
+}
+
+#notifications {
+	margin-top: 4.5rem;
+}
+
+@media (min-width: 992px) {
+	#notifications {
+		margin-top: 6rem;
+	}
+}
+
+
