@@ -1,0 +1,33 @@
+{% extends "standard.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+<style>
+#submit {margin: 20px}
+</style>
+{% endblock %}
+
+{% block sections %}
+<section class="page-section portfolio mt-5" id="featuresSection">
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">LOGGING</h2>
+        </div>
+
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                {{ wtf.quick_form(form) }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,13 +1,15 @@
 from time import time_ns
 from flask import Flask, request, session
-from config import config
 from flask_login import LoginManager
 from flask_babel import Babel
 from lorem_text import lorem
+from flask_bootstrap import Bootstrap
+from db import *
 
 
 login = LoginManager()
 babel = Babel()
+bootstrap = Bootstrap()
 
 
 def create_app():
@@ -15,6 +17,7 @@ def create_app():
 
     login.init_app(app)
     babel.init_app(app)
+    bootstrap.init_app(app)
 
     app.config.from_object(config)
 
@@ -40,6 +43,12 @@ def get_locale():
     default_lang = request.accept_languages.best_match(config.LANGUAGES)
     print(default_lang)
     return session.get('lang', default_lang)
+
+
+@login.user_loader
+def load_user(id):
+    id = int(id)
+    return db_session.query(User).filter_by(id=id).first()
 
 
 def cache_suffix():
