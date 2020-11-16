@@ -13,12 +13,12 @@
 }
 
 #notifications {
-	margin-top: 4.5rem;
+	padding-top: 4.5rem;
 }
 
 @media (min-width: 992px) {
 	#notifications {
-		margin-top: 6rem;
+		padding-top: 6.5rem;
 	}
 }
 
