@@ -16,6 +16,6 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), EMAIL_VALIDATOR])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=config.MIN_PASSWORD_LENGTH, message=f'Password must have at lest {config.MIN_PASSWORD_LENGTH} characters')])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=config.MIN_PASSWORD_LENGTH, message=f'Password must have at least {config.MIN_PASSWORD_LENGTH} characters')])
     password_confirmation = PasswordField('Repeat password', validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Register')

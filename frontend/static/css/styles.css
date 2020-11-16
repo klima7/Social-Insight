@@ -16,9 +16,43 @@
 	margin-top: 1rem;
 }
 
+/*----------------------- Preloader -----------------------*/
+.preloader-wrapper {
+    height: 100%;
+    width: 100%;
+    background: #1abc9c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    display: none;
+}
+
+.preloader-wrapper .preloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 120px;
+
+    animation-name: preloader-animation;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: ease;
+}
+
+@keyframes preloader-animation {
+  0%   { transform: translate(0px, 0px); }
+  25%  { transform: translate(-100px, -100px); }
+  50%  { transform: translate(-100px, 100px); }
+  75%  { transform: translate(100px, -100px); }
+  100% { transform: translate(0px, 0px); }
+}
 
 #notifications {
-	padding-top: 4.5rem;
+	padding-top: 4.6rem;
 }
 
 @media (min-width: 992px) {
