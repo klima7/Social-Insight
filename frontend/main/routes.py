@@ -1,6 +1,7 @@
 from threading import Thread
 
 from flask import request, render_template, session, redirect, url_for, abort
+from flask_login import login_required
 
 import analytics
 import uploads
@@ -39,3 +40,9 @@ def change_language(lang):
         return abort(404)
     session['lang'] = lang
     return redirect(url_for('main.index'))
+
+
+@main.route('/account/')
+@login_required
+def account():
+    return render_template('account.html')

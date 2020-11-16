@@ -44,9 +44,3 @@ def get_locale():
     print(default_lang)
     return session.get('lang', default_lang)
 
-
-@login.user_loader
-def load_user(id):
-    id = int(id)
-    return db_session.query(User).filter_by(id=id).first()
-
