@@ -10,7 +10,7 @@ class User(_Base, UserMixin):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    mail = Column(String, nullable=False, unique=True)
+    email = Column(String, nullable=False, unique=True)
     password_hash = Column(String(128), nullable=False)
     confirmed = Column(Boolean, default=False)
     registration_data = Column(DateTime(), default=datetime.utcnow)
