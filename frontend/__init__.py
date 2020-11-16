@@ -1,4 +1,4 @@
-from time import time_ns
+from frontend.util import cache_suffix
 from flask import Flask, request, session
 from flask_login import LoginManager
 from flask_babel import Babel
@@ -33,7 +33,7 @@ def create_app():
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    add_jinja_commands(app)
+    app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem)
 
     return app
 
@@ -49,14 +49,4 @@ def get_locale():
 def load_user(id):
     id = int(id)
     return db_session.query(User).filter_by(id=id).first()
-
-
-def cache_suffix():
-    if not config.CACHING_DISABLED:
-        return ''
-    return str(time_ns())
-
-
-def add_jinja_commands(app):
-    app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem)
 
