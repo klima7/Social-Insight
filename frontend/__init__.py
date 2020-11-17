@@ -4,22 +4,25 @@ from flask_login import LoginManager
 from flask_babel import Babel
 from lorem_text import lorem
 from flask_bootstrap import Bootstrap
+from flask_mail import Mail
 from db import *
 
 
 login = LoginManager()
 babel = Babel()
 bootstrap = Bootstrap()
+mail = Mail()
 
 
 def create_app():
     app = Flask(__name__)
 
+    app.config.from_object(config)
+
     login.init_app(app)
     babel.init_app(app)
     bootstrap.init_app(app)
-
-    app.config.from_object(config)
+    mail.init_app(app)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
