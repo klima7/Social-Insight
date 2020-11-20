@@ -30,3 +30,14 @@ class ChangePasswordForm(FlaskForm):
     new_password = PasswordField('New password', validators=[DataRequired(), Length(min=config.MIN_PASSWORD_LENGTH, message=f'New password must have at least {config.MIN_PASSWORD_LENGTH} characters')])
     new_password_confirmation = PasswordField('Repeat new password', validators=[DataRequired(), EqualTo('new_password', message='Passwords must match')])
     submit = SubmitField('Change')
+
+
+class ResetPasswordEmailForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), EMAIL_VALIDATOR])
+    submit = SubmitField('Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New password', validators=[DataRequired(), Length(min=config.MIN_PASSWORD_LENGTH, message=f'New password must have at least {config.MIN_PASSWORD_LENGTH} characters')])
+    password_confirmation = PasswordField('Repeat new password', validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
+    submit = SubmitField('Reset')
