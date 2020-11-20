@@ -1,5 +1,6 @@
 # Pliki projektu
 db/base.db
+db/base.db-journal
 uploads/*.zip
 frontend/translations/messages.pot
 **/messages.mo

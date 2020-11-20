@@ -1,11 +1,13 @@
-from . import _Base
-from db import *
 from datetime import datetime
+
+from flask_login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask_login import UserMixin
+
+from db import *
+from . import _Base
 
 
 class User(_Base, UserMixin):
@@ -41,15 +43,29 @@ class User(_Base, UserMixin):
         try:
             data = s.loads(token.encode('utf-8'))
         except:
-            print('here1')
             return False
         if data.get('confirm') != self.id:
-            print(data.get('confirm'))
-            print(self.id)
-            print('here2')
             return False
         self.confirmed = True
         db_session.add(self)
+        return True
+
+    def generate_reset_token(self):
+        s = Serializer(config.SECRET_KEY, config.PASSWORD_CHANGE_TIME)
+        return s.dumps({'reset': self.id}).decode('utf-8')
+
+    @staticmethod
+    def reset_password(token, new_password):
+        s = Serializer(config.SECRET_KEY)
+        try:
+            data = s.loads(token.encode('utf-8'))
+        except:
+            return False
+        user = db_session.query(User).filter_by(id=data.get('reset')).first()
+        if user is None:
+            return False
+        user.password = new_password
+        db_session.add(user)
         return True
 
 

@@ -10,6 +10,7 @@ class Config:
 
     MIN_PASSWORD_LENGTH = 8
     CONFIRMATION_TIME = 60
+    PASSWORD_CHANGE_TIME = 60
 
     # Mail
     MAIL_SERVER = 'smtp.googlemail.com'

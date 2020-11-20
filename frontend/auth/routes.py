@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from frontend.mail import send_email
 from db import *
 from . import auth
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ChangePasswordForm
 
 
 @auth.after_app_request
@@ -89,3 +89,17 @@ def resend():
     send_email(user.email, 'Account Confirmation', 'confirmation', user=user, token=token)
     flash('Email confirmation was sent again', 'success')
     return redirect(url_for('auth.login'))
+
+
+@auth.route('/change-password/', methods=['GET', 'POST'])
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if current_user.verify_password(form.current_password.data):
+            current_user.password = form.new_password.data
+            flash('Password changed', 'success')
+            return redirect(url_for('main.account'))
+        else:
+            flash('Current password is invalid!', 'error')
+    display_errors_with_flash(form)
+    return render_template('change_password.html', form=form)
