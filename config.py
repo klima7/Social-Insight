@@ -9,6 +9,7 @@ class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
 
     MIN_PASSWORD_LENGTH = 8
+    CONFIRMATION_TIME = 60
 
     # Mail
     MAIL_SERVER = 'smtp.googlemail.com'

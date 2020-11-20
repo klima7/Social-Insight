@@ -1,1 +1,60 @@
-Hello there
+{% extends "mails/basic.html" %}
+
+{% block content %}
+<tr>
+<td align='center'
+    style='font-size:0px;padding:10px 25px;word-break:break-word;'>
+    <table border='0' cellpadding='0' cellspacing='0'
+           role='presentation'
+           style='border-collapse:collapse;border-spacing:0px;'>
+        <tbody>
+        <tr>
+            <td style='width:216px;'>
+                <img alt=''
+                     src="https://i.ibb.co/gdzCkvD/logo-white-icon.png"
+                     style='border:none;display:block;font-size:13px;height:189px;outline:none;text-decoration:none;'/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</td>
+</tr>
+<tr>
+<td align='center'
+    style='font-size:0px;padding:10px 25px;word-break:break-word;'>
+    <div style="color:#FFFFFF;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:36px;line-height:1;text-align:center;">
+    </div>
+</td>
+</tr>
+<tr>
+<td align='center'
+    style='font-size:0px;padding:10px 25px;word-break:break-word;'>
+    <div style="color:#187272;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;">
+        Welcome new user!
+        <br/>
+        Activate your account with this button!
+    </div>
+</td>
+</tr>
+<tr>
+<td align='center'
+    style='font-size:0px;padding:10px 25px;word-break:break-word;'
+    vertical-align='middle'>
+    <table border='0' cellpadding='0' cellspacing='0'
+           role='presentation'
+           style='border-collapse:separate;line-height:100%;width:200px;'>
+        <tr>
+            <td align='center' bgcolor='#178F8F' role='presentation'
+                style='background-color:#178F8F;border:none;border-radius:4px;cursor:auto;padding:10px 25px;'
+                valign='middle'>
+                <a href="{{ url_for('auth.confirm', token=token, _external=True) }}"
+                   style="background:#178F8F;color:#ffffff;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;font-weight:bold;line-height:30px;margin:0;text-decoration:none;text-transform:none;"
+                   target='_blank'>
+                    Activate!
+                </a>
+            </td>
+        </tr>
+    </table>
+</td>
+</tr>
+{% endblock %}
