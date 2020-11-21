@@ -1,7 +1,7 @@
 from threading import Thread
 
 from flask import request, render_template, session, redirect, url_for, abort
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 import analytics
 import uploads
@@ -45,4 +45,4 @@ def change_language(lang):
 @main.route('/account/')
 @login_required
 def account():
-    return render_template('account.html')
+    return render_template('account.html', user=current_user)

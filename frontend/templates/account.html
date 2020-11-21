@@ -1,22 +1,31 @@
 {% extends "standard.html" %}
 
 {% block sections %}
-<section class="page-section first-section mt-5">
+<section class="page-section first-section pt-5 bg-primary">
     <div class="container">
-
-        <!-- Heading -->
-        <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">YOUR ACCOUNT</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block">YOUR ACCOUNT</h2>
+                </div>
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- Icon Divider-->
-        <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
+        <div class="row">
+            <div class="col-auto d-none d-sm-block">
+                <img src="{{ m.static('images/user_icon.png') }}" style="width: 130px" />
+            </div>
+            <div class="col-auto">
+                <p class="text-light">{{ user.email }}</p>
+                <p><a href="{{url_for('auth.change_password')}}" class="text-light">Change Password</a></p>
+                <p><a href="{{url_for('auth.change_password')}}" class="text-light">Delete account</a></p>
+            </div>
         </div>
-
-        <a href="{{url_for('auth.change_password')}}">Change Password</a>
     </div>
 </section>
 {% endblock %}

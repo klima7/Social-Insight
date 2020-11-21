@@ -2,15 +2,21 @@ from os import environ
 
 
 class Config:
-    MAX_UPLOAD_SIZE_MB = 1024
-    DATABASE_LOGGING = False
+
+    # Technical config
+    SECRET_KEY = environ.get('SECRET_KEY')
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
-    SECRET_KEY = environ.get('SECRET_KEY')
 
+    # Behaviour config
+    MAX_UPLOAD_SIZE_MB = 1024
     MIN_PASSWORD_LENGTH = 8
     CONFIRMATION_TIME = 60
     PASSWORD_CHANGE_TIME = 60
+
+    # Debug
+    DATABASE_DEBUG = False
+    MAIL_DEBUG = False
 
     # Mail
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -18,7 +24,6 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = environ.get('MAIL_LOGIN')
     MAIL_PASSWORD = environ.get('MAIL_PASSWORD')
-    MAIL_DEBUG = False
     MAIL_DEFAULT_SENDER = 'Social Insight'
     MAIL_SUBJECT_PREFIX = 'Social Insight - '
 

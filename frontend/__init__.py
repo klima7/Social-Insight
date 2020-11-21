@@ -5,6 +5,7 @@ from flask_babel import Babel
 from lorem_text import lorem
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
+from flask_moment import Moment
 from db import *
 
 
@@ -12,6 +13,7 @@ login = LoginManager()
 babel = Babel()
 bootstrap = Bootstrap()
 mail = Mail()
+moment = Moment()
 
 
 def create_app():
@@ -23,6 +25,7 @@ def create_app():
     babel.init_app(app)
     bootstrap.init_app(app)
     mail.init_app(app)
+    moment.init_app(app)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
