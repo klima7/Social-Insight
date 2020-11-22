@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 from config import config
+from .constants import GraphName, PackStatus
 
 
 _engine = create_engine(f'sqlite:///{config.DATABASE_LOCATION}', echo=config.DATABASE_DEBUG, connect_args={"check_same_thread": False})

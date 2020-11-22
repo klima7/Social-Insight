@@ -3,7 +3,8 @@ from datetime import datetime
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy.schema import Table
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from db import *
@@ -18,7 +19,8 @@ class User(_Base, UserMixin):
     password_hash = Column(String(128), nullable=False)
     confirmed = Column(Boolean, default=False)
     registration_data = Column(DateTime(), default=datetime.utcnow)
-    packs = relationship("Pack", backref="user")
+    packs = relationship("Pack", backref="user", lazy='select')
+    collations = relationship("Collation", backref="user", lazy='select')
 
     def __repr__(self):
         return f"<User(id={self.id}, mail='{self.mail}', packs={self.packs})>"
@@ -74,12 +76,43 @@ class Pack(_Base):
 
     id = Column(Integer, primary_key=True)
     userid = Column(Integer, ForeignKey('users.id'))
-    done = Column(Boolean)
-
-    chart1 = Column(String)
-    chart2 = Column(String)
-    chart3 = Column(String)
-    chart4 = Column(String)
+    status = Column(String, default=PackStatus.PENDING)
+    graphs = relationship("Graph", backref="pack", lazy='select')
 
     def __repr__(self):
         return f"<Pack(id={self.id}, userid='{self.userid}' done={self.done})>"
+
+
+collation_entries = Table('collation_entries', _Base.metadata,
+    Column('collation_id', Integer, ForeignKey('collations.id')),
+    Column('graph_id', Integer, ForeignKey('graphs.id'))
+)
+
+
+class Graph(_Base):
+    __tablename__ = 'graphs'
+
+    id = Column(Integer, primary_key=True)
+    packid = Column(Integer, ForeignKey('packs.id'))
+    name = Column(String)
+    data = Column(String)
+    collations = relationship('Collation',
+                              secondary=collation_entries,
+                              backref=backref('packs', lazy='select'),
+                              lazy='select')
+
+    def __repr__(self):
+        return f"<Graph(id={self.id})>"
+
+
+class Collation(_Base):
+    __tablename__ = 'collations'
+
+    id = Column(Integer, primary_key=True)
+    userid = Column(Integer, ForeignKey('users.id'))
+    name = Column(String)
+    creation_date = Column(DateTime(), default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Collation(id={self.id})>"
+
