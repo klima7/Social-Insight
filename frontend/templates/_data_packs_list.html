@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="page-section-heading text-secondary mb-4 d-inline-block">DATA PACKS</h2>
@@ -8,21 +8,21 @@
     <div class="row">
         <div class="col-12 text-center">
             <div class="card">
-                <div class="card-header">
-                    <div class="container">
-                            <div class="row">
-                                <div class="col-12 col-sm-4">Name</div>
-                                <div class="col-12 col-sm-4">Status</div>
-                                <div class="col-12 col-sm-4">Date</div>
-                            </div>
+                <div class="card-header bg-secondary text-white">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">Name</div>
+                            <div class="col-12 col-sm-4">Status</div>
+                            <div class="col-12 col-sm-4">Date</div>
                         </div>
+                    </div>
                 </div>
                 <div class="card-body p-0 m-0">
                     <ul class="list-group list-group-flush">
                         {% for pack in current_user.packs %}
                         <li class="list-group-item account-item">
-                            <a href="{{ url_for('main.packs', id=pack.id) }}">
-                                <div class="container">
+                            <a href="{{ url_for('main.packs', id=pack.id) }}" class="text-secondary">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12 col-sm-4 align-middle m-auto">
                                             {{ pack.name }}
@@ -41,7 +41,7 @@
 
                         {% if not current_user.packs %}
                         <li class="list-group-item account-item">
-                            <div class="container">
+                            <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-sm-4 align-middle m-auto"></div>
                                     <div class="col-12 col-sm-4 m-auto">Empty</div>
@@ -52,8 +52,8 @@
                         {% endif %}
                     </ul>
                 </div>
-                <div class="card-footer">
-                    <a href="{{ url_for('main.index') }}">Upload new pack</a>
+                <div class="card-footer bg-secondary text-white">
+                    <a href="{{ url_for('main.index') }}" class="text-white">Upload new pack</a>
                 </div>
             </div>
         </div>

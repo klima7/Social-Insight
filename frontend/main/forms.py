@@ -14,3 +14,8 @@ class UploadForm(FlaskForm):
 class RenamePackForm(FlaskForm):
     name = StringField('New name', validators=[DataRequired()])
     submit = SubmitField('Rename')
+
+
+class RenameCollationForm(FlaskForm):
+    name = StringField('New collation name', validators=[DataRequired()])
+    submit = SubmitField('Rename')

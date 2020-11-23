@@ -139,3 +139,20 @@ def reset_password(token):
             return redirect(url_for('main.index'))
     display_errors_with_flash(form)
     return render_template('reset_password.html', form=form)
+
+
+@auth.route('/remove-account/confirm')
+@login_required
+def remove_account_confirm():
+    address = url_for('auth.remove_account')
+    flash(f'Are you sure that you want to delete this account? <a href="{address}">Yes</a>', 'error')
+    return redirect(url_for('main.account'))
+
+
+@auth.route('/remove-account/proceed')
+@login_required
+def remove_account():
+    db_session.delete(current_user)
+    db_session.commit()
+    flash('Your account was removed', 'success')
+    return redirect(url_for('main.index'))

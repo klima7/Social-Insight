@@ -112,7 +112,7 @@ class Collation(_Base):
 
     id = Column(Integer, primary_key=True)
     userid = Column(Integer, ForeignKey('users.id'))
-    name = Column(String)
+    name = Column(String, default='Collation')
     creation_date = Column(DateTime(), default=datetime.utcnow)
 
     def __repr__(self):

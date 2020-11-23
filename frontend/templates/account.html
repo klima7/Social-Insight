@@ -21,9 +21,9 @@
                 <img src="{{ m.static('images/user_icon.png') }}" style="width: 130px" />
             </div>
             <div class="col-auto">
-                <p class="text-light">{{ current_user.email }}</p>
-                <p><a href="{{url_for('auth.change_password')}}" class="text-light">Change Password</a></p>
-                <p><a href="{{url_for('auth.change_password')}}" class="text-light">Delete account</a></p>
+                <p class="text-secondary">{{ current_user.email }}</p>
+                <p><a href="{{url_for('auth.change_password')}}" class="text-secondary"">Change Password</a></p>
+                <p><a href="{{url_for('auth.remove_account_confirm')}}" class="text-secondary"">Delete account</a></p>
             </div>
         </div>
     </div>
@@ -31,12 +31,12 @@
 
 
 <section class="page-section pt-5">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-lg-6">
                 {% include "_data_packs_list.html" %}
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0">
                 {% include "_collations_list.html" %}
             </div>
         </div>

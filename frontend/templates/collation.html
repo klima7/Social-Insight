@@ -1,0 +1,26 @@
+{% extends "standard.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block sections %}
+<section class="page-section portfolio first-section bg-primary pb-5 pt-5">
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ collation.name }}</h2>
+        </div>
+        <div class="text-center">
+            <span class="mr-3"><a href="" data-toggle="modal" data-target="#rename-collation-modal" class="text-secondary">rename</a></span>
+            <span class="ml-3"><a href="{{ url_for('main.remove_pack_confirm', id=collation.id) }}" class="text-secondary">remove</a></span>
+        </div>
+    </div>
+</section>
+
+<section class="page-section mt-5">
+    <div class="container" style="height: 800px">
+
+    </div>
+</section>
+
+{% include "_rename_collation_modal.html" %}
+{% endblock %}

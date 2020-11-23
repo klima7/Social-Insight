@@ -8,7 +8,7 @@ import uploads
 from db import *
 from . import main
 from config import config
-from .forms import RenamePackForm
+from .forms import RenamePackForm, RenameCollationForm
 
 
 @main.route('/')
@@ -71,9 +71,18 @@ def packs(id):
     form = RenamePackForm()
     if form.validate_on_submit():
         pack.name = form.name.data
+        flash('Pack name changed to ' + pack.name, 'success')
         db_session.add(pack)
         db_session.commit()
     return render_template('pack.html', pack=pack, form=form)
+
+
+@main.route('/packs/<id>/remove/confirm')
+def remove_pack_confirm(id):
+    get_pack(id)
+    address = url_for('main.remove_pack', id=id)
+    flash(f'Are you sure that you want to remove this pack? <a href="{address}">Yes</a>', 'warning')
+    return redirect(url_for('main.packs', id=id))
 
 
 @main.route('/packs/<id>/remove')
@@ -81,5 +90,36 @@ def remove_pack(id):
     pack = get_pack(id)
     db_session.delete(pack)
     db_session.commit()
-    flash('Pack was removed')
+    flash('Pack was removed', 'success')
     return redirect(url_for('main.account'))
+
+
+@main.route('/collations/create')
+@login_required
+def create_collation():
+    collation = Collation()
+    collation.user = current_user
+    db_session.add(collation)
+    db_session.commit()
+    flash('New collation was created', 'success')
+    return redirect(url_for('main.account'))
+
+
+def get_collation(id):
+    collation = db_session.query(Collation).filter_by(userid=current_user.id, id=id).first()
+    if collation is None:
+        abort(403)
+    return collation
+
+
+@main.route('/collations/<id>', methods=['GET', 'POST'])
+@login_required
+def collation(id):
+    collation = get_collation(id)
+    form = RenameCollationForm()
+    if form.validate_on_submit():
+        collation.name = form.name.data
+        flash('Collation name changed to ' + collation.name, 'success')
+        db_session.add(collation)
+        db_session.commit()
+    return render_template('collation.html', collation=collation, form=form)
