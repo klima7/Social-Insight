@@ -53,6 +53,16 @@ def compile():
     print("Compilation success")
 
 
+@app.cli.command(help="Insert fake data into database.")
+def fake():
+    from db import User, db_session
+    user = User(email='user@test.com', confirmed=True)
+    user.password = 'password'
+    db_session.add(user)
+    db_session.commit()
+    print("Fake data inserted")
+
+
 
 
 

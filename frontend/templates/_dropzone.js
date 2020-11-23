@@ -31,15 +31,18 @@ Dropzone.options.uploadZone = {
 function check() {
     $.ajax({
         dataType: "json",
-        url: API_PREFIX + "packs/anonymous/ready",
+        url: API_PREFIX + "packs/anonymous/status",
         cache: false,
         success: function(data) {
             console.log(data);
-            if(data.done==true) {
+            if(data.status == 'success') {
                 fetchGraphs()
             }
-            else {
+            else if(data.status == 'pending' || data.status == 'processing') {
                 setTimeout(check, 1000);
+            }
+            else {
+            	alert(`Error: pack status is ${data.status}`)
             }
         },
         error: function() {

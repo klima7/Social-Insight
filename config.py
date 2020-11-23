@@ -33,5 +33,9 @@ class Config:
     BABEL_CONFIG_LOCATION = 'frontend/babel.cfg'
     BABEL_TRANSLATIONS_LOCATION = 'frontend/translations'
 
+    @staticmethod
+    def init_app(app):
+        pass
+
 
 config = Config()

@@ -1,0 +1,68 @@
+{% extends "standard.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block sections %}
+<section class="page-section portfolio first-section bg-primary pb-0">
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">
+                {% if current_user.is_authenticated %}
+                {{ pack.name }}
+                {% else %}
+                RESULTS
+                {% endif %}
+            </h2>
+        </div>
+        {% if current_user.is_authenticated %}
+        <div class="text-center">
+            <span class="mr-3"><a href="" data-toggle="modal" data-target="#rename-pack-modal" class="text-secondary">rename</a></span>
+            <span class="ml-3"><a href="{{ url_for('main.remove_pack', id=pack.id) }}" class="text-secondary">remove</a></span>
+        </div>
+        {% endif %}
+
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center mt-4">
+            <!-- Portfolio Item 1-->
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                </div>
+            </div>
+            <!-- Portfolio Item 2-->
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                </div>
+            </div>
+            <!-- Portfolio Item 3-->
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                </div>
+            </div>
+            <!-- Portfolio Item 4-->
+            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                <div class="portfolio-item mx-auto">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "_rename_pack_modal.html" %}
+{% endblock %}

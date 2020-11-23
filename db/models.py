@@ -76,7 +76,9 @@ class Pack(_Base):
 
     id = Column(Integer, primary_key=True)
     userid = Column(Integer, ForeignKey('users.id'))
+    name = Column(String, default='Pack')
     status = Column(String, default=PackStatus.PENDING)
+    creation_date = Column(DateTime(), default=datetime.utcnow)
     graphs = relationship("Graph", backref="pack", lazy='select')
 
     def __repr__(self):

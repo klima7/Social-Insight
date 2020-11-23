@@ -26,6 +26,7 @@ def create_app():
     bootstrap.init_app(app)
     mail.init_app(app)
     moment.init_app(app)
+    config.init_app(app);
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')

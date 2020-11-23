@@ -12,6 +12,15 @@
 	padding-top: 2rem;
 }
 
+.account-item:hover {
+	background-color: #1abc9c;
+}
+
+.account-item a:hover {
+	text-decoration: none;
+	color: white;
+}
+
 /*----------------------- Preloader -----------------------*/
 .preloader-wrapper {
     height: 100%;
