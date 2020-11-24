@@ -123,3 +123,20 @@ def collation(id):
         db_session.add(collation)
         db_session.commit()
     return render_template('collation.html', collation=collation, form=form)
+
+
+@main.route('/collations/<id>/remove/confirm')
+def remove_collation_confirm(id):
+    get_collation(id)
+    address = url_for('main.remove_collation', id=id)
+    flash(f'Are you sure that you want to remove this collation? <a href="{address}">Yes</a>', 'warning')
+    return redirect(url_for('main.collation', id=id))
+
+
+@main.route('/collations/<id>/remove')
+def remove_collation(id):
+    collation = get_collation(id)
+    db_session.delete(collation)
+    db_session.commit()
+    flash('collation was removed', 'success')
+    return redirect(url_for('main.account'))
