@@ -140,3 +140,23 @@ def remove_collation(id):
     db_session.commit()
     flash('collation was removed', 'success')
     return redirect(url_for('main.account'))
+
+
+@main.route('/packs/<id>/messages')
+def graphs_messages(id):
+    pack = get_pack(id)
+    form = RenamePackForm()
+
+    if form.validate_on_submit():
+        pack.name = form.name.data
+        flash('Pack name changed to ' + pack.name, 'success')
+        db_session.add(pack)
+        db_session.commit()
+
+    g = pack.graphs
+    pack.get = lambda name: pack.graphs.filter(Graph.name == name).one()
+
+    return render_template('graphs_messages.html', pack=pack, form=form)
+
+
+

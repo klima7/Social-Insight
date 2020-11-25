@@ -79,7 +79,7 @@ class Pack(_Base):
     name = Column(String, default='Pack')
     status = Column(String, default=PackStatus.PENDING)
     creation_date = Column(DateTime(), default=datetime.utcnow)
-    graphs = relationship("Graph", backref="pack", lazy='select')
+    graphs = relationship("Graph", backref="pack", lazy='dynamic')
 
     def __repr__(self):
         return f"<Pack(id={self.id}, userid='{self.userid}' done={self.done})>"
