@@ -14,6 +14,18 @@ def after_request(response):
     return response
 
 
+def add_anonymous_pack_to_user(user):
+    pack_id = session.get('packid', None)
+    if pack_id is not None:
+        pack = db_session.query(Pack).filter_by(id=pack_id).first()
+        if pack is not None and pack.userid is None:
+            pack.userid = user.id
+            db_session.add(pack)
+            db_session.commit()
+            return True
+    return False
+
+
 @auth.route('/login/', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -32,6 +44,10 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash('Login success!', 'success')
+
+            if add_anonymous_pack_to_user(user):
+                flash('New pack was added to your account!', 'success')
+
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
                 next = url_for('main.account')
@@ -63,6 +79,10 @@ def register():
         token = user.generate_confirmation_token()
         send_email(user.email, 'Account Confirmation', 'confirmation', token=token)
         flash('Register success! Please confirm your email before logging', 'success')
+
+        if add_anonymous_pack_to_user(user):
+            flash('New pack was added to your account!', 'success')
+
         return redirect(url_for('auth.login'))
     display_errors_with_flash(form)
     return render_template('register.html', form=form)

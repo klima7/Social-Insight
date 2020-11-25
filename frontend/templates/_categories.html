@@ -21,7 +21,7 @@
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center mt-4" data-aos="fade-up">
             <!-- Portfolio Item 1-->
-            <div class="col-md-6 col-lg-3 mb-5">
+            <div class="col-md-6 col-lg-3 mb-4">
                 <div class="portfolio-item mx-auto">
                     <a href="{{ url_for('main.graphs_messages', id=pack.id) }}">
                         <img class="img-fluid" src="{{ m.static('images/category_messages.png') }}" alt="" />
@@ -29,23 +29,33 @@
                 </div>
             </div>
             <!-- Portfolio Item 2-->
-            <div class="col-md-6 col-lg-3 mb-5">
+            <div class="col-md-6 col-lg-3 mb-4">
                 <div class="portfolio-item mx-auto">
                     <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
                 </div>
             </div>
             <!-- Portfolio Item 3-->
-            <div class="col-md-6 col-lg-3 mb-5">
+            <div class="col-md-6 col-lg-3 mb-4">
                 <div class="portfolio-item mx-auto">
                     <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
                 </div>
             </div>
             <!-- Portfolio Item 4-->
-            <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="portfolio-item mx-auto">
                     <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
                 </div>
             </div>
         </div>
+
+        {% if not current_user.is_authenticated %}
+        <div class="row">
+            <div class="col-12 mb-3">
+                <div class="bg-secondary text-light" style="border-radius: 10px; padding: 7px">
+                    <span><a href="{{ url_for('auth.login') }}" class="text-light"><em>Login</em></a> or <a href="{{ url_for('auth.register') }}" class="text-light"><em>Register</em></a> to store this chart pack permanently and gain extra features like creating collations</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
