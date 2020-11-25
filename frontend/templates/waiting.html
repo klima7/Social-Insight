@@ -1,0 +1,34 @@
+{% extends "standard.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ m.static('css/waiting.css') }}">
+{% endblock %}
+
+{% block bottomscripts %}
+        {{ super() }}
+        <script src="{{ m.static('scripts/waiting.js') }}"></script>
+{% endblock %}
+
+{% block sections %}
+<section class="page-section first-section bg-primary" style="height: 600px">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="text-secondary">Please, wait few moments</h1>
+            <h4 class="text-secondary">We are analysing you data</h4>
+        </div>
+
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="waiting-icon">
+            <img src="{{m.static('images/logo_white_icon.png')}}" style="width: 100px" alt="NILA">
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

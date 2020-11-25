@@ -13,18 +13,7 @@ def _get_pack_status():
     return pack.status
 
 
-@api.route("/packs/anonymous/status")
+@api.route("/packs/last/status")
 def get_pack_status():
     status = _get_pack_status()
     return {"status": status}
-
-
-@api.route("/packs/anonymous/graphs")
-def get_graphs():
-    if not _get_pack_status():
-        return 404
-
-    id = session.get('packid', None)
-    pack = db_session.query(Pack).filter_by(id=id).one_or_none()
-
-    return render_template("graphs.html", pack=pack)

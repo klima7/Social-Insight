@@ -16,7 +16,9 @@ Dropzone.options.uploadZone = {
     	dz = this;
 
   		this.on("uploadprogress", function(file, progress) {
-			if(progress == 100) check()
+			if(progress == 100) {
+				window.location.href = '/packs/waiting';
+			}
   		});
 
     	this.on("addedfile", function(newfile) {
@@ -26,42 +28,4 @@ Dropzone.options.uploadZone = {
 			}
      	});
     }
-}
-
-function check() {
-    $.ajax({
-        dataType: "json",
-        url: API_PREFIX + "packs/anonymous/status",
-        cache: false,
-        success: function(data) {
-            console.log(data);
-            if(data.status == 'success') {
-                fetchGraphs()
-            }
-            else if(data.status == 'pending' || data.status == 'processing') {
-                setTimeout(check, 1000);
-            }
-            else {
-            	alert(`Error: pack status is ${data.status}`)
-            }
-        },
-        error: function() {
-            alert("Error occured on ready check");
-        }
-    });
-}
-
-function fetchGraphs() {
-    $.ajax({
-        dataType: "html",
-        url: API_PREFIX + "packs/anonymous/graphs",
-        cache: false,
-        success: function(data) {
-            $("#graphs").html(data);
-        },
-        error: function() {
-            alert("Error occured on graphs fetch");
-        }
-    });
-    Dropzone.forElement('#uploadZone').removeAllFiles(true)
 }

@@ -8920,8 +8920,8 @@ a.text-dark:hover {
     }
 }
 .masthead {
-    padding-top: calc(6rem + 0px);
-    padding-bottom: 0rem;
+    padding-top: calc(3rem + 0px);
+    padding-bottom: 2rem;
 }
 .masthead .masthead-heading {
     font-size: 2.75rem;
@@ -8935,8 +8935,8 @@ a.text-dark:hover {
 }
 @media (min-width: 992px) {
     .masthead {
-        padding-top: calc(6rem + 0px);
-        padding-bottom: 6rem;
+        padding-top: calc(2rem + 0px);
+        padding-bottom: 3rem;
     }
     .masthead .masthead-heading {
         font-size: 4rem;

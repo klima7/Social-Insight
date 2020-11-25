@@ -53,16 +53,16 @@ def account():
 
 
 def get_pack(id):
-    if id == 'anonymous' and not current_user.is_authenticated and session.get('packid', None) is not None:
-        pack = db_session.query(Pack).filter_by(id=session.get('packid')).first()
-    elif id != 'anonymous' and current_user.is_authenticated:
-        pack = db_session.query(Pack).filter_by(userid=current_user.id, id=id).first()
-    else:
-        abort(403)
+    if id == 'last':
+        id = session.get('packid', None)
+        if id is None:
+            abort(403)
 
-    if pack is None:
-        abort(403)
-    return pack
+    pack = db_session.query(Pack).filter_by(id=id).first()
+    if current_user.is_authenticated and pack.userid == current_user.id or pack.id == session.get('packid', None):
+        return pack
+
+    abort(403)
 
 
 @main.route('/packs/<id>', methods=['GET', 'POST'])
@@ -157,6 +157,11 @@ def graphs_messages(id):
     pack.get = lambda name: pack.graphs.filter(Graph.name == name).one()
 
     return render_template('graphs_messages.html', pack=pack, form=form)
+
+
+@main.route('/packs/waiting')
+def waiting():
+    return render_template('waiting.html')
 
 
 

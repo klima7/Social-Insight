@@ -1,0 +1,23 @@
+.waiting-icon {
+	padding-top: 50px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    animation-name: preloader-animation;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: ease;
+}
+
+@keyframes preloader-animation {
+  0%   { transform: translate(0px, 0px); }
+  25%  { transform: translate(-100px, -100px); }
+  50%  { transform: translate(-100px, 100px); }
+  75%  { transform: translate(100px, -100px); }
+  100% { transform: translate(0px, 0px); }
+}
