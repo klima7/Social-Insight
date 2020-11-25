@@ -1,0 +1,36 @@
+{% extends "standard.html" %}
+
+{% block sections %}
+<section class="page-section first-section">
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block" data-aos="fade-up" data-aos-duration="500">CREDITS</h2>
+        </div>
+
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <a href="http://www.flaticon.com" target="_blank">
+                <img src="{{ m.static('images/flaticon.png') }}"><br/>
+                    <span>Icons made by Pixel perfect from www.flaticon.com</span>
+                </a>
+            </div>
+
+            <div class="col-12 text-center mt-5">
+                <a href="https://startbootstrap.com/theme/freelancer" target="_blank">
+                <img src="{{ m.static('images/startbootstrap.png') }}"><br/>
+                    <span>Page template by www.startbootstrap.com</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

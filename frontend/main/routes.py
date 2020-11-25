@@ -140,7 +140,7 @@ def remove_collation(id):
     return redirect(url_for('main.account'))
 
 
-@main.route('/packs/<id>/messages')
+@main.route('/packs/<id>/messages', methods=['GET', 'POST'])
 def graphs_messages(id):
     pack = get_pack(id)
     form = RenamePackForm()
@@ -160,6 +160,11 @@ def graphs_messages(id):
 @main.route('/packs/waiting')
 def waiting():
     return render_template('waiting.html')
+
+
+@main.route('/credits')
+def credits():
+    return render_template('credits.html')
 
 
 
