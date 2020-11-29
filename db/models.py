@@ -77,9 +77,14 @@ class Pack(_Base):
     id = Column(Integer, primary_key=True)
     userid = Column(Integer, ForeignKey('users.id'))
     name = Column(String, default='Pack')
-    status = Column(String, default=PackStatus.PENDING)
+    status = Column(String)
     creation_date = Column(DateTime(), default=datetime.utcnow)
     graphs = relationship("Graph", backref="pack", lazy='dynamic')
+
+    STATUS_PENDING = 'pending'
+    STATUS_PROCESSING = 'processing'
+    STATUS_SUCCESS = 'success'
+    STATUS_FAILURE = 'failure'
 
     def __repr__(self):
         return f"<Pack(id={self.id}, userid='{self.userid}' done={self.done})>"
@@ -96,12 +101,16 @@ class Graph(_Base):
 
     id = Column(Integer, primary_key=True)
     packid = Column(Integer, ForeignKey('packs.id'))
-    name = Column(String)
+    name = Column(Integer)
     data = Column(String)
+    public = Column(Boolean, default=False)
     collations = relationship('Collation',
                               secondary=collation_entries,
                               backref=backref('packs', lazy='select'),
                               lazy='select')
+
+    def get_name(self):
+        return GraphName.names[self.name]
 
     def __repr__(self):
         return f"<Graph(id={self.id})>"

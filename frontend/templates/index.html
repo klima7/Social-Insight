@@ -13,9 +13,9 @@
 
         <!-- Upload zone-->
         <form id="uploadZone" action="{{ url_for('main.index_post') }}" class="dropzone">
-            <img id="uploadLogo" class="masthead-avatar mb-5 dz-clickable needsclick" src="{{ m.static('images/logo_white_icon.png') }}" alt="" data-aos="fade-down" data-aos-duration="2000">
+            <img id="uploadLogo" class="masthead-avatar mb-4" src="{{ m.static('images/logo_white_icon.png') }}" alt="" data-aos="fade-down" data-aos-duration="2000">
             <div class="dz-message" style="margin: 0px; padding: 0px;" data-dz-message>
-                <span style="font-weight: bold">Drop here your data file!</span><br />
+                <span style="font-weight: bold">{{ _('Drop here your data file!') }}</span><br />
                 <span><a class="js-scroll-trigger" href="#howToGetSection" style="color: white;"><small>How to get it?</small></a></span>
             </div>
         </form>

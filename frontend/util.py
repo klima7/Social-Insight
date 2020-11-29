@@ -1,4 +1,5 @@
 from flask import flash
+from flask_login import current_user
 from config import config
 from time import time_ns
 
@@ -13,3 +14,7 @@ def display_errors_with_flash(form):
     for fieldName, errorMessages in form.errors.items():
         for err in errorMessages:
             flash(err, 'error')
+
+
+def get_current_user():
+    return current_user

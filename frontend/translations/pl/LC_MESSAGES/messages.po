@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-11-11 12:50+0100\n"
-"PO-Revision-Date: 2020-11-11 12:50+0100\n"
+"POT-Creation-Date: 2020-11-29 20:29+0100\n"
+"PO-Revision-Date: 2020-11-29 20:29+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -19,7 +19,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: frontend/templates/index.html:11
-msgid "Welcome, drop here you file!"
-msgstr "Witaj, upuść tutaj swoje pliki!"
+#: db/constants.py:13
+msgid "bar chart"
+msgstr "Wykres słupkowy"
+
+#: db/constants.py:14
+msgid "pie chart"
+msgstr "Wykres kołowy"
+
+#: db/constants.py:15
+msgid "line chart"
+msgstr "Wykres liniowy"
+
+#: db/constants.py:16
+msgid "radar chart"
+msgstr "Wykres radarowy"
+
+#: frontend/templates/index.html:18
+msgid "Drop here your data file!"
+msgstr "Upuść tutaj swój plik!"
 

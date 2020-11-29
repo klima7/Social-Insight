@@ -11,6 +11,7 @@ from .forms import LoginForm, RegisterForm, ChangePasswordForm, ResetPasswordEma
 def after_request(response):
     if request.endpoint != 'static' and request.endpoint != 'auth.login':
         session['prev'] = request.endpoint
+        session['prev_url'] = request.url
     return response
 
 

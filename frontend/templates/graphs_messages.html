@@ -1,29 +1,28 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_graph_render_macro.html" as graph_m %}
+
+{% block topscripts %}
+{{ super() }}
+<script src="{{ m.static('scripts/charts_ajax.js') }}"></script>
+{% endblock %}
 
 {% block sections %}
 {% include "_categories.html" %}
-
-
-
 <section>
-    <div class="container-fluid pt-4">
+    <div class="container-fluid pt-4 pb-3">
         <div class="row">
             <div class="col-12 col-lg-6">
-                <div class="text-center"><h2 class="page-section-heading text-secondary mb-0 d-inline-block">BAR CHART</h2></div>
-                <embed type="image/svg+xml" src= {{ pack.get(GraphName.EXAMPLE_BAR_CHART).data|safe }} />
+                {{ graph_m.render(pack.get(1)) }}
             </div>
             <div class="col-12 col-lg-6">
-                <div class="text-center"><h2 class="page-section-heading text-secondary mb-0 d-inline-block">PIE CHART</h2></div>
-                <embed type="image/svg+xml" src= {{ pack.get(GraphName.EXAMPLE_PIE_CHART).data|safe }} />
+                {{ graph_m.render(pack.get(2)) }}
             </div>
             <div class="col-12 col-lg-6">
-                <div class="text-center"><h2 class="page-section-heading text-secondary mb-0 d-inline-block">LINE CHART</h2></div>
-                <embed type="image/svg+xml" src= {{ pack.get(GraphName.EXAMPLE_LINE_CHART).data|safe }} />
+                {{ graph_m.render(pack.get(3)) }}
             </div>
             <div class="col-12 col-lg-6">
-                <div class="text-center"><h2 class="page-section-heading text-secondary mb-0 d-inline-block">RADAR CHART</h2></div>
-                <embed type="image/svg+xml" src= {{ pack.get(GraphName.EXAMPLE_RADAR_CHART).data|safe }} />
+                {{ graph_m.render(pack.get(4)) }}
             </div>
         </div>
     </div>

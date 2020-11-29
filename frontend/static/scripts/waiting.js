@@ -4,7 +4,6 @@ function check() {
         url: "/api/packs/last/status",
         cache: false,
         success: function(data) {
-            console.log(data.status);
             if(data.status == 'success') {
                 redirect();
             }
@@ -27,4 +26,4 @@ function redirect() {
 	}, 3000)
 }
 
-check();
+setTimeout(check, 1000);

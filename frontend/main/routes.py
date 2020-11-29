@@ -18,7 +18,7 @@ def index():
 
 @main.route('/', methods=['POST'])
 def index_post():
-    pack = Pack()
+    pack = Pack(status=Pack.STATUS_PENDING)
 
     if current_user.is_authenticated:
         pack.user = current_user
@@ -27,6 +27,7 @@ def index_post():
     db_session.commit()
 
     session['packid'] = pack.id
+    print(session.get('packid', None))
 
     uploaded_file = request.files['file']
     path = uploads.get_path_for_pack(pack.id)
@@ -34,6 +35,7 @@ def index_post():
 
     thread = Thread(target=analytics.analyse, args=[pack.id])
     thread.start()
+    print(session.get('packid', None))
 
     return "", 204
 
@@ -43,7 +45,7 @@ def change_language(lang):
     if lang not in config.LANGUAGES:
         return abort(404)
     session['lang'] = lang
-    return redirect(url_for('main.index'))
+    return redirect(session.get('prev_url', url_for('main.index')))
 
 
 @main.route('/account/')
@@ -61,6 +63,7 @@ def get_pack(id):
     if current_user.is_authenticated and pack.userid == current_user.id or pack.id == session.get('packid', None):
         return pack
     abort(403)
+
 
 
 @main.route('/packs/<id>', methods=['GET', 'POST'])
@@ -151,9 +154,7 @@ def graphs_messages(id):
         db_session.add(pack)
         db_session.commit()
 
-    g = pack.graphs
     pack.get = lambda name: pack.graphs.filter(Graph.name == name).one()
-
     return render_template('graphs_messages.html', pack=pack, form=form)
 
 
@@ -165,6 +166,16 @@ def waiting():
 @main.route('/credits')
 def credits():
     return render_template('credits.html')
+
+
+@main.route('/graphs/<id>')
+def graphs(id):
+    graph = db_session.query(Graph).filter_by(id=id).first()
+    if graph is None:
+        abort(404)
+    if not graph.public and not graph.pack.user == current_user:
+        abort(403)
+    return render_template('graph.html', graph=graph)
 
 
 

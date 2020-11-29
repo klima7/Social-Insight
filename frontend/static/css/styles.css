@@ -1,24 +1,10 @@
-#uploadZone {
-    background-color: transparent;
-    border: 2px dashed white;
-    border-radius: 5px;
-}
-
+/* All pages */
 .language-tile img {
 	width: 200px;
 }
 
 .first-section {
 	padding-top: 2rem;
-}
-
-.account-item:hover {
-	background-color: #1abc9c;
-}
-
-.account-item a:hover {
-	text-decoration: none;
-	color: white;
 }
 
 #notifications {
@@ -29,6 +15,50 @@
 	#notifications {
 		padding-top: 6.5rem;
 	}
+}
+
+/* Index page */
+#uploadZone {
+    background-color: transparent;
+    border: 2px dashed white;
+    border-radius: 5px;
+}
+
+/* Account page */
+.account-item:hover {
+	background-color: #1abc9c;
+}
+
+.account-item a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+/* Graphs page */
+.graph-button {
+	display: inline;
+	background-color: #1abc9c;
+	padding: 4px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.graph-button:hover {
+	border: 2px #2c3e50;
+}
+
+.graph-button.disable{
+	background-color: gray;
+}
+
+.graph-button > a {
+	color: white;
+	cursor: pointer;
+}
+
+.graph-button > a:hover {
+	color: white;
+	text-decoration: none;
 }
 
 

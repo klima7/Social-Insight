@@ -16,10 +16,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 language-tile">
-                            <a href=""><img class="mb-5" src="{{ m.static('images/english.png') }}" alt="English"/></a>
+                            <a href="{{ url_for('main.change_language', lang='en') }}"><img class="mb-5" src="{{ m.static('images/english.png') }}" alt="English"/></a>
                         </div>
                         <div class="col-12 col-md-6 language-tile">
-                            <a href=""><img class="mb-5" src="{{ m.static('images/polish.png') }}" alt="Polish"/></a>
+                            <a href="{{ url_for('main.change_language', lang='pl') }}"><img class="mb-5" src="{{ m.static('images/polish.png') }}" alt="Polish"/></a>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>

@@ -1,12 +1,17 @@
-class PackStatus:
-    PENDING = 'pending'
-    PROCESSING = 'processing'
-    SUCCESS = 'success'
-    FAILURE = 'failure'
+from flask_babel import lazy_gettext as _l
 
 
 class GraphName:
-    EXAMPLE_BAR_CHART = 'example_bar_chart'
-    EXAMPLE_PIE_CHART = 'example_pie_chart'
-    EXAMPLE_LINE_CHART = 'example_line_chart'
-    EXAMPLE_RADAR_CHART = 'example_rader_chart'
+    names = {}
+
+    def __init__(self, nr, name):
+        self.nr = nr
+        self.name = name
+        GraphName.names[nr] = name
+
+
+class GraphNames:
+    EXAMPLE_BAR_CHART = GraphName(1, _l('bar chart'))
+    EXAMPLE_PIE_CHART = GraphName(2, _l('pie chart'))
+    EXAMPLE_LINE_CHART = GraphName(3, _l('line chart'))
+    EXAMPLE_RADAR_CHART = GraphName(4, _l('radar chart'))
