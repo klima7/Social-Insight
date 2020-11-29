@@ -21,9 +21,8 @@ function check() {
 }
 
 function redirect() {
-	setTimeout(() => {
-		window.location.href = '/packs/last';
-	}, 3000)
+	let packid = $('#packid').text()
+	window.location.href = `/packs/${packid}`;
 }
 
-setTimeout(check, 1000);
+setTimeout(check, 2000);

@@ -40,7 +40,6 @@ def analyse(pack_id):
 
     # Zatwierdzenie zmian
     db_session.commit()
-    print('end analyse')
 
 
 from .messages import *

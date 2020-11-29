@@ -6,7 +6,7 @@ from db import *
 
 def _get_pack_status():
     id = session.get('packid', None)
-    print(id)
+    print('check:', id)
     if not id:
         return Pack.STATUS_FAILURE
     pack = db_session.query(Pack).filter_by(id=id).one_or_none()
@@ -18,7 +18,7 @@ def _get_pack_status():
 @api.route("/packs/last/status")
 def get_pack_status():
     status = _get_pack_status()
-    print(status)
+    print('status:', status)
     return {"status": status}
 
 

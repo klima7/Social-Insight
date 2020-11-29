@@ -49,6 +49,5 @@ def create_app():
 def get_locale():
     default_lang = request.accept_languages.best_match(config.LANGUAGES)
     lang = session.get('lang', default_lang)
-    print(lang)
     return lang
 

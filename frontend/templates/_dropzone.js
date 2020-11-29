@@ -15,11 +15,16 @@ Dropzone.options.uploadZone = {
     init: function() {
     	dz = this;
 
-  		this.on("uploadprogress", function(file, progress) {
-			if(progress == 100) {
-				window.location.href = '/packs/waiting';
-			}
-  		});
+//  		this.on("uploadprogress", function(file, progress) {
+//			if(progress == 100) {
+//				window.location.href = '/packs/waiting';
+//			}
+//  		});
+
+  		this.on("success", function(file, responseText) {
+			console.log(responseText.id);
+			window.location.href = `/packs/waiting/${responseText.id}`;
+        });
 
     	this.on("addedfile", function(newfile) {
 			for(let file of dz.files) {

@@ -1,6 +1,6 @@
 from threading import Thread
 
-from flask import request, render_template, session, redirect, url_for, abort, flash
+from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify
 from flask_login import login_required, current_user
 
 import analytics
@@ -27,17 +27,22 @@ def index_post():
     db_session.commit()
 
     session['packid'] = pack.id
-    print(session.get('packid', None))
+    print('new id:', pack.id)
+    session.modified = True
 
+    print('check 1')
     uploaded_file = request.files['file']
+    print('check 2')
     path = uploads.get_path_for_pack(pack.id)
+    print('check 3')
     uploaded_file.save(path)
+    print('check 4')
 
     thread = Thread(target=analytics.analyse, args=[pack.id])
     thread.start()
-    print(session.get('packid', None))
 
-    return "", 204
+    print('check 5')
+    return jsonify({'id': pack.id})
 
 
 @main.route('/lang/<lang>')
@@ -157,9 +162,9 @@ def graphs_messages(id):
     return render_template('graphs_messages.html', pack=pack, form=form)
 
 
-@main.route('/packs/waiting')
-def waiting():
-    return render_template('waiting.html')
+@main.route('/packs/waiting/<packid>')
+def waiting(packid):
+    return render_template('waiting.html', packid=packid)
 
 
 @main.route('/credits')

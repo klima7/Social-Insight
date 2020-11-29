@@ -49,11 +49,9 @@ def analyse_file(file):
 
 @analyser(GraphNames.PEOPLE_MOST_WRITE)
 def bar_chart(zip):
-    print('start bar')
     folders = get_structure(zip)
 
     message_files = get_messages(folders['messages']['inbox'])
-    print(message_files)
     total_message_count = {}
 
     for i in message_files:
@@ -83,7 +81,6 @@ def bar_chart(zip):
     bar_chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(labels)*20)
     bar_chart.x_labels = list(labels)
     bar_chart.add('', values)
-    print('end bar')
     return bar_chart
 
 
