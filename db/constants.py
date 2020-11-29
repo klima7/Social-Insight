@@ -15,3 +15,4 @@ class GraphNames:
     EXAMPLE_PIE_CHART = GraphName(2, _l('pie chart'))
     EXAMPLE_LINE_CHART = GraphName(3, _l('line chart'))
     EXAMPLE_RADAR_CHART = GraphName(4, _l('radar chart'))
+    PEOPLE_MOST_WRITE = GraphName(5, _l('the people you write with the most'))

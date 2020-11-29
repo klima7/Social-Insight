@@ -11,19 +11,12 @@
 {% include "_categories.html" %}
 <section>
     <div class="container-fluid pt-4 pb-3">
-        <div class="row">
-            <div class="col-12 col-lg-6">
+        <div class="card-columns">
+                {{ graph_m.render(pack.get(5)) }}
                 {{ graph_m.render(pack.get(1)) }}
-            </div>
-            <div class="col-12 col-lg-6">
                 {{ graph_m.render(pack.get(2)) }}
-            </div>
-            <div class="col-12 col-lg-6">
                 {{ graph_m.render(pack.get(3)) }}
-            </div>
-            <div class="col-12 col-lg-6">
                 {{ graph_m.render(pack.get(4)) }}
-            </div>
         </div>
     </div>
 </section>

@@ -6,8 +6,7 @@ from db import *
 
 def _get_pack_status():
     id = session.get('packid', None)
-    print('here 1')
-    print(session.get('packid', None))
+    print(id)
     if not id:
         return Pack.STATUS_FAILURE
     pack = db_session.query(Pack).filter_by(id=id).one_or_none()
