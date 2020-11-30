@@ -60,10 +60,6 @@ def account():
 
 
 def get_pack(id):
-    if id == 'last':
-        id = session.get('packid', None)
-        if id is None:
-            abort(403)
     pack = db_session.query(Pack).filter_by(id=id).first()
     if current_user.is_authenticated and pack.userid == current_user.id or pack.id == session.get('packid', None):
         return pack

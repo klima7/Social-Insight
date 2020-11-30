@@ -1,7 +1,9 @@
+let packid = $('#packid').text()
+
 function check() {
     $.ajax({
         dataType: "json",
-        url: "/api/packs/last/status",
+        url: `/api/packs/${packid}/status`,
         cache: false,
         success: function(data) {
             if(data.status == 'success') {
@@ -21,7 +23,6 @@ function check() {
 }
 
 function redirect() {
-	let packid = $('#packid').text()
 	window.location.href = `/packs/${packid}`;
 }
 
