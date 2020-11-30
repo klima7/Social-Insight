@@ -16,3 +16,4 @@ class GraphNames:
     EXAMPLE_LINE_CHART = GraphName(3, _l('line chart'))
     EXAMPLE_RADAR_CHART = GraphName(4, _l('radar chart'))
     PEOPLE_MOST_WRITE = GraphName(5, _l('the people you write with the most'))
+    PHOTOS_PER_CONVERSATIONS = GraphName(6, _l('Photos per conversation'))

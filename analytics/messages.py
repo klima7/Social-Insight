@@ -84,6 +84,43 @@ def bar_chart(zip):
     return bar_chart
 
 
+@analyser(GraphNames.PHOTOS_PER_CONVERSATIONS)
+def photos_per_conversation(zip):
+    folders = get_structure(zip)
+
+    message_files = get_messages(folders['messages']['inbox'])
+    total_message_count = {}
+
+    for i in message_files:
+        temp_file = zip.getinfo(i)
+        with zip.open(temp_file) as f:
+            stats = analyse_file(f.read())
+            for j in stats['message_count'].keys():
+                if j not in total_message_count:
+                    total_message_count[j] = stats['message_count'][j]
+                else:
+                    total_message_count[j] += stats['message_count'][j]
+
+    labels = []
+    values = []
+
+    for k, v in sorted(total_message_count.items(), key=lambda item: item[1]):
+        if len(k) > 30:
+            continue
+
+        labels.append(k)
+        values.append(v)
+
+    if len(labels) > 20:
+        labels = labels[-20:]
+        values = values[-20:]
+
+    bar_chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(labels)*20)
+    bar_chart.x_labels = list(labels)
+    bar_chart.add('', values)
+    return bar_chart
+
+
 @analyser(GraphNames.EXAMPLE_PIE_CHART)
 def pie_chart(zip):
     pie_chart = pygal.Pie(legend_at_bottom=True, style=style)
