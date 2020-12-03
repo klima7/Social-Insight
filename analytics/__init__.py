@@ -36,9 +36,8 @@ def analyse(pack_id):
     file_path = uploads.get_path_for_pack(pack_id)
 
     with zp.ZipFile(file_path) as zip:
-        for fun, category, name in _graphs:
-            data_uri = fun(zip).render_data_uri()
-            graph = Graph(name=str(name), category=category, packid=pack_id, data=data_uri)
+        for fun, category, name, tran_name in _graphs:
+            graph = Graph(name=name, category=category, packid=pack_id, data=fun(zip))
             db_session.add(graph)
 
     # Usunięcie pliku

@@ -3,7 +3,7 @@
   <div class="text-center">
     <h2 class="page-section-heading text-secondary mb-0 mt-3 d-inline-block text-uppercase">{{ graph.get_name() }}</h2>
   </div>
-  <embed type="image/svg+xml" src= {{ graph.data|safe }} />
+  <embed type="image/svg+xml" src= {{ graph.data.render_data_uri()|safe }} />
   <div class="card-body mt-0 pt-0">
     {% if graph.pack.user == user() %}
     <div class="graph-button"><a data-sharer="facebook" data-hashtag="SocialInsight" data-url="https://www.google.pl">Share</a></div>

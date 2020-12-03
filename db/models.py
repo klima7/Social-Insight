@@ -5,6 +5,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.schema import Table
+from sqlalchemy.types import PickleType
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from db import *
@@ -103,7 +104,7 @@ class Graph(_Base):
     packid = Column(Integer, ForeignKey('packs.id'))
     name = Column(String)
     category = Column(String)
-    data = Column(String)
+    data = Column(PickleType)
     public = Column(Boolean, default=False)
     collations = relationship('Collation',
                               secondary=collation_entries,
