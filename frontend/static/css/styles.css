@@ -17,6 +17,32 @@
 	}
 }
 
+.round-bottom {
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.round-top {
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+}
+
+/* Categories */
+
+.category-selected {
+	box-sizing: border-box;
+	background-color: #2C3E50;
+	border: 5px solid #2C3E50;
+}
+
+.category {
+	transition: 0.3s;
+}
+
+.category:hover {
+	transform: translate(0px, -10px)
+}
+
 /* Index page */
 #uploadZone {
     background-color: transparent;
@@ -70,3 +96,5 @@
 		column-count: 2;
 	}
 }
+
+

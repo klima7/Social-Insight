@@ -22,33 +22,37 @@
         <div class="row justify-content-center mt-4">
             <!-- Portfolio Item 1-->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="portfolio-item mx-auto">
+                <div class="portfolio-item mx-auto category {% if category=='messages' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='messages') }}">
                         <img class="img-fluid" src="{{ m.static('images/category_messages.png') }}" alt="" />
+                        <div class="bg-secondary text-light text-center">messages</div>
                     </a>
                 </div>
             </div>
             <!-- Portfolio Item 2-->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="portfolio-item mx-auto">
+                <div class="portfolio-item mx-auto category {% if category=='posts' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='posts') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                        <div class="bg-secondary text-light text-center">posts</div>
                     </a>
                 </div>
             </div>
             <!-- Portfolio Item 3-->
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="portfolio-item mx-auto">
-                    <a href="{{ url_for('main.graphs_category', id=pack.id, category='others') }}">
+                <div class="portfolio-item mx-auto category {% if category=='miscellaneous' %}category-selected{% endif %}">
+                    <a href="{{ url_for('main.graphs_category', id=pack.id, category='miscellaneous') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                        <div class="bg-secondary text-light text-center">miscellaneous</div>
                     </a>
                 </div>
             </div>
             <!-- Portfolio Item 4-->
             <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <div class="portfolio-item mx-auto">
-                    <a href="{{ url_for('main.graphs_category', id=pack.id, category='others') }}">
+                <div class="portfolio-item mx-auto category {% if category=='other' %}category-selected{% endif %}">
+                    <a href="{{ url_for('main.graphs_category', id=pack.id, category='other') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
+                        <div class="bg-secondary text-light text-center">other</div>
                     </a>
                 </div>
             </div>
