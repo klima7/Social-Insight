@@ -6,7 +6,7 @@
 
 {% block sections %}
 <!-- Header-->
-<header class="masthead bg-primary text-white text-center">
+<header class="masthead bg-primary text-white text-center round-bottom">
     <div class="container d-flex align-items-center flex-column">
         <!-- Title-->
         <h1 class="masthead-heading mb-4">Social Insight</h1>
@@ -34,12 +34,12 @@
 </header>
 
 <!-- Features section -->
-<section class="page-section portfolio" id="featuresSection">
+<section class="page-section portfolio pt-5 pb-0" id="featuresSection">
     <div class="container">
 
         <!-- Heading -->
         <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">FEATURES</h2>
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">Features</h2>
         </div>
 
         <!-- Icon Divider-->
@@ -50,39 +50,38 @@
         </div>
 
         <!-- features row -->
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 mb-5">
+        <div class="row justify-content-center mb-lg-4">
+            <div class="col-12 col-md-6 mb-3">
                 <div class="portfolio-item mx-auto">
                     <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-5">
-                <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                <p class="text-justify">{{ lorem.paragraph() }}</p>
             </div>
         </div>
 
         <!-- features row -->
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 mb-5  order-md-2">
+        <div class="row justify-content-center mb-lg-4">
+            <div class="col-12 col-md-6 order-md-2 mb-3">
                 <div class="portfolio-item mx-auto">
-                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-right" data-aos-duration="1000"/>
+                    <img class="img-fluid p-0" src="{{ m.static('images/foo.png') }}" data-aos="fade-right" data-aos-duration="1000"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-5 order-md-1">
-                <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                <p class="text-justify">{{ lorem.paragraph() }}</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- How to get file Section -->
- <section class="page-section bg-primary text-white portfolio" id="howToGetSection">
+ <section class="page-section bg-primary text-white portfolio pt-5 pb-0 round-top" id="howToGetSection">
     <div class="container">
 
         <!-- Heading -->
         <div class="text-center">
-            <h2 class="page-section-heading text-white mb-0 d-inline-block">HOW TO GET DATA FILE?
-            <br /><small style="font-size: 50%">Very simple :)</small></h2>
+            <h2 class="page-section-heading text-white mb-0 d-inline-block text-uppercase">How to get data file?</h2>
         </div>
 
         <!-- Icon Divider-->
@@ -94,13 +93,13 @@
 
         <!-- How to get row -->
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6 mb-5">
-                <div class="portfolio-item mx-auto">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto mb-md-4">
                     <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-5">
-                <p style="text-align: justify">{{ lorem.paragraph() }}</p>
+                <p class="text-justify">{{ lorem.paragraph() }}</p>
             </div>
         </div>
     </div>

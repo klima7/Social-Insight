@@ -28,7 +28,6 @@
 }
 
 /* Categories */
-
 .category-selected {
 	box-sizing: border-box;
 	background-color: #2C3E50;
@@ -61,6 +60,19 @@
 }
 
 /* Graphs page */
+.graph-header {
+	margin-top: 15px;
+	font-size: 25px;
+	text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+	/* Graphs page */
+	.graph-header {
+		font-size: 15px;
+	}
+}
+
 .graph-button {
 	display: inline;
 	background-color: #1abc9c;

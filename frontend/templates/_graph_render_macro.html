@@ -4,7 +4,7 @@
 <div class="card mb-4 {% if graph.data is none %}bg-warning{% endif %}">
 
   <div class="text-center">
-    <h2 class="page-section-heading text-secondary mb-0 mt-3 d-inline-block text-uppercase">{{ graph.get_name() }}</h2>
+    <h2 class="graph-header">{{ graph.get_name() }}</h2>
   </div>
 
   {% if graph.data is not none %}
@@ -23,7 +23,7 @@
   {% else %}
   <div class="card-body mt-0 pt-0 text-center">
     <img class="mt-3" style="height: 200px" src="{{ m.static('images/graph_error.png') }}"/>
-    <p class="mt-3">Sorry, error occured during generating this graph</p>
+    <p class="mt-3">Sorry, error occured</p>
   </div>
   {% endif %}
 
