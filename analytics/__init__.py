@@ -41,12 +41,13 @@ def analyse(pack_id):
 
             try:
                 data = fun(zip)
-            except Exception:
-                data = None
-                traceback.print_exc()
-
-            if data is not None:
+                if data is None:
+                    continue
                 graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
+                db_session.add(graph_entry)
+            except Exception:
+                traceback.print_exc()
+                graph_entry = Graph(name=name, category=category, packid=pack_id, data=None)
                 db_session.add(graph_entry)
 
     # Usunięcie pliku
