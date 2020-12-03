@@ -101,7 +101,8 @@ class Graph(_Base):
 
     id = Column(Integer, primary_key=True)
     packid = Column(Integer, ForeignKey('packs.id'))
-    name = Column(Integer)
+    name = Column(String)
+    category = Column(String)
     data = Column(String)
     public = Column(Boolean, default=False)
     collations = relationship('Collation',
@@ -110,7 +111,8 @@ class Graph(_Base):
                               lazy='select')
 
     def get_name(self):
-        return GraphName.names[self.name]
+        from analytics import get_translated_graph_name
+        return get_translated_graph_name(self.name)
 
     def __repr__(self):
         return f"<Graph(id={self.id})>"

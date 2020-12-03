@@ -1,8 +1,10 @@
-import pygal
-import re
 import json
-from db import *
-from . import style, analyser
+import re
+
+import pygal
+from flask_babel import lazy_gettext as _l
+
+from . import style, graph
 
 
 def get_structure(zip):
@@ -47,7 +49,7 @@ def analyse_file(file):
     return stats
 
 
-@analyser(GraphNames.PEOPLE_MOST_WRITE)
+@graph('messages', _l('The people you write with most frequent'))
 def bar_chart(zip):
     folders = get_structure(zip)
 
@@ -84,7 +86,7 @@ def bar_chart(zip):
     return bar_chart
 
 
-@analyser(GraphNames.PHOTOS_PER_CONVERSATIONS)
+@graph('messages', _l('Images per conversation'))
 def photos_per_conversation(zip):
     folders = get_structure(zip)
 
@@ -121,7 +123,7 @@ def photos_per_conversation(zip):
     return bar_chart
 
 
-@analyser(GraphNames.EXAMPLE_PIE_CHART)
+@graph('messages', _l('Pie chart'))
 def pie_chart(zip):
     pie_chart = pygal.Pie(legend_at_bottom=True, style=style)
     pie_chart.add('IE', 19.5)
@@ -132,14 +134,14 @@ def pie_chart(zip):
     return pie_chart
 
 
-@analyser(GraphNames.EXAMPLE_BAR_CHART)
+@graph('messages', _l('Bar chart'))
 def bar_chart(zip):
     bar_chart = pygal.Bar(legend_at_bottom=True, style=style)
     bar_chart.add('Fibonacci', [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 34, 21, 13, 8, 5, 3, 2, 1, 1, 0])
     return bar_chart
 
 
-@analyser(GraphNames.EXAMPLE_LINE_CHART)
+@graph('messages', _l('Line chart'))
 def line_chart(zip):
     line_chart = pygal.Line(legend_at_bottom=True, style=style)
     line_chart.x_labels = map(str, range(2002, 2013))
@@ -150,7 +152,19 @@ def line_chart(zip):
     return line_chart
 
 
-@analyser(GraphNames.EXAMPLE_RADAR_CHART)
+@graph('messages', _l('Radar chart'))
+def radar_chart(zip):
+    radar_chart = pygal.Radar(legend_at_bottom=True, style=style)
+    radar_chart.x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay',
+                            'NavierStokes']
+    radar_chart.add('Chrome', [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607])
+    radar_chart.add('Firefox', [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450])
+    radar_chart.add('Opera', [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669])
+    radar_chart.add('IE', [43, 41, 59, 79, 144, 136, 34, 102])
+    return radar_chart
+
+
+@graph('messages', _l('Second radar chart'))
 def radar_chart(zip):
     radar_chart = pygal.Radar(legend_at_bottom=True, style=style)
     radar_chart.x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay',

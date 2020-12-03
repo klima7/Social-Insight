@@ -14,7 +14,6 @@ def _get_pack_status(packid):
 @api.route("/packs/<packid>/status")
 def get_pack_status(packid):
     status = _get_pack_status(packid)
-    print('status:', status)
     return {"status": status}
 
 

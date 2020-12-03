@@ -27,16 +27,11 @@ def index_post():
     db_session.commit()
 
     session['packid'] = pack.id
-    print('new id:', pack.id)
     session.modified = True
 
-    print('check 1')
     uploaded_file = request.files['file']
-    print('check 2')
     path = uploads.get_path_for_pack(pack.id)
-    print('check 3')
     uploaded_file.save(path)
-    print('check 4')
 
     thread = Thread(target=analytics.analyse, args=[pack.id])
     thread.start()
@@ -143,8 +138,8 @@ def remove_collation(id):
     return redirect(url_for('main.account'))
 
 
-@main.route('/packs/<id>/messages', methods=['GET', 'POST'])
-def graphs_messages(id):
+@main.route('/packs/<id>/<category>', methods=['GET', 'POST'])
+def graphs_category(id, category):
     pack = get_pack(id)
     form = RenamePackForm()
 
@@ -154,8 +149,8 @@ def graphs_messages(id):
         db_session.add(pack)
         db_session.commit()
 
-    pack.get = lambda name: pack.graphs.filter(Graph.name == name).one()
-    return render_template('graphs_messages.html', pack=pack, form=form)
+    graphs = pack.graphs.filter(Graph.category == category).order_by(Graph.id).all()
+    return render_template('graphs_category.html', pack=pack, graphs=graphs, form=form)
 
 
 @main.route('/packs/waiting/<packid>')
