@@ -45,8 +45,9 @@ def analyse(pack_id):
                 data = None
                 traceback.print_exc()
 
-            graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
-            db_session.add(graph_entry)
+            if data is not None:
+                graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
+                db_session.add(graph_entry)
 
     # Usunięcie pliku
     uploads.remove_pack(pack_id)

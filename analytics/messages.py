@@ -88,41 +88,12 @@ def bar_chart(zip):
 
 @graph('messages', _l('Images per conversation'))
 def photos_per_conversation(zip):
-    folders = get_structure(zip)
-
-    message_files = get_messages(folders['messages']['inbox'])
-    total_message_count = {}
-
-    for i in message_files:
-        temp_file = zip.getinfo(i)
-        with zip.open(temp_file) as f:
-            stats = analyse_file(f.read())
-            for j in stats['message_count'].keys():
-                if j not in total_message_count:
-                    total_message_count[j] = stats['message_count'][j]
-                else:
-                    total_message_count[j] += stats['message_count'][j]
-
-    labels = []
-    values = []
-
-    for k, v in sorted(total_message_count.items(), key=lambda item: item[1]):
-        if len(k) > 30:
-            continue
-
-        labels.append(k)
-        values.append(v)
-
-    if len(labels) > 20:
-        labels = labels[-20:]
-        values = values[-20:]
-
-    bar_chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(labels)*20)
-    bar_chart.x_labels = list(labels)
-    bar_chart.add('', values)
-
     raise Exception("Exception")
-    return bar_chart
+
+
+@graph('messages', _l('Second radar chart'))
+def radar_chart(zip):
+    return None
 
 
 @graph('messages', _l('Pie chart'))
@@ -155,18 +126,6 @@ def line_chart(zip):
 
 
 @graph('messages', _l('Radar chart'))
-def radar_chart(zip):
-    radar_chart = pygal.Radar(legend_at_bottom=True, style=style)
-    radar_chart.x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay',
-                            'NavierStokes']
-    radar_chart.add('Chrome', [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607])
-    radar_chart.add('Firefox', [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450])
-    radar_chart.add('Opera', [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669])
-    radar_chart.add('IE', [43, 41, 59, 79, 144, 136, 34, 102])
-    return radar_chart
-
-
-@graph('messages', _l('Second radar chart'))
 def radar_chart(zip):
     radar_chart = pygal.Radar(legend_at_bottom=True, style=style)
     radar_chart.x_labels = ['Richards', 'DeltaBlue', 'Crypto', 'RayTrace', 'EarleyBoyer', 'RegExp', 'Splay',
