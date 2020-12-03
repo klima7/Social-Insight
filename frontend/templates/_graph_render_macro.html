@@ -1,8 +1,13 @@
+{% import "_macros.html" as m %}
+
 {% macro render(graph, current_user, showButton=True) -%}
-<div class="card mb-4">
+<div class="card mb-4 {% if graph.data is none %}bg-warning{% endif %}">
+
   <div class="text-center">
     <h2 class="page-section-heading text-secondary mb-0 mt-3 d-inline-block text-uppercase">{{ graph.get_name() }}</h2>
   </div>
+
+  {% if graph.data is not none %}
   <embed type="image/svg+xml" src= {{ graph.data.render_data_uri()|safe }} />
   <div class="card-body mt-0 pt-0">
     {% if graph.pack.user == user() %}
@@ -14,6 +19,15 @@
     <div class="graph-button {{ '' if graph.public else 'disable' }}" id="graph-{{graph.id}}-public"><a onclick="toggleGraphPublic({{graph.id}})">Public</a></div>
     {% endif %}
   </div>
+
+  {% else %}
+  <div class="card-body mt-0 pt-0 text-center">
+    <img class="mt-3" style="height: 200px" src="{{ m.static('images/graph_error.png') }}"/>
+    <p class="mt-3">Sorry, error occured during generating this graph</p>
+  </div>
+  {% endif %}
+
   <input class="d-none" type="text" value="{{ url_for('main.graphs', id=graph.id, _external=True) }}" id="graph-{{graph.id}}-url">
+
 </div>
 {% endmacro -%}

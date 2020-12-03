@@ -120,6 +120,8 @@ def photos_per_conversation(zip):
     bar_chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(labels)*20)
     bar_chart.x_labels = list(labels)
     bar_chart.add('', values)
+
+    raise Exception("Exception")
     return bar_chart
 
 

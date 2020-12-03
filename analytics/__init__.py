@@ -4,6 +4,7 @@ from db import *
 import uploads
 import zipfile as zp
 from collections import namedtuple
+import traceback
 
 style = Style(
   background='white',
@@ -37,8 +38,15 @@ def analyse(pack_id):
 
     with zp.ZipFile(file_path) as zip:
         for fun, category, name, tran_name in _graphs:
-            graph = Graph(name=name, category=category, packid=pack_id, data=fun(zip))
-            db_session.add(graph)
+
+            try:
+                data = fun(zip)
+            except Exception:
+                data = None
+                traceback.print_exc()
+
+            graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
+            db_session.add(graph_entry)
 
     # Usunięcie pliku
     uploads.remove_pack(pack_id)
