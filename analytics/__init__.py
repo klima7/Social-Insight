@@ -37,10 +37,11 @@ def analyse(pack_id):
     file_path = uploads.get_path_for_pack(pack_id)
 
     with zp.ZipFile(file_path) as zip:
+        data = gen_pandas_table(zip)
         for fun, category, name, tran_name in _graphs:
 
             try:
-                data = fun(zip)
+                data = fun(data)
                 if data is None:
                     continue
                 graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)

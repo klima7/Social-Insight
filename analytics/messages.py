@@ -1,5 +1,7 @@
 import json
 import re
+import zipfile as zp
+import pandas as pd
 
 import pygal
 from flask_babel import lazy_gettext as _l
@@ -48,42 +50,53 @@ def analyse_file(file):
     stats['message_count'] = people
     return stats
 
+def gen_pandas_table(zip):
+    table = None
 
-@graph('messages', _l('The people you write with most frequent'))
-def bar_chart(zip):
     folders = get_structure(zip)
-
     message_files = get_messages(folders['messages']['inbox'])
-    total_message_count = {}
 
     for i in message_files:
         temp_file = zip.getinfo(i)
+        # with io.TextIOWrapper(zip.open(temp_file), 'utf-8') as f: # Otwieranie pliku jako tekst, żeby można było odrazu zamienić escapowane znaki na właściwe.
         with zip.open(temp_file) as f:
             stats = analyse_file(f.read())
-            for j in stats['message_count'].keys():
-                if j not in total_message_count:
-                    total_message_count[j] = stats['message_count'][j]
-                else:
-                    total_message_count[j] += stats['message_count'][j]
+            if messages_table is None:
+                messages_table = stats
+            else:
+                messages_table = pd.concat([messages_table, stats])
 
-    labels = []
-    values = []
+    namefile = folders['profile_information']['__files'][0][1]
+    username = ""
+    with zip.open(namefile) as f:
+        data = json.loads(f.read())
+        username = data['profile']['name']['full_name']
 
-    for k, v in sorted(total_message_count.items(), key=lambda item: item[1]):
-        if len(k) > 30:
-            continue
+    return {'table': table, 'username': username}
 
-        labels.append(k)
-        values.append(v)
+@graph('messages', _l('The people you write with most frequent'))
+def bar_chart(data):
+    table = data['table']
+    regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]
+    group = regs.groupby('conversation')
 
-    if len(labels) > 20:
-        labels = labels[-20:]
-        values = values[-20:]
+    counts = group['content'].count().sort_values(ascending=False)
 
-    bar_chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(labels)*20)
-    bar_chart.x_labels = list(labels)
-    bar_chart.add('', values)
-    return bar_chart
+    chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(list(counts.keys())*20))
+    # bar_chart.x_labels = list(labels)
+    # bar_chart.add('', values)
+    chart.x_labels = list(counts.keys())
+    chart.add('', counts.values)
+
+    # return chart
+
+    pie_chart = pygal.Pie(legend_at_bottom=True, style=style)
+    pie_chart.add('IE', 19.5)
+    pie_chart.add('Firefox', 36.6)
+    pie_chart.add('Chrome', 36.3)
+    pie_chart.add('Safari', 4.5)
+    pie_chart.add('Opera', 2.3)
+    return pie_chart
 
 
 @graph('messages', _l('Images per conversation'))
@@ -107,11 +120,11 @@ def pie_chart(zip):
     return pie_chart
 
 
-@graph('messages', _l('Bar chart'))
-def bar_chart(zip):
-    bar_chart = pygal.Bar(legend_at_bottom=True, style=style)
-    bar_chart.add('Fibonacci', [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 34, 21, 13, 8, 5, 3, 2, 1, 1, 0])
-    return bar_chart
+# @graph('messages', _l('Bar chart'))
+# def bar_chart(zip):
+#     bar_chart = pygal.Bar(legend_at_bottom=True, style=style)
+#     bar_chart.add('Fibonacci', [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 34, 21, 13, 8, 5, 3, 2, 1, 1, 0])
+#     return bar_chart
 
 
 @graph('messages', _l('Line chart'))
