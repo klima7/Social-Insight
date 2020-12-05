@@ -12,6 +12,13 @@ style = Style(
   transition='400ms ease-in',
   legend_font_size=20)
 
+emojistyle = Style(
+  background='white',
+  plot_background='white',
+  transition='400ms ease-in',
+  legend_font_size=20,
+  label_font_size=30)
+
 
 _graphs = []
 
@@ -37,11 +44,11 @@ def analyse(pack_id):
     file_path = uploads.get_path_for_pack(pack_id)
 
     with zp.ZipFile(file_path) as zip:
-        data = gen_pandas_table(zip)
+        pdata = gen_pandas_table(zip)
         for fun, category, name, tran_name in _graphs:
 
             try:
-                data = fun(data)
+                data = fun(pdata)
                 if data is None:
                     continue
                 graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
@@ -61,7 +68,6 @@ def analyse(pack_id):
 
     # Zatwierdzenie zmian
     db_session.commit()
-
 
 from .messages import *
 from .other import *
