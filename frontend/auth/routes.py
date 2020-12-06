@@ -44,7 +44,6 @@ def login():
         # Poprawne logowanie
         if user is not None and user.verify_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            flash('Login success!', 'success')
 
             if add_anonymous_pack_to_user(user):
                 flash('New pack was added to your account!', 'success')

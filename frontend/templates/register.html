@@ -8,7 +8,15 @@
 {% endblock %}
 
 {% block sections %}
-<section class="page-section first-section mt-5">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mt-4 ml-5 mr-5">
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
+      <li class="breadcrumb-item"><a href="{{ url_for('auth.login') }}">Logging</a></li>
+    <li class="breadcrumb-item"><a>Register</a></li>
+  </ol>
+</nav>
+
+<section class="page-section first-section mt-3">
     <div class="container">
 
         <!-- Heading -->

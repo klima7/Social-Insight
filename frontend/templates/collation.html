@@ -20,9 +20,17 @@
     </div>
 </section>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mt-4 ml-5 mr-5">
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.account') }}">Account</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Collation</li>
+  </ol>
+</nav>
+
 <section>
     {% if collation.graphs %}
-    <div class="container-fluid pt-4 pb-3" style="min-height: 300px">
+    <div class="container-fluid pt-2 pb-3" style="min-height: 300px">
         <div class="card-columns">
             {% for graph in collation.graphs %}
                 {{ graph_m.render(graph) }}
