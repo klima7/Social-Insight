@@ -10,6 +10,7 @@
 {% block sections %}
 {% include "_categories.html" %}
 <section>
+    {% if graphs %}
     <div class="container-fluid pt-4 pb-3" style="min-height: 300px">
         <div class="card-columns">
             {% for graph in graphs %}
@@ -17,6 +18,12 @@
             {% endfor %}
         </div>
     </div>
+    {% else %}
+        <!-- Heading -->
+        <div class="text-center" style="padding: 100px">
+            <h2 class="page-section-heading mb-0 d-inline-block" style="color: gray">No graphs in this category</h2>
+        </div>
+    {% endif %}
 </section>
 
 {% include "_rename_pack_modal.html" %}
