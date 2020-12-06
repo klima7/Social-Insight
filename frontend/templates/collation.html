@@ -1,11 +1,15 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_graph_render_macro.html" as graph_m %}
+
+{% block topscripts %}
+{{ super() }}
+<script src="{{ m.static('scripts/charts_ajax.js') }}"></script>
+{% endblock %}
 
 {% block sections %}
-<section class="page-section portfolio first-section bg-primary pb-5 pt-5">
+<section class="page-section portfolio first-section bg-primary pb-5 pt-5 round-bottom">
     <div class="container">
-
-        <!-- Heading -->
         <div class="text-center">
             <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ collation.name }}</h2>
         </div>
@@ -16,10 +20,20 @@
     </div>
 </section>
 
-<section class="page-section mt-5">
-    <div class="container" style="height: 800px">
-
+<section>
+    {% if collation.graphs %}
+    <div class="container-fluid pt-4 pb-3" style="min-height: 300px">
+        <div class="card-columns">
+            {% for graph in collation.graphs %}
+                {{ graph_m.render(graph) }}
+            {% endfor %}
+        </div>
     </div>
+    {% else %}
+        <div class="text-center" style="padding: 100px">
+            <h2 class="page-section-heading mb-0 d-inline-block" style="color: gray">No graphs in this collation</h2>
+        </div>
+    {% endif %}
 </section>
 
 {% include "_rename_collation_modal.html" %}

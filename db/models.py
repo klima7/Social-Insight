@@ -108,7 +108,7 @@ class Graph(_Base):
     public = Column(Boolean, default=False)
     collations = relationship('Collation',
                               secondary=collation_entries,
-                              backref=backref('packs', lazy='select'),
+                              backref=backref('graphs', lazy='select'),
                               lazy='select')
 
     def get_name(self):
@@ -127,6 +127,13 @@ class Collation(_Base):
     name = Column(String, default='Collation')
     creation_date = Column(DateTime(), default=datetime.utcnow)
 
+    def contains(self, graph):
+        for g in self.graphs:
+            if g == graph:
+                return True
+        return False
+
     def __repr__(self):
         return f"<Collation(id={self.id})>"
+
 

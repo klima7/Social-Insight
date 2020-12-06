@@ -1,4 +1,4 @@
-from flask import session, render_template
+from flask import session, render_template, request
 from flask_login import current_user
 from . import api
 from db import *
@@ -41,4 +41,38 @@ def private_graph(id):
     db_session.add(graph)
     db_session.commit()
     return {"public": graph.public}
+
+
+@api.route('/collations/<collation_id>', methods=['POST'])
+def collations_post(collation_id):
+    graph_id = request.json['id']
+    graph = db_session.query(Graph).filter_by(id=graph_id).first()
+    collation = db_session.query(Collation).filter_by(id=collation_id).first()
+    if graph is None or collation is None:
+        return {}, 404
+    if graph.pack.user != current_user or collation.user != current_user:
+        return {}, 403
+    graph.collations.append(collation)
+    db_session.add(graph)
+    db_session.commit()
+    return {"present": True}
+
+
+@api.route('/collations/<collation_id>', methods=['DELETE'])
+def collations_delete(collation_id):
+    graph_id = request.json['id']
+    graph = db_session.query(Graph).filter_by(id=graph_id).first()
+    collation = db_session.query(Collation).filter_by(id=collation_id).first()
+    if graph is None or collation is None:
+        return {}, 404
+    if graph.pack.user != current_user or collation.user != current_user:
+        return {}, 403
+    try:
+        graph.collations.remove(collation)
+        db_session.add(graph)
+        db_session.commit()
+    except ValueError:
+        pass
+    return {"present": False}
+
 

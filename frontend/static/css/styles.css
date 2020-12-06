@@ -74,11 +74,21 @@
 }
 
 .graph-button {
-	display: inline;
+	display: inline-block;
 	background-color: #1abc9c;
 	padding: 4px 10px;
 	border-radius: 5px;
 	box-sizing: border-box;
+	margin-bottom: 4px;
+}
+
+.col-button {
+	display: inline-block;
+	background-color: #cce5ff;
+	padding: 4px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-bottom: 4px;
 }
 
 .graph-button:hover {
