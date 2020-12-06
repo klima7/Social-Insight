@@ -66,6 +66,19 @@
 	text-transform: uppercase;
 }
 
+.graph-header>a:hover::before {
+	content: "#"
+}
+
+.graph-header > a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.graph-header > a:hover {
+	text-decoration: none;
+}
+
 @media (max-width: 992px) {
 	/* Graphs page */
 	.graph-header {

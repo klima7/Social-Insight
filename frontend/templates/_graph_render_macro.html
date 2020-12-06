@@ -1,10 +1,10 @@
 {% import "_macros.html" as m %}
 
 {% macro render(graph, showButton=True) -%}
-<div class="card mb-4 {% if graph.data is none %}bg-warning{% endif %}">
+<div class="card mb-4 {% if graph.data is none %}bg-warning{% endif %}" id="graph-{{graph.id}}">
 
   <div class="text-center">
-    <h2 class="graph-header">{{ graph.get_name() }}</h2>
+    <h2 class="graph-header"><a class="js-scroll-trigger" href="#graph-{{graph.id}}">{{ graph.get_name() }}</a></h2>
   </div>
 
   {% if graph.data is not none %}
