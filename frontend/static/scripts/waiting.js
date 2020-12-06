@@ -23,7 +23,7 @@ function check() {
 }
 
 function redirect() {
-	window.location.href = `/packs/${packid}`;
+	window.location.href = `/packs/${packid}/messages`;
 }
 
 setTimeout(check, 2000);

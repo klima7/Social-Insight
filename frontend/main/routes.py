@@ -61,24 +61,12 @@ def get_pack(id):
     abort(403)
 
 
-@main.route('/packs/<id>', methods=['GET', 'POST'])
-def packs(id):
-    pack = get_pack(id)
-    form = RenamePackForm()
-    if form.validate_on_submit():
-        pack.name = form.name.data
-        flash('Pack name changed to ' + pack.name, 'success')
-        db_session.add(pack)
-        db_session.commit()
-    return render_template('pack.html', pack=pack, form=form)
-
-
 @main.route('/packs/<id>/remove/confirm')
 def remove_pack_confirm(id):
     get_pack(id)
     address = url_for('main.remove_pack', id=id)
     flash(f'Are you sure that you want to remove this pack? <a href="{address}">Yes</a>', 'warning')
-    return redirect(url_for('main.packs', id=id))
+    return redirect(session.get('prev_url', url_for('main.account')))
 
 
 @main.route('/packs/<id>/remove')

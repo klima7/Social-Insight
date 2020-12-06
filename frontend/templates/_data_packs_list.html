@@ -21,7 +21,7 @@
                     <ul class="list-group list-group-flush">
                         {% for pack in current_user.packs %}
                         <li class="list-group-item account-item">
-                            <a href="{{ url_for('main.packs', id=pack.id) }}" class="text-secondary">
+                            <a href="{{ url_for('main.graphs_category', id=pack.id, category='messages') }}" class="text-secondary">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12 col-sm-4 align-middle m-auto">
