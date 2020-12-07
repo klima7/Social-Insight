@@ -1,0 +1,45 @@
+{% extends "standard.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+    <style>
+    #submit {margin: 20px}
+    </style>
+{% endblock %}
+
+{% block sections %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mt-4 ml-5 mr-5">
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
+    <li class="breadcrumb-item"><a>Contact</a></li>
+  </ol>
+</nav>
+
+<section class="page-section first-section mt-3">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase" data-aos="fade-up" data-aos-duration="500">Contact</h2>
+        </div>
+
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        {{ wtf.quick_form(form) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-none d-md-block col-md-6">
+                <img src="{{ m.static('images/question.png') }}" class="p-5 mw-100" style="max-height: 400px">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

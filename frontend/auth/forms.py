@@ -7,7 +7,7 @@ EMAIL_VALIDATOR = Email(message='Invalid email address')
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), EMAIL_VALIDATOR]);
+    email = StringField('Email', validators=[DataRequired(), EMAIL_VALIDATOR])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me logged in')
     submit = SubmitField('Log In')

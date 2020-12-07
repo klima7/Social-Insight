@@ -5,10 +5,12 @@ from flask_login import login_required, current_user
 
 import analytics
 import uploads
-from db import *
-from . import main
 from config import config
-from .forms import RenamePackForm, RenameCollationForm
+from db import *
+from frontend.mail import send_email
+from frontend.util import display_errors_with_flash
+from . import main
+from .forms import RenamePackForm, RenameCollationForm, ContactForm
 
 
 @main.route('/')
@@ -159,6 +161,22 @@ def graphs(id):
     if not graph.public and not graph.pack.user == current_user:
         abort(403)
     return render_template('graph.html', graph=graph)
+
+
+@main.route('/contact/', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+
+    if current_user.is_authenticated:
+        form.email.data = current_user.email
+
+    if form.validate_on_submit():
+        send_email(config.MAIL_USERNAME, 'Contact', 'contact', form=form)
+        flash('Message sent', 'success')
+        return redirect(url_for('main.contact'))
+
+    display_errors_with_flash(form)
+    return render_template('contact.html', form=form)
 
 
 

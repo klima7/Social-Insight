@@ -1,0 +1,15 @@
+{% extends "mails/basic.html" %}
+
+{% block content %}
+<tr>
+<td align='left'
+    style='font-size:0px;padding:10px 25px;word-break:break-word;'>
+    <div style="color:black;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;">
+        <h1 style="text-align: center;">Question</h1>
+        <p><b>From:</b> {{form.email.data}}</p>
+        <p><b>Topic:</b> {{form.topic.data}}</p>
+        <p style="text-align: justify"><b>Content:</b> {{form.content.data}}</p>
+    </div>
+</td>
+</tr>
+{% endblock %}
