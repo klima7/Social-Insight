@@ -4,7 +4,6 @@ from flask import request, render_template, session, redirect, url_for, abort, f
 from flask_login import login_required, current_user
 
 import analytics
-import uploads
 from config import config
 from db import *
 from frontend.mail import send_email
@@ -12,6 +11,7 @@ from frontend.util import display_errors_with_flash
 from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
 import os.path
+import tempfile
 
 
 @main.route('/')
@@ -33,7 +33,7 @@ def index_post():
     session.modified = True
 
     uploaded_file = request.files['file']
-    path = uploads.get_path_for_pack(pack.id)
+    path = os.path.join(tempfile.mkdtemp(), 'something')
     uploaded_file.save(path)
 
     thread = Thread(target=analytics.analyse, args=[pack.id, path])

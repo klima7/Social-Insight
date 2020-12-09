@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        {% if not current_user.is_authenticated %}
+        {% if not current_user.is_authenticated and not pack.example %}
         <div class="row">
             <div class="col-12 mb-3">
                 <div class="bg-secondary text-light pl-3" style="border-radius: 10px; padding: 7px">
