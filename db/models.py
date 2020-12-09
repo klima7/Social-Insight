@@ -80,7 +80,8 @@ class Pack(_Base):
     name = Column(String, default='Pack')
     status = Column(String)
     creation_date = Column(DateTime(), default=datetime.utcnow)
-    graphs = relationship("Graph", backref="pack", lazy='dynamic')
+    graphs = relationship("Graph", backref="pack", lazy='dynamic', passive_deletes=True)
+    example = Column(Boolean, default=False)
 
     STATUS_PENDING = 'pending'
     STATUS_PROCESSING = 'processing'
@@ -101,7 +102,7 @@ class Graph(_Base):
     __tablename__ = 'graphs'
 
     id = Column(Integer, primary_key=True)
-    packid = Column(Integer, ForeignKey('packs.id'))
+    packid = Column(Integer, ForeignKey('packs.id', ondelete='CASCADE'))
     name = Column(String)
     category = Column(String)
     data = Column(PickleType)

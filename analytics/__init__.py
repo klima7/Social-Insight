@@ -1,10 +1,9 @@
-import pygal
 from pygal.style import Style
 from db import *
-import uploads
 import zipfile as zp
 from collections import namedtuple
 import traceback
+import os
 
 style = Style(
   background='white',
@@ -39,9 +38,8 @@ def get_translated_graph_name(english_name):
     return None
 
 
-def analyse(pack_id):
+def analyse(pack_id, file_path, delete=True):
     # Pobranie ścieżki do pliku
-    file_path = uploads.get_path_for_pack(pack_id)
 
     with zp.ZipFile(file_path) as zip:
         pdata = gen_pandas_table(zip)
@@ -59,7 +57,8 @@ def analyse(pack_id):
                 db_session.add(graph_entry)
 
     # Usunięcie pliku
-    uploads.remove_pack(pack_id)
+    if delete:
+        os.remove(file_path)
 
     # Zmiana flagi mówiąca o zakończeniu analizy
     pack = db_session.query(Pack).filter_by(id=pack_id).one()
@@ -68,6 +67,7 @@ def analyse(pack_id):
 
     # Zatwierdzenie zmian
     db_session.commit()
+
 
 from .messages import *
 from .other import *

@@ -98,7 +98,7 @@ def gen_pandas_table(zip):
 @graph('messages', _l('The people you write with most frequent'))
 def bar_chart(data):
     table = data['table']
-    print(table.head())
+    #print(table.head())
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]
     group = regs.groupby('conversation')
 

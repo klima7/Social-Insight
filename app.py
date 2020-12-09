@@ -53,14 +53,20 @@ def compile():
     print("Compilation success")
 
 
-@app.cli.command(help="Insert fake data into database.")
-def fake():
-    from db import User, db_session
-    user = User(email='user@test.com', confirmed=True)
-    user.password = 'password'
-    db_session.add(user)
-    db_session.commit()
+@app.cli.command(help="Insert fake user into database.")
+def user():
+    db.insert_fake_user()
     print("Fake data inserted")
+
+
+@app.cli.command(help="Update example data file.")
+def example():
+    try:
+        db.example_pack_update()
+    except FileNotFoundError:
+        print("Unable to find file example.zip")
+    else:
+        print("Updating example pack")
 
 
 

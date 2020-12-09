@@ -11,6 +11,7 @@ from frontend.mail import send_email
 from frontend.util import display_errors_with_flash
 from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
+import os.path
 
 
 @main.route('/')
@@ -35,11 +36,19 @@ def index_post():
     path = uploads.get_path_for_pack(pack.id)
     uploaded_file.save(path)
 
-    thread = Thread(target=analytics.analyse, args=[pack.id])
+    thread = Thread(target=analytics.analyse, args=[pack.id, path])
     thread.start()
 
-    print('check 5')
     return jsonify({'id': pack.id})
+
+
+@main.route('/example/')
+def example():
+    pack = db_session.query(Pack).filter_by(example=True).first()
+    if pack is None:
+        flash('Sorry, example pack is not available', 'warning')
+        return redirect(url_for('main.index'))
+    return redirect(url_for('main.graphs_category', id=pack.id, category='messages'))
 
 
 @main.route('/lang/<lang>')
@@ -58,7 +67,8 @@ def account():
 
 def get_pack(id):
     pack = db_session.query(Pack).filter_by(id=id).first()
-    if current_user.is_authenticated and pack.userid == current_user.id or pack.id == session.get('packid', None):
+    if current_user.is_authenticated and pack.userid == current_user.id or \
+            pack.id == session.get('packid', None) or pack.example:
         return pack
     abort(403)
 
