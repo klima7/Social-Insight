@@ -11,13 +11,14 @@
   <embed type="image/svg+xml" src= {{ graph.data.render_data_uri()|safe }} />
   <div class="card-body mt-0 pt-0">
     {% if graph.pack.user == user() %}
-      <div class="graph-button"><a data-sharer="facebook" data-hashtag="SocialInsight" data-url="{{ url_for('main.graphs', id=graph.id) }}">Share</a></div>
-      <div class="graph-button"><a onclick="copyToClipboard({{graph.id}})">Copy link</a></div>
       {% if showButton %}
         <div class="graph-button"><a href="{{ url_for('main.graphs', id=graph.id) }}">Show</a></div>
       {% endif %}
       <div class="graph-button"><a data-toggle="collapse" href="#graph-{{graph.id}}-collapse">Add</a></div>
       <div class="graph-button {{ '' if graph.public else 'disable' }}" id="graph-{{graph.id}}-public"><a onclick="toggleGraphPublic({{graph.id}})">Public</a></div>
+      <div id="graph-{{graph.id}}-share" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a data-sharer="facebook" data-hashtag="Social-Insight" data-url="{{ url_for('main.graphs', id=graph.id, _external=True) }}">Share</a></div>
+      <div id="graph-{{graph.id}}-copy" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a onclick="copyToClipboard({{graph.id}})">Copy link</a></div>
+
       <div class="collapse" id="graph-{{graph.id}}-collapse">
         {% for col in user().collations %}
         <div class="graph-button {{ '' if col.contains(graph) else 'disable' }}" id="graph-{{graph.id}}-{{col.id}}"><a onclick="toggleCollation({{graph.id}}, {{col.id}})">{{ col.name }}</a></div>

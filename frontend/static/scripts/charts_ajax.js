@@ -11,6 +11,8 @@ function setGraphPublic(id, public) {
         cache: false,
         success: function(data) {
 			setPublicButtonActive(id, data.public);
+			setShareButtonActive(id, data.public);
+			setCopyButtonActive(id, data.public);
         },
         error: function() {
             alert("Error occurred");
@@ -28,6 +30,18 @@ function setPublicButtonActive(id, active) {
 	let selector = `#graph-${id}-public`;
 	if(active) $(selector).removeClass('disable');
 	else $(selector).addClass('disable');
+}
+
+function setShareButtonActive(id, active) {
+	let selector = `#graph-${id}-share`;
+	if(active) $(selector).removeClass('d-none');
+	else $(selector).addClass('d-none');
+}
+
+function setCopyButtonActive(id, active) {
+	let selector = `#graph-${id}-copy`;
+	if(active) $(selector).removeClass('d-none');
+	else $(selector).addClass('d-none');
 }
 
 function copyToClipboard(id) {
