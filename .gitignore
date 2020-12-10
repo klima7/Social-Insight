@@ -4,6 +4,8 @@ db/base.db-journal
 uploads/*.zip
 frontend/translations/messages.pot
 example.zip
+certificate.crt
+private.key
 
 # Pliki konfiguracyjne Pycharma
 venv/
