@@ -26,7 +26,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        {{ moment.include_moment() }}
+        {% if config['SNOW'] %}
+        <script src="{{ m.static('scripts/jquery.flurry.min.js') }}"></script>
+        {% endif %}
+        {{ moment.include_moment(version='2.29.1') }}
         {% block topscripts %} {% endblock %}
     </head>
     <body id="page-top">
@@ -60,7 +63,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="{{ m.static('scripts/layout.js') }}"></script>
-        <script src="{{ m.static('scripts/script.js') }}"></script>
+        {{ m.script("script_common.js") }}
         {% block bottomscripts %} {% endblock %}
     </body>
 </html>
