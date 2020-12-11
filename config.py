@@ -10,6 +10,8 @@ class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
+    PDFKIT_WINDOWS_PATH = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=PDFKIT_WINDOWS_PATH) if system() == 'Windows' else pdfkit.configuration()
 
     # Behaviour config
     MAX_UPLOAD_SIZE_MB = 1024
@@ -40,6 +42,7 @@ class Config:
     @staticmethod
     def init_app(app):
         pass
+
 
 
 config = Config()
