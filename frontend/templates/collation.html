@@ -1,6 +1,6 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% import "_graph_render_macro.html" as graph_m %}
+{% import "macros/graph.html" as mgraph %}
 
 {% block title %}{{ collation.name }}{% endblock %}
 
@@ -35,7 +35,7 @@
     <div class="container-fluid pt-2 pb-3" style="min-height: 300px">
         <div class="card-columns">
             {% for graph in collation.graphs %}
-                {{ graph_m.render(graph) }}
+                {{ mgraph.render(graph) }}
             {% endfor %}
         </div>
     </div>
@@ -46,5 +46,5 @@
     {% endif %}
 </section>
 
-{% include "_rename_collation_modal.html" %}
+{% include "parts/_rename_collation_modal.html" %}
 {% endblock %}

@@ -124,7 +124,7 @@ def change_password():
         else:
             flash('Current password is invalid!', 'error')
     display_errors_with_flash(form)
-    return render_template('change_password.html', form=form)
+    return render_template('password_change.html', form=form)
 
 
 @auth.route('/reset-password-request/', methods=['GET', 'POST'])
@@ -140,7 +140,7 @@ def reset_password_request():
         else:
             flash('This email address is not registered!', 'error')
     display_errors_with_flash(form)
-    return render_template('reset_password_request.html', form=form)
+    return render_template('password_reset_request.html', form=form)
 
 
 @auth.route('/reset-password/<token>', methods=['GET', 'POST'])
@@ -158,7 +158,7 @@ def reset_password(token):
             flash('The reset link is invalid or has expired', 'warning')
             return redirect(url_for('main.index'))
     display_errors_with_flash(form)
-    return render_template('reset_password.html', form=form)
+    return render_template('password_reset.html', form=form)
 
 
 @auth.route('/remove-account/confirm')

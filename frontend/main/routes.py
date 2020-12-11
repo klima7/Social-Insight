@@ -150,7 +150,7 @@ def graphs_category(id, category):
         db_session.commit()
 
     graphs = pack.graphs.filter(Graph.category == category).order_by(Graph.id).all()
-    return render_template('graphs_category.html', pack=pack, graphs=graphs, form=form, category=category)
+    return render_template('category.html', pack=pack, graphs=graphs, form=form, category=category)
 
 
 @main.route('/packs/waiting/<packid>')

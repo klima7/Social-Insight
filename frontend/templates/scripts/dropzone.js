@@ -1,5 +1,3 @@
-const API_PREFIX = 'api/';
-
 Dropzone.options.uploadZone = {
     maxFilesize: 10000000,
     timeout: 1000000000000,
@@ -14,12 +12,6 @@ Dropzone.options.uploadZone = {
 
     init: function() {
     	dz = this;
-
-//  		this.on("uploadprogress", function(file, progress) {
-//			if(progress == 100) {
-//				window.location.href = '/packs/waiting';
-//			}
-//  		});
 
   		this.on("success", function(file, responseText) {
 			console.log(responseText.id);

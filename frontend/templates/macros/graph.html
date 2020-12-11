@@ -1,4 +1,4 @@
-{% import "_macros.html" as m %}
+{% import "macros/general.html" as m %}
 
 {% macro render(graph, showButton=True) -%}
 <div class="card mb-4 {% if graph.data is none %}bg-warning{% endif %}" id="graph-{{graph.id}}">
