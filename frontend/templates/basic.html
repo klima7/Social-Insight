@@ -8,8 +8,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Social Insight">
         <meta name="author" content="Radosław Pluta, Jacek Stasiak, Łukasz Klimkiewicz">
+
+        <!-- Facebook & Messenger -->
+        <meta property="og:title" content="Social Insight { %block title %}{ %endblock% }" />
+        <meta property="og:description" content="Check how much Facebook knows about you!" />
+        <meta property="og:image" content="{{ m.static('images/graph_preview.png') }}" />
+
         {% block meta %} {% endblock %}
-        <title>Social Insight {% block title %} {% endblock %}</title>
+        <title>Social Insight{% if self.title() %} | {% endif %}{% block title %}{% endblock %}</title>
 
         <!-- Icon -->
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}">
