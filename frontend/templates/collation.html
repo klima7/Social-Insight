@@ -18,6 +18,7 @@
         <div class="text-center">
             <span class="mr-3"><a href="" data-toggle="modal" data-target="#rename-collation-modal" class="text-secondary">rename</a></span>
             <span class="ml-3"><a href="{{ url_for('main.remove_collation_confirm', id=collation.id) }}" class="text-secondary">remove</a></span>
+            <span class="ml-3"><a href="{{ url_for('main.collation2pdf', id=collation.id) }}" class="text-secondary">generate pdf</a></span>
         </div>
     </div>
 </section>

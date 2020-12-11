@@ -1,6 +1,7 @@
 from threading import Thread
 
-from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify
+import pdfkit
+from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response
 from flask_login import login_required, current_user
 
 import analytics
@@ -119,6 +120,26 @@ def collation(id):
         db_session.add(collation)
         db_session.commit()
     return render_template('collation.html', collation=collation, form=form)
+
+
+@main.route("/collations/<id>/pdf")
+def collation2pdf(id):
+    collation = get_collation(id)
+    form = RenameCollationForm()
+    if form.validate_on_submit():
+        collation.name = form.name.data
+        flash('Collation name changed to ' + collation.name, 'success')
+        db_session.add(collation)
+        db_session.commit()
+
+    html = render_template('collation_pdf.html', collation=collation)
+    path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    pdf = pdfkit.from_string(html, False, configuration=config)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    return response
 
 
 @main.route('/collations/<id>/remove/confirm')
