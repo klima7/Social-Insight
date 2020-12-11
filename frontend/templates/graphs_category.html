@@ -2,6 +2,8 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_graph_render_macro.html" as graph_m %}
 
+{% block title %}Category {{ category }}{% endblock %}
+
 {% block topscripts %}
 {{ super() }}
 <script src="{{ m.static('scripts/charts_ajax.js') }}"></script>

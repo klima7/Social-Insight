@@ -1,13 +1,7 @@
 {% extends "standard.html" %}
 {% import "_graph_render_macro.html" as graph_m %}
 
-{% block meta %}
-{{ super() }}
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="Social Insight - {{ graph.get_name() }}" />
-<meta property="og:description"   content="Check how much Facebook knows about you!" />
-<meta property="og:image"         content="{{ m.static('images/graph_preview.png') }}" />
-{% endblock %}
+{% block title %}{{ graph.get_name() }}{% endblock %}
 
 {% block topscripts %}
 {{ super() }}
