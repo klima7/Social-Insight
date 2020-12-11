@@ -1,0 +1,16 @@
+.header {
+	width: 100%;
+	background-color: blue;
+}
+
+.graph {
+	text-align: center;
+	page-break-inside: avoid;
+	border: 2px solid black;
+	margin: 20px;
+	border-radius: 20px;
+}
+
+* {
+  font-family: 'Arial'
+}

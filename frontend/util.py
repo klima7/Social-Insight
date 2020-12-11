@@ -22,3 +22,21 @@ def display_errors_with_flash(form):
 
 def get_current_user():
     return current_user
+
+
+def pygal2base64(chart):
+    # base = tempfile.mkdtemp()
+    # path_svg = os.path.join(base, 'graph.svg')
+    # path_png = os.path.join(base, 'graph.png')
+    # chart.render_to_file(path_svg)
+    #
+    # with open(path_svg) as f:
+    #     content = f.read()
+    #
+    # svg2png(bytestring=content, write_to=path_png)
+    #
+    # with open(path_png, "rb") as image_file:
+    #     encoded_string = base64.b64encode(image_file.read())
+    #     print(encoded_string)
+    #     return encoded_string
+    pass

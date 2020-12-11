@@ -135,7 +135,7 @@ def collation2pdf(id):
     html = render_template('collation_pdf.html', collation=collation)
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    pdf = pdfkit.from_string(html, False, configuration=config)
+    pdf = pdfkit.from_string(html, False, configuration=config, css=['frontend/static/css/pdfstyle.css'])
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=output.pdf"

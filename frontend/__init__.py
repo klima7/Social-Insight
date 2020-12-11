@@ -1,4 +1,4 @@
-from frontend.util import cache_suffix, get_current_user
+from frontend.util import cache_suffix, get_current_user, pygal2base64
 from flask import Flask, request, session
 from flask_login import LoginManager
 from flask_babel import Babel
@@ -40,7 +40,7 @@ def create_app():
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem, user=get_current_user, dir=dir)
+    app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem, user=get_current_user, pygal2base64=pygal2base64)
 
     return app
 

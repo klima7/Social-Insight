@@ -42,8 +42,9 @@
 
 
 {% macro render_pdf(graph) -%}
-<div>
-  <h2>{{ graph.get_name() }}</h2>
-  <img src="{{graph.data.render_data_uri()|safe}}" width="{{graph.data.config.width}}" height="{{graph.data.config.height}}" />
+<div class="graph">
+  <h2 class="graph-header">{{ graph.get_name() }}</h2>
+  <img src="{{graph.data.render_data_uri()|safe}}" width="{{graph.data.config.width}}" height="{{graph.data.config.height}}"/>
+  {# <img src="{{pygal2base64(graph.data)|safe}}" /> #}
 </div>
 {% endmacro -%}
