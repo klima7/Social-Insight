@@ -1,4 +1,5 @@
 from threading import Thread
+from platform import system
 
 import pdfkit
 from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response
@@ -133,7 +134,10 @@ def collation2pdf(id):
         db_session.commit()
 
     html = render_template('collation_pdf.html', collation=collation)
-    pdf = pdfkit.from_string(html, False, configuration=config.PDFKIT_CONFIG, css=['frontend/static/css/pdfstyle.css'])
+    extra_args = {}
+    if system() == 'Windows':
+        extra_args['configuration'] = pdfkit.configuration(wkhtmltopdf=config.PDFKIT_WINDOWS_PATH)
+    pdf = pdfkit.from_string(html, False, css=['frontend/static/css/pdfstyle.css'], **extra_args)
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=output.pdf"

@@ -1,7 +1,4 @@
 from os import environ
-from platform import system
-
-import pdfkit
 
 
 class Config:
@@ -11,7 +8,6 @@ class Config:
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
     PDFKIT_WINDOWS_PATH = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-    PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=PDFKIT_WINDOWS_PATH) if system() == 'Windows' else pdfkit.configuration()
 
     # Behaviour config
     MAX_UPLOAD_SIZE_MB = 1024
