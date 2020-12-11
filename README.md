@@ -2,11 +2,12 @@
 
 **Aplikacja dostępna pod adresem [http://social-insight.tk:8081](http://social-insight.tk:8081)**
 
-Autorzy:
+## Autorzy
 - Radosław Pluta
 - Łukasz Klimkiewicz
 - Jacek Stasiak
 
+## Podstawowe operacje
 Instalowanie zależności: `pip install -r requirements.txt`
 
 Uruchamianie: `flask run`
