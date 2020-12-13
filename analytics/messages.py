@@ -188,7 +188,7 @@ def reply_time(data):
     reply_times = reply_times.dropna() # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'], ascending=[0])
 
-    gr = pygal.HorizontalBar()
+    gr = pygal.HorizontalBar(style=style)
     gr.add('', reply_times['time'].astype('int') / 1e9)
     gr.x_labels = list(reply_times['user'])
     gr.human_readable = True
@@ -217,7 +217,7 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     sample['conversation_start'] = sample['time2'] > sample['time2'].mean()
 
     conversation_begs = sample.index[sample['time2'] > sample['time2'].mean()].tolist()
-    sample.to_csv("dump.csv")
+    # sample.to_csv("dump.csv")
 
     # indeks końca ostatniej rozmowy to -1
     conversation_begs.insert(0, -1)
@@ -241,7 +241,7 @@ def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych ni
     reply_times = reply_times.dropna() # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'])
 
-    gr = pygal.HorizontalBar()
+    gr = pygal.HorizontalBar(style=style)
     gr.add('', reply_times['time'])
     gr.x_labels = list(reply_times['user'])
     gr.human_readable = True
