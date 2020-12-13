@@ -8,7 +8,7 @@
   </div>
 
   {% if graph.data is not none %}
-  <embed type="image/svg+xml" src= {{ graph.data.render_data_uri()|safe }} />
+  {{ render_sth(graph.data) }}
   <div class="card-body mt-0 pt-0">
     {% if graph.pack.user == user() %}
       {% if showButton %}
@@ -32,19 +32,32 @@
     <img class="mt-3" style="height: 200px" src="{{ m.static('images/graph_error.png') }}"/>
     <p class="mt-3">Sorry, error occured</p>
   </div>
+
   {% endif %}
-
   <input class="d-none" type="text" value="{{ url_for('main.graphs', id=graph.id, _external=True) }}" id="graph-{{graph.id}}-url">
-
 </div>
 {% endmacro -%}
 
 
-
-{% macro render_pdf(graph) -%}
-<div class="graph">
-  <h2 class="graph-header">{{ graph.get_name() }}</h2>
-  <img src="{{graph.data.render_data_uri()|safe}}" width="{{graph.data.config.width}}" height="{{graph.data.config.height}}"/>
-  {# <img src="{{pygal2base64(graph.data)|safe}}" /> #}
-</div>
+{% macro render_sth(sth) -%}
+  {% if is_pygal_chart(sth) %}
+    {{ render_pygal_chart(sth) }}
+  {% elif is_pandas_table(sth) %}
+    {{ render_pandas_table(sth) }}
+  {% else %}
+    <p>Unknown type of data to render</p>
+  {% endif %}
 {% endmacro -%}
+
+
+{% macro render_pygal_chart(chart) -%}
+  <embed type="image/svg+xml" src= {{ chart.render_data_uri()|safe }} />
+{% endmacro -%}
+
+
+{% macro render_pandas_table(table) -%}
+  {{ translate_pandas_table(table).to_html(index=False, classes='table table-striped table-bordered data-table')|safe }}
+{% endmacro -%}
+
+
+

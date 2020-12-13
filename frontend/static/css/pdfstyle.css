@@ -9,6 +9,21 @@
 	border: 2px solid black;
 	margin: 20px;
 	border-radius: 20px;
+	padding: 20px;
+}
+
+.data-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.data-table th {
+	text-align: center;
+}
+
+.data-table td {
+	text-align: left;
+	padding-left: 10px;
 }
 
 * {

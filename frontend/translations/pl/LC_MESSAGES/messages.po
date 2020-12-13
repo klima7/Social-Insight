@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-03 11:36+0100\n"
+"POT-Creation-Date: 2020-12-13 14:26+0100\n"
 "PO-Revision-Date: 2020-11-29 20:29+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -19,35 +19,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: analytics/messages.py:52
+#: analytics/messages.py:100
 msgid "The people you write with most frequent"
 msgstr "Ludzie z którymi najczęściej piszesz"
 
-#: analytics/messages.py:89
-msgid "Images per conversation"
-msgstr "Liczba wysłanych zdjęć w konwersacjach"
+#: analytics/messages.py:130
+msgid "Your emoji ranking"
+msgstr ""
 
-#: analytics/messages.py:126
-msgid "Pie chart"
-msgstr "Wykres kołowy"
+#: analytics/messages.py:158
+msgid "Example table"
+msgstr "Przykładowa tabela"
 
-#: analytics/messages.py:137
-msgid "Bar chart"
-msgstr "Wykres słupkowy"
+#: analytics/messages.py:162
+msgid "header 1"
+msgstr "Nagłówek 1"
 
-#: analytics/messages.py:144
-msgid "Line chart"
-msgstr "Wykres liniowy"
+#: analytics/messages.py:162
+msgid "header 2"
+msgstr "Nagłówek 2"
 
-#: analytics/messages.py:155
-msgid "Radar chart"
-msgstr "Wykres radarowy"
+#: analytics/messages.py:162
+msgid "header 3"
+msgstr "Nagłówek 3"
 
-#: analytics/messages.py:167
-msgid "Second radar chart"
-msgstr "Drugi wykres radarowy"
-
-#: frontend/templates/index.html:18
+#: frontend/templates/index.html:17
 msgid "Drop here your data file!"
 msgstr "Upuść tutaj swój plik!"
 
@@ -65,4 +61,22 @@ msgstr "Upuść tutaj swój plik!"
 
 #~ msgid "the people you write with the most"
 #~ msgstr "Osoby z którymi najczęściej piszesz"
+
+#~ msgid "Images per conversation"
+#~ msgstr "Liczba wysłanych zdjęć w konwersacjach"
+
+#~ msgid "Pie chart"
+#~ msgstr "Wykres kołowy"
+
+#~ msgid "Bar chart"
+#~ msgstr "Wykres słupkowy"
+
+#~ msgid "Line chart"
+#~ msgstr "Wykres liniowy"
+
+#~ msgid "Radar chart"
+#~ msgstr "Wykres radarowy"
+
+#~ msgid "Second radar chart"
+#~ msgstr "Drugi wykres radarowy"
 

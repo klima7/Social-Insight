@@ -156,4 +156,11 @@
 	}
 }
 
+.data-table thead {
+	background-color: #F77B72;
+}
+
+.data-table th {
+	text-align: center;
+}
 

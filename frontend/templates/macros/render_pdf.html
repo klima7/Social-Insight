@@ -1,0 +1,29 @@
+{% import "macros/general.html" as m %}
+
+{% macro render(graph) -%}
+<div class="graph">
+  <h2 class="graph-header">{{ graph.get_name() }}</h2>
+    {{ render_sth(graph.data) }}
+</div>
+{% endmacro -%}
+
+
+{% macro render_sth(sth) -%}
+  {% if is_pygal_chart(sth) %}
+    {{ render_pygal_chart(sth) }}
+  {% elif is_pandas_table(sth) %}
+    {{ render_pandas_table(sth) }}
+  {% else %}
+    <p>Unknown type of data to render</p>
+  {% endif %}
+{% endmacro -%}
+
+
+{% macro render_pygal_chart(chart) -%}
+  <img src="{{chart.render_data_uri()|safe}}" width="{{chart.config.width}}" height="{{chart.config.height}}"/>
+{% endmacro -%}
+
+
+{% macro render_pandas_table(table) -%}
+  {{ translate_pandas_table(table).to_html(index=False, classes='data-table')|safe }}
+{% endmacro -%}

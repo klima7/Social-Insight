@@ -1,5 +1,5 @@
 {% extends "standard.html" %}
-{% import "macros/graph.html" as mgraph %}
+{% import "macros/render_browser.html" as browser %}
 
 {% block title %}{{ graph.get_name() }}{% endblock %}
 
@@ -12,7 +12,7 @@
 <section class="page-section first-section">
     <div class="container">
         <div class="col-12">
-            {{ mgraph.render(graph, showButton=False) }}
+            {{ browser.render(graph, showButton=False) }}
         </div>
     </div>
 </section>
