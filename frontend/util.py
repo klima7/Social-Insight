@@ -1,6 +1,8 @@
 import base64
 import os
 import tempfile
+import pygal
+import pandas
 
 from flask import flash
 from flask_login import current_user
@@ -22,6 +24,18 @@ def display_errors_with_flash(form):
 
 def get_current_user():
     return current_user
+
+
+def is_pygal_chart(obj):
+    return isinstance(obj, pygal.graph.graph.Graph)
+
+
+def is_pandas_table(obj):
+    return isinstance(obj, pandas.core.frame.DataFrame)
+
+
+def translate_pandas_table(table):
+    return table.rename(columns=str)
 
 
 def pygal2base64(chart):

@@ -1,6 +1,6 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% import "macros/graph.html" as mgraph %}
+{% import "macros/render_browser.html" as browser %}
 
 {% block title %}Category {{ category }}{% endblock %}
 
@@ -34,7 +34,7 @@
     <div class="container-fluid pt-2 pb-3" style="min-height: 300px">
         <div class="card-columns">
             {% for graph in graphs %}
-                {{ mgraph.render(graph) }}
+                {{ browser.render(graph) }}
             {% endfor %}
         </div>
     </div>

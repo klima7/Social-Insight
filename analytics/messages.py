@@ -71,6 +71,7 @@ def analyse_file(file):
 
     return data
 
+
 def gen_pandas_table(zip):
     messages_table = None
 
@@ -95,6 +96,7 @@ def gen_pandas_table(zip):
 
     return {'table': messages_table, 'username': username}
 
+
 @graph('messages', _l('The people you write with most frequent'))
 def bar_chart(data):
     table = data['table']
@@ -110,6 +112,7 @@ def bar_chart(data):
 
     return chart
 
+
 # Helper function for emoji ranking
 def check_emojis(s):
     found = {}
@@ -122,6 +125,7 @@ def check_emojis(s):
             else:
                 found[i] = 1
     return found
+
 
 @graph('messages', _l('Your emoji ranking'))
 def emoji_ranking(data):
@@ -149,3 +153,12 @@ def emoji_ranking(data):
     chart.x_labels =  emoji_l
 #     print( all_emojis[:])
     return chart
+
+
+@graph('messages', _l('Example table'))
+def example_table(data):
+    s1 = pd.Series([1, 2, 3, 4, 5])
+    s2 = pd.Series(['Ala', 'ma', 'kota', 'foo', 'bar'])
+    f1 = pd.DataFrame({_l('header 1'): s1, _l('header 2'): s2, _l('header 3'): s1})
+    return f1
+
