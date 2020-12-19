@@ -123,12 +123,25 @@ def collation(id):
     return render_template('collation.html', collation=collation, form=form)
 
 
-def to_pdf(container):
+def to_pdf(container, print_version):
     html = render_template('pdf.html', container=container)
     extra_args = {}
     if system() == 'Windows':
         extra_args['configuration'] = pdfkit.configuration(wkhtmltopdf=config.PDFKIT_WINDOWS_PATH)
-    pdf = pdfkit.from_string(html, False, css=['frontend/static/css/pdfstyle.css'], **extra_args)
+
+    options = {
+        'page-size': 'A4',
+        'margin-top': '0in',
+        'margin-right': '0in',
+        'margin-bottom': '0in',
+        'margin-left': '0in',
+        'encoding': "UTF-8",
+        'no-outline': None
+    }
+
+    css_name = 'pdf_print' if print_version else 'pdf_fancy'
+    pdf = pdfkit.from_string(html, False, options=options, css=[f'frontend/static/css/{css_name}.css'], **extra_args)
+
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=output.pdf"
@@ -137,14 +150,16 @@ def to_pdf(container):
 
 @main.route("/collations/<id>/pdf")
 def collation2pdf(id):
+    print_version = request.args.get('print', 'False') == 'True'
     collation = get_collation(id)
-    return to_pdf(collation)
+    return to_pdf(collation, print_version)
 
 
 @main.route("/packs/<id>/pdf")
 def pack2pdf(id):
+    print_version = request.args.get('print', 'false') == 'true'
     pack = get_pack(id)
-    return to_pdf(pack)
+    return to_pdf(pack, print_version)
 
 
 @main.route('/collations/<id>/remove/confirm')

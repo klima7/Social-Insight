@@ -2,8 +2,11 @@
 
 {% macro render(graph) -%}
 <div class="graph">
+  <div class="space"></div>
+  <div class="graph-body">
   <h2 class="graph-header">{{ graph.get_name() }}</h2>
     {{ render_sth(graph.data) }}
+  </div>
 </div>
 {% endmacro -%}
 

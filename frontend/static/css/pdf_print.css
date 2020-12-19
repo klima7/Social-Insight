@@ -3,13 +3,26 @@
 	background-color: blue;
 }
 
+.info {
+	margin-top: 20px;
+}
+
 .graph {
-	text-align: center;
 	page-break-inside: avoid;
+
+}
+
+.graph-body {
+	text-align: center;
 	border: 2px solid black;
 	margin: 20px;
 	border-radius: 20px;
 	padding: 20px;
+	background-color: white;
+}
+
+.space {
+	height: 50px;
 }
 
 .data-table {
@@ -26,6 +39,7 @@
 	padding-left: 10px;
 }
 
-* {
-  font-family: 'Arial'
+body {
+	padding: 30px;
+	font-family: 'Arial'
 }
