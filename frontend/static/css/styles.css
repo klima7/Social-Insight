@@ -146,6 +146,20 @@
 	text-decoration: none;
 }
 
+/* Dark Button */
+.dark-button {
+	display: inline-block;
+	background-color: #2C3E50;
+	text: white;
+	padding: 4px 10px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.dark-button > a {
+	color: white;
+}
+
 .card-columns {
     column-count: 1;
 }

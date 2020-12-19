@@ -15,11 +15,11 @@
         <div class="text-center">
             <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ collation.name }}</h2>
         </div>
-        <div class="text-center">
-            <span class="mr-3"><a href="" data-toggle="modal" data-target="#rename-collation-modal" class="text-secondary">rename</a></span>
-            <span class="ml-3"><a href="{{ url_for('main.remove_collation_confirm', id=collation.id) }}" class="text-secondary">remove</a></span>
-            <span class="ml-3"><a href="{{ url_for('main.collation2pdf', id=collation.id) }}" target="_blank" class="text-secondary">generate pdf</a></span>
-            <span class="ml-3"><a href="{{ url_for('main.collation2pdf', id=collation.id, print='true') }}" target="_blank" class="text-secondary">pdf to print</a></span>
+        <div class="text-center mt-2">
+            <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-collation-modal">rename</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.remove_collation_confirm', id=collation.id) }}">remove</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id) }}" target="_blank">generate pdf</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id, print='true') }}" target="_blank">pdf to print</a></div>
         </div>
     </div>
 </section>
