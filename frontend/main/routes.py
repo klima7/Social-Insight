@@ -123,17 +123,8 @@ def collation(id):
     return render_template('collation.html', collation=collation, form=form)
 
 
-@main.route("/collations/<id>/pdf")
-def collation2pdf(id):
-    collation = get_collation(id)
-    form = RenameCollationForm()
-    if form.validate_on_submit():
-        collation.name = form.name.data
-        flash('Collation name changed to ' + collation.name, 'success')
-        db_session.add(collation)
-        db_session.commit()
-
-    html = render_template('collation_pdf.html', collation=collation)
+def to_pdf(container):
+    html = render_template('pdf.html', container=container)
     extra_args = {}
     if system() == 'Windows':
         extra_args['configuration'] = pdfkit.configuration(wkhtmltopdf=config.PDFKIT_WINDOWS_PATH)
@@ -142,6 +133,18 @@ def collation2pdf(id):
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=output.pdf"
     return response
+
+
+@main.route("/collations/<id>/pdf")
+def collation2pdf(id):
+    collation = get_collation(id)
+    return to_pdf(collation)
+
+
+@main.route("/packs/<id>/pdf")
+def pack2pdf(id):
+    pack = get_pack(id)
+    return to_pdf(pack)
 
 
 @main.route('/collations/<id>/remove/confirm')

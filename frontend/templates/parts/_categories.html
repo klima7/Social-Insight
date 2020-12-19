@@ -15,6 +15,7 @@
         <div class="text-center">
             <span class="mr-3"><a href="" data-toggle="modal" data-target="#rename-pack-modal" class="text-secondary">rename</a></span>
             <span class="ml-3"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id) }}" class="text-secondary">remove</a></span>
+            <span class="ml-3"><a href="{{ url_for('main.pack2pdf', id=pack.id) }}" target="_blank" class="text-secondary">generate pdf</a></span>
         </div>
         {% endif %}
 
