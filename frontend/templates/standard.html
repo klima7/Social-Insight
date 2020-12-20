@@ -6,13 +6,13 @@
 
 {% block navitems %}
 <ul class="navbar-nav ml-auto">
-    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.contact') }}">Contact</a></li>
-    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" data-toggle="modal" data-target="#languageModal" href="">Language</a></li>
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" data-toggle="modal" data-target="#languageModal" href="">{{ _('Language') }}</a></li>
     {% if current_user.is_authenticated %}
-    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.account') }}">Account</a></li>
-    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.logout') }}">Logout</a></li>
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.account') }}">{{ _('Account') }}</a></li>
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
     {% else %}
-    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.login') }}">Login</a></li>
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.login') }}">{{ _('Login') }}</a></li>
     {% endif %}
 </ul>
 {% endblock %}
@@ -28,15 +28,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="mb-2">Invite friends</h4>
-                <p class="pre-wrap mb-0">If You like our webside, talk about it to You friends. We would be gratefull!</p>
+                <h4 class="mb-2">{{ _('Invite friends') }}</h4>
+                <p class="pre-wrap mb-0">{{ _('If You like our webside, talk about it to You friends. We would be gratefull!') }}</p>
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0 order-md-2">
-                <h4 class="mb-2">Keep in contact</h4>
-                <p class="pre-wrap mb-0">If You would like to have a new feature or You found a bug just contact us, <a href="{{url_for('main.contact')}}">here!</a></p>
+                <h4 class="mb-2">{{ _('Keep in contact') }}</h4>
+                <p class="pre-wrap mb-0">{{ _('If You would like to have a new feature or You found a bug just contact us,') }} <a href='{{url_for("main.contact")}}'>{{ _('here!') }}</a></p>
             </div>
             <div class="col-lg-4 mb-0 mb-lg-0 order-md-1">
-                <h4 class="mb-2">Like us on facebook</h4>
+                <h4 class="mb-2">{{ _('Like us on facebook') }}</h4>
                 <a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/Social-Insight-103631201619797" target="_blank"><i class="fab fa-fw fa-facebook-f"></i></a>
             </div>
         </div>

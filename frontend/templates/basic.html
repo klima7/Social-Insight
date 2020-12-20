@@ -45,7 +45,7 @@
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="{{url_for('main.index')}}"><img id="brandImage" src="{{ m.static('images/logo_white_long.png') }}"></a>
                 {% block hamburger %}
-                <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">{{ _('Menu') }} <i class="fas fa-bars"></i></button>
                 {% endblock %}
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     {% block navitems %} {% endblock %}
@@ -58,7 +58,7 @@
 
         <!-- Copyright Section-->
         <section class="copyright py-4 text-center text-white">
-            <div class="container"><small class="pre-wrap">Copyright © 2020 | <a href="{{ url_for('main.credits') }}" class="text-light">credits</a></small></div>
+            <div class="container"><small class="pre-wrap">Copyright © 2020 | <a href="{{ url_for('main.credits') }}" class="text-light">{{ _('credits') }}</a></small></div>
         </section>
 
         <!-- Scroll to Top Button -->

@@ -1,7 +1,7 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ _("Register") }}{% endblock %}
 
 {% block styles %}
     <style>
@@ -12,9 +12,9 @@
 {% block sections %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb mt-4 ml-5 mr-5">
-    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
-      <li class="breadcrumb-item"><a href="{{ url_for('auth.login') }}">Logging</a></li>
-    <li class="breadcrumb-item"><a>Register</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _("Main page") }}</a></li>
+      <li class="breadcrumb-item"><a href="{{ url_for('auth.login') }}">{{ _("Logging") }}</a></li>
+    <li class="breadcrumb-item"><a>{{ _("Register") }}</a></li>
   </ol>
 </nav>
 
@@ -23,7 +23,7 @@
 
         <!-- Heading -->
         <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block" data-aos="fade-up" data-aos-duration="500">REGISTER</h2>
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block" data-aos="fade-up" data-aos-duration="500">{{ _("REGISTER") }}</h2>
         </div>
 
         <!-- Icon Divider-->
@@ -40,7 +40,7 @@
                     {{ wtf.form_field(form.email) }}
                     <div class="form-group">
                         {{ wtf.form_field(form.password) }}
-                        <small class="form-text text-muted">Must have at lest {{ config.MIN_PASSWORD_LENGTH }} characters</small>
+                        <small class="form-text text-muted">{{ _("Must have at lest %(count)d characters", count=config.MIN_PASSWORD_LENGTH) }}</small>
                     </div>
                     {{ wtf.form_field(form.password_confirmation) }}
                     {{ wtf.form_field(form.submit) }}
