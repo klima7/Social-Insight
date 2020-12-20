@@ -1,7 +1,7 @@
 {% extends "standard.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}{{ _("Contact") }}{% endblock %}
 
 {% block styles %}
     <style>
@@ -12,15 +12,15 @@
 {% block sections %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb mt-4 ml-5 mr-5">
-    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
-    <li class="breadcrumb-item"><a>Contact</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _("Main page") }}</a></li>
+    <li class="breadcrumb-item"><a>{{ _("Contact") }}</a></li>
   </ol>
 </nav>
 
 <section class="page-section first-section mt-3">
     <div class="container">
         <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase" data-aos="fade-up" data-aos-duration="500">Contact</h2>
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase" data-aos="fade-up" data-aos-duration="500">{{ _("Contact") }}</h2>
         </div>
 
         <div class="divider-custom">

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="page-section-heading text-secondary mb-4 d-inline-block">DATA PACKS</h2>
+            <h2 class="page-section-heading text-secondary mb-4 d-inline-block text-uppercase">{{ _('Data packs') }}</h2>
         </div>
     </div>
 
@@ -11,9 +11,9 @@
                 <div class="card-header bg-secondary text-white">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-12 col-sm-4">Name</div>
-                            <div class="col-12 col-sm-4">Status</div>
-                            <div class="col-12 col-sm-4">Date</div>
+                            <div class="col-12 col-sm-4">{{ _('Name') }}</div>
+                            <div class="col-12 col-sm-4">{{ _('Status') }}</div>
+                            <div class="col-12 col-sm-4">{{ _('Date') }}</div>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12 col-sm-4 align-middle m-auto"></div>
-                                    <div class="col-12 col-sm-4 m-auto">Empty</div>
+                                    <div class="col-12 col-sm-4 m-auto">{{ _('Empty') }}</div>
                                     <div class="col-12 col-sm-4"></div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                     </ul>
                 </div>
                 <div class="card-footer bg-secondary text-white">
-                    <a href="{{ url_for('main.index') }}" class="text-white">Upload new pack</a>
+                    <a href="{{ url_for('main.index') }}" class="text-white">{{ _('Upload new pack') }}</a>
                 </div>
             </div>
         </div>

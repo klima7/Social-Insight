@@ -7,16 +7,16 @@
                 {% if current_user.is_authenticated %}
                 {{ pack.name }}
                 {% else %}
-                RESULTS
+                {{ _("Results") }}
                 {% endif %}
             </h2>
         </div>
         {% if current_user.is_authenticated and pack.userid == current_user.id %}
         <div class="text-center mt-2">
-            <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-pack-modal">rename</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id) }}">remove</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id) }}" target="_blank">generate pdf</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, print='true') }}" target="_blank">pdf to print</a></div>
+            <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-pack-modal">{{ _("rename") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id) }}">{{ _("remove") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id) }}" target="_blank">{{ _("generate pdf") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, print='true') }}" target="_blank">{{ _("pdf to print") }}</a></div>
         </div>
         {% endif %}
 
@@ -27,7 +27,7 @@
                 <div class="portfolio-item mx-auto category {% if category=='messages' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='messages') }}">
                         <img class="img-fluid" src="{{ m.static('images/category_messages.png') }}" alt="" />
-                        <div class="bg-secondary text-light text-center">messages</div>
+                        <div class="bg-secondary text-light text-center">{{ _("messages") }}</div>
                     </a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="portfolio-item mx-auto category {% if category=='posts' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='posts') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
-                        <div class="bg-secondary text-light text-center">posts</div>
+                        <div class="bg-secondary text-light text-center">{{ _("posts") }}</div>
                     </a>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="portfolio-item mx-auto category {% if category=='miscellaneous' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='miscellaneous') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
-                        <div class="bg-secondary text-light text-center">miscellaneous</div>
+                        <div class="bg-secondary text-light text-center">{{ _("miscellaneous") }}</div>
                     </a>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="portfolio-item mx-auto category {% if category=='other' %}category-selected{% endif %}">
                     <a href="{{ url_for('main.graphs_category', id=pack.id, category='other') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
-                        <div class="bg-secondary text-light text-center">other</div>
+                        <div class="bg-secondary text-light text-center">{{ _("other") }}</div>
                     </a>
                 </div>
             </div>
@@ -64,7 +64,11 @@
         <div class="row">
             <div class="col-12 mb-3">
                 <div class="bg-secondary text-light pl-3" style="border-radius: 10px; padding: 7px">
-                    <span><a href="{{ url_for('auth.login') }}" class="text-light"><em>Login</em></a> or <a href="{{ url_for('auth.register') }}" class="text-light"><em>Register</em></a> to store this chart pack permanently and gain access to extra features</span>
+                    {% set ls %}<a href="{{ url_for('auth.login') }}" class="text-light"><em>{% endset %}
+                    {% set le %}</em></a>{% endset %}
+                    {% set rs %}<a href="{{ url_for('auth.register') }}" class="text-light"><em>{% endset %}
+                    {% set re %}</em></a>{% endset %}
+                    <span>{{ _("%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack permanently and gain access to extra features", ls=ls, le=le, rs=rs, re=re) }}</span>
                 </div>
             </div>
         </div>

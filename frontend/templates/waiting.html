@@ -1,6 +1,6 @@
 {% extends "standard.html" %}
 
-{% block title %}Waiting{% endblock %}
+{% block title %}{{ _("Analysing") }}{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{ m.static('css/waiting.css') }}">
@@ -15,8 +15,8 @@
 <section class="page-section first-section bg-primary" style="height: 600px">
     <div class="container">
         <div class="text-center">
-            <h1 class="text-secondary">Please, wait few moments</h1>
-            <h4 class="text-secondary">We are analysing you data</h4>
+            <h1 class="text-secondary">{{ _("Please, wait a moment") }}</h1>
+            <h4 class="text-secondary">{{ _("We are analysing you data") }}</h4>
         </div>
 
         <!-- Icon Divider-->

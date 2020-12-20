@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "macros/render_browser.html" as browser %}
 
-{% block title %}Category {{ category }}{% endblock %}
+{% block title %}{{ _("Category") }} {{ category }}{% endblock %}
 
 {% block topscripts %}
 {{ super() }}
@@ -15,16 +15,16 @@
 {% if current_user.is_authenticated %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb mt-4 ml-5 mr-5">
-    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
-    <li class="breadcrumb-item"><a href="{{ url_for('main.account') }}">Account</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Pack</li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _("Main page") }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.account') }}">{{ _("Account") }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ _("Pack") }}</li>
   </ol>
 </nav>
 {% else %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb mt-4 ml-5 mr-5">
-    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Main page</a></li>
-    <li class="breadcrumb-item">Anonymous result</li>
+    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _("Main page") }}</a></li>
+    <li class="breadcrumb-item">{{ _("Anonymous result") }}</li>
   </ol>
 </nav>
 {% endif %}
@@ -40,7 +40,7 @@
     </div>
     {% else %}
         <div class="text-center" style="padding: 100px">
-            <h2 class="page-section-heading mb-0 d-inline-block" style="color: gray">No graphs in this category</h2>
+            <h2 class="page-section-heading mb-0 d-inline-block" style="color: gray">{{ _("No graphs in this category") }}</h2>
         </div>
     {% endif %}
 </section>
