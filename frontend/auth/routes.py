@@ -1,6 +1,7 @@
 from frontend.util import display_errors_with_flash
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_babel import _
 from frontend.mail import send_email
 from db import *
 from . import auth
@@ -38,7 +39,7 @@ def login():
         if user is not None and not user.confirmed and session.get('prev') != 'auth.confirm':
             session['email'] = form.email.data
             url = url_for('auth.resend')
-            flash(f'Please confirm this email first! Click <a href="{url}">here</a> to resend confirmation', 'warning')
+            flash(_('Please confirm this email first! Click %(start)shere%(end)s to resend confirmation', start=f'<a href="{url}">', end='</a>'), 'warning')
             return render_template('login.html', form=form)
 
         # Poprawne logowanie
@@ -46,7 +47,7 @@ def login():
             login_user(user, remember=form.remember_me.data)
 
             if add_anonymous_pack_to_user(user):
-                flash('New pack was added to your account!', 'success')
+                flash(_('Pack was added to your account!'), 'success')
 
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
@@ -54,7 +55,7 @@ def login():
             return redirect(next)
 
         # Niepoprawne dane do logowania
-        flash('Invalid login or password', 'error')
+        flash(_('Invalid login or password'), 'error')
         return render_template('login.html', form=form)
 
     # Wyświetlenie formularza
@@ -64,7 +65,7 @@ def login():
 
 @auth.route('/logout/')
 def logout():
-    flash('You have logged out', 'success')
+    flash(_('You have logged out'), 'success')
     logout_user()
     return redirect(url_for('main.index'))
 
@@ -77,11 +78,11 @@ def register():
         db_session.add(user)
         db_session.commit()
         token = user.generate_confirmation_token()
-        send_email(user.email, 'Account Confirmation', 'confirmation', token=token)
-        flash('Register success! Please confirm your email before logging', 'success')
+        send_email(user.email, _('Account Confirmation'), 'confirmation', token=token)
+        flash(_('Register success! Please confirm your email before logging'), 'success')
 
         if add_anonymous_pack_to_user(user):
-            flash('New pack was added to your account!', 'success')
+            flash(_('Pack was added to your account!'), 'success')
 
         return redirect(url_for('auth.login'))
     display_errors_with_flash(form)
@@ -92,13 +93,13 @@ def register():
 @login_required
 def confirm(token):
     if current_user.confirmed:
-        flash('Your account is already confirmed', 'success')
+        flash(_('Your account is already confirmed'), 'success')
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
         db_session.commit()
-        flash('You have confirmed your account. Thanks!', 'success')
+        flash(_('You have confirmed your account. Thanks!'), 'success')
     else:
-        flash('The confirmation link is invalid or has expired', 'warning')
+        flash(_('The confirmation link is invalid or has expired'), 'warning')
     return redirect(url_for('main.index'))
 
 
@@ -106,8 +107,8 @@ def confirm(token):
 def resend():
     user = db_session.query(User).filter_by(email=session.get('email', 'unknown')).first()
     token = user.generate_confirmation_token()
-    send_email(user.email, 'Account Confirmation', 'confirmation', user=user, token=token)
-    flash('Email confirmation was sent again', 'success')
+    send_email(user.email, _('Account Confirmation'), 'confirmation', user=user, token=token)
+    flash(_('Email confirmation was sent again'), 'success')
     return redirect(url_for('auth.login'))
 
 
@@ -119,10 +120,10 @@ def change_password():
             current_user.password = form.new_password.data
             db_session.add(current_user)
             db_session.commit()
-            flash('Password changed', 'success')
+            flash(_('Password changed'), 'success')
             return redirect(url_for('main.account'))
         else:
-            flash('Current password is invalid!', 'error')
+            flash(_('Current password is invalid!'), 'error')
     display_errors_with_flash(form)
     return render_template('password_change.html', form=form)
 
@@ -134,11 +135,11 @@ def reset_password_request():
         user = db_session.query(User).filter_by(email=form.email.data).first()
         if user is not None:
             token = user.generate_reset_token()
-            send_email(user.email, 'Reset Password', 'reset_password', token=token)
-            flash('Email with instructions to reset password was sent', 'success')
+            send_email(user.email, _('Reset Password'), 'reset_password', token=token)
+            flash(_('Email with instructions to reset password was sent'), 'success')
             return redirect(url_for('auth.login'))
         else:
-            flash('This email address is not registered!', 'error')
+            flash(_('This email address is not registered!'), 'error')
     display_errors_with_flash(form)
     return render_template('password_reset_request.html', form=form)
 
@@ -152,10 +153,10 @@ def reset_password(token):
     if form.validate_on_submit():
         if User.reset_password(token, form.password.data):
             db_session.commit()
-            flash('Your password has been updated', 'success')
+            flash(_('Your password has been updated'), 'success')
             return redirect(url_for('main.index'))
         else:
-            flash('The reset link is invalid or has expired', 'warning')
+            flash(_('The reset link is invalid or has expired'), 'warning')
             return redirect(url_for('main.index'))
     display_errors_with_flash(form)
     return render_template('password_reset.html', form=form)
@@ -165,7 +166,7 @@ def reset_password(token):
 @login_required
 def remove_account_confirm():
     address = url_for('auth.remove_account')
-    flash(f'Are you sure that you want to delete this account? <a href="{address}">Yes</a>', 'error')
+    flash(_('Are you sure that you want to delete this account? %(start)sYes%(end)s', start=f'<a href="{address}">', end='</a>'), 'error')
     return redirect(url_for('main.account'))
 
 
@@ -174,5 +175,5 @@ def remove_account_confirm():
 def remove_account():
     db_session.delete(current_user)
     db_session.commit()
-    flash('Your account was removed', 'success')
+    flash(_('Your account was removed'), 'success')
     return redirect(url_for('main.index'))
