@@ -4,6 +4,7 @@ from platform import system
 import pdfkit
 from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response
 from flask_login import login_required, current_user
+from flask_babel import _
 
 import analytics
 from config import config
@@ -48,7 +49,7 @@ def index_post():
 def example():
     pack = db_session.query(Pack).filter_by(example=True).first()
     if pack is None:
-        flash('Sorry, example pack is not available', 'warning')
+        flash(_('Sorry, example pack is not available'), 'warning')
         return redirect(url_for('main.index'))
     return redirect(url_for('main.graphs_category', id=pack.id, category='messages'))
 
@@ -79,7 +80,7 @@ def get_pack(id):
 def remove_pack_confirm(id):
     get_pack(id)
     address = url_for('main.remove_pack', id=id)
-    flash(f'Are you sure that you want to remove this pack? <a href="{address}">Yes</a>', 'warning')
+    flash(_('Are you sure that you want to remove this pack? %(start)sYes%(end)s', start=f'<a href="{address}">', end='</a>'), 'warning')
     return redirect(session.get('prev_url', url_for('main.account')))
 
 
@@ -88,7 +89,7 @@ def remove_pack(id):
     pack = get_pack(id)
     db_session.delete(pack)
     db_session.commit()
-    flash('Pack was removed', 'success')
+    flash(_('Pack was removed'), 'success')
     return redirect(url_for('main.account'))
 
 
@@ -99,7 +100,7 @@ def create_collation():
     collation.user = current_user
     db_session.add(collation)
     db_session.commit()
-    flash('New collation was created', 'success')
+    flash(_('New collation was created'), 'success')
     return redirect(url_for('main.account'))
 
 
@@ -117,7 +118,7 @@ def collation(id):
     form = RenameCollationForm()
     if form.validate_on_submit():
         collation.name = form.name.data
-        flash('Collation name changed to ' + collation.name, 'success')
+        flash(_('Collation name changed to %(name)s', name=collation.name), 'success')
         db_session.add(collation)
         db_session.commit()
     return render_template('collation.html', collation=collation, form=form)
@@ -166,7 +167,7 @@ def pack2pdf(id):
 def remove_collation_confirm(id):
     get_collation(id)
     address = url_for('main.remove_collation', id=id)
-    flash(f'Are you sure that you want to remove this collation? <a href="{address}">Yes</a>', 'warning')
+    flash(_('Are you sure that you want to remove this collation?')+f' <a href="{address}">'+_('Yes')+'</a>', 'warning')
     return redirect(url_for('main.collation', id=id))
 
 
@@ -175,7 +176,7 @@ def remove_collation(id):
     collation = get_collation(id)
     db_session.delete(collation)
     db_session.commit()
-    flash('collation was removed', 'success')
+    flash(_('collation was removed'), 'success')
     return redirect(url_for('main.account'))
 
 
@@ -186,7 +187,7 @@ def graphs_category(id, category):
 
     if form.validate_on_submit():
         pack.name = form.name.data
-        flash('Pack name changed to ' + pack.name, 'success')
+        flash(_('Pack name changed to %(name)s', name=pack.name), 'success')
         db_session.add(pack)
         db_session.commit()
 
@@ -222,8 +223,8 @@ def contact():
         form.email.data = current_user.email
 
     if form.validate_on_submit():
-        send_email(config.MAIL_USERNAME, 'Contact', 'contact', form=form)
-        flash('Message sent', 'success')
+        send_email(config.MAIL_USERNAME, _('Message'), 'contact', form=form)
+        flash(_('Message was sent'), 'success')
         return redirect(url_for('main.contact'))
 
     display_errors_with_flash(form)
