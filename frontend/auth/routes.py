@@ -39,7 +39,7 @@ def login():
         if user is not None and not user.confirmed and session.get('prev') != 'auth.confirm':
             session['email'] = form.email.data
             url = url_for('auth.resend')
-            flash(_('Please confirm this email first! Click %(start)shere%(end)s to resend confirmation', start=f'<a href="{url}">', end='</a>'), 'warning')
+            flash(_('Please confirm this email first! Click %(start)shere%(end)s to resend confirmation', start='<a href="%s">'%url, end='</a>'), 'warning')
             return render_template('login.html', form=form)
 
         # Poprawne logowanie
@@ -166,7 +166,7 @@ def reset_password(token):
 @login_required
 def remove_account_confirm():
     address = url_for('auth.remove_account')
-    flash(_('Are you sure that you want to delete this account? %(start)sYes%(end)s', start=f'<a href="{address}">', end='</a>'), 'error')
+    flash(_('Are you sure that you want to delete this account? %(start)sYes%(end)s', start='<a href="%s">' % address, end='</a>'), 'error')
     return redirect(url_for('main.account'))
 
 
