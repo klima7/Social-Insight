@@ -137,8 +137,11 @@ def to_pdf(container, print_version):
         'margin-bottom': '0in',
         'margin-left': '0in',
         'encoding': "UTF-8",
-        'no-outline': None
+        'no-outline': None,
     }
+
+    if config.PDFKIT_DEBUG:
+        options['quiet'] = ''
 
     css_name = 'pdf_print' if print_version else 'pdf_fancy'
     pdf = pdfkit.from_string(html, False, options=options, css=[f'frontend/static/css/{css_name}.css'], **extra_args)

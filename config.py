@@ -16,9 +16,11 @@ class Config:
     PASSWORD_CHANGE_TIME = 60
     SNOW = True
 
-    # Debug
+    # What will be logged
     DATABASE_DEBUG = False
     MAIL_DEBUG = False
+    FLASK_DEBUG = False
+    PDFKIT_DEBUG = False
 
     # Mail
     MAIL_SERVER = 'smtp.googlemail.com'

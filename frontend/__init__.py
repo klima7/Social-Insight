@@ -1,4 +1,8 @@
+import logging
+
 from frontend.util import cache_suffix, get_current_user, pygal2base64, is_pygal_chart, is_pandas_table, translate_pandas_table
+from db import *
+
 from flask import Flask, request, session
 from flask_login import LoginManager
 from flask_babel import Babel
@@ -6,7 +10,6 @@ from lorem_text import lorem
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
-from db import *
 
 
 login = LoginManager()
@@ -27,6 +30,10 @@ def create_app():
     mail.init_app(app)
     moment.init_app(app)
     config.init_app(app)
+
+    if not config.FLASK_DEBUG:
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
