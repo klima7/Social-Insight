@@ -134,6 +134,9 @@ class Collation(_Base):
                 return True
         return False
 
+    def size(self):
+        return len(self.graphs)
+
     def __repr__(self):
         return f"<Collation(id={self.id})>"
 

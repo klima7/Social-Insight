@@ -140,7 +140,7 @@ def to_pdf(container, print_version):
         'no-outline': None,
     }
 
-    if config.PDFKIT_DEBUG:
+    if not config.PDFKIT_DEBUG:
         options['quiet'] = ''
 
     css_name = 'pdf_print' if print_version else 'pdf_fancy'
@@ -233,5 +233,16 @@ def contact():
     display_errors_with_flash(form)
     return render_template('contact.html', form=form)
 
+
+@main.route('/mode/dark')
+def dark_mode():
+    session['dark_mode'] = True
+    return redirect(session.get('prev_url', url_for('main.index')))
+
+
+@main.route('/mode/light')
+def light_mode():
+    session['dark_mode'] = False
+    return redirect(session.get('prev_url', url_for('main.index')))
 
 

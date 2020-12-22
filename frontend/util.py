@@ -1,10 +1,7 @@
-import base64
-import os
-import tempfile
 import pygal
 import pandas
 
-from flask import flash
+from flask import flash, session
 from flask_login import current_user
 from config import config
 from time import time_ns
@@ -38,19 +35,5 @@ def translate_pandas_table(table):
     return table.rename(columns=str)
 
 
-def pygal2base64(chart):
-    # base = tempfile.mkdtemp()
-    # path_svg = os.path.join(base, 'graph.svg')
-    # path_png = os.path.join(base, 'graph.png')
-    # chart.render_to_file(path_svg)
-    #
-    # with open(path_svg) as f:
-    #     content = f.read()
-    #
-    # svg2png(bytestring=content, write_to=path_png)
-    #
-    # with open(path_png, "rb") as image_file:
-    #     encoded_string = base64.b64encode(image_file.read())
-    #     print(encoded_string)
-    #     return encoded_string
-    pass
+def is_dark_mode():
+    return session.get('dark_mode', False)

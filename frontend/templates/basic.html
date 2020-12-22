@@ -21,6 +21,11 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}">
 
         <!-- Stylesheets -->
+        {% if is_dark_mode() %}
+        <link rel="stylesheet" href="{{ m.static('css/dark.css') }}">
+        {% else %}
+        <link rel="stylesheet" href="{{ m.static('css/light.css') }}">
+        {% endif %}
         <link rel="stylesheet" href="{{ m.static('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ m.static('css/styles.css') }}">
         <link rel="stylesheet" href="{{ m.static('css/fonts.css') }}">

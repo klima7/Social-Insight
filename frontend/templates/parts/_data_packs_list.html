@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="page-section-heading text-secondary mb-4 d-inline-block text-uppercase">{{ _('Data packs') }}</h2>
+            <h2 class="page-section-heading header-standard mb-4 d-inline-block text-uppercase">{{ _('Data packs') }}</h2>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 text-center">
             <div class="card">
-                <div class="card-header bg-secondary text-white">
+                <div class="card-header bg-secondary text-secondary">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 col-sm-4">{{ _('Name') }}</div>
@@ -17,11 +17,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body p-0 m-0">
+                <div class="card-body bg-background p-0 m-0">
                     <ul class="list-group list-group-flush">
                         {% for pack in current_user.packs %}
-                        <li class="list-group-item account-item">
-                            <a href="{{ url_for('main.graphs_category', id=pack.id, category='messages') }}" class="text-secondary">
+                        <a class="no-underline text-background" href="{{ url_for('main.graphs_category', id=pack.id, category='messages') }}">
+                            <li class="list-group-item account-item">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-12 col-sm-4 align-middle m-auto">
@@ -35,8 +35,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </li>
+                            </li>
+                        </a>
                         {% endfor %}
 
                         {% if not current_user.packs %}
@@ -52,7 +52,7 @@
                         {% endif %}
                     </ul>
                 </div>
-                <div class="card-footer bg-secondary text-white">
+                <div class="card-footer bg-secondary text-secondary">
                     <a href="{{ url_for('main.index') }}" class="text-white">{{ _('Upload new pack') }}</a>
                 </div>
             </div>

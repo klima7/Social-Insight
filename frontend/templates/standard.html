@@ -6,6 +6,11 @@
 
 {% block navitems %}
 <ul class="navbar-nav ml-auto">
+    {% if is_dark_mode() %}
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.light_mode') }}">{{ _('Light mode') }}</a></li>
+    {% else %}
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.dark_mode') }}">{{ _('Dark mode') }}</a></li>
+    {% endif %}
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" data-toggle="modal" data-target="#languageModal" href="">{{ _('Language') }}</a></li>
     {% if current_user.is_authenticated %}
