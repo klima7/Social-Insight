@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 13:19+0100\n"
+"POT-Creation-Date: 2020-12-24 14:07+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -250,7 +250,7 @@ msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:83 frontend/main/routes.py:170
+#: frontend/main/routes.py:83 frontend/main/routes.py:173
 msgid "Yes"
 msgstr "Tak"
 
@@ -267,37 +267,43 @@ msgstr "Nowe zestawienie zostało stworzone"
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:170
+#: frontend/main/routes.py:173
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:179
+#: frontend/main/routes.py:182
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:190
+#: frontend/main/routes.py:193
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:226
+#: frontend/main/routes.py:229
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:227
+#: frontend/main/routes.py:230
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
 #: frontend/templates/account.html:3 frontend/templates/account.html:37
 #: frontend/templates/category.html:19 frontend/templates/collation.html:30
 #: frontend/templates/password_change.html:16
-#: frontend/templates/standard.html:12
+#: frontend/templates/standard.html:17
 msgid "Account"
 msgstr "Konto"
 
 #: frontend/templates/account.html:11
 msgid "Your account"
 msgstr "Twoje konto"
+
+#: frontend/templates/account.html:27 frontend/templates/password_change.html:4
+#: frontend/templates/password_change.html:17
+#: frontend/templates/password_change.html:26
+msgid "Change password"
+msgstr "Zmień hasło"
 
 #: frontend/templates/account.html:28
 msgid "Delete account"
@@ -312,11 +318,11 @@ msgstr "Usuń konto"
 msgid "Main page"
 msgstr "Strona główna"
 
-#: frontend/templates/basic.html:48
+#: frontend/templates/basic.html:53
 msgid "Menu"
 msgstr "Menu"
 
-#: frontend/templates/basic.html:61
+#: frontend/templates/basic.html:66
 msgid "credits"
 msgstr "podziękowania"
 
@@ -365,7 +371,7 @@ msgid "No graphs in this collation"
 msgstr "Grak wykresów w tym zestawieniu"
 
 #: frontend/templates/contact.html:4 frontend/templates/contact.html:16
-#: frontend/templates/contact.html:23 frontend/templates/standard.html:9
+#: frontend/templates/contact.html:23 frontend/templates/standard.html:14
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -397,7 +403,7 @@ msgstr "Pozwól nam przeanalizować swoje dane"
 msgid "Or check sample output"
 msgstr "Lub sprawdz przykładowy wynik"
 
-#: frontend/templates/index.html:31 frontend/templates/standard.html:36
+#: frontend/templates/index.html:31 frontend/templates/standard.html:41
 msgid "here!"
 msgstr "tutaj!"
 
@@ -409,7 +415,44 @@ msgstr "Możliwości"
 msgid "How to get data file?"
 msgstr "Gdzie znaleść swój plik z danymi?"
 
-#: frontend/templates/login.html:4 frontend/templates/standard.html:15
+#: frontend/templates/index.html:101
+msgid ""
+"First log in to your facebook account. Then look at upper right corner, "
+"click <b>Settings & privacy</b> from the dropdown and then "
+"<b>Setting</b>."
+msgstr ""
+"Zaloguj się na zwoje konto na Facebooku. Wybierz opcję "
+"<b>Ustawienia i prywatność</b> z rozwijanego menu w górnym prawy rogu, a następnie <b>Ustawienia</b>."
+
+#: frontend/templates/index.html:108
+msgid "Select <b>Your Facebook information</b> from Settings panel on the left."
+msgstr "Wybierz <b>Twoje informacje na Facebooku</b> z panelu Ustawienia po lewej stronie."
+
+#: frontend/templates/index.html:125
+msgid "Click <b>Download your Information</b> on the central panel."
+msgstr "Kliknij <b>Pobieranie Twoich Informacji</b> na centralnym panelu."
+
+#: frontend/templates/index.html:132
+msgid ""
+"Select data which you want to download. The more you select the more we "
+"can analyse. Remember to change <b>Format</b> from HTML to <b>JSON</b>! "
+"Then click <b>Create File</b>."
+msgstr "Wybierz dane, które chcesz pobrać. Im więcej elementów wybierzesz, tym więcej "
+"będziemy mogli przeanalizować. Pamiętaj aby zmienić <b>Format</b> na <b>JSON</b>! "
+"Następnie kliknij przycisk <b>Utwórz plik</b>."
+
+#: frontend/templates/index.html:149
+msgid ""
+"Now you have to wait some time. It may take few seconds to few hours, "
+"depending on how much data have to be prepared. When you data file is "
+"ready you will receive <b>notification</b>. Just click it, download and "
+"send to us!"
+msgstr "Teraz będzie trzeba poczekać trochę czasu. Może on wynieść od kilku sekund "
+"do kilku godzin, w zależności od ilości danych do przygotowania. "
+"Kiedy plik będzie gotowy otrzymasz <b>powiadomienie</b>. Kliknij je, pobierz plik "
+"i wyślij go nam!"
+
+#: frontend/templates/login.html:4 frontend/templates/standard.html:20
 msgid "Login"
 msgstr "Zaloguj"
 
@@ -434,12 +477,6 @@ msgstr "Zapomniałeś swoje hasło?"
 #: frontend/templates/login.html:39
 msgid "Reset password!"
 msgstr "Zresetuj hasło!"
-
-#: frontend/templates/password_change.html:4
-#: frontend/templates/password_change.html:17
-#: frontend/templates/password_change.html:26
-msgid "Change password"
-msgstr "Zmień hasło"
 
 #: frontend/templates/password_reset.html:4
 #: frontend/templates/password_reset.html:18
@@ -480,20 +517,28 @@ msgstr "ZAREJESTRUJ"
 msgid "Must have at lest %(count)d characters"
 msgstr "Musi mieć conajmniej %(count)d znaków"
 
-#: frontend/templates/parts/_language_modal.html:10
 #: frontend/templates/standard.html:10
+msgid "Light mode"
+msgstr ""
+
+#: frontend/templates/standard.html:12
+msgid "Dark mode"
+msgstr ""
+
+#: frontend/templates/parts/_language_modal.html:10
+#: frontend/templates/standard.html:15
 msgid "Language"
 msgstr "Język"
 
-#: frontend/templates/standard.html:13
+#: frontend/templates/standard.html:18
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: frontend/templates/standard.html:31
+#: frontend/templates/standard.html:36
 msgid "Invite friends"
 msgstr "Zaproś znajomych"
 
-#: frontend/templates/standard.html:32
+#: frontend/templates/standard.html:37
 msgid ""
 "If You like our webside, talk about it to You friends. We would be "
 "gratefull!"
@@ -501,11 +546,11 @@ msgstr ""
 "Jeśli lubisz naszą stronę, to powiedz o niej znajomych. Będziemy "
 "wdzięczni!"
 
-#: frontend/templates/standard.html:35
+#: frontend/templates/standard.html:40
 msgid "Keep in contact"
 msgstr "Kontakt"
 
-#: frontend/templates/standard.html:36
+#: frontend/templates/standard.html:41
 msgid ""
 "If You would like to have a new feature or You found a bug just contact "
 "us,"
@@ -513,7 +558,7 @@ msgstr ""
 "Jeśli masz propozycję nowej funkcjonalności lub znalazłeś bug, to napisz "
 "nam,"
 
-#: frontend/templates/standard.html:39
+#: frontend/templates/standard.html:44
 msgid "Like us on facebook"
 msgstr "Polub nas na facebooku"
 
