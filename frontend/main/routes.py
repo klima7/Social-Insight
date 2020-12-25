@@ -251,3 +251,8 @@ def light_mode():
     return redirect(session.get('prev_url', url_for('main.index')))
 
 
+@main.route('/authors')
+def authors():
+    return render_template('authors.html')
+
+

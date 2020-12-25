@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-24 23:11+0100\n"
+"POT-Creation-Date: 2020-12-25 12:10+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -242,49 +242,49 @@ msgstr "Treść"
 msgid "Send"
 msgstr "Wyślij"
 
-#: frontend/main/routes.py:52
+#: frontend/main/routes.py:57
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 
-#: frontend/main/routes.py:83
+#: frontend/main/routes.py:88
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:83 frontend/main/routes.py:173
+#: frontend/main/routes.py:88 frontend/main/routes.py:178
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:92
+#: frontend/main/routes.py:97
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:103
+#: frontend/main/routes.py:108
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:121
+#: frontend/main/routes.py:126
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:173
+#: frontend/main/routes.py:178
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:182
+#: frontend/main/routes.py:187
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:193
+#: frontend/main/routes.py:198
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:229
+#: frontend/main/routes.py:234
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:230
+#: frontend/main/routes.py:235
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
@@ -318,13 +318,21 @@ msgstr "Usuń konto"
 msgid "Main page"
 msgstr "Strona główna"
 
+#: frontend/templates/authors.html:3 frontend/templates/authors.html:11
+msgid "Authors"
+msgstr "Autorzy"
+
 #: frontend/templates/basic.html:53
 msgid "Menu"
 msgstr "Menu"
 
-#: frontend/templates/basic.html:66
+#: frontend/templates/basic.html:69
 msgid "credits"
 msgstr "podziękowania"
+
+#: frontend/templates/basic.html:70
+msgid "authors"
+msgstr "autorzy"
 
 #: frontend/templates/category.html:5
 msgid "Category"
@@ -419,7 +427,8 @@ msgstr "Generowanie wykresów"
 msgid ""
 "This is the main purpose on this application. We can generate a lot of "
 "graphs and tables grouped in a few categories to keep them organized."
-msgstr "Jest to główne zadanie naszej aplikacji. Może ona wygenerować wiele "
+msgstr ""
+"Jest to główne zadanie naszej aplikacji. Może ona wygenerować wiele "
 "wykresów i tabel pogrupowanych w kategorie, aby utrzymać porządek."
 
 #: frontend/templates/index.html:72
@@ -428,10 +437,12 @@ msgstr "Bezpieczeństwo"
 
 #: frontend/templates/index.html:73
 msgid ""
-"Our application is using safe https protocol, so your data is safe during "
-"uploading. Then is processed on the served side and immediately deleted."
-msgstr "Nasza aplikacja używa bezpiecznego protokołu https, aby twoje dane były bezpieczne podczas "
-"wysyłania. Następnie są one przetwarzane po stronie serwera i niezwłocznie usówanie."
+"Our application is using safe https protocol, so your data is safe during"
+" uploading. Then is processed on the served side and immediately deleted."
+msgstr ""
+"Nasza aplikacja używa bezpiecznego protokołu https, aby twoje dane były "
+"bezpieczne podczas wysyłania. Następnie są one przetwarzane po stronie "
+"serwera i niezwłocznie usówanie."
 
 #: frontend/templates/index.html:85
 msgid "Generating PDFs"
@@ -441,8 +452,9 @@ msgstr "Generowanie PDF"
 msgid ""
 "Generate pdf files with ease, just click one button. Two versions of pdfs"
 " are available: fancy and version to print."
-msgstr "Możesz z łatwością wygenerować pliki pdf, wystarczy jeden przycisk. Dostępne są "
-"dwie wersje plików pdf: kolorowa oraz do druku."
+msgstr ""
+"Możesz z łatwością wygenerować pliki pdf, wystarczy jeden przycisk. "
+"Dostępne są dwie wersje plików pdf: kolorowa oraz do druku."
 
 #: frontend/templates/index.html:98
 msgid "Sharing"
@@ -452,8 +464,10 @@ msgstr "Udostępnianie"
 msgid ""
 "You can easily share your graphs on facebook. You can also copy a link to"
 " your graph and paste it anywhere you like."
-msgstr "Możesz bardzo łatwo podzielić się swoimi wykresami ze znajomymi na facebooku. "
-"Możesz również skopiować link do wybranego wykresu i wkleić go wszędzie gdzie masz ochotę."
+msgstr ""
+"Możesz bardzo łatwo podzielić się swoimi wykresami ze znajomymi na "
+"facebooku. Możesz również skopiować link do wybranego wykresu i wkleić go"
+" wszędzie gdzie masz ochotę."
 
 #: frontend/templates/index.html:112
 msgid "How to get data file?"
@@ -720,7 +734,7 @@ msgstr "Status"
 msgid "Upload new pack"
 msgstr "Dodaj nową paczkę"
 
-#: frontend/templates/parts/_language_modal.html:25
+#: frontend/templates/parts/_language_modal.html:27
 msgid "Close window"
 msgstr "Zamknij okno"
 
@@ -731,10 +745,4 @@ msgstr "Zmień nazwę zestawienia"
 #: frontend/templates/parts/_rename_pack_modal.html:10
 msgid "Rename pack"
 msgstr "Zmień nazwę paczki"
-
-#~ msgid "Zmień hasło"
-#~ msgstr ""
-
-#~ msgid "Usuń konto"
-#~ msgstr ""
 

@@ -63,7 +63,13 @@
 
         <!-- Copyright Section-->
         <section class="copyright py-4 text-center text-white">
-            <div class="container"><small class="pre-wrap">Copyright © 2020 | <a href="{{ url_for('main.credits') }}" class="text-light">{{ _('credits') }}</a></small></div>
+            <div class="container">
+                <small class="">
+                    Copyright © 2020 |
+                    <a href="{{ url_for('main.credits') }}" class="text-light">{{ _('credits') }}</a> |
+                    <a href="{{ url_for('main.authors') }}" class="text-light">{{ _('authors') }}</a>
+                </small>
+            </div>
         </section>
 
         <!-- Scroll to Top Button -->
