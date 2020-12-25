@@ -80,7 +80,7 @@ def get_pack(id):
 def remove_pack_confirm(id):
     get_pack(id)
     address = url_for('main.remove_pack', id=id)
-    flash(_('Are you sure that you want to remove this pack?')+f'<a href="{address}">'+_('Yes')+'</a>', 'warning')
+    flash(_('Are you sure that you want to remove this pack?')+f' <a href="{address}">'+_('Yes')+'</a>', 'warning')
     return redirect(session.get('prev_url', url_for('main.account')))
 
 

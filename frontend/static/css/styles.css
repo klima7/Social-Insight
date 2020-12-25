@@ -86,6 +86,7 @@
 
 /* Graphs page */
 .graph-header {
+	color: var(--text-graph);
 	margin-top: 15px;
 	font-size: 25px;
 	text-transform: uppercase;

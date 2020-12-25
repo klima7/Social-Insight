@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-24 14:07+0100\n"
+"POT-Creation-Date: 2020-12-24 23:11+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -411,46 +411,95 @@ msgstr "tutaj!"
 msgid "Features"
 msgstr "Możliwości"
 
-#: frontend/templates/index.html:83
+#: frontend/templates/index.html:59
+msgid "Generating graphs"
+msgstr "Generowanie wykresów"
+
+#: frontend/templates/index.html:60
+msgid ""
+"This is the main purpose on this application. We can generate a lot of "
+"graphs and tables grouped in a few categories to keep them organized."
+msgstr "Jest to główne zadanie naszej aplikacji. Może ona wygenerować wiele "
+"wykresów i tabel pogrupowanych w kategorie, aby utrzymać porządek."
+
+#: frontend/templates/index.html:72
+msgid "Safety"
+msgstr "Bezpieczeństwo"
+
+#: frontend/templates/index.html:73
+msgid ""
+"Our application is using safe https protocol, so your data is safe during "
+"uploading. Then is processed on the served side and immediately deleted."
+msgstr "Nasza aplikacja używa bezpiecznego protokołu https, aby twoje dane były bezpieczne podczas "
+"wysyłania. Następnie są one przetwarzane po stronie serwera i niezwłocznie usówanie."
+
+#: frontend/templates/index.html:85
+msgid "Generating PDFs"
+msgstr "Generowanie PDF"
+
+#: frontend/templates/index.html:86
+msgid ""
+"Generate pdf files with ease, just click one button. Two versions of pdfs"
+" are available: fancy and version to print."
+msgstr "Możesz z łatwością wygenerować pliki pdf, wystarczy jeden przycisk. Dostępne są "
+"dwie wersje plików pdf: kolorowa oraz do druku."
+
+#: frontend/templates/index.html:98
+msgid "Sharing"
+msgstr "Udostępnianie"
+
+#: frontend/templates/index.html:99
+msgid ""
+"You can easily share your graphs on facebook. You can also copy a link to"
+" your graph and paste it anywhere you like."
+msgstr "Możesz bardzo łatwo podzielić się swoimi wykresami ze znajomymi na facebooku. "
+"Możesz również skopiować link do wybranego wykresu i wkleić go wszędzie gdzie masz ochotę."
+
+#: frontend/templates/index.html:112
 msgid "How to get data file?"
 msgstr "Gdzie znaleść swój plik z danymi?"
 
-#: frontend/templates/index.html:101
+#: frontend/templates/index.html:130
 msgid ""
 "First log in to your facebook account. Then look at upper right corner, "
 "click <b>Settings & privacy</b> from the dropdown and then "
 "<b>Setting</b>."
 msgstr ""
-"Zaloguj się na zwoje konto na Facebooku. Wybierz opcję "
-"<b>Ustawienia i prywatność</b> z rozwijanego menu w górnym prawy rogu, a następnie <b>Ustawienia</b>."
+"Zaloguj się na zwoje konto na Facebooku. Wybierz opcję <b>Ustawienia i "
+"prywatność</b> z rozwijanego menu w górnym prawy rogu, a następnie "
+"<b>Ustawienia</b>."
 
-#: frontend/templates/index.html:108
+#: frontend/templates/index.html:142
 msgid "Select <b>Your Facebook information</b> from Settings panel on the left."
-msgstr "Wybierz <b>Twoje informacje na Facebooku</b> z panelu Ustawienia po lewej stronie."
+msgstr ""
+"Wybierz <b>Twoje informacje na Facebooku</b> z panelu Ustawienia po lewej"
+" stronie."
 
-#: frontend/templates/index.html:125
+#: frontend/templates/index.html:154
 msgid "Click <b>Download your Information</b> on the central panel."
 msgstr "Kliknij <b>Pobieranie Twoich Informacji</b> na centralnym panelu."
 
-#: frontend/templates/index.html:132
+#: frontend/templates/index.html:166
 msgid ""
 "Select data which you want to download. The more you select the more we "
 "can analyse. Remember to change <b>Format</b> from HTML to <b>JSON</b>! "
 "Then click <b>Create File</b>."
-msgstr "Wybierz dane, które chcesz pobrać. Im więcej elementów wybierzesz, tym więcej "
-"będziemy mogli przeanalizować. Pamiętaj aby zmienić <b>Format</b> na <b>JSON</b>! "
-"Następnie kliknij przycisk <b>Utwórz plik</b>."
+msgstr ""
+"Wybierz dane, które chcesz pobrać. Im więcej elementów wybierzesz, tym "
+"więcej będziemy mogli przeanalizować. Pamiętaj aby zmienić <b>Format</b> "
+"na <b>JSON</b>! Następnie kliknij przycisk <b>Utwórz plik</b>."
 
-#: frontend/templates/index.html:149
+#: frontend/templates/index.html:178
 msgid ""
 "Now you have to wait some time. It may take few seconds to few hours, "
 "depending on how much data have to be prepared. When you data file is "
 "ready you will receive <b>notification</b>. Just click it, download and "
 "send to us!"
-msgstr "Teraz będzie trzeba poczekać trochę czasu. Może on wynieść od kilku sekund "
-"do kilku godzin, w zależności od ilości danych do przygotowania. "
-"Kiedy plik będzie gotowy otrzymasz <b>powiadomienie</b>. Kliknij je, pobierz plik "
-"i wyślij go nam!"
+msgstr ""
+"Teraz będzie trzeba poczekać trochę czasu. Może on wynieść od kilku "
+"sekund do kilku godzin, w zależności od ilości danych do przygotowania. "
+"Kiedy plik będzie gotowy otrzymasz <b>powiadomienie</b>. Kliknij je, "
+"pobierz plik i wyślij go nam!"
 
 #: frontend/templates/login.html:4 frontend/templates/standard.html:20
 msgid "Login"
@@ -519,11 +568,11 @@ msgstr "Musi mieć conajmniej %(count)d znaków"
 
 #: frontend/templates/standard.html:10
 msgid "Light mode"
-msgstr ""
+msgstr "Tryb jasny"
 
 #: frontend/templates/standard.html:12
 msgid "Dark mode"
-msgstr ""
+msgstr "Tryb ciemny"
 
 #: frontend/templates/parts/_language_modal.html:10
 #: frontend/templates/standard.html:15

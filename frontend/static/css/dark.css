@@ -22,7 +22,8 @@
 
     --bg-floating-contact: black;
 
-    --bg-graph: #2C3E50;
+    --bg-graph: white;
+    --text-graph: black;
 
     --border-category: white;
 }
