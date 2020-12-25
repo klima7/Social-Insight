@@ -2,7 +2,7 @@ from threading import Thread
 from platform import system
 
 import pdfkit
-from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response
+from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response, send_from_directory
 from flask_login import login_required, current_user
 from flask_babel import _
 
@@ -15,6 +15,11 @@ from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
 import os.path
 import tempfile
+
+
+@main.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @main.route('/')
