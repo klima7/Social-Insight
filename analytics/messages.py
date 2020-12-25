@@ -94,12 +94,28 @@ def gen_pandas_table(zip):
         data = json.loads(f.read())
         username = data['profile']['name']['full_name'].encode('latin1').decode('utf8')
 
-    return {'table': messages_table, 'username': username}
+
+    friends_fname = folders['friends']['__files'][0][1]
+    
+    friends_table = pd.DataFrame()
+    with zip.open(friends_fname) as f:
+        json_file = json.loads(f.read())
+        
+        names = []
+        dates = []
+        for i in json_file['friends']:
+            names.append(i['name'].encode('latin1').decode('utf8'))
+            dates.append(i['timestamp'])
+        friends_table = pd.DataFrame({'name': names, 'date_added': dates})
+        friends_table['date_added'] = pd.to_datetime(friends_table['date_added'], unit='s')
+        
+
+    return {'messages': messages_table, 'friends': friends_table, 'username': username}
 
 
 @graph('messages', _l('The people you write with most frequent'))
 def bar_chart(data):
-    table = data['table']
+    table = data['messages']
     #print(table.head())
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]
     group = regs.groupby('conversation')
@@ -129,7 +145,7 @@ def check_emojis(s):
 
 @graph('messages', _l('Your emoji ranking'))
 def emoji_ranking(data):
-    table = data['table']
+    table = data['messages']
     my_name = data['username']
     msgs = table[table['sender'] == my_name]['content']
     
@@ -163,10 +179,11 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
         sample = sample[ (sample['sender2'][::-1].diff() != 0)[::-1]] # Usuwanie kilku wiadomości użytkownika pod rząd. (Nie może przecież odpowiedzieć sam
         # sample.to_csv("dump.csv")
         # sample[:50]
-        sample = sample[sample['time2'] <= sample['time2'].mean()] # Odrzucanie wartości które są początkami rozmów. (Długi czas upłynął od ostatniej wiadomości. Improve if know how.)
+        conv_end_threshold = pd.Timedelta(hours=2)
+        sample = sample[sample['time2'] <= conv_end_threshold] # Odrzucanie wartości które są początkami rozmów. (Długi czas upłynął od ostatniej wiadomości. Improve if know how.)
         # sample = sample[sample['sender'] != data['username']] # Interesuje nas jak szybko ta osoba odpowiada, ale można zamienić i dowiemy się jak szybko my jej odpowiadamy.know how.)
         sample = sample[sample['sender'] != my_username] # Interesuje nas jak szybko ta osoba odpowiada, ale można zamienić i dowiemy się jak szybko my jej odpowiadamy.
-        sample['time2'].median(), sample['time2'].std(), sample['time2'].mean() # W sample['time2'] mogą nadal być duże wartości (w moich danych obok średnio 24s na odpowiedź, znalazł się czas 8h), ale wydaje mi się, że median zwraca wiarygodny wynik.
+        # sample['time2'].median(), sample['time2'].std(), sample['time2'].mean() # W sample['time2'] mogą nadal być duże wartości (w moich danych obok średnio 24s na odpowiedź, znalazł się czas 8h), ale wydaje mi się, że median zwraca wiarygodny wynik.
         return sample['time2'].median()
     return np.Nan
 
@@ -177,7 +194,7 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
 # I przez to zdarza się, że jedna osoba ma 1000x większy słupek na wykresie. (Można spróbować wykres log?¿?¿?¿¿??)
 @graph('messages', _l('Reply time by user'))
 def reply_time(data):
-    messages = data['table']
+    messages = data['messages']
     reply_times = pd.DataFrame();
     convos = messages[messages['thread_type'] == 'Regular'].groupby('conversation')
     for user, msg in convos:
@@ -213,10 +230,11 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     # sample = sample[ (sample['sender2'][::-1].diff() != 0)[::-1]] 
     # sample[:50]
 
+    conv_end_threshold = pd.Timedelta(hours=2)
     # Odrzucanie wartości które są początkami rozmów. (Długi czas upłynął od ostatniej wiadomości. Improve if know how.)
-    sample['conversation_start'] = sample['time2'] > sample['time2'].mean()
+    sample['conversation_start'] = sample['time2'] > conv_end_threshold
 
-    conversation_begs = sample.index[sample['time2'] > sample['time2'].mean()].tolist()
+    conversation_begs = sample.index[sample['time2'] > conv_end_threshold].tolist()
     # sample.to_csv("dump.csv")
 
     # indeks końca ostatniej rozmowy to -1
@@ -230,7 +248,7 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
 
 @graph('messages', _l('Average messages in conversation'))
 def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
-    messages = data['table']
+    messages = data['messages']
     reply_times = pd.DataFrame();
     convos = messages[messages['thread_type'] == 'Regular'].groupby('conversation')
     for user, msg in convos:
@@ -260,3 +278,92 @@ def example_table(data):
     return f1
 
 
+# wykres liczby znajomych 2
+@graph('other', _l('Friends count'))
+def friends_cumsum(data):
+    frens = data['friends']
+    a = frens.groupby([frens.date_added.dt.year, frens.date_added.dt.dayofyear])
+    t = pd.date_range(frens.date_added.min(), frens.date_added.max())
+
+    t = pd.Series(t.date)
+    days_with_frens = t.isin(frens.date_added.dt.date)
+    days_with_frens = ~days_with_frens
+    # Dodawanie '-1', jako nazwy użytkownika, ponieważ pandas nie grupuje wartości None/np.nan
+    frens2 = pd.concat([frens, pd.DataFrame({'date_added': t[days_with_frens], 'name': ['-1'] * len(t[days_with_frens])})])
+    frens2 = frens2.sort_values(['date_added']).reset_index(drop=True)
+    frens2['date_added'] = pd.to_datetime(frens2['date_added'])
+
+    grouped = None
+
+    timespan = frens.date_added.max() - frens.date_added.min()
+    time_index = []
+
+    # Grupowanie przedziałów zliczania liczby znajomych, w zależności od tego jak stare jest konto
+    if timespan.days > 360 * 10:
+        distance = 'Y'
+        grouped = frens2.groupby([frens2.date_added.dt.year, frens2.date_added.dt.year])
+        time_index = pd.date_range(frens.date_added.min().date(), frens.date_added.max(), freq='Y')
+    elif timespan.days > 360 * 2:
+        distance = 'QS'
+        grouped = frens2.groupby([frens2.date_added.dt.year, frens2.date_added.dt.quarter])
+        time_index = pd.date_range(frens.date_added.min().date(), frens.date_added.max(), freq='QS')
+    elif timespan.days > 40:
+        distance = 'W'
+        grouped = frens2.groupby([frens2.date_added.dt.year, frens2.date_added.dt.isocalendar().week])
+        time_index = pd.date_range(frens.date_added.min().date(), frens.date_added.max(), freq='W')
+    elif timespan.days > 90:
+        distance = 'M'
+        grouped = frens2.groupby([frens2.date_added.dt.year, frens2.date_added.dt.month])
+        time_index = pd.date_range(frens.date_added.min().date(), frens.date_added.max(), freq='M')
+    else:
+        grouped = frens2.groupby([frens2.date_added.dt.year, frens2.date_added.dt.day])
+        time_index = pd.date_range(frens.date_added.min().date(), frens.date_added.max(), freq='D')
+
+    # zliczanie elementów które nie są '-1'
+    b = grouped['name'].agg(lambda x: len(x[x != '-1']))
+
+    # cum sumowanie
+    b = b.cumsum()
+
+    chart = pygal.Line(x_label_rotation=-45, fill=True)
+    time_index = list(map(lambda a: "{}/{}/{}".format(a.year, a.month, a.day), time_index))
+
+    if len(b) > len(time_index):
+        last_day = frens.date_added.max()
+        time_index.append("{}/{}/{}".format(last_day.year, last_day.month, last_day.day))
+        
+    chart.x_labels = time_index
+    chart.add('', b.to_list(), dots_size=0)
+
+    return chart
+
+# Działa w polsce, 
+@graph('messages', _l('Messages sent by sex'))
+def messages_by_sex(data):
+    messages = data['messages']
+
+    messages_to = {'Male': 0, 'Female': 0, 'Unknown': 0}
+    total_sent = 0
+
+    convos = messages[(messages.thread_type == 'Regular') & (messages.sender == data['username'])].groupby('conversation')
+    for user, msg in convos:
+        name = user.split()
+        sex = 'Unknown'
+        if len(name) > 0 and name[0][-1] in ['a', 'A']:
+            sex = 'Female'
+        elif len(name) > 0:
+            sex = 'Male'
+            
+        n_msg = msg.content.count()
+        messages_to[sex] += n_msg
+        total_sent += n_msg
+
+
+    if messages_to['Unknown'] == 0:
+        del messages_to['Unknown']
+    messages_to
+    chart = pygal.Pie()
+    for k, v in messages_to.items():
+        chart.add(k, v)
+
+    return chart
