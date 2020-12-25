@@ -17,9 +17,11 @@
                         </div>
                         <div class="col-12 col-md-6 language-tile">
                             <a href="{{ url_for('main.change_language', lang='en') }}"><img class="mb-5" src="{{ m.theme_image('english.png') }}" alt="English"/></a>
+                            <p class="text-background font-weight-bold">English</p>
                         </div>
                         <div class="col-12 col-md-6 language-tile">
                             <a href="{{ url_for('main.change_language', lang='pl') }}"><img class="mb-5" src="{{ m.theme_image('polish.png') }}" alt="Polish"/></a>
+                            <p class="text-background font-weight-bold">Polski</p>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary text-capitalize" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>{{ _("Close window") }}</button>

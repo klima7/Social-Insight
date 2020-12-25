@@ -3,6 +3,14 @@
 	width: 200px;
 }
 
+.language-tile img {
+	transition: 0.5s;
+}
+
+.language-tile img:hover {
+	transform: rotate(20deg);
+}
+
 .first-section {
 	padding-top: 2rem;
 }
