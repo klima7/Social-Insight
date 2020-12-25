@@ -193,3 +193,7 @@ li.author {
 	font-size: 2em;
 	font-weight: bold;
 }
+
+.flash-message a {
+	text-decoration: underline;
+}

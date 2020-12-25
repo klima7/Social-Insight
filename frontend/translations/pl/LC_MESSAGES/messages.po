@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-25 12:10+0100\n"
+"POT-Creation-Date: 2020-12-25 13:11+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -121,9 +121,8 @@ msgstr "Resetuj"
 msgid ""
 "Please confirm this email first! Click %(start)shere%(end)s to resend "
 "confirmation"
-msgstr ""
-"Prosimy potwierdzić adres email! Kliknij %(start)tutaj%(end)s aby wysłać "
-"ponownie link "
+msgstr "Prosimy potwierdzić adres email. Kliknij %(start)stutaj%(end)s, aby ponownie "
+"wysłać link potwierdzający"
 
 #: frontend/auth/routes.py:50 frontend/auth/routes.py:85
 msgid "Pack was added to your account!"
@@ -159,7 +158,7 @@ msgstr "Link potwierdzający jest nieprawidłowy lub wygasł"
 
 #: frontend/auth/routes.py:111
 msgid "Email confirmation was sent again"
-msgstr "Email z instrukcjami do potwierdzenia konta został wysłąny"
+msgstr "Email z instrukcjami do potwierdzenia konta został wysłany"
 
 #: frontend/auth/routes.py:123
 msgid "Password changed"
@@ -192,7 +191,7 @@ msgstr "Link resetujący hasło jest niepoprawny lub wygasł"
 #: frontend/auth/routes.py:169
 #, python-format
 msgid "Are you sure that you want to delete this account? %(start)sYes%(end)s"
-msgstr "Czy jesteś pewny, że chcesz usunąć to konto? %(start)Tak%(end)s"
+msgstr "Czy jesteś pewny, że chcesz usunąć to konto? %(start)sTak, jestem%(end)s"
 
 #: frontend/auth/routes.py:178
 msgid "Your account was removed"
@@ -692,8 +691,8 @@ msgid ""
 "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
 "permanently and gain access to extra features"
 msgstr ""
-"%(ls)Zaloguj się%(le)s lub %(rs)sZarejestuj%(re)s aby zachować te wyniki "
-"na stałe i zystać dostęp do dodatkowych możliwości"
+"%(ls)sZaloguj się%(le)s lub %(rs)szarejestruj%(re)s aby zapisać tą paczkę"
+" i zyskać dostęp do dodatkowych możliwości"
 
 #: frontend/templates/parts/_collations_list.html:4
 msgid "Collations"
@@ -745,4 +744,3 @@ msgstr "Zmień nazwę zestawienia"
 #: frontend/templates/parts/_rename_pack_modal.html:10
 msgid "Rename pack"
 msgstr "Zmień nazwę paczki"
-
