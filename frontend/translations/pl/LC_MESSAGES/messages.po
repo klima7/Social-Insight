@@ -174,7 +174,7 @@ msgstr "Zresetuj hasło"
 
 #: frontend/auth/routes.py:139
 msgid "Email with instructions to reset password was sent"
-msgstr "Email z instrukcjami do resetowania hasło został wysłany"
+msgstr "Email z instrukcjami do resetowania hasła został wysłany"
 
 #: frontend/auth/routes.py:142
 msgid "This email address is not registered!"
