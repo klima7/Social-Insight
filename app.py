@@ -51,12 +51,6 @@ def compile():
     print("Compilation success")
 
 
-@app.cli.command(help="Insert fake user into database.")
-def user():
-    db.insert_fake_user()
-    print("Fake data inserted")
-
-
 @app.cli.command(help="Update example data file.")
 def example():
     try:

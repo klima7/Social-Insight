@@ -76,3 +76,9 @@ def collations_delete(collation_id):
     return {"present": False}
 
 
+@api.route('/christmas', methods=['POST'])
+def christmas_post():
+    status = request.json['status']
+    Global.set_christmas_event(status)
+    return {"status": Global.get_christmas_event()}
+

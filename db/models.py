@@ -26,6 +26,9 @@ class User(_Base, UserMixin):
     def __repr__(self):
         return f"<User(id={self.id}, mail='{self.mail}', packs={self.packs})>"
 
+    def is_admin(self):
+        return self.email == config.MAIL_USERNAME
+
     @property
     def password(self):
         raise AttributeError('Password is read only')
@@ -139,5 +142,31 @@ class Collation(_Base):
 
     def __repr__(self):
         return f"<Collation(id={self.id})>"
+
+
+class Global(_Base):
+    __tablename__ = 'global'
+
+    id = Column(Integer, primary_key=True)
+    christmas_event = Column(Boolean, default=True)
+
+    @staticmethod
+    def create():
+        g = db_session.query(Global).first()
+        if g is None:
+            g = Global()
+            db_session.add(g)
+            db_session.commit()
+
+    @staticmethod
+    def set_christmas_event(status):
+        g = db_session.query(Global).first()
+        g.christmas_event = status
+        db_session.add(g)
+
+    @staticmethod
+    def get_christmas_event():
+        g = db_session.query(Global).first()
+        return g.christmas_event
 
 

@@ -49,7 +49,7 @@ def create_app():
 
     app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem, user=get_current_user, is_dark_mode=is_dark_mode,
                                  is_pygal_chart=is_pygal_chart, is_pandas_table=is_pandas_table, translate_pandas_table=translate_pandas_table,
-                                 get_locale=get_locale)
+                                 get_locale=get_locale, Global=Global)
 
     return app
 

@@ -2,7 +2,7 @@ AOS.init({
 	once: true,
 });
 
-{% if config['SNOW'] %}
+{% if Global.get_christmas_event() %}
 $('body').flurry({
   character: "❅❆*",
   color: "white",

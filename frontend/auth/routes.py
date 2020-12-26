@@ -51,7 +51,10 @@ def login():
 
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = url_for('main.account')
+                if user.is_admin():
+                    next = url_for('main.admin')
+                else:
+                    next = url_for('main.account')
             return redirect(next)
 
         # Niepoprawne dane do logowania

@@ -1,0 +1,40 @@
+{% extends "standard.html" %}
+
+{% block title %}{{ _('Admin panel') }}{% endblock %}
+
+{% block topscripts %}
+{{ super() }}
+<script src="{{ m.static('scripts/christmas_ajax.js') }}"></script>
+{% endblock %}
+
+{% block sections %}
+<section class="page-section first-section pt-5 pb-5 bg-primary round-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ _('Admin panel') }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mt-4 ml-5 mr-5">
+        <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">{{ _('Main page') }}</a></li>
+        <li class="breadcrumb-item"><a>{{ _('Admin panel') }}</a></li>
+    </ol>
+</nav>
+
+
+<section class="page-section pt-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="graph-button {% if not Global.get_christmas_event() %}disable{% endif %}" id="christmas-button"><a onclick="toggleChristmasEvent()">{{ _("Christmas theme") }}</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

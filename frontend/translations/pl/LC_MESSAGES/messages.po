@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-25 13:11+0100\n"
+"POT-Creation-Date: 2020-12-26 14:18+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -121,79 +121,80 @@ msgstr "Resetuj"
 msgid ""
 "Please confirm this email first! Click %(start)shere%(end)s to resend "
 "confirmation"
-msgstr "Prosimy potwierdzić adres email. Kliknij %(start)stutaj%(end)s, aby ponownie "
-"wysłać link potwierdzający"
+msgstr ""
+"Prosimy potwierdzić adres email. Kliknij %(start)stutaj%(end)s, aby "
+"ponownie wysłać link potwierdzający"
 
-#: frontend/auth/routes.py:50 frontend/auth/routes.py:85
+#: frontend/auth/routes.py:50 frontend/auth/routes.py:88
 msgid "Pack was added to your account!"
 msgstr "Paczka została dodana do Twojego konta!"
 
-#: frontend/auth/routes.py:58
+#: frontend/auth/routes.py:61
 msgid "Invalid login or password"
 msgstr "Nieprawidłowy login lub hasło"
 
-#: frontend/auth/routes.py:68
+#: frontend/auth/routes.py:71
 msgid "You have logged out"
 msgstr "Wylogowałeś się"
 
-#: frontend/auth/routes.py:81 frontend/auth/routes.py:110
+#: frontend/auth/routes.py:84 frontend/auth/routes.py:113
 msgid "Account Confirmation"
 msgstr "Potwierdzenie konta"
 
-#: frontend/auth/routes.py:82
+#: frontend/auth/routes.py:85
 msgid "Register success! Please confirm your email before logging"
 msgstr "Zarejestrowano pomyślnie! Prosimy potwierdzić adres email przed logowaniem"
 
-#: frontend/auth/routes.py:96
+#: frontend/auth/routes.py:99
 msgid "Your account is already confirmed"
 msgstr "Twoje konto jest już potwierdzone"
 
-#: frontend/auth/routes.py:100
+#: frontend/auth/routes.py:103
 msgid "You have confirmed your account. Thanks!"
 msgstr "Potwierdziłeś swoje konto. Dziękujemy!"
 
-#: frontend/auth/routes.py:102
+#: frontend/auth/routes.py:105
 msgid "The confirmation link is invalid or has expired"
 msgstr "Link potwierdzający jest nieprawidłowy lub wygasł"
 
-#: frontend/auth/routes.py:111
+#: frontend/auth/routes.py:114
 msgid "Email confirmation was sent again"
 msgstr "Email z instrukcjami do potwierdzenia konta został wysłany"
 
-#: frontend/auth/routes.py:123
+#: frontend/auth/routes.py:126
 msgid "Password changed"
 msgstr "Hasło zostało zmienione"
 
-#: frontend/auth/routes.py:126
+#: frontend/auth/routes.py:129
 msgid "Current password is invalid!"
 msgstr "Aktualne hasło jest niepoprawne!"
 
-#: frontend/auth/routes.py:138
+#: frontend/auth/routes.py:141
 msgid "Reset Password"
 msgstr "Zresetuj hasło"
 
-#: frontend/auth/routes.py:139
+#: frontend/auth/routes.py:142
 msgid "Email with instructions to reset password was sent"
 msgstr "Email z instrukcjami do resetowania hasła został wysłany"
 
-#: frontend/auth/routes.py:142
+#: frontend/auth/routes.py:145
 msgid "This email address is not registered!"
 msgstr "Użytkownik z takim adresem email nie jest zarejestrowany"
 
-#: frontend/auth/routes.py:156
+#: frontend/auth/routes.py:159
 msgid "Your password has been updated"
 msgstr "Twoje hasło zostało zaktualizowane"
 
-#: frontend/auth/routes.py:159
+#: frontend/auth/routes.py:162
 msgid "The reset link is invalid or has expired"
 msgstr "Link resetujący hasło jest niepoprawny lub wygasł"
 
-#: frontend/auth/routes.py:169
+#: frontend/auth/routes.py:172
 #, python-format
 msgid "Are you sure that you want to delete this account? %(start)sYes%(end)s"
 msgstr "Czy jesteś pewny, że chcesz usunąć to konto? %(start)sTak, jestem%(end)s"
 
-#: frontend/auth/routes.py:178
+#: frontend/auth/routes.py:181
 msgid "Your account was removed"
 msgstr "Twoje konto zostało usunięte"
 
@@ -290,7 +291,7 @@ msgstr "Wiadomość została wysłana"
 #: frontend/templates/account.html:3 frontend/templates/account.html:37
 #: frontend/templates/category.html:19 frontend/templates/collation.html:30
 #: frontend/templates/password_change.html:16
-#: frontend/templates/standard.html:17
+#: frontend/templates/standard.html:20
 msgid "Account"
 msgstr "Konto"
 
@@ -308,14 +309,23 @@ msgstr "Zmień hasło"
 msgid "Delete account"
 msgstr "Usuń konto"
 
-#: frontend/templates/account.html:36 frontend/templates/category.html:18
-#: frontend/templates/category.html:26 frontend/templates/collation.html:29
-#: frontend/templates/contact.html:15 frontend/templates/login.html:15
-#: frontend/templates/password_change.html:15
+#: frontend/templates/account.html:36 frontend/templates/admin.html:25
+#: frontend/templates/category.html:18 frontend/templates/category.html:26
+#: frontend/templates/collation.html:29 frontend/templates/contact.html:15
+#: frontend/templates/login.html:15 frontend/templates/password_change.html:15
 #: frontend/templates/password_reset_request.html:15
 #: frontend/templates/register.html:15
 msgid "Main page"
 msgstr "Strona główna"
+
+#: frontend/templates/admin.html:3 frontend/templates/admin.html:16
+#: frontend/templates/admin.html:26 frontend/templates/standard.html:18
+msgid "Admin panel"
+msgstr "Panel admina"
+
+#: frontend/templates/admin.html:35
+msgid "Christmas theme"
+msgstr "Świąteczny wygląd"
 
 #: frontend/templates/authors.html:3 frontend/templates/authors.html:11
 msgid "Authors"
@@ -410,7 +420,7 @@ msgstr "Pozwól nam przeanalizować swoje dane"
 msgid "Or check sample output"
 msgstr "Lub sprawdz przykładowy wynik"
 
-#: frontend/templates/index.html:31 frontend/templates/standard.html:41
+#: frontend/templates/index.html:31 frontend/templates/standard.html:45
 msgid "here!"
 msgstr "tutaj!"
 
@@ -514,7 +524,7 @@ msgstr ""
 "Kiedy plik będzie gotowy otrzymasz <b>powiadomienie</b>. Kliknij je, "
 "pobierz plik i wyślij go nam!"
 
-#: frontend/templates/login.html:4 frontend/templates/standard.html:20
+#: frontend/templates/login.html:4 frontend/templates/standard.html:24
 msgid "Login"
 msgstr "Zaloguj"
 
@@ -592,15 +602,15 @@ msgstr "Tryb ciemny"
 msgid "Language"
 msgstr "Język"
 
-#: frontend/templates/standard.html:18
+#: frontend/templates/standard.html:22
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: frontend/templates/standard.html:36
+#: frontend/templates/standard.html:40
 msgid "Invite friends"
 msgstr "Zaproś znajomych"
 
-#: frontend/templates/standard.html:37
+#: frontend/templates/standard.html:41
 msgid ""
 "If You like our webside, talk about it to You friends. We would be "
 "gratefull!"
@@ -608,11 +618,11 @@ msgstr ""
 "Jeśli lubisz naszą stronę, to powiedz o niej znajomych. Będziemy "
 "wdzięczni!"
 
-#: frontend/templates/standard.html:40
+#: frontend/templates/standard.html:44
 msgid "Keep in contact"
 msgstr "Kontakt"
 
-#: frontend/templates/standard.html:41
+#: frontend/templates/standard.html:45
 msgid ""
 "If You would like to have a new feature or You found a bug just contact "
 "us,"
@@ -620,7 +630,7 @@ msgstr ""
 "Jeśli masz propozycję nowej funkcjonalności lub znalazłeś bug, to napisz "
 "nam,"
 
-#: frontend/templates/standard.html:44
+#: frontend/templates/standard.html:48
 msgid "Like us on facebook"
 msgstr "Polub nas na facebooku"
 
@@ -744,3 +754,7 @@ msgstr "Zmień nazwę zestawienia"
 #: frontend/templates/parts/_rename_pack_modal.html:10
 msgid "Rename pack"
 msgstr "Zmień nazwę paczki"
+
+#~ msgid "Admin Panel"
+#~ msgstr "Panel Admina"
+
