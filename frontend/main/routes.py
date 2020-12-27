@@ -2,7 +2,7 @@ from threading import Thread
 from platform import system
 
 import pdfkit
-from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response
+from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response, send_from_directory
 from flask_login import login_required, current_user
 from flask_babel import _
 
@@ -15,6 +15,11 @@ from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
 import os.path
 import tempfile
+
+
+@main.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @main.route('/')
@@ -80,7 +85,7 @@ def get_pack(id):
 def remove_pack_confirm(id):
     get_pack(id)
     address = url_for('main.remove_pack', id=id)
-    flash(_('Are you sure that you want to remove this pack?')+f'<a href="{address}">'+_('Yes')+'</a>', 'warning')
+    flash(_('Are you sure that you want to remove this pack?')+f' <a href="{address}">'+_('Yes')+'</a>', 'warning')
     return redirect(session.get('prev_url', url_for('main.account')))
 
 
@@ -140,7 +145,7 @@ def to_pdf(container, print_version):
         'no-outline': None,
     }
 
-    if config.PDFKIT_DEBUG:
+    if not config.PDFKIT_DEBUG:
         options['quiet'] = ''
 
     css_name = 'pdf_print' if print_version else 'pdf_fancy'
@@ -233,5 +238,29 @@ def contact():
     display_errors_with_flash(form)
     return render_template('contact.html', form=form)
 
+
+@main.route('/mode/dark')
+def dark_mode():
+    session['dark_mode'] = True
+    return redirect(session.get('prev_url', url_for('main.index')))
+
+
+@main.route('/mode/light')
+def light_mode():
+    session['dark_mode'] = False
+    return redirect(session.get('prev_url', url_for('main.index')))
+
+
+@main.route('/authors')
+def authors():
+    return render_template('authors.html')
+
+
+@main.route('/admin/')
+@login_required
+def admin():
+    if not current_user.is_admin():
+        abort(403)
+    return render_template('admin.html')
 
 

@@ -1,0 +1,29 @@
+:root {
+    --bg-primary: #2C3E50;
+    --bg-secondary: #2C3E50;
+    --bg-background: #1F2229;
+
+    --text-primary: white;
+    --text-secondary: white;
+    --text-background: white;
+
+    --header-standard: white;
+    --header-filled: white;
+
+    --divider-standard: white;
+    --divider-filled: white;
+
+    --breadcrumb: #2C3E50;
+
+    --bg-form: black;
+    --bg-text: white;
+
+    --border-modal: white;
+
+    --bg-floating-contact: black;
+
+    --bg-graph: white;
+    --text-graph: black;
+
+    --border-category: white;
+}

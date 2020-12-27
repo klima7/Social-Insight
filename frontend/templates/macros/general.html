@@ -6,6 +6,18 @@
 {% endif %}
 {% endmacro -%}
 
+{% macro theme_image(name) -%}
+{% if is_dark_mode() %}
+{{ static('images/dark/'+name) }}
+{% else %}
+{{ static('images/light/'+name) }}
+{% endif %}
+{% endmacro -%}
+
+{% macro lang_image(name) -%}
+{{ static('images/' + get_locale() + '/'+name) }}
+{% endmacro -%}
+
 {% macro script(name) -%}
 <script type="text/javascript">
 {% include name %}

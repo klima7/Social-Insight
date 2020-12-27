@@ -26,6 +26,26 @@ from .models import *
 _Base.metadata.create_all(_engine)
 
 
+def _prepare():
+    Global.create()
+
+    try:
+        user = User(email='user@test.com', confirmed=True)
+        user.password = 'password'
+        db_session.add(user)
+        db_session.commit()
+    except IntegrityError:
+        db_session.rollback()
+
+    try:
+        user = User(email=config.MAIL_USERNAME, confirmed=True)
+        user.password = config.MAIL_PASSWORD
+        db_session.add(user)
+        db_session.commit()
+    except IntegrityError:
+        db_session.rollback()
+
+
 def clean_db():
     _Base.metadata.drop_all(bind=_engine)
     _Base.metadata.create_all(_engine)
@@ -50,16 +70,6 @@ def example_pack_update():
     thread.start()
 
 
-def insert_fake_user():
-    try:
-        user = User(email='user@test.com', confirmed=True)
-        user.password = 'password'
-        db_session.add(user)
-        db_session.commit()
-    except IntegrityError:
-        pass
-
-
-
+_prepare()
 
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-20 13:19+0100\n"
+"POT-Creation-Date: 2020-12-26 14:18+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -122,79 +122,79 @@ msgid ""
 "Please confirm this email first! Click %(start)shere%(end)s to resend "
 "confirmation"
 msgstr ""
-"Prosimy potwierdzić adres email! Kliknij %(start)tutaj%(end)s aby wysłać "
-"ponownie link "
+"Prosimy potwierdzić adres email. Kliknij %(start)stutaj%(end)s, aby "
+"ponownie wysłać link potwierdzający"
 
-#: frontend/auth/routes.py:50 frontend/auth/routes.py:85
+#: frontend/auth/routes.py:50 frontend/auth/routes.py:88
 msgid "Pack was added to your account!"
 msgstr "Paczka została dodana do Twojego konta!"
 
-#: frontend/auth/routes.py:58
+#: frontend/auth/routes.py:61
 msgid "Invalid login or password"
 msgstr "Nieprawidłowy login lub hasło"
 
-#: frontend/auth/routes.py:68
+#: frontend/auth/routes.py:71
 msgid "You have logged out"
 msgstr "Wylogowałeś się"
 
-#: frontend/auth/routes.py:81 frontend/auth/routes.py:110
+#: frontend/auth/routes.py:84 frontend/auth/routes.py:113
 msgid "Account Confirmation"
 msgstr "Potwierdzenie konta"
 
-#: frontend/auth/routes.py:82
+#: frontend/auth/routes.py:85
 msgid "Register success! Please confirm your email before logging"
 msgstr "Zarejestrowano pomyślnie! Prosimy potwierdzić adres email przed logowaniem"
 
-#: frontend/auth/routes.py:96
+#: frontend/auth/routes.py:99
 msgid "Your account is already confirmed"
 msgstr "Twoje konto jest już potwierdzone"
 
-#: frontend/auth/routes.py:100
+#: frontend/auth/routes.py:103
 msgid "You have confirmed your account. Thanks!"
 msgstr "Potwierdziłeś swoje konto. Dziękujemy!"
 
-#: frontend/auth/routes.py:102
+#: frontend/auth/routes.py:105
 msgid "The confirmation link is invalid or has expired"
 msgstr "Link potwierdzający jest nieprawidłowy lub wygasł"
 
-#: frontend/auth/routes.py:111
+#: frontend/auth/routes.py:114
 msgid "Email confirmation was sent again"
-msgstr "Email z instrukcjami do potwierdzenia konta został wysłąny"
+msgstr "Email z instrukcjami do potwierdzenia konta został wysłany"
 
-#: frontend/auth/routes.py:123
+#: frontend/auth/routes.py:126
 msgid "Password changed"
 msgstr "Hasło zostało zmienione"
 
-#: frontend/auth/routes.py:126
+#: frontend/auth/routes.py:129
 msgid "Current password is invalid!"
 msgstr "Aktualne hasło jest niepoprawne!"
 
-#: frontend/auth/routes.py:138
+#: frontend/auth/routes.py:141
 msgid "Reset Password"
 msgstr "Zresetuj hasło"
 
-#: frontend/auth/routes.py:139
-msgid "Email with instructions to reset password was sent"
-msgstr "Email z instrukcjami do resetowania hasło został wysłany"
-
 #: frontend/auth/routes.py:142
+msgid "Email with instructions to reset password was sent"
+msgstr "Email z instrukcjami do resetowania hasła został wysłany"
+
+#: frontend/auth/routes.py:145
 msgid "This email address is not registered!"
 msgstr "Użytkownik z takim adresem email nie jest zarejestrowany"
 
-#: frontend/auth/routes.py:156
+#: frontend/auth/routes.py:159
 msgid "Your password has been updated"
 msgstr "Twoje hasło zostało zaktualizowane"
 
-#: frontend/auth/routes.py:159
+#: frontend/auth/routes.py:162
 msgid "The reset link is invalid or has expired"
 msgstr "Link resetujący hasło jest niepoprawny lub wygasł"
 
-#: frontend/auth/routes.py:169
+#: frontend/auth/routes.py:172
 #, python-format
 msgid "Are you sure that you want to delete this account? %(start)sYes%(end)s"
-msgstr "Czy jesteś pewny, że chcesz usunąć to konto? %(start)Tak%(end)s"
+msgstr "Czy jesteś pewny, że chcesz usunąć to konto? %(start)sTak, jestem%(end)s"
 
-#: frontend/auth/routes.py:178
+#: frontend/auth/routes.py:181
 msgid "Your account was removed"
 msgstr "Twoje konto zostało usunięte"
 
@@ -242,56 +242,56 @@ msgstr "Treść"
 msgid "Send"
 msgstr "Wyślij"
 
-#: frontend/main/routes.py:52
+#: frontend/main/routes.py:57
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 
-#: frontend/main/routes.py:83
+#: frontend/main/routes.py:88
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:83 frontend/main/routes.py:170
+#: frontend/main/routes.py:88 frontend/main/routes.py:178
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:92
+#: frontend/main/routes.py:97
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:103
+#: frontend/main/routes.py:108
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:121
+#: frontend/main/routes.py:126
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:170
+#: frontend/main/routes.py:178
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:179
+#: frontend/main/routes.py:187
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:190
+#: frontend/main/routes.py:198
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:226
+#: frontend/main/routes.py:234
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:227
+#: frontend/main/routes.py:235
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
 #: frontend/templates/account.html:3 frontend/templates/account.html:37
 #: frontend/templates/category.html:19 frontend/templates/collation.html:30
 #: frontend/templates/password_change.html:16
-#: frontend/templates/standard.html:12
+#: frontend/templates/standard.html:20
 msgid "Account"
 msgstr "Konto"
 
@@ -299,26 +299,49 @@ msgstr "Konto"
 msgid "Your account"
 msgstr "Twoje konto"
 
+#: frontend/templates/account.html:27 frontend/templates/password_change.html:4
+#: frontend/templates/password_change.html:17
+#: frontend/templates/password_change.html:26
+msgid "Change password"
+msgstr "Zmień hasło"
+
 #: frontend/templates/account.html:28
 msgid "Delete account"
 msgstr "Usuń konto"
 
-#: frontend/templates/account.html:36 frontend/templates/category.html:18
-#: frontend/templates/category.html:26 frontend/templates/collation.html:29
-#: frontend/templates/contact.html:15 frontend/templates/login.html:15
-#: frontend/templates/password_change.html:15
+#: frontend/templates/account.html:36 frontend/templates/admin.html:25
+#: frontend/templates/category.html:18 frontend/templates/category.html:26
+#: frontend/templates/collation.html:29 frontend/templates/contact.html:15
+#: frontend/templates/login.html:15 frontend/templates/password_change.html:15
 #: frontend/templates/password_reset_request.html:15
 #: frontend/templates/register.html:15
 msgid "Main page"
 msgstr "Strona główna"
 
-#: frontend/templates/basic.html:48
+#: frontend/templates/admin.html:3 frontend/templates/admin.html:16
+#: frontend/templates/admin.html:26 frontend/templates/standard.html:18
+msgid "Admin panel"
+msgstr "Panel admina"
+
+#: frontend/templates/admin.html:35
+msgid "Christmas theme"
+msgstr "Świąteczny wygląd"
+
+#: frontend/templates/authors.html:3 frontend/templates/authors.html:11
+msgid "Authors"
+msgstr "Autorzy"
+
+#: frontend/templates/basic.html:53
 msgid "Menu"
 msgstr "Menu"
 
-#: frontend/templates/basic.html:61
+#: frontend/templates/basic.html:69
 msgid "credits"
 msgstr "podziękowania"
+
+#: frontend/templates/basic.html:70
+msgid "authors"
+msgstr "autorzy"
 
 #: frontend/templates/category.html:5
 msgid "Category"
@@ -365,7 +388,7 @@ msgid "No graphs in this collation"
 msgstr "Grak wykresów w tym zestawieniu"
 
 #: frontend/templates/contact.html:4 frontend/templates/contact.html:16
-#: frontend/templates/contact.html:23 frontend/templates/standard.html:9
+#: frontend/templates/contact.html:23 frontend/templates/standard.html:14
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -397,7 +420,7 @@ msgstr "Pozwól nam przeanalizować swoje dane"
 msgid "Or check sample output"
 msgstr "Lub sprawdz przykładowy wynik"
 
-#: frontend/templates/index.html:31 frontend/templates/standard.html:36
+#: frontend/templates/index.html:31 frontend/templates/standard.html:45
 msgid "here!"
 msgstr "tutaj!"
 
@@ -405,11 +428,103 @@ msgstr "tutaj!"
 msgid "Features"
 msgstr "Możliwości"
 
-#: frontend/templates/index.html:83
+#: frontend/templates/index.html:59
+msgid "Generating graphs"
+msgstr "Generowanie wykresów"
+
+#: frontend/templates/index.html:60
+msgid ""
+"This is the main purpose on this application. We can generate a lot of "
+"graphs and tables grouped in a few categories to keep them organized."
+msgstr ""
+"Jest to główne zadanie naszej aplikacji. Może ona wygenerować wiele "
+"wykresów i tabel pogrupowanych w kategorie, aby utrzymać porządek."
+
+#: frontend/templates/index.html:72
+msgid "Safety"
+msgstr "Bezpieczeństwo"
+
+#: frontend/templates/index.html:73
+msgid ""
+"Our application is using safe https protocol, so your data is safe during"
+" uploading. Then is processed on the served side and immediately deleted."
+msgstr ""
+"Nasza aplikacja używa bezpiecznego protokołu https, aby twoje dane były "
+"bezpieczne podczas wysyłania. Następnie są one przetwarzane po stronie "
+"serwera i niezwłocznie usówanie."
+
+#: frontend/templates/index.html:85
+msgid "Generating PDFs"
+msgstr "Generowanie PDF"
+
+#: frontend/templates/index.html:86
+msgid ""
+"Generate pdf files with ease, just click one button. Two versions of pdfs"
+" are available: fancy and version to print."
+msgstr ""
+"Możesz z łatwością wygenerować pliki pdf, wystarczy jeden przycisk. "
+"Dostępne są dwie wersje plików pdf: kolorowa oraz do druku."
+
+#: frontend/templates/index.html:98
+msgid "Sharing"
+msgstr "Udostępnianie"
+
+#: frontend/templates/index.html:99
+msgid ""
+"You can easily share your graphs on facebook. You can also copy a link to"
+" your graph and paste it anywhere you like."
+msgstr ""
+"Możesz bardzo łatwo podzielić się swoimi wykresami ze znajomymi na "
+"facebooku. Możesz również skopiować link do wybranego wykresu i wkleić go"
+" wszędzie gdzie masz ochotę."
+
+#: frontend/templates/index.html:112
 msgid "How to get data file?"
 msgstr "Gdzie znaleść swój plik z danymi?"
 
-#: frontend/templates/login.html:4 frontend/templates/standard.html:15
+#: frontend/templates/index.html:130
+msgid ""
+"First log in to your facebook account. Then look at upper right corner, "
+"click <b>Settings & privacy</b> from the dropdown and then "
+"<b>Setting</b>."
+msgstr ""
+"Zaloguj się na zwoje konto na Facebooku. Wybierz opcję <b>Ustawienia i "
+"prywatność</b> z rozwijanego menu w górnym prawy rogu, a następnie "
+"<b>Ustawienia</b>."
+
+#: frontend/templates/index.html:142
+msgid "Select <b>Your Facebook information</b> from Settings panel on the left."
+msgstr ""
+"Wybierz <b>Twoje informacje na Facebooku</b> z panelu Ustawienia po lewej"
+" stronie."
+
+#: frontend/templates/index.html:154
+msgid "Click <b>Download your Information</b> on the central panel."
+msgstr "Kliknij <b>Pobieranie Twoich Informacji</b> na centralnym panelu."
+
+#: frontend/templates/index.html:166
+msgid ""
+"Select data which you want to download. The more you select the more we "
+"can analyse. Remember to change <b>Format</b> from HTML to <b>JSON</b>! "
+"Then click <b>Create File</b>."
+msgstr ""
+"Wybierz dane, które chcesz pobrać. Im więcej elementów wybierzesz, tym "
+"więcej będziemy mogli przeanalizować. Pamiętaj aby zmienić <b>Format</b> "
+"na <b>JSON</b>! Następnie kliknij przycisk <b>Utwórz plik</b>."
+
+#: frontend/templates/index.html:178
+msgid ""
+"Now you have to wait some time. It may take few seconds to few hours, "
+"depending on how much data have to be prepared. When you data file is "
+"ready you will receive <b>notification</b>. Just click it, download and "
+"send to us!"
+msgstr ""
+"Teraz będzie trzeba poczekać trochę czasu. Może on wynieść od kilku "
+"sekund do kilku godzin, w zależności od ilości danych do przygotowania. "
+"Kiedy plik będzie gotowy otrzymasz <b>powiadomienie</b>. Kliknij je, "
+"pobierz plik i wyślij go nam!"
+
+#: frontend/templates/login.html:4 frontend/templates/standard.html:24
 msgid "Login"
 msgstr "Zaloguj"
 
@@ -434,12 +549,6 @@ msgstr "Zapomniałeś swoje hasło?"
 #: frontend/templates/login.html:39
 msgid "Reset password!"
 msgstr "Zresetuj hasło!"
-
-#: frontend/templates/password_change.html:4
-#: frontend/templates/password_change.html:17
-#: frontend/templates/password_change.html:26
-msgid "Change password"
-msgstr "Zmień hasło"
 
 #: frontend/templates/password_reset.html:4
 #: frontend/templates/password_reset.html:18
@@ -480,20 +589,28 @@ msgstr "ZAREJESTRUJ"
 msgid "Must have at lest %(count)d characters"
 msgstr "Musi mieć conajmniej %(count)d znaków"
 
-#: frontend/templates/parts/_language_modal.html:10
 #: frontend/templates/standard.html:10
+msgid "Light mode"
+msgstr "Tryb jasny"
+
+#: frontend/templates/standard.html:12
+msgid "Dark mode"
+msgstr "Tryb ciemny"
+
+#: frontend/templates/parts/_language_modal.html:10
+#: frontend/templates/standard.html:15
 msgid "Language"
 msgstr "Język"
 
-#: frontend/templates/standard.html:13
+#: frontend/templates/standard.html:22
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: frontend/templates/standard.html:31
+#: frontend/templates/standard.html:40
 msgid "Invite friends"
 msgstr "Zaproś znajomych"
 
-#: frontend/templates/standard.html:32
+#: frontend/templates/standard.html:41
 msgid ""
 "If You like our webside, talk about it to You friends. We would be "
 "gratefull!"
@@ -501,11 +618,11 @@ msgstr ""
 "Jeśli lubisz naszą stronę, to powiedz o niej znajomych. Będziemy "
 "wdzięczni!"
 
-#: frontend/templates/standard.html:35
+#: frontend/templates/standard.html:44
 msgid "Keep in contact"
 msgstr "Kontakt"
 
-#: frontend/templates/standard.html:36
+#: frontend/templates/standard.html:45
 msgid ""
 "If You would like to have a new feature or You found a bug just contact "
 "us,"
@@ -513,7 +630,7 @@ msgstr ""
 "Jeśli masz propozycję nowej funkcjonalności lub znalazłeś bug, to napisz "
 "nam,"
 
-#: frontend/templates/standard.html:39
+#: frontend/templates/standard.html:48
 msgid "Like us on facebook"
 msgstr "Polub nas na facebooku"
 
@@ -584,8 +701,8 @@ msgid ""
 "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
 "permanently and gain access to extra features"
 msgstr ""
-"%(ls)Zaloguj się%(le)s lub %(rs)sZarejestuj%(re)s aby zachować te wyniki "
-"na stałe i zystać dostęp do dodatkowych możliwości"
+"%(ls)sZaloguj się%(le)s lub %(rs)szarejestruj%(re)s aby zapisać tą paczkę"
+" i zyskać dostęp do dodatkowych możliwości"
 
 #: frontend/templates/parts/_collations_list.html:4
 msgid "Collations"
@@ -626,7 +743,7 @@ msgstr "Status"
 msgid "Upload new pack"
 msgstr "Dodaj nową paczkę"
 
-#: frontend/templates/parts/_language_modal.html:25
+#: frontend/templates/parts/_language_modal.html:27
 msgid "Close window"
 msgstr "Zamknij okno"
 
@@ -638,9 +755,6 @@ msgstr "Zmień nazwę zestawienia"
 msgid "Rename pack"
 msgstr "Zmień nazwę paczki"
 
-#~ msgid "Zmień hasło"
-#~ msgstr ""
-
-#~ msgid "Usuń konto"
-#~ msgstr ""
+#~ msgid "Admin Panel"
+#~ msgstr "Panel Admina"
 

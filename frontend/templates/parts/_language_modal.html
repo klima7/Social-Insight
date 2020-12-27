@@ -7,7 +7,7 @@
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <!-- Portfolio Modal - Title-->
-                            <h2 class="portfolio-modal-title text-secondary mb-0">{{ _("Language") }}</h2>
+                            <h2 class="portfolio-modal-title header-standard mb-0">{{ _("Language") }}</h2>
                             <!-- Icon Divider-->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -16,10 +16,12 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 language-tile">
-                            <a href="{{ url_for('main.change_language', lang='en') }}"><img class="mb-5" src="{{ m.static('images/english.png') }}" alt="English"/></a>
+                            <a href="{{ url_for('main.change_language', lang='en') }}"><img class="mb-5" src="{{ m.theme_image('english.png') }}" alt="English"/></a>
+                            <p class="text-background font-weight-bold">English</p>
                         </div>
                         <div class="col-12 col-md-6 language-tile">
-                            <a href="{{ url_for('main.change_language', lang='pl') }}"><img class="mb-5" src="{{ m.static('images/polish.png') }}" alt="Polish"/></a>
+                            <a href="{{ url_for('main.change_language', lang='pl') }}"><img class="mb-5" src="{{ m.theme_image('polish.png') }}" alt="Polish"/></a>
+                            <p class="text-background font-weight-bold">Polski</p>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary text-capitalize" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>{{ _("Close window") }}</button>

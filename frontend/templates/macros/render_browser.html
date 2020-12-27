@@ -1,7 +1,7 @@
 {% import "macros/general.html" as m %}
 
 {% macro render(graph, showButton=True) -%}
-<div class="card mb-4" id="graph-{{graph.id}}">
+<div class="card mb-4 bg-graph" id="graph-{{graph.id}}" >
 
   <div class="text-center">
     <h2 class="graph-header"><a class="js-scroll-trigger" href="#graph-{{graph.id}}">{{ graph.get_name() }}</a></h2>

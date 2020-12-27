@@ -18,9 +18,14 @@
         <title>Social Insight{% if self.title() %} | {{ self.title() }}{% endif %}</title>
 
         <!-- Icon -->
-        <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.ico') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
         <!-- Stylesheets -->
+        {% if is_dark_mode() %}
+        <link rel="stylesheet" href="{{ m.static('css/dark.css') }}">
+        {% else %}
+        <link rel="stylesheet" href="{{ m.static('css/light.css') }}">
+        {% endif %}
         <link rel="stylesheet" href="{{ m.static('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ m.static('css/styles.css') }}">
         <link rel="stylesheet" href="{{ m.static('css/fonts.css') }}">
@@ -32,7 +37,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        {% if config['SNOW'] %}
+        {% if Global.get_christmas_event() %}
         <script src="{{ m.static('scripts/jquery.flurry.min.js') }}"></script>
         {% endif %}
         {{ moment.include_moment(version='2.29.1') }}
@@ -58,7 +63,13 @@
 
         <!-- Copyright Section-->
         <section class="copyright py-4 text-center text-white">
-            <div class="container"><small class="pre-wrap">Copyright © 2020 | <a href="{{ url_for('main.credits') }}" class="text-light">{{ _('credits') }}</a></small></div>
+            <div class="container">
+                <small class="">
+                    Copyright © 2020 |
+                    <a href="{{ url_for('main.credits') }}" class="text-light">{{ _('credits') }}</a> |
+                    <a href="{{ url_for('main.authors') }}" class="text-light">{{ _('authors') }}</a>
+                </small>
+            </div>
         </section>
 
         <!-- Scroll to Top Button -->

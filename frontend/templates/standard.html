@@ -6,10 +6,19 @@
 
 {% block navitems %}
 <ul class="navbar-nav ml-auto">
+    {% if is_dark_mode() %}
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.light_mode') }}">{{ _('Light mode') }}</a></li>
+    {% else %}
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.dark_mode') }}">{{ _('Dark mode') }}</a></li>
+    {% endif %}
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.contact') }}">{{ _('Contact') }}</a></li>
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" data-toggle="modal" data-target="#languageModal" href="">{{ _('Language') }}</a></li>
     {% if current_user.is_authenticated %}
+    {% if current_user.is_admin() %}
+    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.admin') }}">{{ _('Admin panel') }}</a></li>
+    {% else %}
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('main.account') }}">{{ _('Account') }}</a></li>
+    {% endif %}
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
     {% else %}
     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-uppercase" href="{{ url_for('auth.login') }}">{{ _('Login') }}</a></li>
@@ -24,7 +33,7 @@
 {% include "parts/_language_modal.html" %}
 
 <!-- Footer section -->
-<footer class="footer text-center pt-4 pb-3">
+<footer class="footer text-center pt-5 pb-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">

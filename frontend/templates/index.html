@@ -6,7 +6,7 @@
 
 {% block sections %}
 <!-- Header-->
-<header class="masthead bg-primary text-white text-center round-bottom">
+<header class="masthead bg-primary text-primary text-center round-bottom">
     <div class="container d-flex align-items-center flex-column">
         <h1 class="masthead-heading mb-4">Social Insight</h1>
 
@@ -33,12 +33,12 @@
 </header>
 
 <!-- Features section -->
-<section class="page-section portfolio pt-5 pb-0" id="featuresSection">
+<section class="page-section portfolio pt-5 pb-4" id="featuresSection">
     <div class="container">
 
         <!-- Heading -->
         <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ _('Features') }}</h2>
+            <h2 class="page-section-heading header-standard mb-0 d-inline-block text-uppercase">{{ _('Features') }}</h2>
         </div>
 
         <!-- Icon Divider-->
@@ -49,38 +49,67 @@
         </div>
 
         <!-- features row -->
-        <div class="row justify-content-center mb-lg-4">
+        <div class="row justify-content-center align-items-center mb-lg-4">
             <div class="col-12 col-md-6 mb-3">
                 <div class="portfolio-item mx-auto">
-                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                    <img class="img-fluid" src="{{ m.static('images/feature_graph.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-5">
-                <p class="text-justify">{{ lorem.paragraph() }}</p>
+                <h3 class="header-standard text-center text-capitalize">{{ _('Generating graphs') }}</h3>
+                <p class="text-justify">{{ _('This is the main purpose on this application. We can generate a lot of graphs and tables grouped in a few categories to keep them organized.') }}</p>
             </div>
         </div>
 
         <!-- features row -->
-        <div class="row justify-content-center mb-lg-4">
+        <div class="row justify-content-center align-items-center mb-lg-4">
             <div class="col-12 col-md-6 order-md-2 mb-3">
                 <div class="portfolio-item mx-auto">
-                    <img class="img-fluid p-0" src="{{ m.static('images/foo.png') }}" data-aos="fade-right" data-aos-duration="1000"/>
+                    <img class="img-fluid p-0" src="{{ m.static('images/feature_save.png') }}" data-aos="fade-right" data-aos-duration="1000"/>
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-5 order-md-1">
-                <p class="text-justify">{{ lorem.paragraph() }}</p>
+                <h3 class="header-standard text-center text-capitalize">{{ _('Safety') }}</h3>
+                <p class="text-justify">{{ _('Our application is using safe https protocol, so your data is safe during uploading. Then is processed on the served side and immediately deleted.') }}</p>
             </div>
         </div>
+
+        <!-- features row -->
+        <div class="row justify-content-center align-items-center mb-lg-4">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto">
+                    <img class="img-fluid" src="{{ m.static('images/feature_pdf.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5">
+                <h3 class="header-standard text-center">{{ _('Generating PDFs') }}</h3>
+                <p class="text-justify">{{ _('Generate pdf files with ease, just click one button. Two versions of pdfs are available: fancy and version to print.') }}</p>
+            </div>
+        </div>
+
+        <!-- features row -->
+        <div class="row justify-content-center align-items-center mb-lg-4">
+            <div class="col-12 col-md-6 order-md-2 mb-3">
+                <div class="portfolio-item mx-auto">
+                    <img class="img-fluid p-0" src="{{ m.static('images/feature_share.png') }}" data-aos="fade-right" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5 order-md-1">
+                <h3 class="header-standard text-center text-capitalize">{{ _('Sharing') }}</h3>
+                <p class="text-justify">{{ _('You can easily share your graphs on facebook. You can also copy a link to your graph and paste it anywhere you like.') }}</p>
+            </div>
+        </div>
+
     </div>
 </section>
 
 <!-- How to get file Section -->
- <section class="page-section bg-primary text-white portfolio pt-5 pb-0 round-top" id="howToGetSection">
+ <section class="page-section bg-primary portfolio pt-5 pb-4 round-top" id="howToGetSection">
     <div class="container">
 
         <!-- Heading -->
         <div class="text-center">
-            <h2 class="page-section-heading text-white mb-0 d-inline-block text-uppercase">{{ _('How to get data file?') }}</h2>
+            <h2 class="page-section-heading header-filled mb-0 d-inline-block text-uppercase">{{ _('How to get data file?') }}</h2>
         </div>
 
         <!-- Icon Divider-->
@@ -91,14 +120,62 @@
         </div>
 
         <!-- How to get row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6 mb-3">
                 <div class="portfolio-item mx-auto mb-md-4">
-                    <img class="img-fluid" src="{{ m.static('images/foo.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                    <img class="img-fluid" src="{{ m.lang_image('how_get_1.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
                 </div>
             </div>
-            <div class="col-12 col-md-6 mb-5">
-                <p class="text-justify">{{ lorem.paragraph() }}</p>
+            <div class="col-12 col-md-6 mb-5 text-primary">
+                <p class="text-justify">1. {{ _('First log in to your facebook account. Then look at upper right corner, click <b>Settings & privacy</b> from the dropdown and then <b>Setting</b>.') }}</p>
+            </div>
+        </div>
+
+        <!-- How to get row -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto mb-md-4">
+                    <img class="img-fluid" src="{{ m.lang_image('how_get_2.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5 text-primary">
+                <p class="text-justify">2. {{ _('Select <b>Your Facebook information</b> from Settings panel on the left.') }}</p>
+            </div>
+        </div>
+
+        <!-- How to get row -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto mb-md-4">
+                    <img class="img-fluid" src="{{ m.lang_image('how_get_3.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5 text-primary">
+                <p class="text-justify">3. {{ _('Click <b>Download your Information</b> on the central panel.') }}</p>
+            </div>
+        </div>
+
+        <!-- How to get row -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto mb-md-4">
+                    <img class="img-fluid" src="{{ m.lang_image('how_get_4.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5 text-primary">
+                <p class="text-justify">4. {{ _('Select data which you want to download. The more you select the more we can analyse. Remember to change <b>Format</b> from HTML to <b>JSON</b>! Then click <b>Create File</b>.') }}</p>
+            </div>
+        </div>
+
+        <!-- How to get row -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="portfolio-item mx-auto mb-md-4">
+                    <img class="img-fluid" src="{{ m.lang_image('how_get_5.png') }}" data-aos="fade-left" data-aos-duration="1000"/>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-5 text-primary">
+                <p class="text-justify">5. {{ _('Now you have to wait some time. It may take few seconds to few hours, depending on how much data have to be prepared. When you data file is ready you will receive <b>notification</b>. Just click it, download and send to us!') }}</p>
             </div>
         </div>
     </div>
