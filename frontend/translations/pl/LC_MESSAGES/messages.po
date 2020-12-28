@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-26 14:18+0100\n"
+"POT-Creation-Date: 2020-12-28 21:35+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -19,37 +19,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: analytics/messages.py:100
-msgid "The people you write with most frequent"
-msgstr "Ludzie z którymi najczęściej piszesz"
+#: analytics/messages.py:113
+msgid "Number of interchanged messages"
+msgstr "Liczba wymienionych wiadomości"
 
-#: analytics/messages.py:130
-msgid "Your emoji ranking"
-msgstr "Twój ranking emoji"
+#: analytics/messages.py:143
+msgid "The most frequent used emoji"
+msgstr "Najczęśćiej używane emoji"
 
-#: analytics/messages.py:178
+#: analytics/messages.py:197
 msgid "Reply time by user"
 msgstr "Czas odpowiedzi Twoich znajomych"
 
-#: analytics/messages.py:231
+#: analytics/messages.py:251
 msgid "Average messages in conversation"
 msgstr "Średnia liczba wiadomości w konwersacji"
 
-#: analytics/messages.py:255
-msgid "Example table"
-msgstr "Przykładowa tabela"
+#: analytics/messages.py:275
+msgid "Friends count"
+msgstr ""
 
-#: analytics/messages.py:259
-msgid "header 1"
-msgstr "Nagłówek 1"
-
-#: analytics/messages.py:259
-msgid "header 2"
-msgstr "Nagłówek 2"
-
-#: analytics/messages.py:259
-msgid "header 3"
-msgstr "Nagłówek 3"
+#: analytics/messages.py:335
+msgid "Messages sent by sex"
+msgstr "Liczba wysłanych wiadomości od płci"
 
 #: frontend/auth/forms.py:7
 msgid "Invalid email address"
@@ -342,10 +334,6 @@ msgstr "podziękowania"
 #: frontend/templates/basic.html:70
 msgid "authors"
 msgstr "autorzy"
-
-#: frontend/templates/category.html:5
-msgid "Category"
-msgstr "Kategoria"
 
 #: frontend/templates/category.html:20
 msgid "Pack"
@@ -695,15 +683,6 @@ msgstr "Różne"
 msgid "other"
 msgstr "Inne"
 
-#: frontend/templates/parts/_categories.html:71
-#, python-format
-msgid ""
-"%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
-"permanently and gain access to extra features"
-msgstr ""
-"%(ls)sZaloguj się%(le)s lub %(rs)szarejestruj%(re)s aby zapisać tą paczkę"
-" i zyskać dostęp do dodatkowych możliwości"
-
 #: frontend/templates/parts/_collations_list.html:4
 msgid "Collations"
 msgstr "Zestawienia"
@@ -757,4 +736,46 @@ msgstr "Zmień nazwę paczki"
 
 #~ msgid "Admin Panel"
 #~ msgstr "Panel Admina"
+
+#~ msgid ""
+#~ "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to "
+#~ "store this chart pack permanently and"
+#~ " gain access to extra features"
+#~ msgstr ""
+#~ "%(ls)sZaloguj się%(le)s lub %(rs)szarejestruj%(re)s"
+#~ " aby zapisać tą paczkę i zyskać "
+#~ "dostęp do dodatkowych możliwości"
+
+#~ msgid "Category"
+#~ msgstr "Kategoria"
+
+#~ msgid "The people you write with most frequent"
+#~ msgstr "Osoby z którymi wymieniono najwięcej wiadomości"
+
+#~ msgid "Example table"
+#~ msgstr "Przykładowa tabela"
+
+#~ msgid "header 1"
+#~ msgstr "Nagłówek 1"
+
+#~ msgid "header 2"
+#~ msgstr "Nagłówek 2"
+
+#~ msgid "header 3"
+#~ msgstr "Nagłówek 3"
+
+#~ msgid "Male"
+#~ msgstr "Mężczyźni"
+
+#~ msgid "Female"
+#~ msgstr "Kobiety"
+
+#~ msgid "People with the most messages"
+#~ msgstr "Osoby z którymi wymieniono najwięcej wiadomości"
+
+#~ msgid "Liczba wymienionych wiadomości"
+#~ msgstr ""
+
+#~ msgid "Your emoji ranking"
+#~ msgstr "Twój ranking emoji"
 

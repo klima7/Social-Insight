@@ -1,6 +1,5 @@
 import json
 import re
-import zipfile as zp
 import pandas as pd
 import numpy as np
 import emoji
@@ -94,7 +93,6 @@ def gen_pandas_table(zip):
         data = json.loads(f.read())
         username = data['profile']['name']['full_name'].encode('latin1').decode('utf8')
 
-
     friends_fname = folders['friends']['__files'][0][1]
     
     friends_table = pd.DataFrame()
@@ -108,21 +106,20 @@ def gen_pandas_table(zip):
             dates.append(i['timestamp'])
         friends_table = pd.DataFrame({'name': names, 'date_added': dates})
         friends_table['date_added'] = pd.to_datetime(friends_table['date_added'], unit='s')
-        
 
     return {'messages': messages_table, 'friends': friends_table, 'username': username}
 
 
-@graph('messages', _l('The people you write with most frequent'))
+@graph('messages', _l('Number of interchanged messages'))
 def bar_chart(data):
     table = data['messages']
-    #print(table.head())
+
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]
     group = regs.groupby('conversation')
 
-    counts = group['content'].count().sort_values(ascending=False)
+    counts = group['content'].count().sort_values(ascending=False).head(15)
 
-    chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(list(counts.keys())*20))
+    chart = pygal.HorizontalBar(style=style, show_legend=False, height=len(list(counts.keys())*35))
     chart.x_labels = list(counts.keys()[::-1])
     chart.add('', counts.values[::-1])
 
@@ -132,7 +129,7 @@ def bar_chart(data):
 # Helper function for emoji ranking
 def check_emojis(s):
     found = {}
-    if s == None:
+    if s is None:
         return found
     for i in s:
         if i in emoji.UNICODE_EMOJI:
@@ -143,7 +140,7 @@ def check_emojis(s):
     return found
 
 
-@graph('messages', _l('Your emoji ranking'))
+@graph('messages', _l('The most frequent used emoji'))
 def emoji_ranking(data):
     table = data['messages']
     my_name = data['username']
@@ -159,24 +156,31 @@ def emoji_ranking(data):
                 all_emojis[j] = 1
     emoji_v = []
     emoji_l = []
+
+    counter = 0
     for k, v in sorted(all_emojis.items(), key=lambda i: i[1], reverse=True):
         emoji_v.append(v)
         emoji_l.append(k)
-                             
-    
-    chart = pygal.Bar(style=emojistyle, show_legend=False, height=len(emoji_l)*20)
+        counter += 1
+        if counter >= 15:
+            break
+
+    chart = pygal.Bar(style=emojistyle, show_legend=False, height=600)
     chart.add('', emoji_v)
-    chart.x_labels =  emoji_l
+    chart.x_labels = emoji_l
     return chart
 
 
 def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomości. W zamyśle są tam wiadomości tylko 2 użytkowników. (time, sender required)
     if len(sample) > 0:
+        print(sample.index)
         senders = {k: v for v, k in enumerate(sample['sender'].unique())} # Słownik nazw użytkowników i ich unikalnych indeksów liczbowych.
         sample['sender2'] = sample['sender'].map(senders) # Zamiana nazwy użytkownika na unikalnego, bo nie można użyć diff'a na stringach.
         # sample['sender2_test'] = sample['sender2'][::-1].diff() # Można usunąć (debug purposes)
-        sample['time2'] = sample['time'][::-1].diff() # Czas który upłynął od ostatniej wiadomości.
-        sample = sample[ (sample['sender2'][::-1].diff() != 0)[::-1]] # Usuwanie kilku wiadomości użytkownika pod rząd. (Nie może przecież odpowiedzieć sam
+        temp = sample['time'][::-1].diff() # Czas który upłynął od ostatniej wiadomości.
+        print(sample.index)
+        sample['time2'] = temp
+        sample = sample[(sample['sender2'][::-1].diff() != 0)[::-1]] # Usuwanie kilku wiadomości użytkownika pod rząd. (Nie może przecież odpowiedzieć sam
         # sample.to_csv("dump.csv")
         # sample[:50]
         conv_end_threshold = pd.Timedelta(hours=2)
@@ -186,6 +190,7 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
         # sample['time2'].median(), sample['time2'].std(), sample['time2'].mean() # W sample['time2'] mogą nadal być duże wartości (w moich danych obok średnio 24s na odpowiedź, znalazł się czas 8h), ale wydaje mi się, że median zwraca wiarygodny wynik.
         return sample['time2'].median()
     return np.Nan
+
 
 # UWAGA!!!!
 # Nie działa jak jest więcej niż jeden użytkownik o takiej samej nazwie. (Najczęściej ktoś zbanowany o nazwie Użytkownik Facebooka)
@@ -246,14 +251,13 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     return np.array(conversation_lens).mean()
 
 
-@graph('messages', _l('Average messages in conversation'))
+# @graph('messages', _l('Average messages in conversation'))
 def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
     messages = data['messages']
     reply_times = pd.DataFrame();
     convos = messages[messages['thread_type'] == 'Regular'].groupby('conversation')
     for user, msg in convos:
         t = pd.DataFrame({'user': [user], 'time': [determine_conversation_length(msg.loc[:, ('sender', 'time')], data['username'])]})
-    #     print(t)
         reply_times = reply_times.append(t)
 
     reply_times = reply_times.dropna() # Usuwa osoby które nigdy nie odpowiedziały :(
@@ -268,14 +272,6 @@ def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych ni
     gr.print_values_position = 'top'
 
     return gr
-
-
-@graph('messages', _l('Example table'))
-def example_table(data):
-    s1 = pd.Series([1, 2, 3, 4, 5])
-    s2 = pd.Series(['Ala', 'ma', 'kota', 'foo', 'bar'])
-    f1 = pd.DataFrame({_l('header 1'): s1, _l('header 2'): s2, _l('header 3'): s1})
-    return f1
 
 
 # wykres liczby znajomych 2
@@ -337,6 +333,7 @@ def friends_cumsum(data):
 
     return chart
 
+
 # Działa w polsce, 
 @graph('messages', _l('Messages sent by sex'))
 def messages_by_sex(data):
@@ -358,11 +355,10 @@ def messages_by_sex(data):
         messages_to[sex] += n_msg
         total_sent += n_msg
 
-
     if messages_to['Unknown'] == 0:
         del messages_to['Unknown']
     messages_to
-    chart = pygal.Pie()
+    chart = pygal.Pie(style=style)
     for k, v in messages_to.items():
         chart.add(k, v)
 
