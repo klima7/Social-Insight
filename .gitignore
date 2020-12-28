@@ -4,7 +4,6 @@ db/base.db-journal
 uploads/*.zip
 frontend/translations/messages.pot
 example.zip
-example2.zip
 certificate.crt
 private.key
 
