@@ -72,3 +72,4 @@ def analyse(pack_id, file_path, delete=True):
 from .messages import *
 from .other import *
 from .posts import *
+from .util import *
