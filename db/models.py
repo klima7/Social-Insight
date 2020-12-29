@@ -170,3 +170,14 @@ class Global(_Base):
         return g.christmas_event
 
 
+class Message(_Base):
+    __tablename__ = 'messages'
+
+    id = Column(Integer, primary_key=True)
+    sender = Column(String)
+    topic = Column(String)
+    content = Column(String)
+    date = Column(DateTime(), default=datetime.utcnow)
+    language = Column(String)
+
+

@@ -4,7 +4,8 @@ from platform import system
 import pdfkit
 from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response, send_from_directory
 from flask_login import login_required, current_user
-from flask_babel import _
+from flask_babel import _, get_locale
+from sqlalchemy import desc
 
 import analytics
 from config import config
@@ -227,13 +228,17 @@ def graphs(id):
 def contact():
     form = ContactForm()
 
-    if current_user.is_authenticated:
-        form.email.data = current_user.email
-
     if form.validate_on_submit():
+        message = Message(sender=form.email.data, topic=form.topic.data, content=form.content.data, language=str(get_locale()))
+        db_session.add(message)
+        db_session.commit()
+
         send_email(config.MAIL_USERNAME, _('Message'), 'contact', form=form)
         flash(_('Message was sent'), 'success')
         return redirect(url_for('main.contact'))
+
+    if current_user.is_authenticated:
+        form.email.data = current_user.email
 
     display_errors_with_flash(form)
     return render_template('contact.html', form=form)
@@ -254,13 +259,3 @@ def light_mode():
 @main.route('/authors')
 def authors():
     return render_template('authors.html')
-
-
-@main.route('/admin/')
-@login_required
-def admin():
-    if not current_user.is_admin():
-        abort(403)
-    return render_template('admin.html')
-
-
