@@ -563,7 +563,7 @@ msgstr ""
 
 #: frontend/templates/index.html:112
 msgid "How to get data file?"
-msgstr "Gdzie znaleść swój plik z danymi?"
+msgstr "Gdzie znaleźć swój plik z danymi?"
 
 #: frontend/templates/index.html:130
 msgid ""

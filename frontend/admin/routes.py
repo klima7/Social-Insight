@@ -52,7 +52,7 @@ def message_reply(id):
 
     form = ReplyForm()
     if form.validate_on_submit():
-        send_email(message.sender, _('Reply'), 'reply', message=message, response=form.response.data)
+        send_email(message.sender, 'Reply', 'reply', message=message, response=form.response.data)
         flash(_('Response was sent'), 'success')
         db_session.delete(message)
         db_session.commit()
