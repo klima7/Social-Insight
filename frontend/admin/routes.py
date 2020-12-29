@@ -60,3 +60,38 @@ def message_reply(id):
 
     return render_template('admin_reply.html', message=message, form=form)
 
+
+@admin.route('/users/')
+@login_required
+def users():
+    if not current_user.is_admin():
+        abort(403)
+    users = db_session.query(User).order_by(desc(User.registration_data)).all()
+    return render_template('admin_users.html', users=users)
+
+
+@admin.route('/users/remove/<id>')
+@login_required
+def user_remove(id):
+    if not current_user.is_admin():
+        abort(403)
+    user = db_session.query(User).filter_by(id=id).first()
+    if user is not None:
+        db_session.delete(user)
+        db_session.commit()
+        flash(_('User was removed'), 'success')
+    return redirect(url_for('admin.users'))
+
+
+@admin.route('/users/confirm/<id>')
+@login_required
+def user_confirm(id):
+    if not current_user.is_admin():
+        abort(403)
+    user = db_session.query(User).filter_by(id=id).first()
+    if user is not None:
+        user.confirmed = True
+        db_session.add(user)
+        db_session.commit()
+        flash(_('User account confirmed'), 'success')
+    return redirect(url_for('admin.users'))

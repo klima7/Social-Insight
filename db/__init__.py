@@ -38,6 +38,14 @@ def _prepare():
         db_session.rollback()
 
     try:
+        user = User(email='user2@test.com', confirmed=False)
+        user.password = 'password'
+        db_session.add(user)
+        db_session.commit()
+    except IntegrityError:
+        db_session.rollback()
+
+    try:
         user = User(email=config.MAIL_USERNAME, confirmed=True)
         user.password = config.MAIL_PASSWORD
         db_session.add(user)

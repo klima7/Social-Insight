@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-29 13:59+0100\n"
+"POT-Creation-Date: 2020-12-29 15:40+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -59,12 +59,39 @@ msgstr "Liczba przyjaciół"
 msgid "Messages sent by sex"
 msgstr "Liczba wiadomości według płci"
 
+#: frontend/admin/forms.py:8
+msgid "Response"
+msgstr "Odpowiedź"
+
+#: frontend/admin/forms.py:9 frontend/admin/routes.py:55
+#: frontend/templates/admin_messages.html:11
+#: frontend/templates/admin_reply.html:12
+#: frontend/templates/admin_reply.html:24
+msgid "Reply"
+msgstr "Odpowiedz"
+
+#: frontend/admin/routes.py:56
+msgid "Response was sent"
+msgstr "Odpowiedź została wysłana"
+
+#: frontend/admin/routes.py:82
+msgid "User was removed"
+msgstr "Użytkownik został usunięty"
+
+#: frontend/admin/routes.py:96
+msgid "User account confirmed"
+msgstr "Konto użytkownika zostało potwierdzone"
+
+#: frontend/auth/__init__.py:18
+msgid "Please log in to access this page"
+msgstr "Proszę się zalogować, aby wejść na tą stronę"
+
 #: frontend/auth/forms.py:7
 msgid "Invalid email address"
 msgstr "Nieprawidłowy adres email"
 
 #: frontend/auth/forms.py:11 frontend/auth/forms.py:18
-#: frontend/auth/forms.py:37
+#: frontend/auth/forms.py:37 frontend/templates/admin_users.html:39
 msgid "Email"
 msgstr "Email"
 
@@ -250,17 +277,6 @@ msgstr "Treść"
 msgid "Send"
 msgstr "Wyślij"
 
-#: frontend/main/forms.py:37
-msgid "Response"
-msgstr "Odpowiedź"
-
-#: frontend/main/forms.py:38 frontend/main/routes.py:306
-#: frontend/templates/admin_messages.html:11
-#: frontend/templates/admin_reply.html:12
-#: frontend/templates/admin_reply.html:24
-msgid "Reply"
-msgstr "Odpowiedz"
-
 #: frontend/main/routes.py:58
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
@@ -270,6 +286,7 @@ msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
 #: frontend/main/routes.py:89 frontend/main/routes.py:179
+#: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
 
@@ -307,10 +324,6 @@ msgstr "Wiadomość"
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
-#: frontend/main/routes.py:307
-msgid "Response was sent"
-msgstr ""
-
 #: frontend/templates/account.html:3 frontend/templates/account.html:37
 #: frontend/templates/category.html:19 frontend/templates/collation.html:30
 #: frontend/templates/password_change.html:16
@@ -334,7 +347,8 @@ msgstr "Usuń konto"
 
 #: frontend/templates/account.html:36 frontend/templates/admin.html:25
 #: frontend/templates/admin_messages.html:38
-#: frontend/templates/admin_reply.html:21 frontend/templates/category.html:18
+#: frontend/templates/admin_reply.html:21
+#: frontend/templates/admin_users.html:25 frontend/templates/category.html:18
 #: frontend/templates/category.html:26 frontend/templates/collation.html:29
 #: frontend/templates/contact.html:15 frontend/templates/login.html:15
 #: frontend/templates/password_change.html:15
@@ -345,7 +359,8 @@ msgstr "Strona główna"
 
 #: frontend/templates/admin.html:3 frontend/templates/admin.html:16
 #: frontend/templates/admin.html:26 frontend/templates/admin_messages.html:39
-#: frontend/templates/admin_reply.html:22 frontend/templates/standard.html:18
+#: frontend/templates/admin_reply.html:22
+#: frontend/templates/admin_users.html:26 frontend/templates/standard.html:18
 msgid "Admin panel"
 msgstr "Panel admina"
 
@@ -360,7 +375,8 @@ msgstr "Świąteczny wygląd"
 msgid "Messages"
 msgstr "Wiadomości"
 
-#: frontend/templates/admin.html:37
+#: frontend/templates/admin.html:37 frontend/templates/admin_users.html:3
+#: frontend/templates/admin_users.html:16
 msgid "Users"
 msgstr "Użytkownicy"
 
@@ -370,8 +386,29 @@ msgid "From"
 msgstr "Od"
 
 #: frontend/templates/admin_messages.html:15
+#: frontend/templates/admin_users.html:66
 msgid "Delete"
 msgstr "Usuń"
+
+#: frontend/templates/admin_users.html:40
+msgid "Confirmed"
+msgstr "Potwierdzone"
+
+#: frontend/templates/admin_users.html:41
+msgid "Registration date"
+msgstr "Data rejestracji"
+
+#: frontend/templates/admin_users.html:42
+msgid "Operations"
+msgstr "Operacje"
+
+#: frontend/templates/admin_users.html:59
+msgid "No"
+msgstr "Nie"
+
+#: frontend/templates/admin_users.html:68
+msgid "Confirm"
+msgstr "Potwierdź"
 
 #: frontend/templates/authors.html:3 frontend/templates/authors.html:11
 msgid "Authors"

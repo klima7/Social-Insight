@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
-                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase">{{ _('Admin panel') }}</h2>
+                    <h2 class="page-section-heading text-secondary mb-0 d-inline-block text-uppercase" data-aos="fade-up" data-aos-duration="500">{{ _('Admin panel') }}</h2>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="col-12 text-center">
                 <div class="graph-button p-4 {% if not Global.get_christmas_event() %}disable{% endif %}" id="christmas-button"><a onclick="toggleChristmasEvent()">{{ _("Christmas theme") }}</a></div>
                 <div class="graph-button p-4"><a href="{{ url_for('admin.messages') }}">{{ _("Messages") }} <span class="badge badge-light">{{ messages_count }}</span></a></div>
-                <div class="graph-button p-4"><a>{{ _("Users") }} <span class="badge badge-light">{{ users_count }}</span></a></div>
+                <div class="graph-button p-4"><a href="{{ url_for('admin.users') }}">{{ _("Users") }} <span class="badge badge-light">{{ users_count }}</span></a></div>
             </div>
         </div>
     </div>
