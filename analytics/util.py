@@ -1,9 +1,9 @@
 import json
 import re
-import zipfile as zp
 import pandas as pd
 import numpy as np
 import user_agents
+
 
 def get_structure(zip):
     folders = {}
@@ -65,16 +65,18 @@ def analyse_file(file):
 
     return data
 
+
 def format_user_agent(t):
     t = user_agents.parse(t)
     dev = str(t.device.brand) + ' ' + str(t.device.model)
-    if t.device.brand == None and t.device.model == None:
+    if t.device.brand is None and t.device.model is None:
         if t.is_pc:
             dev = 'PC'
         else:
             dev = 'Other'
     # t.os.family, t.browser.family, dev
     return  dev + ' / ' + str(t.os.family) + ' / ' + t.browser.family
+
 
 def gen_pandas_table(zip):
     messages_table = None

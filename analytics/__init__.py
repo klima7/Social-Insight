@@ -1,9 +1,11 @@
 from pygal.style import Style
 from db import *
+from .util import gen_pandas_table
 import zipfile as zp
 from collections import namedtuple
 import traceback
 import os
+import pkgutil
 
 style = Style(
   background='white',
@@ -38,6 +40,15 @@ def get_translated_graph_name(english_name):
     return None
 
 
+def import_graphs():
+    packages = ['messages', 'posts', 'miscellaneous', 'other']
+
+    for package in packages:
+        modules = [name for _, name, _ in pkgutil.iter_modules([f'analytics/{package}'])]
+        for module in modules:
+            __import__(f'analytics.{package}.{module}', fromlist=[f'analytics.{package}'])
+
+
 def analyse(pack_id, file_path, delete=True):
     # Pobranie ścieżki do pliku
 
@@ -69,7 +80,5 @@ def analyse(pack_id, file_path, delete=True):
     db_session.commit()
 
 
-from .messages import *
-from .other import *
-from .posts import *
-from .util import *
+import_graphs()
+
