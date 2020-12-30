@@ -4,6 +4,7 @@
 import pandas as pd
 import numpy as np
 import emoji
+import re
 
 import pygal
 from flask_babel import lazy_gettext as _l
@@ -205,3 +206,72 @@ def messages_by_sex(data):
         chart.add(k, v)
 
     return chart
+
+def get_messages_stats(mess):
+    n_messages = len(mess)
+    msg_with_punct = sum(1 for k in mess if re.findall(r'[,.?!;:]', k)) # Wiadomości ze znakami interpunkcyjnymi
+#     print(n_messages, msg_with_punct)
+    msg_lens = [len(list(filter(lambda i: len(i) > 0, re.split(r'[\s,]', i)))) for i in mess if i is not None] # liczba słów w wiadomości.
+    avg_word_count = sum(msg_lens)/len(msg_lens)
+
+    sentences = [] # 1 - zdanie zaczęte wielką literą, 0 - zdanie zaczęte niewielką literą
+    for s in mess:
+        t = [1 if i.strip()[0].isupper() else 0 for i in list(filter(lambda i: len(i) > 0, re.split(r'[.?!]', s)))] # zdania w wiadomości
+        sentences.extend(t)
+
+    stats = (msg_with_punct, (msg_with_punct / n_messages) * 100, sum(sentences), (sum(sentences)/len(sentences)) * 100, avg_word_count)
+    return stats
+
+@graph('messages', _l('Message statistics'))
+def message_stats(data):
+    mess = data['messages']
+    # mess = mess[(mess.sender == 'Wiktor Kania') & (mess.thread_type == 'Regular')].dropna()
+
+    user_stats = {}
+
+    messes = mess[(mess.thread_type == 'Regular') & (mess.sender != data['username'])].dropna()
+    for conv, msgs in messes.groupby(messes.conversation):
+
+    #     if msgs.content is not None and conv == 'Wiktor Kania':
+        if msgs.content is not None and len(msgs.content) > 1:
+            user_stats[conv] = get_messages_stats(msgs.content)
+
+    df1 = [[], [], [], [], [], []]
+
+    for k, v in user_stats.items():
+        df1[0].append(k)
+        for i, iv in enumerate(v, start=1):
+            df1[i].append(iv)
+    # df = pd.DataFrame({'name': df1[0], "Zdania ze znakami interpunkcyjnymi": df1[1],'<- %': df1[2], 'Zdania zaczęte wielką literą': df1[3], '<- %': df1[4], 'Średnia liczba słów w wiadomości': df1[5]})
+    df = pd.DataFrame({'name': df1[0], "zn_int": df1[1],'% zn_int': df1[2], 'zd_wl': df1[3], '% zd_wl': df1[4], 'avg_word': df1[5]})
+    df = df.round({'% zn_int': 2, '% zd_wl': 2, 'avg_word': 1})
+
+    data['friends_stats_mean'] = df.mean()
+
+    chart = pygal.HorizontalBar(legend_at_bottom=True)
+    chart.x_labels = list(df.name)
+    chart.add('% Zdań ze znakami interpunkcyjnymi', df['% zn_int'])
+    chart.add('% Zdań zaczętych wielką literą', df['% zd_wl'])
+    chart.add('Średnia liczba słów w wiadomości', df['avg_word'], secondary=True)
+    return chart
+
+@graph('messages', _l('Your message statistics'))
+def your_message_stats(data):
+    mess = data['messages']
+    friends_avg = data['friends_stats_mean']
+
+    your_stats = get_messages_stats(mess[(mess.thread_type == 'Regular') & (mess.sender == data['username'])].dropna().content)
+    # '% Zdań ze znakami interpunkcyjnymi', df['% zn_int'])
+    # chart.add('% Zdań zaczętych wielką literą', df['% zd_wl'])
+    # chart.add('Średnia liczba słów w wiadomości
+    xdpd = pd.DataFrame(
+        {
+            '': ['Średnia znajomych', 'Twoje statystyki'],
+            '% Zdań ze znakami interpunkcyjnymi': [friends_avg['% zn_int'], your_stats[1]],
+            '% Zdań zaczętych wielką literą': [friends_avg['% zd_wl'], your_stats[3]],
+            'Średnia długość zdania': [friends_avg['avg_word'], your_stats[4]],
+        })
+
+    # xdpd = xdpd.set_index('*')
+    xdpd = xdpd.round({'% Zdań ze znakami interpunkcyjnymi': 2, '% Zdań zaczętych wielką literą': 2, 'Średnia długość zdania': 1})
+    return xdpd
