@@ -68,7 +68,7 @@
                     {% set le %}</em></a>{% endset %}
                     {% set rs %}<a href="{{ url_for('auth.register') }}" class="text-light"><em>{% endset %}
                     {% set re %}</em></a>{% endset %}
-                    
+                     <span>{{ _("%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack permanently and gain access to extra features", ls=ls, le=le, rs=rs, re=re) }}</span>
                 </div>
             </div>
         </div>
