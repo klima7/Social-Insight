@@ -3,7 +3,7 @@ from flask_babel import gettext as _l
 import pandas as pd
 
 
-@graph('messages', _l('Example table'))
+@graph(_l('Example table'))
 def example_table(data):
     s1 = pd.Series([1, 2, 3, 4, 5])
     s2 = pd.Series(['Ala', 'ma', 'kota', 'foo', 'bar'])

@@ -3,7 +3,7 @@ from flask_babel import gettext as _l
 import pygal
 
 
-@graph('other', _l('% of logins by hour'))
+@graph(_l('% of logins by hour'))
 def logins_by_hour(data):
     acc_act = data['account_activity']
     hour_active = acc_act[(acc_act.action == 'Login') | (acc_act.action == 'Session updated')].groupby(acc_act.time.dt.hour)

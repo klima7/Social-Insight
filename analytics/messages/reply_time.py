@@ -28,7 +28,7 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
 # To jest do poprawienia w funkcji wczytującej. Ale nie chciało mi się tego dzisiaj już robić
 # Określanie czasu odpowiedzi nie jest dokładne, zwłaszcza jeżeli w konwersacji jest mało wiadomości.
 # I przez to zdarza się, że jedna osoba ma 1000x większy słupek na wykresie. (Można spróbować wykres log?¿?¿?¿¿??)
-@graph('messages', _l('Reply time by user'))
+@graph(_l('Reply time by user'))
 def reply_time(data):
     messages = data['messages']
     reply_times = pd.DataFrame();

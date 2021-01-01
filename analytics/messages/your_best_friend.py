@@ -3,7 +3,7 @@ from flask_babel import gettext as _l
 import pygal
 
 
-@graph('messages', _l('The people you write with most frequent'))
+@graph(_l('The people you write with most frequent'))
 def your_best_friends(data):
     table = data['messages']
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]

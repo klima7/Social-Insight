@@ -21,7 +21,7 @@ def get_messages_stats(mess):
     return stats
 
 
-@graph('messages', _l('Message statistics'))
+@graph(_l('Message statistics'))
 def message_stats(data):
     mess = data['messages']
     # mess = mess[(mess.sender == 'Wiktor Kania') & (mess.thread_type == 'Regular')].dropna()

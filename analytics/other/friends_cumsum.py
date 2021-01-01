@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # wykres liczby znajomych 2
-@graph('other', _l('Friends count'))
+@graph(_l('Friends count'))
 def friends_cumsum(data):
     frens = data['friends']
     a = frens.groupby([frens.date_added.dt.year, frens.date_added.dt.dayofyear])

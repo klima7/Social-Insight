@@ -4,7 +4,7 @@ from flask_babel import gettext as _l
 import pandas as pd
 
 
-@graph('messages', _l('Your message statistics'))
+@graph(_l('Your message statistics'))
 def your_message_stats(data):
     mess = data['messages']
     friends_avg = data['friends_stats_mean']

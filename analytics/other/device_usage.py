@@ -3,7 +3,7 @@ from flask_babel import gettext as _l
 import pygal
 
 
-@graph('other', _l('Device usage statistics'))
+@graph(_l('Device usage statistics'))
 def device_usage(data):
     acc_act = data['account_activity']
     acc_act.agent.unique()

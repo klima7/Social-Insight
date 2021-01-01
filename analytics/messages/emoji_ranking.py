@@ -18,7 +18,7 @@ def check_emojis(s):
     return found
 
 
-@graph('messages', _l('Your emoji ranking'))
+@graph(_l('Your emoji ranking'))
 def emoji_ranking(data):
     table = data['messages']
     my_name = data['username']

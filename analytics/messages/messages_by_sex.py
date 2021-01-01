@@ -3,7 +3,7 @@ from .. import graph, style
 from flask_babel import gettext as _l
 
 
-@graph('messages', _l('Messages sent by sex'))
+@graph(_l('Messages sent by sex'))
 def messages_by_sex(data):
     messages = data['messages']
 
