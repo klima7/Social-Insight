@@ -33,7 +33,7 @@ def get_messages(folder):
                 message_files.append(i[1])
     return message_files
 
-
+# Analizuje plik z wiadomościami
 def analyse_file(file):
     # stats = {}
     # js = json.loads(file)
@@ -51,19 +51,31 @@ def analyse_file(file):
     constants = [js['title'].encode('latin1').decode('utf8'), js['thread_type']] # wartości które są stałe dla danego czatu, ale może są warte zamieszczenia w tabeli.
 
     entries = []
+    # giver, reciver, time, conversation, reaction
+    react_list = [[], [], [], [], []]
 
     for i in js['messages']:
         content = i.get('content')
         if content:
             content = content.encode('latin1').decode('utf8')
+        reactions = None
+        if 'reactions' in i:
+            for r in i['reactions']:
+                react_list[4].append(r['reaction'].encode('latin1').decode('utf8'))
+                react_list[0].append(r['actor'])
+                react_list[2].append(i['timestamp_ms'])
+                react_list[1].append(i['sender_name'])
+                react_list[3].append(constants[0])
         entries.append([i['sender_name'].encode('latin1').decode('utf8'), i['timestamp_ms'], content])
 
     entries = np.array(entries)
 
     data = pd.DataFrame({'conversation': constants[0], 'thread_type': constants[1], 'sender': entries[:, 0], 'time': entries[:, 1], 'content': entries[:, 2]})
     data['time'] = pd.to_datetime(data['time'], unit='ms')
+    reactions = pd.DataFrame({'giver': react_list[0], 'reciver': react_list[1], 'time': react_list[2], 'conversation': react_list[3], 'reaction': react_list[4], })
+    reactions.time = pd.to_datetime(reactions.time, unit='ms')
 
-    return data
+    return data, reactions
 
 
 def format_user_agent(t):
@@ -80,6 +92,7 @@ def format_user_agent(t):
 
 def gen_pandas_table(zip):
     messages_table = None
+    reactions_table = None
 
     folders = get_structure(zip)
     message_files = get_messages(folders['messages']['inbox'])
@@ -88,11 +101,13 @@ def gen_pandas_table(zip):
         temp_file = zip.getinfo(i)
         # with io.TextIOWrapper(zip.open(temp_file), 'utf-8') as f: # Otwieranie pliku jako tekst, żeby można było odrazu zamienić escapowane znaki na właściwe.
         with zip.open(temp_file) as f:
-            stats = analyse_file(f.read())
+            stats, react_stats = analyse_file(f.read())
             if messages_table is None:
                 messages_table = stats
+                reactions_table = react_stats
             else:
                 messages_table = pd.concat([messages_table, stats])
+                reactions_table = pd.concat([reactions_table, react_stats])
 
     namefile = folders['profile_information']['__files'][0][1]
     username = ""
@@ -142,5 +157,5 @@ def gen_pandas_table(zip):
         acc_activity = pd.DataFrame({'time': times, 'agent': agents, 'action': actions})
         acc_activity.time = pd.to_datetime(acc_activity.time, unit='s')
 
-    return {'messages': messages_table, 'friends': friends_table, 'username': username, 'account_activity': acc_activity}
+    return {'messages': messages_table, 'reactions': reactions_table, 'friends': friends_table, 'username': username, 'account_activity': acc_activity}
 

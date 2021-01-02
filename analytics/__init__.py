@@ -56,6 +56,7 @@ def analyse(pack_id, file_path, delete=True):
 
     with zp.ZipFile(file_path) as zip:
         pdata = gen_pandas_table(zip)
+        pdata['zip_obj'] = zip
         for fun, category, name, tran_name in _graphs:
 
             try:
