@@ -59,22 +59,24 @@ def clean_db():
     _Base.metadata.create_all(_engine)
 
 
-def example_pack_update():
+def example_pack_update(name):
     import os
     import threading
     import analytics
 
+    path = os.path.join('examples', name)
+
     db_session.query(Pack).filter_by(example=True).delete()
     db_session.commit()
 
-    if not os.path.exists('example.zip'):
+    if not os.path.exists(path):
         raise FileNotFoundError()
 
     pack = Pack(status=Pack.STATUS_PENDING, example=True)
     db_session.add(pack)
     db_session.commit()
 
-    thread = threading.Thread(target=analytics.analyse, args=[pack.id, 'example.zip', False])
+    thread = threading.Thread(target=analytics.analyse, args=[pack.id, path, False])
     thread.start()
 
 

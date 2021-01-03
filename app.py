@@ -52,9 +52,10 @@ def compile():
 
 
 @app.cli.command(help="Update example data file.")
-def example():
+@click.argument('name')
+def example(name):
     try:
-        db.example_pack_update()
+        db.example_pack_update(name)
     except FileNotFoundError:
         print("Unable to find file example.zip")
     else:
