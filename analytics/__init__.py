@@ -28,7 +28,6 @@ _graphs = []
 def graph(name):
     def decorator(fun):
         category = fun.__module__.split('.')[-2]
-        print(category)
         graphTuple = namedtuple('graph', 'fun, category, name, translated_name')
         graph = graphTuple(fun, category, str(name), name)
         _graphs.append(graph)
