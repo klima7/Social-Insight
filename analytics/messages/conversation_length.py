@@ -34,7 +34,7 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     return np.array(conversation_lens).mean()
 
 
-@graph(_l('Average messages in conversation'))
+@graph(_l('Average conversation length'))
 def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
     messages = data['messages']
     reply_times = pd.DataFrame()
@@ -51,7 +51,5 @@ def conversation_length(data): # Skopiowane reply_time, więc nazwy zmiennych ni
     gr.x_labels = list(reply_times['user'])
     gr.human_readable = True
     gr.show_legend = False
-    gr.print_values = True
-    gr.print_values_position = 'top'
 
     return gr

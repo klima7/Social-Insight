@@ -3,6 +3,8 @@ from flask_babel import gettext as _l
 import pygal
 import emoji
 
+MAX_EMOJI_COUNT = 20
+
 
 # Helper function for emoji ranking
 def check_emojis(s):
@@ -34,9 +36,15 @@ def emoji_ranking(data):
                 all_emojis[j] = 1
     emoji_v = []
     emoji_l = []
+
+    counter = 0
     for k, v in sorted(all_emojis.items(), key=lambda i: i[1], reverse=True):
         emoji_v.append(v)
         emoji_l.append(k)
+
+        counter += 1
+        if counter >= MAX_EMOJI_COUNT:
+            break
 
     chart = pygal.Bar(style=emojistyle, show_legend=False, height=len(emoji_l)*20)
     chart.add('', emoji_v)
