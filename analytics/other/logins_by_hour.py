@@ -1,6 +1,7 @@
 from .. import graph, style
 from flask_babel import gettext as _l
 import pygal
+import pandas as pd
 
 
 @graph(_l('Percent of logins by hour'))
@@ -8,16 +9,13 @@ def logins_by_hour(data):
     acc_act = data['account_activity']
     hour_active = acc_act[(acc_act.action == 'Login') | (acc_act.action == 'Session updated')].groupby(acc_act.time.dt.hour)
     hour_active = hour_active.action.count()
-    total_hours = hour_active.sum()
+    percent_active = (hour_active / hour_active.sum() * 100).round(1)
 
-    hour_active = dict(hour_active)
-    for i in range(24):
-        if i not in hour_active:
-            hour_active[i] = 0
-    chart = pygal.Bar(style=style, show_legend=False)
-    chart.x_labels = [i for i in range(24)]
-    chart.add('', [round((hour_active[i] / total_hours) * 100, 1) for i in range(24)])
-    chart.y_title = 'Percent of activity'
-    chart.x_title = 'Hour'
+    empty_series = pd.Series([0]*24, list(range(24)))
+    percent_active = percent_active.add(empty_series, fill_value=0)
 
-    return chart
+    radar_chart = pygal.Radar(style=style, show_legend=False, fill=True, height=800)
+    radar_chart.x_labels = percent_active.index
+    radar_chart.add('', percent_active)
+
+    return radar_chart

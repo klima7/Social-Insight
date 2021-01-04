@@ -13,7 +13,7 @@ def messages_sent_by_day_of_week(data): #
     empty_series = pd.Series([0]*24, list(range(24)))
     percent_for_hour = percent_for_hour.add(empty_series, fill_value=0)
 
-    radar_chart = pygal.Radar(style=style, show_legend=False, height=800)
+    radar_chart = pygal.Radar(style=style, show_legend=False, fill=True, height=800)
     radar_chart.x_labels = percent_for_hour.index
     radar_chart.add('', percent_for_hour)
 
