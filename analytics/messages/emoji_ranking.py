@@ -49,4 +49,6 @@ def emoji_ranking(data):
     chart = pygal.Bar(style=emojistyle, show_legend=False, height=len(emoji_l)*20)
     chart.add('', emoji_v)
     chart.x_labels = emoji_l
+    chart.x_title = 'Emoji'
+    chart.y_title = 'Occurrence count'
     return chart

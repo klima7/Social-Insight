@@ -60,5 +60,7 @@ def friends_cumsum(data):
 
     chart.x_labels = time_index
     chart.add('', b.to_list(), dots_size=0)
+    chart.y_title = 'Friends count'
+    chart.x_title = 'Date'
 
     return chart

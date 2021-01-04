@@ -12,8 +12,8 @@ def device_usage(data):
 
     chart = pygal.HorizontalBar(style=style, show_legend=False)
     chart.x_labels = list(device_usage.index)
-    chart.add('', [ (i / total_uses) * 100 for i in list(device_usage)])
-    # chart.y_title = 'device name'
-    chart.x_title = '% of usage'
+    chart.add('', [round((i / total_uses) * 100, 1) for i in list(device_usage)])
+    chart.x_title = 'Percent of usage'
+    chart.y_title = 'Device'
 
     return chart

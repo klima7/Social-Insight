@@ -14,10 +14,12 @@ def messages_sent_by_day_of_week(data):
     max_year = messages_for_year.index.max()
 
     empty_series = pd.Series([0]*(max_year-min_year+1), list(range(min_year, max_year+1)))
-    percent_for_year = percent_for_year.add(empty_series, fill_value=0)
+    percent_for_year = percent_for_year.add(empty_series, fill_value=0).round(1)
 
     line_chart = pygal.Line(style=style, show_legend=False)
     line_chart.x_labels = percent_for_year.index
     line_chart.add('', percent_for_year)
+    line_chart.y_title = 'Year'
+    line_chart.x_title = 'Percent of sent messages'
 
     return line_chart

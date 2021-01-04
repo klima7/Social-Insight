@@ -1,6 +1,6 @@
 from pygal.style import Style
 from db import *
-from .util import gen_pandas_table
+from .preprocess import preprocess
 import zipfile as zp
 from collections import namedtuple
 import traceback
@@ -18,7 +18,8 @@ emojistyle = Style(
   plot_background='white',
   transition='400ms ease-in',
   legend_font_size=20,
-  label_font_size=30)
+  label_font_size=30,
+  major_label_font_size=30)
 
 
 _graphs = []
@@ -54,8 +55,7 @@ def analyse(pack_id, file_path, delete=True):
     # Pobranie ścieżki do pliku
 
     with zp.ZipFile(file_path) as zip:
-        pdata = gen_pandas_table(zip)
-        pdata['zip_obj'] = zip
+        pdata = preprocess(zip)
         for fun, category, name, tran_name in _graphs:
 
             try:

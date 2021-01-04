@@ -29,5 +29,4 @@ def messages_by_sex(data):
     chart = pygal.Pie(style=style)
     for k, v in messages_to.items():
         chart.add(k, v)
-
     return chart

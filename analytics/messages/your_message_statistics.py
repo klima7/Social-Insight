@@ -1,26 +1,22 @@
 from .. import graph
-from .message_stats import get_messages_stats
+from .sentences_with_cap_letters import get_sentences_percent_with_cap_letter
+from .sentences_with_punctuation import get_percent_of_messages_with_punctuation
+from .words_count_in_message import get_avg_message_length
 from flask_babel import gettext as _l
 import pandas as pd
 
 
-@graph(_l('Your message statistics'))
+@graph(_l('Your messages analysis'))
 def your_message_stats(data):
-    mess = data['messages']
-    friends_avg = data['friends_stats_mean']
-
-    your_stats = get_messages_stats(mess[(mess.thread_type == 'Regular') & (mess.sender == data['username'])].dropna().content)
-    # '% Zdań ze znakami interpunkcyjnymi', df['% zn_int'])
-    # chart.add('% Zdań zaczętych wielką literą', df['% zd_wl'])
-    # chart.add('Średnia liczba słów w wiadomości
-    xdpd = pd.DataFrame(
+    all_messages = data['messages']
+    your_messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender == data['username'])].dropna().content
+    words_count = get_avg_message_length(your_messages)
+    punctuation_percent = get_percent_of_messages_with_punctuation(your_messages)
+    capital_percent = get_sentences_percent_with_cap_letter(your_messages)
+    frame = pd.DataFrame(
         {
-            '': ['Średnia znajomych', 'Twoje statystyki'],
-            '% Zdań ze znakami interpunkcyjnymi': [friends_avg['% zn_int'], your_stats[1]],
-            '% Zdań zaczętych wielką literą': [friends_avg['% zd_wl'], your_stats[3]],
-            'Średnia długość zdania': [friends_avg['avg_word'], your_stats[4]],
+            'Attribute': ['Percent of sentences with punctuation', 'Percent of sentences starting with capital letter', 'Average words count in sentence'],
+            'Value': [punctuation_percent, capital_percent, words_count]
         })
 
-    # xdpd = xdpd.set_index('*')
-    xdpd = xdpd.round({'% Zdań ze znakami interpunkcyjnymi': 2, '% Zdań zaczętych wielką literą': 2, 'Średnia długość zdania': 1})
-    return xdpd
+    return frame
