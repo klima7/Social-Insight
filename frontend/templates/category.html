@@ -31,6 +31,29 @@
 
 <section>
     {% if graphs %}
+    <div class="container-fluid">
+        <div class="card mb-4 bg-graph mt-4">
+            <div class="card-header bg-secondary text-secondary text-center">
+                {{ _('Table of contents') }}
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="card-columns">
+                        <ol class="graph-style-list">
+                            {% for graph in graphs %}
+                            <a class="js-scroll-trigger" href="#graph-{{graph.id}}"><li style="color: black">{{ graph.get_name() }}</li></a>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<section>
+    {% if graphs %}
     <div class="container-fluid pt-2 pb-3" style="min-height: 300px">
         <div class="card-columns">
             {% for graph in graphs %}

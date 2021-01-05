@@ -197,3 +197,15 @@ li.author {
 .flash-message a {
 	text-decoration: underline;
 }
+
+ol.graph-style-list {
+	list-style-image: url("/static/images/graph_bullet.png");
+}
+
+ol.graph-style-list li {
+	transition: 0.3s;
+}
+
+ol.graph-style-list li:hover {
+	transform: translate(10px, 0px)
+}
