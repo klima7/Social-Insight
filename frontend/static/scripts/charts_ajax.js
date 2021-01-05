@@ -86,3 +86,11 @@ function setBelongsButtonActive(graphid, collationid, active) {
 	if(active) $(selector).removeClass('disable');
 	else $(selector).addClass('disable');
 }
+
+function highlightGraph(id) {
+	let graph = $(`#graph-${id}`);
+	graph
+	.delay(1000)
+	.animate({borderWidth: "10px", borderColor: 'green'}, 200)
+	.animate({borderWidth: "2px", borderColor: 'black'}, 200)
+}
