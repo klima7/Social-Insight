@@ -1,3 +1,8 @@
+# Uwaga: Gałęzie Frontend i Backend usunięte!!!!
+Nie było i nich większej korzyści, a tylko więcej zachodu z mergami, pushami i pullami.
+Od teraz wszystko robimy na masterze.
+
+
 # Social Insight 
 
 **Aplikacja dostępna pod adresem [http://social-insight.tk:8081](http://social-insight.tk:8081)**
