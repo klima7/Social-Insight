@@ -15,9 +15,20 @@
         {{ _("Creator") }}: {{ container.user.email }}
     </div>
 
+    <div class="table-of-contents">
+        <h2>{{ _("Table of contents") }}</h2>
+        <ol>
+        {% for graph in container.graphs %}
+            {% if graph.data is not none %}
+            <li>{{ graph.get_name() }}</li>
+            {% endif %}
+        {% endfor %}
+        </ol>
+    </div>
+
     {% for graph in container.graphs %}
         {% if graph.data is not none %}
-            {{ pdf.render(graph) }}
+            {{ pdf.render(graph, loop.index) }}
         {% endif %}
     {% endfor %}
 
