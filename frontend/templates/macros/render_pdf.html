@@ -23,7 +23,7 @@
 
 
 {% macro render_pygal_chart(chart) -%}
-  <img src="{{chart.render_data_uri()|safe}}" width="{{chart.config.width}}" height="{{chart.config.height}}"/>
+  <img src="{{render_graph_png_inline(chart)|safe}}" width="{{chart.config.width}}" height="{{chart.config.height}}"/>
 {% endmacro -%}
 
 

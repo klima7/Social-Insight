@@ -19,7 +19,10 @@ emojistyle = Style(
   transition='400ms ease-in',
   legend_font_size=20,
   label_font_size=30,
-  major_label_font_size=30)
+  major_label_font_size=30,
+  label_font_family='Segoe UI Emoji',
+  major_label_font_family='Segoe UI Emoji'
+)
 
 
 _graphs = []

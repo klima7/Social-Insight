@@ -1,6 +1,6 @@
 import logging
 
-from frontend.util import cache_suffix, get_current_user, is_pygal_chart, is_pandas_table, translate_pandas_table, is_dark_mode
+from frontend.util import cache_suffix, get_current_user, is_pygal_chart, is_pandas_table, translate_pandas_table, is_dark_mode, render_graph_png_inline
 from db import *
 
 from flask import Flask, request, session
@@ -52,7 +52,7 @@ def create_app():
 
     app.jinja_env.globals.update(cache_suffix=cache_suffix, lorem=lorem, user=get_current_user, is_dark_mode=is_dark_mode,
                                  is_pygal_chart=is_pygal_chart, is_pandas_table=is_pandas_table, translate_pandas_table=translate_pandas_table,
-                                 get_locale=get_locale, Global=Global)
+                                 get_locale=get_locale, Global=Global, render_graph_png_inline=render_graph_png_inline)
 
     return app
 

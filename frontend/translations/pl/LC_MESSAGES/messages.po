@@ -688,7 +688,7 @@ msgstr ""
 
 #: frontend/templates/pdf.html:13
 msgid "Collation name"
-msgstr "Nazwa nestawienia"
+msgstr "Nazwa zestawienia"
 
 #: frontend/templates/pdf.html:14
 msgid "Creation date"

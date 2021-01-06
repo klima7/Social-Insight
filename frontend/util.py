@@ -5,6 +5,9 @@ from flask import flash, session
 from flask_login import current_user
 from config import config
 from time import time_ns
+import os
+import tempfile
+import base64
 
 
 def cache_suffix():
@@ -37,3 +40,28 @@ def translate_pandas_table(table):
 
 def is_dark_mode():
     return session.get('dark_mode', False)
+
+
+def scale_graph(graph, factor):
+    graph.config.width *= factor
+    graph.config.height *= factor
+    graph.config.style.label_font_size *= factor
+    graph.config.style.major_label_font_size *= factor
+    graph.config.style.value_font_size *= factor
+    graph.config.style.value_label_font_size *= factor
+    graph.config.style.tooltip_font_size *= factor
+    graph.config.style.title_font_size *= factor
+    graph.config.style.legend_font_size *= factor
+    graph.config.style.no_data_font_size *= factor
+
+
+def render_graph_png_inline(graph):
+    factor = 1
+    scale_graph(graph, factor)
+
+    path = os.path.join(tempfile.mkdtemp(), 'graph.png')
+    graph.render_to_png(path)
+    encoded = base64.b64encode(open(path, "rb").read())
+
+    scale_graph(graph, 1/factor)
+    return "data:image/png;base64," + encoded.decode()
