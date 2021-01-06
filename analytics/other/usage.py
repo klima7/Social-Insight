@@ -3,9 +3,10 @@ from flask_babel import gettext as _l
 import pygal
 
 
-@graph(_l('Device usage statistics'))
+@graph(_l('Usage statistics'))
 def device_usage(data):
     acc_act = data['account_activity']
+    acc_act['agent'] = acc_act.device + ' / ' + acc_act.os + ' / ' + acc_act.browser
     acc_act.agent.unique()
     device_usage = acc_act.groupby(acc_act.agent).action.count().sort_values(ascending=True)
     total_uses = device_usage.sum()

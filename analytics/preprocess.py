@@ -137,7 +137,7 @@ def _get_username(zip_file, folders):
     return username
 
 
-def _aux_format_user_agent(t):
+def _aux_get_device_os_browser(t):
     t = user_agents.parse(t)
     dev = str(t.device.brand) + ' ' + str(t.device.model)
     if t.device.brand is None and t.device.model is None:
@@ -145,7 +145,7 @@ def _aux_format_user_agent(t):
             dev = 'PC'
         else:
             dev = 'Other'
-    return dev + ' / ' + str(t.os.family) + ' / ' + t.browser.family
+    return dev, str(t.os.family), t.browser.family
 
 
 def _get_acc_activity_table(zip_file, folders):
@@ -158,16 +158,20 @@ def _get_acc_activity_table(zip_file, folders):
     with zip_file.open(acc_activity_path) as f:
         actions = []
         times = []
-        agents = []
+        devices = []
+        oss = []
+        browsers = []
         json_data = json.loads(f.read())
         for j in json_data['account_activity']:
             actions.append(j['action'])
-            parsed_agent = _aux_format_user_agent(j['user_agent'])
+            device, os, browser = _aux_get_device_os_browser(j['user_agent'])
 
-            agents.append(str(parsed_agent))
+            devices.append(device)
+            oss.append(os)
+            browsers.append(browser)
             times.append(j['timestamp'])
 
-        acc_activity = pd.DataFrame({'time': times, 'agent': agents, 'action': actions})
+        acc_activity = pd.DataFrame({'time': times, 'device': devices, 'os': oss, 'browser': browsers, 'action': actions})
         acc_activity.time = pd.to_datetime(acc_activity.time, unit='s')
     return acc_activity
 
