@@ -14,6 +14,7 @@ from frontend.mail import send_email
 from frontend.render import render_container_pdf
 from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
+import frontend.render as render
 
 
 @main.route('/favicon.ico')
@@ -249,3 +250,27 @@ def download_graph_png(id):
     path = os.path.join(directory, name)
     graph.render_png(path)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
+
+
+def download_charts_zip(container, categories):
+    directory = tempfile.mkdtemp()
+    name = container.name + ".zip"
+    path = os.path.join(directory, name)
+
+    render.render_zip(container, path, categories=categories)
+    return send_from_directory(directory=directory, filename=name, as_attachment=True)
+
+
+@main.route('/packs/<id>/download')
+def download_pack_zip(id):
+    pack = get_pack(id)
+    return download_charts_zip(pack, True)
+
+
+@main.route('/collations/<id>/download')
+def download_collation_zip(id):
+    collation = get_collation(id)
+    return download_charts_zip(collation, False)
+
+
+

@@ -165,6 +165,7 @@
 	border: 2px solid var(--border-category);
 	border-radius: 5px;
 	box-sizing: border-box;
+	margin-bottom: 5px;
 }
 
 .dark-button > a {

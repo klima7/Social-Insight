@@ -3,6 +3,8 @@ import tempfile
 import base64
 import pygal
 import pandas as pd
+import zipfile
+import frontend.common as common
 
 import flask
 import imgkit
@@ -83,4 +85,23 @@ def render_chart_png(chart, path):
         render_graph_png(chart.data, path, scale=1)
     elif isinstance(chart.data, pd.core.frame.DataFrame):
         render_table_png(chart.data, path)
+
+
+def render_zip(container, path, categories=False):
+    directory = tempfile.mkdtemp()
+
+    for graph in container.graphs:
+        png_name = str(graph.get_name()) + ".png"
+        if categories:
+            category_dir = os.path.join(directory, graph.category)
+            if not os.path.exists(category_dir):
+                os.makedirs(category_dir)
+            png_path = os.path.join(category_dir, png_name)
+        else:
+            png_path = os.path.join(directory, png_name)
+
+        graph.render_png(png_path)
+
+    common.zipdir(directory, path)
+
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-08 16:20+0100\n"
+"POT-Creation-Date: 2021-01-08 18:07+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -26,6 +26,10 @@ msgstr ""
 #: analytics/messages/emoji_ranking.py:23
 msgid "Your emoji ranking"
 msgstr "Twój ranking emoji"
+
+#: analytics/messages/images_by_convo.py:8
+msgid "Number of photos in conversations"
+msgstr ""
 
 #: analytics/messages/messages_by_sex.py:6
 msgid "Messages sent by sex"
@@ -105,6 +109,18 @@ msgstr ""
 
 #: analytics/other/usage.py:6
 msgid "Usage statistics"
+msgstr ""
+
+#: analytics/posts/posts_by_hour.py:6
+msgid "percent of posts by hour"
+msgstr ""
+
+#: analytics/posts/posts_by_year.py:6
+msgid "Number of posts by year"
+msgstr ""
+
+#: analytics/posts/total_posts_graph.py:71
+msgid "Cumulated number of posts"
 msgstr ""
 
 #: frontend/admin/forms.py:8
@@ -320,55 +336,55 @@ msgstr "Treść"
 msgid "Send"
 msgstr "Wyślij"
 
-#: frontend/main/routes.py:56
+#: frontend/main/routes.py:57
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 
-#: frontend/main/routes.py:87
+#: frontend/main/routes.py:88
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:87 frontend/main/routes.py:156
+#: frontend/main/routes.py:88 frontend/main/routes.py:157
 #: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:96
+#: frontend/main/routes.py:97
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:107
+#: frontend/main/routes.py:108
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:125
+#: frontend/main/routes.py:126
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:156
+#: frontend/main/routes.py:157
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:165
+#: frontend/main/routes.py:166
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:176
+#: frontend/main/routes.py:177
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:213
+#: frontend/main/routes.py:214
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:214
+#: frontend/main/routes.py:215
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
 #: frontend/templates/account.html:3 frontend/templates/account.html:37
-#: frontend/templates/category.html:19 frontend/templates/collation.html:30
+#: frontend/templates/category.html:19 frontend/templates/collation.html:31
 #: frontend/templates/password_change.html:16
 #: frontend/templates/standard.html:20
 msgid "Account"
@@ -392,7 +408,7 @@ msgstr "Usuń konto"
 #: frontend/templates/admin_messages.html:38
 #: frontend/templates/admin_reply.html:21
 #: frontend/templates/admin_users.html:25 frontend/templates/category.html:18
-#: frontend/templates/category.html:26 frontend/templates/collation.html:29
+#: frontend/templates/category.html:26 frontend/templates/collation.html:30
 #: frontend/templates/contact.html:15 frontend/templates/login.html:15
 #: frontend/templates/password_change.html:15
 #: frontend/templates/password_reset_request.html:15
@@ -489,7 +505,7 @@ msgstr "Spis treści"
 msgid "No graphs in this category"
 msgstr "Brak wykresów w tej kategorii"
 
-#: frontend/templates/collation.html:5 frontend/templates/collation.html:31
+#: frontend/templates/collation.html:5 frontend/templates/collation.html:32
 msgid "Collation"
 msgstr "Zestawienie"
 
@@ -505,15 +521,20 @@ msgstr "usuń"
 
 #: frontend/templates/collation.html:21
 #: frontend/templates/parts/_categories.html:18
-msgid "generate pdf"
-msgstr "generuj pdf"
+msgid "download pdf"
+msgstr "pobierz pdf"
 
 #: frontend/templates/collation.html:22
 #: frontend/templates/parts/_categories.html:19
-msgid "pdf to print"
-msgstr "pdf do druku"
+msgid "download pdf to print"
+msgstr "pobierz pdf do druku"
 
-#: frontend/templates/collation.html:46
+#: frontend/templates/collation.html:23
+#: frontend/templates/parts/_categories.html:20
+msgid "Download zip"
+msgstr "Pobierz zip"
+
+#: frontend/templates/collation.html:47
 msgid "No graphs in this collation"
 msgstr "Grak wykresów w tym zestawieniu"
 
@@ -813,23 +834,23 @@ msgstr "Nierozpoznany typ danych do wyrenderowania"
 msgid "Results"
 msgstr "Wyniki"
 
-#: frontend/templates/parts/_categories.html:30
+#: frontend/templates/parts/_categories.html:31
 msgid "messages"
 msgstr "wiadomości"
 
-#: frontend/templates/parts/_categories.html:39
+#: frontend/templates/parts/_categories.html:40
 msgid "posts"
 msgstr "posty"
 
-#: frontend/templates/parts/_categories.html:48
+#: frontend/templates/parts/_categories.html:49
 msgid "miscellaneous"
 msgstr "Różne"
 
-#: frontend/templates/parts/_categories.html:57
+#: frontend/templates/parts/_categories.html:58
 msgid "other"
 msgstr "Inne"
 
-#: frontend/templates/parts/_categories.html:71
+#: frontend/templates/parts/_categories.html:72
 #, python-format
 msgid ""
 "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
@@ -912,4 +933,10 @@ msgstr "Zmień nazwę paczki"
 
 #~ msgid "Device usage statistics"
 #~ msgstr ""
+
+#~ msgid "generate pdf"
+#~ msgstr "generuj pdf"
+
+#~ msgid "pdf to print"
+#~ msgstr "pdf do druku"
 

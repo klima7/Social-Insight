@@ -18,8 +18,9 @@
         <div class="text-center mt-2">
             <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-collation-modal">{{ _("rename") }}</a></div>
             <div class="dark-button"><a href="{{ url_for('main.remove_collation_confirm', id=collation.id) }}">{{ _("remove") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id, style='fancy') }}" target="_blank">{{ _("generate pdf") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id, style='print') }}" target="_blank">{{ _("pdf to print") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id, style='fancy') }}" target="_blank">{{ _("download pdf") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.collation2pdf', id=collation.id, style='print') }}" target="_blank">{{ _("download pdf to print") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.download_collation_zip', id=collation.id) }}" target="_blank">{{ _("Download zip") }}</a></div>
         </div>
     </div>
 </section>
