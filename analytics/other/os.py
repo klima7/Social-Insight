@@ -15,5 +15,3 @@ def device_usage(data):
         pie_chart.add(os, count)
 
     return pie_chart
-
-    return chart

@@ -16,6 +16,7 @@ def preprocess(zip_file):
     username = _get_username(zip_file, folders)
     account_activity = _get_acc_activity_table(zip_file, folders)
     off_facebook_activity = _get_off_facebook_activity_table(zip_file, folders)
+    posts_data = _get_posts_data(zip_file, folders)
 
     return {
         'messages': messages,
@@ -23,7 +24,8 @@ def preprocess(zip_file):
         'friends': friends,
         'username': username,
         'account_activity': account_activity,
-        'off_facebook_activity': off_facebook_activity
+        'off_facebook_activity': off_facebook_activity,
+        'posts': posts_data
     }
 
 
@@ -62,11 +64,12 @@ def _aux_analyse_messages_file(file):
     # wartości które są stałe dla danego czatu, ale może są warte zamieszczenia w tabeli.
     constants = [js['title'].encode('latin1').decode('utf8'), js['thread_type']]
 
-    entries = []
+    entries = [[], [], [], []]
     react_list = [[], [], [], [], []]   # giver, receiver, time, conversation, reaction
 
     for i in js['messages']:
         content = i.get('content')
+        photos = 0
         if content:
             content = content.encode('latin1').decode('utf8')
         if 'reactions' in i:
@@ -76,11 +79,28 @@ def _aux_analyse_messages_file(file):
                 react_list[2].append(i['timestamp_ms'])
                 react_list[1].append(i['sender_name'])
                 react_list[3].append(constants[0])
-        entries.append([i['sender_name'].encode('latin1').decode('utf8'), i['timestamp_ms'], content])
+        if 'photos' in i:
+            photos = len(i['photos'])
 
-    entries = np.array(entries)
+        # entries.append([, , content, ])
+        entries[0].append(i['sender_name'].encode('latin1').decode('utf8'))
+        entries[1].append(i['timestamp_ms'])
+        entries[2].append(content)
+        entries[3].append(photos)
 
-    data = pd.DataFrame({'conversation': constants[0], 'thread_type': constants[1], 'sender': entries[:, 0], 'time': entries[:, 1], 'content': entries[:, 2]})
+    # entries = np.array(entries)
+
+    data = pd.DataFrame(
+        {
+            'conversation': constants[0], 
+            'thread_type': constants[1], 
+            'sender': entries[0], 
+            'time': entries[1], 
+            'content': entries[2],
+            'photos': entries[3]
+        }
+    )
+
     data['time'] = pd.to_datetime(data['time'], unit='ms')
     reactions = pd.DataFrame({'giver': react_list[0], 'reciver': react_list[1], 'time': react_list[2], 'conversation': react_list[3], 'reaction': react_list[4], })
     reactions.time = pd.to_datetime(reactions.time, unit='ms')
@@ -198,3 +218,28 @@ def _get_off_facebook_activity_table(zip_file, folders):
         table = pd.DataFrame({'name': names, 'type': types, 'time': times})
         table.time = pd.to_datetime(table.time, unit='s')
         return table
+
+
+def _get_posts_data(zip_file, folders):
+    file_paths = [i[1] for i in folders['posts']['__files']]
+    post_data = pd.DataFrame({'time': [], 'title': []})
+
+    for path in file_paths:
+        if path == 'posts/no-data.txt':
+            break;
+
+        with zip_file.open(path) as f:
+            jdata = json.loads(f.read())
+            tdata = {'time': [], 'title': []}
+
+            if isinstance(jdata, dict):
+                jdata = [jdata]
+
+            for i in jdata:
+                tdata['time'].append(i['timestamp'])
+                tdata['title'].append(i.get('title'))
+            temp_table = pd.DataFrame(tdata)
+            temp_table.time = pd.to_datetime(temp_table.time, unit='s')
+            post_data = pd.concat([post_data, temp_table])
+
+    return post_data
