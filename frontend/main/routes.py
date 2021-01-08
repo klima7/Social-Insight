@@ -1,21 +1,19 @@
+import os.path
+import tempfile
 from threading import Thread
-from platform import system
 
-import pdfkit
-from flask import request, render_template, session, redirect, url_for, abort, flash, jsonify, make_response, send_from_directory
-from flask_login import login_required, current_user
+from flask import *
 from flask_babel import _, get_locale
-from sqlalchemy import desc
+from flask_login import login_required, current_user
 
 import analytics
 from config import config
 from db import *
+from frontend.common import display_errors_with_flash
 from frontend.mail import send_email
-from frontend.util import display_errors_with_flash
+from frontend.render import render_container_pdf
 from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
-import os.path
-import tempfile
 
 
 @main.route('/favicon.ico')
@@ -130,46 +128,25 @@ def collation(id):
     return render_template('collation.html', collation=collation, form=form)
 
 
-def to_pdf(container, print_version):
-    html = render_template('pdf.html', container=container)
-    extra_args = {}
-    if system() == 'Windows':
-        extra_args['configuration'] = pdfkit.configuration(wkhtmltopdf=config.PDFKIT_WINDOWS_PATH)
-
-    options = {
-        'page-size': 'A4',
-        'margin-top': '0in',
-        'margin-right': '0in',
-        'margin-bottom': '0in',
-        'margin-left': '0in',
-        'encoding': "UTF-8",
-        'no-outline': None,
-    }
-
-    if not config.PDFKIT_DEBUG:
-        options['quiet'] = ''
-
-    css_name = 'pdf_print' if print_version else 'pdf_fancy'
-    pdf = pdfkit.from_string(html, False, options=options, css=[f'frontend/static/css/{css_name}.css'], **extra_args)
-
-    response = make_response(pdf)
-    response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
-    return response
+def something2pdf(container):
+    style = request.args.get('style', 'fancy')
+    directory = tempfile.mkdtemp()
+    name = f'{container.name} - {style}.pdf'
+    path = os.path.join(directory, name)
+    render_container_pdf(container, path, style)
+    return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 
 @main.route("/collations/<id>/pdf")
 def collation2pdf(id):
-    print_version = request.args.get('print', 'False') == 'True'
     collation = get_collation(id)
-    return to_pdf(collation, print_version)
+    return something2pdf(collation)
 
 
 @main.route("/packs/<id>/pdf")
 def pack2pdf(id):
-    print_version = request.args.get('print', 'false') == 'true'
     pack = get_pack(id)
-    return to_pdf(pack, print_version)
+    return something2pdf(pack)
 
 
 @main.route('/collations/<id>/remove/confirm')
@@ -259,3 +236,16 @@ def light_mode():
 @main.route('/authors')
 def authors():
     return render_template('authors.html')
+
+
+@main.route('/graphs/<id>/download/png')
+def download_graph_png(id):
+    graph = db_session.query(Graph).filter_by(id=id).first()
+    if graph is None:
+        abort(404)
+
+    directory = tempfile.mkdtemp()
+    name = graph.get_name() + ".png"
+    path = os.path.join(directory, name)
+    graph.render_png(path)
+    return send_from_directory(directory=directory, filename=name, as_attachment=True)

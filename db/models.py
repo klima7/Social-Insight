@@ -119,6 +119,10 @@ class Graph(_Base):
         from analytics import get_translated_graph_name
         return get_translated_graph_name(self.name)
 
+    def render_png(self, path):
+        import frontend.render as render
+        return render.render_chart_png(self, path)
+
     def __repr__(self):
         return f"<Graph(id={self.id})>"
 

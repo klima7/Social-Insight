@@ -5,8 +5,6 @@ uploads/*.zip
 frontend/translations/messages.pot
 example.zip
 examples/*.zip
-certificate.crt
-private.key
 
 # Pliki konfiguracyjne Pycharma
 venv/

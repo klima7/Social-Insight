@@ -15,8 +15,8 @@
         <div class="text-center mt-2">
             <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-pack-modal">{{ _("rename") }}</a></div>
             <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id) }}">{{ _("remove") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id) }}" target="_blank">{{ _("generate pdf") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, print='true') }}" target="_blank">{{ _("pdf to print") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='fancy') }}" target="_blank">{{ _("generate pdf") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='print') }}" target="_blank">{{ _("pdf to print") }}</a></div>
         </div>
         {% endif %}
 

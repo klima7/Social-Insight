@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-05 09:11+0100\n"
+"POT-Creation-Date: 2021-01-08 16:20+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -79,8 +79,12 @@ msgstr ""
 msgid "Reactions given to you"
 msgstr ""
 
-#: analytics/other/device_usage.py:6
-msgid "Device usage statistics"
+#: analytics/other/browser.py:6
+msgid "Browser"
+msgstr ""
+
+#: analytics/other/device.py:6
+msgid "Device"
 msgstr ""
 
 #: analytics/other/friends_cumsum.py:8
@@ -93,6 +97,14 @@ msgstr ""
 
 #: analytics/other/off_fb_activity.py:7
 msgid "Pages you visited while being logged into facebook"
+msgstr ""
+
+#: analytics/other/os.py:6
+msgid "Operating system"
+msgstr ""
+
+#: analytics/other/usage.py:6
+msgid "Usage statistics"
 msgstr ""
 
 #: frontend/admin/forms.py:8
@@ -308,50 +320,50 @@ msgstr "Treść"
 msgid "Send"
 msgstr "Wyślij"
 
-#: frontend/main/routes.py:58
+#: frontend/main/routes.py:56
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 
-#: frontend/main/routes.py:89
+#: frontend/main/routes.py:87
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:89 frontend/main/routes.py:179
+#: frontend/main/routes.py:87 frontend/main/routes.py:156
 #: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:98
+#: frontend/main/routes.py:96
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:109
+#: frontend/main/routes.py:107
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:127
+#: frontend/main/routes.py:125
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:179
+#: frontend/main/routes.py:156
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:188
+#: frontend/main/routes.py:165
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:199
+#: frontend/main/routes.py:176
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:236
+#: frontend/main/routes.py:213
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:237
+#: frontend/main/routes.py:214
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
@@ -469,7 +481,7 @@ msgstr "Paczka"
 msgid "Anonymous result"
 msgstr "Anonimowy wynik"
 
-#: frontend/templates/category.html:37
+#: frontend/templates/category.html:37 frontend/templates/pdf.html:19
 msgid "Table of contents"
 msgstr "Spis treści"
 
@@ -773,23 +785,27 @@ msgid "Add"
 msgstr "Dodaj"
 
 #: frontend/templates/macros/render_browser.html:18
+msgid "Download"
+msgstr "Pobierz"
+
+#: frontend/templates/macros/render_browser.html:19
 msgid "Public"
 msgstr "Publiczny"
 
-#: frontend/templates/macros/render_browser.html:19
+#: frontend/templates/macros/render_browser.html:20
 msgid "Share"
 msgstr "Udostępnij"
 
-#: frontend/templates/macros/render_browser.html:20
+#: frontend/templates/macros/render_browser.html:21
 msgid "Copy link"
 msgstr "Kopiuj link"
 
-#: frontend/templates/macros/render_browser.html:33
+#: frontend/templates/macros/render_browser.html:34
 msgid "Sorry, error occured"
 msgstr "Przepraszamy, wystąpił błąd"
 
-#: frontend/templates/macros/render_browser.html:48
-#: frontend/templates/macros/render_pdf.html:20
+#: frontend/templates/macros/render_browser.html:49
+#: frontend/templates/macros/render_pdf.html:26
 msgid "Unknown type of data to render"
 msgstr "Nierozpoznany typ danych do wyrenderowania"
 
@@ -892,5 +908,8 @@ msgstr "Zmień nazwę paczki"
 #~ msgstr "Nagłówek 3"
 
 #~ msgid "% of logins by hour"
+#~ msgstr ""
+
+#~ msgid "Device usage statistics"
 #~ msgstr ""
 

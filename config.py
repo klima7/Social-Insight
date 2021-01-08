@@ -7,7 +7,8 @@ class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
-    PDFKIT_WINDOWS_PATH = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    WKHTMLTOPDF_PATH = environ.get('WKHTMLTOPDF_PATH', '')
+    WKHTMLTOIMAGE_PATH = environ.get('WKHTMLTOIMAGE_PATH', '')
 
     # Behaviour config
     MAX_UPLOAD_SIZE_MB = 1024
@@ -20,7 +21,6 @@ class Config:
     DATABASE_DEBUG = False
     MAIL_DEBUG = False
     FLASK_DEBUG = False
-    PDFKIT_DEBUG = False
 
     # Mail
     MAIL_SERVER = 'smtp.googlemail.com'
