@@ -226,7 +226,7 @@ def _get_posts_data(zip_file, folders):
 
     for path in file_paths:
         if path == 'posts/no-data.txt':
-            break;
+            break
 
         with zip_file.open(path) as f:
             jdata = json.loads(f.read())
@@ -236,6 +236,8 @@ def _get_posts_data(zip_file, folders):
                 jdata = [jdata]
 
             for i in jdata:
+                if 'timestamp' not in i or 'title' not in i:
+                    continue
                 tdata['time'].append(i['timestamp'])
                 tdata['title'].append(i.get('title'))
             temp_table = pd.DataFrame(tdata)

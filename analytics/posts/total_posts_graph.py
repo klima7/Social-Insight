@@ -3,6 +3,7 @@ from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
+
 # Funkcja tworząca wykres skumulowany, wypełniając brakujące dni zerami.
 def get_cum_graph(time_events):
     a = time_events.groupby([time_events.dt.year, time_events.dt.dayofyear])
@@ -12,7 +13,7 @@ def get_cum_graph(time_events):
     days_not_present = t.isin(time_events.dt.date)
     days_not_present = ~days_not_present
     days_not_present
-    # t[days_with_frens]
+
     temp = pd.DataFrame(
         {
             'time': time_events,
@@ -36,8 +37,6 @@ def get_cum_graph(time_events):
     time_index = []
 
     temp.time = pd.to_datetime(temp.time)
-
-    # grouped = temp.groupby(temp.time.dt.year)
 
     # Grupowanie przedziałów zliczania liczby znajomych, w zależności od tego jak stare jest konto
     if timespan.days > 360 * 10:
@@ -68,7 +67,8 @@ def get_cum_graph(time_events):
 
     return b, time_index
 
-@graph(_l('Number of posts'))
+
+@graph(_l('Cumulated number of posts'))
 def device_usage(data):
     post_data = data['posts']
     vals, index = get_cum_graph(post_data['time'])
