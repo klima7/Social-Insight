@@ -25,10 +25,6 @@ def is_pandas_table(obj):
     return isinstance(obj, pandas.core.frame.DataFrame)
 
 
-def translate_pandas_table(table):
-    return table.rename(columns=str)
-
-
 def is_dark_mode():
     return session.get('dark_mode', False)
 

@@ -11,28 +11,7 @@
         <td style="width: 50px;"></td>
       </tr>
     </table>
-    {{ render_sth(graph.data) }}
+    <img src="{{render_chart_png_inline(graph.data)|safe}}" width="800"/>
   </div>
 </div>
-{% endmacro -%}
-
-
-{% macro render_sth(sth) -%}
-  {% if is_pygal_chart(sth) %}
-    {{ render_pygal_chart(sth) }}
-  {% elif is_pandas_table(sth) %}
-    {{ render_pandas_table(sth) }}
-  {% else %}
-    <p>{{ _("Unknown type of data to render") }}</p>
-  {% endif %}
-{% endmacro -%}
-
-
-{% macro render_pygal_chart(chart) -%}
-  <img src="{{render_graph_png_inline(chart)|safe}}" width="{{chart.config.width}}" height="{{chart.config.height}}"/>
-{% endmacro -%}
-
-
-{% macro render_pandas_table(table) -%}
-  {{ translate_pandas_table(table).to_html(index=False, classes='data-table')|safe }}
 {% endmacro -%}

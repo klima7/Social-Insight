@@ -29,6 +29,10 @@ i następne dodanie do zmiennej środowiskowej path ścieżki do podkatalogu dll
 - `WKHTMLTOPDF_PATH` - Ścieśka to pliku wykonywalnego wkhtmltopdf (jej ustawienie jest konieczne dla Windows)
 - `WKHTMLTOIMAGE_PATH`- Ścieśka to pliku wykonywalnego wkhtmltoimage (jej ustawienie jest konieczne dla Windows)
 
+## Bugi
+
+- W linuxie konwersja wykresów z svg do png na których są emotkony powoduje błąd. Wyświetlany jest wtedy komunikat o błędzie.
+
 ## Autorzy
 - Radosław Pluta
 - Łukasz Klimkiewicz

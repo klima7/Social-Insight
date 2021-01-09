@@ -57,7 +57,7 @@
 
 
 {% macro render_pandas_table(table) -%}
-  {{ translate_pandas_table(table).to_html(index=False, classes='table table-striped table-bordered data-table')|safe }}
+  {{ table.to_html(index=False, classes='table table-striped table-bordered data-table')|safe }}
 {% endmacro -%}
 
 

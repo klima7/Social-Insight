@@ -11,7 +11,7 @@ from config import config
 from db import *
 from frontend.common import display_errors_with_flash
 from frontend.mail import send_email
-from frontend.render import render_container_pdf
+from frontend.render import render_pdf
 from . import main
 from .forms import RenamePackForm, RenameCollationForm, ContactForm
 import frontend.render as render
@@ -134,7 +134,7 @@ def something2pdf(container):
     directory = tempfile.mkdtemp()
     name = f'{container.name} - {style}.pdf'
     path = os.path.join(directory, name)
-    render_container_pdf(container, path, style)
+    render_pdf(container, path, style)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 
@@ -248,7 +248,7 @@ def download_graph_png(id):
     directory = tempfile.mkdtemp()
     name = graph.get_name() + ".png"
     path = os.path.join(directory, name)
-    graph.render_png(path)
+    render.render_chart_png(graph.data, path)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 

@@ -3,7 +3,7 @@ import tempfile
 import base64
 import pygal
 import pandas as pd
-import zipfile
+import shutil
 import frontend.common as common
 
 import flask
@@ -13,16 +13,7 @@ import pdfkit
 from config import config
 
 
-def render_graph_png_inline(graph):
-    factor = 1
-    scale_graph(graph, factor)
-
-    path = os.path.join(tempfile.mkdtemp(), 'graph.png')
-    graph.render_to_png(path)
-    encoded = base64.b64encode(open(path, "rb").read())
-
-    scale_graph(graph, 1/factor)
-    return "data:image/png;base64," + encoded.decode()
+SCALE = 2
 
 
 def scale_graph(graph, factor):
@@ -38,7 +29,45 @@ def scale_graph(graph, factor):
     graph.config.style.no_data_font_size *= factor
 
 
-def render_container_pdf(container, path, style):
+def render_graph_png(graph, path, scale=1):
+    scale_graph(graph, scale)
+    graph.render_to_png(path)
+    scale_graph(graph, 1/scale)
+
+
+def render_table_png(df, path):
+    html = flask.render_template('helper/table.html', table=df)
+    css = 'frontend/static/css/pdf/print.css'
+    configuration = imgkit.config(wkhtmltoimage=config.WKHTMLTOIMAGE_PATH)
+    options = {
+        'format': 'png',
+        'width': 600,
+        'encoding': "UTF-8",
+        'quiet': ''
+    }
+    imgkit.from_string(html, path, options=options, css=[css], config=configuration)
+
+
+def render_chart_png(data, path):
+    try:
+        if isinstance(data, pygal.graph.graph.Graph):
+            render_graph_png(data, path, scale=SCALE)
+        elif isinstance(data, pd.core.frame.DataFrame):
+            render_table_png(data, path)
+        else:
+            raise Exception()
+    except:
+        shutil.copyfile('frontend/static/images/emoji_error.png', path)
+
+
+def render_chart_png_inline(data):
+    path = os.path.join(tempfile.mkdtemp(), 'graph.png')
+    render_chart_png(data, path)
+    encoded = base64.b64encode(open(path, "rb").read())
+    return "data:image/png;base64," + encoded.decode()
+
+
+def render_pdf(container, path, style):
     html = flask.render_template('pdf.html', container=container)
     css = f'frontend/static/css/pdf/{style}.css'
     configuration = pdfkit.configuration(wkhtmltopdf=config.WKHTMLTOPDF_PATH)
@@ -60,33 +89,6 @@ def render_container_pdf(container, path, style):
     file.close()
 
 
-def render_graph_png(graph, path, scale=1):
-    scale_graph(graph, scale)
-    graph.render_to_png(path)
-    scale_graph(graph, 1/scale)
-
-
-def render_table_png(df, path):
-    html = flask.render_template('helper/table.html', table=df)
-    css = 'frontend/static/css/pdf/print.css'
-    configuration = imgkit.config(wkhtmltoimage=config.WKHTMLTOIMAGE_PATH)
-    options = {
-        'format': 'png',
-        'width': 600,
-        'encoding': "UTF-8",
-        'quiet': ''
-    }
-
-    imgkit.from_string(html, path, options=options, css=[css], config=configuration)
-
-
-def render_chart_png(chart, path):
-    if isinstance(chart.data, pygal.graph.graph.Graph):
-        render_graph_png(chart.data, path, scale=1)
-    elif isinstance(chart.data, pd.core.frame.DataFrame):
-        render_table_png(chart.data, path)
-
-
 def render_zip(container, path, categories=False):
     directory = tempfile.mkdtemp()
 
@@ -100,7 +102,7 @@ def render_zip(container, path, categories=False):
         else:
             png_path = os.path.join(directory, png_name)
 
-        graph.render_png(png_path)
+        render_chart_png(graph.data, png_path)
 
     common.zipdir(directory, path)
 

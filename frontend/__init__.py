@@ -5,7 +5,6 @@ from db import *
 from flask import Flask, request, session
 from flask_login import LoginManager
 from flask_babel import Babel, get_locale
-from lorem_text import lorem
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
@@ -52,9 +51,9 @@ def create_app():
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    app.jinja_env.globals.update(cache_suffix=comm.cache_suffix, lorem=lorem, user=comm.get_current_user, is_dark_mode=comm.is_dark_mode,
-                                 is_pygal_chart=comm.is_pygal_chart, is_pandas_table=comm.is_pandas_table, translate_pandas_table=comm.translate_pandas_table,
-                                 get_locale=get_locale, Global=Global, render_graph_png_inline=render.render_graph_png_inline)
+    app.jinja_env.globals.update(cache_suffix=comm.cache_suffix, user=comm.get_current_user, is_dark_mode=comm.is_dark_mode,
+                                 is_pygal_chart=comm.is_pygal_chart, is_pandas_table=comm.is_pandas_table,
+                                 get_locale=get_locale, Global=Global, render_chart_png_inline=render.render_chart_png_inline)
 
     return app
 
