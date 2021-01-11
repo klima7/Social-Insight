@@ -1,16 +1,21 @@
-# Uwaga: Gałęzie Frontend i Backend usunięte!!!!
-Nie było i nich większej korzyści, a tylko więcej zachodu z mergami, pushami i pullami.
-Od teraz wszystko robimy na masterze.
-
-
 # Social Insight 
 
 Aplikacja dostępna pod adresem [http://social-insight.tk:8081](http://social-insight.tk:8081)
+
+## Domyślni użytkownicy
+W aplikacji zawsze istnieją dwaj użytkownicy:
+- **Admin**
+    - Email: social.insight.noreply@gmail.com
+    - Hasło: password
+- **Zwykły użytkownik** - do testów
+    - Email: user@test.com
+    - Hasło: password
 
 ## Podstawowe operacje
 - Instalowanie zależności: `pip install -r requirements.txt`
 - Kompilacja tłumaczeń: `flask translate compile`
 - Uruchamianie: `flask run`
+- Wgrywanie przykładowego pliku `flask example <nazwa>`
 - Czyszczenie bazy: `flask clean`
 
 ## Zewnętrzne zależności
