@@ -34,6 +34,10 @@ def emoji_ranking(data):
                 all_emojis[j] += 1
             else:
                 all_emojis[j] = 1
+
+    if len(all_emojis) == 0:
+        return None
+        
     emoji_v = []
     emoji_l = []
 

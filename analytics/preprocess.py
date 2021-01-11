@@ -286,36 +286,27 @@ def _get_comments_data(zip_file, folders):
     return comment_data
 
 def _get_likes_data(zip_file, folders):
-    like_table = None
+    like_table = pd.DataFrame({'time': [], 'reaction': []})
 
-    # Likes on posts
-    with zip_file.open('likes_and_reactions/posts_and_comments.json') as f:
-        jdata = json.loads(f.read())
-        
-        likes = []
-        times = []
-        
-        for i in jdata['reactions']:
-            times.append(i['timestamp'])
-            likes.append(i['data'][0]['reaction']['reaction'])
-        
-        like_table = pd.DataFrame({'time': times, 'type': likes})
-        like_table.time = pd.to_datetime(like_table.time, unit='s')
-    
-    # Likes on pages
-    with zip_file.open('likes_and_reactions/pages.json') as f:
-        jdata = json.loads(f.read())
-        
-        likes = []
-        times = []
-        
-        for i in jdata['page_likes']:
-            times.append(i['timestamp'])
-            likes.append("LIKE")
-        
-        # Tymczasowa tabela, żeby zamienić czas na datę
-        temp_table = pd.DataFrame({'time': times, 'type': likes})
-        temp_table.time = pd.to_datetime(temp_table.time, unit='s')
-        like_table = pd.concat([like_table, temp_table])
+    paths = ['likes_and_reactions/posts_and_comments.json', 'likes_and_reactions/pages.json']
+    for path in paths:
+        try:
+            # Likes on posts
+            with zip_file.open('likes_and_reactions/posts_and_comments.json') as f:
+                jdata = json.loads(f.read())
+
+                likes = []
+                times = []
+
+                for i in jdata['reactions']:
+                    times.append(i['timestamp'])
+                    likes.append(i['data'][0]['reaction']['reaction'])
+
+                temp_table = pd.DataFrame({'time': times, 'type': likes})
+                temp_table.time = pd.to_datetime(temp_table.time, unit='s')
+                like_table = pd.concat([like_table, temp_table])
+        except KeyError as e:
+            pass
+            # print("No likes or reactions")
 
     return like_table

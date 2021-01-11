@@ -51,7 +51,7 @@ def friends_cumsum(data):
     # cum sumowanie
     b = b.cumsum()
 
-    chart = pygal.Line(style=style, x_label_rotation=-45, fill=True)
+    chart = pygal.Line(style=style, x_label_rotation=-45, fill=True, show_legend=False)
     time_index = list(map(lambda a: "{}/{}/{}".format(a.year, a.month, a.day), time_index))
 
     if len(b) > len(time_index):
