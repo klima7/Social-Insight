@@ -8,6 +8,7 @@ from flask_babel import Babel, get_locale
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
+import demoji
 
 import frontend.commands as comm
 import frontend.render as render
@@ -54,6 +55,9 @@ def create_app():
     app.jinja_env.globals.update(cache_suffix=comm.cache_suffix, user=comm.get_current_user, is_dark_mode=comm.is_dark_mode,
                                  is_pygal_chart=comm.is_pygal_chart, is_pandas_table=comm.is_pandas_table,
                                  get_locale=get_locale, Global=Global, render_chart_png_inline=render.render_chart_png_inline)
+
+    if demoji.last_downloaded_timestamp() is None:
+        demoji.download_codes()
 
     return app
 

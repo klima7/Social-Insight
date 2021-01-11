@@ -9,6 +9,7 @@ import frontend.common as common
 import flask
 import imgkit
 import pdfkit
+import demoji
 
 from config import config
 
@@ -29,8 +30,20 @@ def scale_graph(graph, factor):
     graph.config.style.no_data_font_size *= factor
 
 
+def demojify_graph(graph):
+    if not isinstance(graph, pygal.Bar):
+        return
+
+    if hasattr(graph, 'x_labels'):
+        graph.x_labels = map(demoji.replace, graph.x_labels)
+
+    if hasattr(graph, 'y_labels'):
+        graph.y_labels = map(demoji.replace, graph.y_labels)
+
+
 def render_graph_png(graph, path, scale=1):
     scale_graph(graph, scale)
+    demojify_graph(graph)
     graph.render_to_png(path)
     scale_graph(graph, 1/scale)
 
@@ -55,8 +68,8 @@ def render_chart_png(data, path):
         elif isinstance(data, pd.core.frame.DataFrame):
             render_table_png(data, path)
         else:
-            raise Exception()
-    except:
+            raise MemoryError()
+    except MemoryError:
         shutil.copyfile('frontend/static/images/emoji_error.png', path)
 
 
