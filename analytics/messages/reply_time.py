@@ -36,7 +36,7 @@ def reply_time(data):
 
     # Odfiltrowanie użytkowników o zbyt długich nazwach
     reply_times = reply_times.loc[reply_times.user.str.len() <= 25]
-    reply_times = reply_times.head(MAX_PEOPLE)
+    reply_times = reply_times.tail(MAX_PEOPLE)
 
     height = len(reply_times.user)*25
     gr = pygal.HorizontalBar(style=style, height=height)

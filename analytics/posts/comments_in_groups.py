@@ -16,7 +16,7 @@ def shorten_title(s):
 def coments_in_group(data):
     comment_data = data['comments']
     comm_by_group = comment_data.groupby(comment_data.group).time.count().dropna()
-    comm_by_group = comm_by_group.sort_values().head(MAX_GROUP_COUNT)
+    comm_by_group = comm_by_group.sort_values().tail(MAX_GROUP_COUNT)
 
     group_chart = pygal.HorizontalBar(style=style, show_legend=False)
     group_chart.x_labels = list(map(shorten_title, comm_by_group.index))

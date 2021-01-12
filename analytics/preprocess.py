@@ -18,6 +18,7 @@ def preprocess(zip_file):
     posts_data = _get_posts_data(zip_file, folders)
     comments_data = _get_comments_data(zip_file, folders)
     likes_data = _get_likes_data(zip_file, folders)
+    notifications_data = _get_notifications(zip_file, folders)
 
     return {
         'messages': messages,
@@ -28,7 +29,8 @@ def preprocess(zip_file):
         'off_facebook_activity': off_facebook_activity,
         'posts': posts_data,
         'comments': comments_data,
-        'likes': likes_data
+        'likes': likes_data,
+        'notifications': notifications_data
     }
 
 
@@ -309,3 +311,29 @@ def _get_likes_data(zip_file, folders):
             # print("No likes or reactions")
 
     return like_table
+
+
+def _get_notifications(zip_file, folders):
+    notify_table = None # pd.DataFrame({'time': [], 'url_type': []})
+    try:
+        with zip_file.open('about_you/notifications.json') as f:
+            jdata = json.loads(f.read())
+        
+            type_reg = re.compile(r'(https://www.facebook.com/)(.+?)([/.])(.*)')    
+            
+            times = []
+            types = []
+            
+            for i in jdata['notifications']:
+                times.append(i['timestamp'])
+                try:
+                    types.append(re.findall(type_reg, i['href'])[0][1])
+                except:
+                    types.append(None)
+            notify_table = pd.DataFrame({'time': times, 'url_type': types})
+            notify_table.time = pd.to_datetime(notify_table.time, unit='s')
+    except Exception as e:
+        pass
+        # print("Rollercoaster", e)
+
+    return notify_table
