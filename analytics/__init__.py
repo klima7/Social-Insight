@@ -55,7 +55,6 @@ def import_graphs():
 
 
 def analyse(pack_id, file_path, delete=True):
-    # Pobranie ścieżki do pliku
 
     with zp.ZipFile(file_path) as zip:
         pdata = preprocess(zip)

@@ -197,8 +197,7 @@ def graphs(id):
     graph = db_session.query(Graph).filter_by(id=id).first()
     if graph is None:
         abort(404)
-    if not graph.public and not graph.pack.user == current_user:
-        abort(403)
+    graph.public or get_pack(graph.pack.id)
     return render_template('graph.html', graph=graph)
 
 

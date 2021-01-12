@@ -10,21 +10,25 @@
   {% if graph.data is not none %}
   {{ render_sth(graph.data) }}
   <div class="card-body mt-0 pt-0">
+    {% if showButton %}
+      <div class="graph-button"><a href="{{ url_for('main.graphs', id=graph.id) }}">{{ _("Show") }}</a></div>
+    {% endif %}
     {% if graph.pack.user == user() %}
-      {% if showButton %}
-        <div class="graph-button"><a href="{{ url_for('main.graphs', id=graph.id) }}">{{ _("Show") }}</a></div>
-      {% endif %}
-      <div class="graph-button"><a data-toggle="collapse" href="#graph-{{graph.id}}-collapse">{{ _("Add") }}</a></div>
-      <div class="graph-button"><a href="{{ url_for('main.download_graph_png', id=graph.id) }}">{{ _("Download") }}</a></div>
-      <div class="graph-button {{ '' if graph.public else 'disable' }}" id="graph-{{graph.id}}-public"><a onclick="toggleGraphPublic({{graph.id}})">{{ _("Public") }}</a></div>
-      <div id="graph-{{graph.id}}-share" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a data-sharer="facebook" data-hashtag="Social-Insight" data-url="{{ url_for('main.graphs', id=graph.id, _external=True) }}">{{ _("Share") }}</a></div>
-      <div id="graph-{{graph.id}}-copy" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a onclick="copyToClipboard({{graph.id}})">{{ _("Copy link") }}</a></div>
+    <div class="graph-button"><a data-toggle="collapse" href="#graph-{{graph.id}}-collapse">{{ _("Add") }}</a></div>
+    {% endif %}
+    <div class="graph-button"><a href="{{ url_for('main.download_graph_png', id=graph.id) }}">{{ _("Download") }}</a></div>
+    {% if graph.pack.user == user() %}
+    <div class="graph-button {{ '' if graph.public else 'disable' }}" id="graph-{{graph.id}}-public"><a onclick="toggleGraphPublic({{graph.id}})">{{ _("Public") }}</a></div>
+    <div id="graph-{{graph.id}}-share" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a data-sharer="facebook" data-hashtag="Social-Insight" data-url="{{ url_for('main.graphs', id=graph.id, _external=True) }}">{{ _("Share") }}</a></div>
+    <div id="graph-{{graph.id}}-copy" class="graph-button disable-link {{ '' if graph.public else 'd-none' }}"><a onclick="copyToClipboard({{graph.id}})">{{ _("Copy link") }}</a></div>
+    {% endif %}
 
-      <div class="collapse" id="graph-{{graph.id}}-collapse">
-        {% for col in user().collations %}
-        <div class="graph-button {{ '' if col.contains(graph) else 'disable' }}" id="graph-{{graph.id}}-{{col.id}}"><a onclick="toggleCollation({{graph.id}}, {{col.id}})">{{ col.name }}</a></div>
-        {% endfor %}
-      </div>
+    {% if graph.pack.user == user() %}
+    <div class="collapse" id="graph-{{graph.id}}-collapse">
+      {% for col in user().collations %}
+      <div class="graph-button {{ '' if col.contains(graph) else 'disable' }}" id="graph-{{graph.id}}-{{col.id}}"><a onclick="toggleCollation({{graph.id}}, {{col.id}})">{{ col.name }}</a></div>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 
