@@ -251,6 +251,19 @@ def download_graph_png(id):
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 
+@main.route('/graphs/<id>/download/svg')
+def download_graph_svg(id):
+    graph = db_session.query(Graph).filter_by(id=id).first()
+    if graph is None:
+        abort(404)
+
+    directory = tempfile.mkdtemp()
+    name = graph.get_name() + ".svg"
+    path = os.path.join(directory, name)
+    render.render_chart_svg(graph, path)
+    return send_from_directory(directory=directory, filename=name, as_attachment=True)
+
+
 def download_charts_zip(container, categories):
     directory = tempfile.mkdtemp()
     name = container.name + ".zip"

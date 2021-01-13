@@ -75,8 +75,6 @@ def render_chart_png(chart, path, title=True):
         else:
             raise MemoryError()
     except MemoryError:
-        import traceback
-        traceback.print_exc()
         shutil.copyfile('frontend/static/images/emoji_error.png', path)
 
 
@@ -127,3 +125,18 @@ def render_zip(container, path, categories=False):
     common.zipdir(directory, path)
 
 
+def render_chart_svg(chart, path, title=True):
+    if isinstance(chart.data, pygal.graph.graph.Graph):
+        render_graph_svg(chart, path, title=title)
+    else:
+        raise TypeError("Unable to generate svg from this type of data")
+
+
+def render_graph_svg(chart, path, title=True):
+    graph = chart.data
+    if title:
+        graph.title = chart.name
+
+    # demojify_graph(graph)
+    graph.render_to_file(path)
+    graph.title = None
