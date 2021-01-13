@@ -1,0 +1,2 @@
+{%- if title %}<p class="png-table-title">{{ chart.name }}</p>{%- endif %}
+{{ chart.data.to_html(index=False, classes='data-table')|safe }}

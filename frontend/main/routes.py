@@ -247,7 +247,7 @@ def download_graph_png(id):
     directory = tempfile.mkdtemp()
     name = graph.get_name() + ".png"
     path = os.path.join(directory, name)
-    render.render_chart_png(graph.data, path)
+    render.render_chart_png(graph, path)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 

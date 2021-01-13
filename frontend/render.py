@@ -41,16 +41,21 @@ def demojify_graph(graph):
         graph.y_labels = [demoji.replace(y) for y in graph.y_labels if type(y) == str]
 
 
-def render_graph_png(graph, path, scale=1):
+def render_graph_png(chart, path, scale=1, title=True):
+    graph = chart.data
+    if title:
+        graph.title = chart.name
+
     scale_graph(graph, scale)
     demojify_graph(graph)
     graph.render_to_png(path)
-    scale_graph(graph, 1/scale)
+    scale_graph(graph, 1 / scale)
+    graph.title = None
 
 
-def render_table_png(df, path):
-    html = flask.render_template('helper/table.html', table=df)
-    css = 'frontend/static/css/pdf/print.css'
+def render_table_png(chart, path, title=True):
+    html = flask.render_template('parts/_table.html', chart=chart, title=title)
+    css = 'frontend/static/css/pdf_print.css'
     configuration = imgkit.config(wkhtmltoimage=config.WKHTMLTOIMAGE_PATH)
     options = {
         'format': 'png',
@@ -61,28 +66,30 @@ def render_table_png(df, path):
     imgkit.from_string(html, path, options=options, css=[css], config=configuration)
 
 
-def render_chart_png(data, path):
+def render_chart_png(chart, path, title=True):
     try:
-        if isinstance(data, pygal.graph.graph.Graph):
-            render_graph_png(data, path, scale=SCALE)
-        elif isinstance(data, pd.core.frame.DataFrame):
-            render_table_png(data, path)
+        if isinstance(chart.data, pygal.graph.graph.Graph):
+            render_graph_png(chart, path, scale=SCALE, title=title)
+        elif isinstance(chart.data, pd.core.frame.DataFrame):
+            render_table_png(chart, path, title=title)
         else:
             raise MemoryError()
     except MemoryError:
+        import traceback
+        traceback.print_exc()
         shutil.copyfile('frontend/static/images/emoji_error.png', path)
 
 
-def render_chart_png_inline(data):
+def render_chart_png_inline(data, title=True):
     path = os.path.join(tempfile.mkdtemp(), 'graph.png')
-    render_chart_png(data, path)
+    render_chart_png(data, path, title=title)
     encoded = base64.b64encode(open(path, "rb").read())
     return "data:image/png;base64," + encoded.decode()
 
 
 def render_pdf(container, path, style):
     html = flask.render_template('pdf.html', container=container)
-    css = f'frontend/static/css/pdf/{style}.css'
+    css = f'frontend/static/css/pdf_{style}.css'
     configuration = pdfkit.configuration(wkhtmltopdf=config.WKHTMLTOPDF_PATH)
     options = {
         'page-size': 'A4',
@@ -115,7 +122,7 @@ def render_zip(container, path, categories=False):
         else:
             png_path = os.path.join(directory, png_name)
 
-        render_chart_png(graph.data, png_path)
+        render_chart_png(graph, png_path)
 
     common.zipdir(directory, path)
 
