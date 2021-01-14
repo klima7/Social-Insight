@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-08 18:07+0100\n"
+"POT-Creation-Date: 2021-01-14 21:04+0100\n"
 "PO-Revision-Date: 2020-12-20 12:44+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -83,6 +83,34 @@ msgstr ""
 msgid "Reactions given to you"
 msgstr ""
 
+#: analytics/miscellaneous/likes_by_hour.py:6
+msgid "Percent of likes by hour"
+msgstr ""
+
+#: analytics/miscellaneous/likes_by_year.py:6
+msgid "Number of likes by year"
+msgstr ""
+
+#: analytics/miscellaneous/notification_type_pie.py:6
+msgid "Number of each notification type"
+msgstr ""
+
+#: analytics/miscellaneous/notifications_by_day.py:6
+msgid "Percent of notifications by day"
+msgstr ""
+
+#: analytics/miscellaneous/notifications_by_hour.py:6
+msgid "Percent of notifications by hour"
+msgstr ""
+
+#: analytics/miscellaneous/reaction_type_pie.py:7
+msgid "Number of reactions"
+msgstr ""
+
+#: analytics/miscellaneous/total_likes.py:7
+msgid "Cumulated number of likes"
+msgstr ""
+
 #: analytics/other/browser.py:6
 msgid "Browser"
 msgstr ""
@@ -111,12 +139,28 @@ msgstr ""
 msgid "Usage statistics"
 msgstr ""
 
+#: analytics/posts/comments_by_hour.py:6
+msgid "percent of comments by hour"
+msgstr ""
+
+#: analytics/posts/comments_by_year.py:6
+msgid "Number of comments by year"
+msgstr ""
+
+#: analytics/posts/comments_in_groups.py:15
+msgid "Comments in each group"
+msgstr ""
+
 #: analytics/posts/posts_by_hour.py:6
 msgid "percent of posts by hour"
 msgstr ""
 
 #: analytics/posts/posts_by_year.py:6
 msgid "Number of posts by year"
+msgstr ""
+
+#: analytics/posts/total_comments.py:7
+msgid "Cumulated number of comments"
 msgstr ""
 
 #: analytics/posts/total_posts_graph.py:71
@@ -344,7 +388,7 @@ msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:88 frontend/main/routes.py:157
+#: frontend/main/routes.py:88 frontend/main/routes.py:136
 #: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
@@ -362,24 +406,24 @@ msgstr "Nowe zestawienie zostało stworzone"
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:157
+#: frontend/main/routes.py:136
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestaweni?"
 
-#: frontend/main/routes.py:166
+#: frontend/main/routes.py:145
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:177
+#: frontend/main/routes.py:156
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:214
+#: frontend/main/routes.py:192
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:215
+#: frontend/main/routes.py:193
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
@@ -510,27 +554,27 @@ msgid "Collation"
 msgstr "Zestawienie"
 
 #: frontend/templates/collation.html:19
-#: frontend/templates/parts/_categories.html:16
+#: frontend/templates/parts/_categories.html:17
 msgid "rename"
 msgstr "zmień nazwę"
 
 #: frontend/templates/collation.html:20
-#: frontend/templates/parts/_categories.html:17
+#: frontend/templates/parts/_categories.html:18
 msgid "remove"
 msgstr "usuń"
 
 #: frontend/templates/collation.html:21
-#: frontend/templates/parts/_categories.html:18
+#: frontend/templates/parts/_categories.html:20
 msgid "download pdf"
 msgstr "pobierz pdf"
 
 #: frontend/templates/collation.html:22
-#: frontend/templates/parts/_categories.html:19
+#: frontend/templates/parts/_categories.html:21
 msgid "download pdf to print"
 msgstr "pobierz pdf do druku"
 
 #: frontend/templates/collation.html:23
-#: frontend/templates/parts/_categories.html:20
+#: frontend/templates/parts/_categories.html:22
 msgid "Download zip"
 msgstr "Pobierz zip"
 
@@ -785,7 +829,7 @@ msgstr ""
 msgid "Like us on facebook"
 msgstr "Polub nas na facebooku"
 
-#: frontend/templates/waiting.html:3
+#: frontend/templates/waiting.html:3 frontend/templates/waiting_file.html:3
 msgid "Analysing"
 msgstr "Analizowanie"
 
@@ -797,7 +841,15 @@ msgstr "Proszę poczekaj chwilę"
 msgid "We are analysing you data"
 msgstr "Analizujemy twoje dane"
 
-#: frontend/templates/macros/render_browser.html:15
+#: frontend/templates/waiting_file.html:18
+msgid "We are generating requested file"
+msgstr "Generujemy żądany plik"
+
+#: frontend/templates/waiting_file.html:19
+msgid "Progress"
+msgstr "Postęp"
+
+#: frontend/templates/macros/render_browser.html:14
 msgid "Show"
 msgstr "Pokaż"
 
@@ -805,28 +857,31 @@ msgstr "Pokaż"
 msgid "Add"
 msgstr "Dodaj"
 
-#: frontend/templates/macros/render_browser.html:18
-msgid "Download"
-msgstr "Pobierz"
-
 #: frontend/templates/macros/render_browser.html:19
+msgid "PNG"
+msgstr ""
+
+#: frontend/templates/macros/render_browser.html:21
+msgid "SVG"
+msgstr ""
+
+#: frontend/templates/macros/render_browser.html:24
 msgid "Public"
 msgstr "Publiczny"
 
-#: frontend/templates/macros/render_browser.html:20
+#: frontend/templates/macros/render_browser.html:25
 msgid "Share"
 msgstr "Udostępnij"
 
-#: frontend/templates/macros/render_browser.html:21
+#: frontend/templates/macros/render_browser.html:26
 msgid "Copy link"
 msgstr "Kopiuj link"
 
-#: frontend/templates/macros/render_browser.html:34
+#: frontend/templates/macros/render_browser.html:41
 msgid "Sorry, error occured"
 msgstr "Przepraszamy, wystąpił błąd"
 
-#: frontend/templates/macros/render_browser.html:49
-#: frontend/templates/macros/render_pdf.html:26
+#: frontend/templates/macros/render_browser.html:56
 msgid "Unknown type of data to render"
 msgstr "Nierozpoznany typ danych do wyrenderowania"
 
@@ -834,23 +889,23 @@ msgstr "Nierozpoznany typ danych do wyrenderowania"
 msgid "Results"
 msgstr "Wyniki"
 
-#: frontend/templates/parts/_categories.html:31
+#: frontend/templates/parts/_categories.html:32
 msgid "messages"
 msgstr "wiadomości"
 
-#: frontend/templates/parts/_categories.html:40
+#: frontend/templates/parts/_categories.html:41
 msgid "posts"
 msgstr "posty"
 
-#: frontend/templates/parts/_categories.html:49
+#: frontend/templates/parts/_categories.html:50
 msgid "miscellaneous"
 msgstr "Różne"
 
-#: frontend/templates/parts/_categories.html:58
+#: frontend/templates/parts/_categories.html:59
 msgid "other"
 msgstr "Inne"
 
-#: frontend/templates/parts/_categories.html:72
+#: frontend/templates/parts/_categories.html:73
 #, python-format
 msgid ""
 "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
@@ -910,6 +965,10 @@ msgstr "Zmień nazwę zestawienia"
 msgid "Rename pack"
 msgstr "Zmień nazwę paczki"
 
+#: frontend/templates/scripts/waiting_file.js:14
+msgid "Here you are!"
+msgstr "Proszę bardzo!"
+
 #~ msgid "Please log in to access this page"
 #~ msgstr "Proszę się zalogować, aby wejść na tą stronę"
 
@@ -939,4 +998,10 @@ msgstr "Zmień nazwę paczki"
 
 #~ msgid "pdf to print"
 #~ msgstr "pdf do druku"
+
+#~ msgid "Download"
+#~ msgstr "Pobierz"
+
+#~ msgid "Progress: "
+#~ msgstr ""
 

@@ -4,12 +4,15 @@ import base64
 import pygal
 import pandas as pd
 import shutil
+from flask_babel import force_locale
 import frontend.common as common
 
 import flask
 import imgkit
 import pdfkit
 import demoji
+import app
+from db import *
 
 from config import config
 
@@ -54,7 +57,8 @@ def render_graph_png(chart, path, scale=1, title=True):
 
 
 def render_table_png(chart, path, title=True):
-    html = flask.render_template('parts/_table.html', chart=chart, title=title)
+    with app.app.app_context():
+        html = flask.render_template('parts/_table.html', chart=chart, title=title)
     css = 'frontend/static/css/pdf_print.css'
     configuration = imgkit.config(wkhtmltoimage=config.WKHTMLTOIMAGE_PATH)
     options = {
@@ -85,8 +89,19 @@ def render_chart_png_inline(data, title=True):
     return "data:image/png;base64," + encoded.decode()
 
 
-def render_pdf(container, path, style):
-    html = flask.render_template('pdf.html', container=container)
+def render_pdf(container, path, file, lang, style):
+
+    count = len(container.graphs) if isinstance(container, Collation) else container.graphs.count()
+
+    def update_progress(nr):
+        file.progress = round((nr) / count * 100)
+        db_session.add(file)
+        db_session.commit()
+
+    with app.app.app_context():
+        with force_locale(lang):
+            html = flask.render_template('pdf.html', container=container, update_progress=update_progress)
+
     css = f'frontend/static/css/pdf_{style}.css'
     configuration = pdfkit.configuration(wkhtmltopdf=config.WKHTMLTOPDF_PATH)
     options = {
@@ -102,15 +117,21 @@ def render_pdf(container, path, style):
 
     pdf_data = pdfkit.from_string(html, False, options=options, css=[css], configuration=configuration)
 
-    file = open(path, 'wb')
-    file.write(pdf_data)
-    file.close()
+    pdf_file = open(path, 'wb')
+    pdf_file.write(pdf_data)
+    pdf_file.close()
+
+    file.ready = True
+    db_session.add(file)
+    db_session.commit()
 
 
-def render_zip(container, path, categories=False):
+def render_zip(container, path, file, categories=False):
     directory = tempfile.mkdtemp()
 
-    for graph in container.graphs:
+    count = len(container.graphs) if isinstance(container, Collation) else container.graphs.count()
+
+    for nr, graph in enumerate(container.graphs):
         png_name = str(graph.get_name()) + ".png"
         if categories:
             category_dir = os.path.join(directory, graph.category)
@@ -122,7 +143,15 @@ def render_zip(container, path, categories=False):
 
         render_chart_png(graph, png_path)
 
+        file.progress = round((nr+1) / count * 100)
+        db_session.add(file)
+        db_session.commit()
+
     common.zipdir(directory, path)
+
+    file.ready = True
+    db_session.add(file)
+    db_session.commit()
 
 
 def render_chart_svg(chart, path, title=True):

@@ -92,7 +92,7 @@ class Pack(_Base):
     STATUS_FAILURE = 'failure'
 
     def __repr__(self):
-        return f"<Pack(id={self.id}, userid='{self.userid}' done={self.done})>"
+        return f"<Pack(id={self.id}, userid='{self.userid}'"
 
 
 collation_entries = Table('collation_entries', _Base.metadata,
@@ -183,5 +183,14 @@ class Message(_Base):
     content = Column(String)
     date = Column(DateTime(), default=datetime.utcnow)
     language = Column(String)
+
+
+class File(_Base):
+    __tablename__ = 'files'
+
+    id = Column(Integer, primary_key=True)
+    path = Column(String)
+    progress = Column(Integer, default=0)
+    ready = Column(Boolean, default=False)
 
 

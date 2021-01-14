@@ -129,27 +129,6 @@ def collation(id):
     return render_template('collation.html', collation=collation, form=form)
 
 
-def something2pdf(container):
-    style = request.args.get('style', 'fancy')
-    directory = tempfile.mkdtemp()
-    name = f'{container.name} - {style}.pdf'
-    path = os.path.join(directory, name)
-    render_pdf(container, path, style)
-    return send_from_directory(directory=directory, filename=name, as_attachment=True)
-
-
-@main.route("/collations/<id>/pdf")
-def collation2pdf(id):
-    collation = get_collation(id)
-    return something2pdf(collation)
-
-
-@main.route("/packs/<id>/pdf")
-def pack2pdf(id):
-    pack = get_pack(id)
-    return something2pdf(pack)
-
-
 @main.route('/collations/<id>/remove/confirm')
 def remove_collation_confirm(id):
     get_collation(id)
@@ -264,25 +243,81 @@ def download_graph_svg(id):
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 
-def download_charts_zip(container, categories):
+def something2pdf(container):
+    style = request.args.get('style', 'fancy')
+    directory = tempfile.mkdtemp()
+    name = f'{container.name}.pdf'
+    path = os.path.join(directory, name)
+
+    file = File(path=path)
+    db_session.add(file)
+    db_session.commit()
+
+    session['fileid'] = file.id
+
+    thread = Thread(target=render.render_pdf, args=[container, path, file, str(get_locale()), style])
+    thread.start()
+
+
+@main.route("/collations/<id>/pdf")
+def collation2pdf(id):
+    collation = get_collation(id)
+    something2pdf(collation)
+    return redirect(url_for('main.file_waiting'))
+
+
+@main.route("/packs/<id>/pdf")
+def pack2pdf(id):
+    pack = get_pack(id)
+    something2pdf(pack)
+    return redirect(url_for('main.file_waiting'))
+
+
+def generate_charts_zip(container, categories):
     directory = tempfile.mkdtemp()
     name = container.name + ".zip"
     path = os.path.join(directory, name)
 
-    render.render_zip(container, path, categories=categories)
-    return send_from_directory(directory=directory, filename=name, as_attachment=True)
+    file = File(path=path)
+    db_session.add(file)
+    db_session.commit()
+
+    session['fileid'] = file.id
+
+    thread = Thread(target=render.render_zip, args=[container, path, file, categories])
+    thread.start()
 
 
 @main.route('/packs/<id>/download')
 def download_pack_zip(id):
     pack = get_pack(id)
-    return download_charts_zip(pack, True)
+    generate_charts_zip(pack, True)
+    return redirect(url_for('main.file_waiting'))
 
 
 @main.route('/collations/<id>/download')
 def download_collation_zip(id):
     collation = get_collation(id)
-    return download_charts_zip(collation, False)
+    generate_charts_zip(collation, False)
+    return redirect(url_for('main.file_waiting'))
+
+
+@main.route('/files/waiting')
+def file_waiting():
+    return render_template('waiting_file.html')
+
+
+@main.route('/files/download')
+def file_download():
+    fileid = session.get('fileid', None)
+    if fileid is None:
+        abort(404)
+    file = db_session.query(File).filter_by(id=fileid).first()
+    if file is None or not file.ready:
+        abort(404)
+
+    directory, name = os.path.split(file.path)
+    return send_from_directory(directory=directory, filename=name, as_attachment=True)
 
 
 

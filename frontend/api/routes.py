@@ -1,5 +1,7 @@
-from flask import session, render_template, request
+from flask import session, request
 from flask_login import current_user
+from sqlalchemy.exc import InvalidRequestError
+
 from . import api
 from db import *
 
@@ -82,3 +84,22 @@ def christmas_post():
     Global.set_christmas_event(status)
     return {"status": Global.get_christmas_event()}
 
+
+@api.route('/files/progress')
+def file_progress():
+    fileid = session.get('fileid', None)
+    while True:
+        try:
+            file = db_session.query(File).filter_by(id=fileid).first()
+            break
+        except InvalidRequestError:
+            pass
+
+    progress = 0
+    ready = False
+
+    if file is not None:
+        progress = file.progress
+        ready = file.ready
+
+    return {'progress': progress, 'ready': ready}
