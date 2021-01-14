@@ -19,7 +19,8 @@ def preprocess(zip_file):
     comments_data = _get_comments_data(zip_file, folders)
     likes_data = _get_likes_data(zip_file, folders)
     notifications_data = _get_notifications(zip_file, folders)
-
+    event_responses = _get_event_responses(zip_file, folders)
+    
     return {
         'messages': messages,
         'reactions': reactions,
@@ -30,7 +31,8 @@ def preprocess(zip_file):
         'posts': posts_data,
         'comments': comments_data,
         'likes': likes_data,
-        'notifications': notifications_data
+        'notifications': notifications_data,
+        'event_responses': event_responses
     }
 
 
@@ -337,3 +339,17 @@ def _get_notifications(zip_file, folders):
         # print("Rollercoaster", e)
 
     return notify_table
+
+def _get_event_responses(zip_file, folders):
+    events = None
+    try:
+        with zip_file.open('events/your_event_responses.json') as f:
+            jdata = json.loads(f.read())
+            events = {}
+            for ev_type in list(jdata['event_responses'].keys()):
+                events[ev_type] = len(jdata['event_responses'][ev_type])
+            
+    except Exception as e:
+        pass#u
+
+    return events
