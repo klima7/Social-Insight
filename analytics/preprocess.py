@@ -20,6 +20,7 @@ def preprocess(zip_file):
     likes_data = _get_likes_data(zip_file, folders)
     notifications_data = _get_notifications(zip_file, folders)
     event_responses = _get_event_responses(zip_file, folders)
+    search_history = _get_search_history(zip_file)
     
     return {
         'messages': messages,
@@ -32,8 +33,13 @@ def preprocess(zip_file):
         'comments': comments_data,
         'likes': likes_data,
         'notifications': notifications_data,
-        'event_responses': event_responses
+        'event_responses': event_responses,
+        'search_history': search_history
     }
+
+
+def fb_decode(text):
+    return text.encode('latin1').decode('utf8')
 
 
 def _aux_get_structure(zip_file):
@@ -253,6 +259,7 @@ def _get_posts_data(zip_file, folders):
 
     return post_data
 
+
 def _get_comments_data(zip_file, folders):
     file_paths = [i[1] for i in folders['comments']['__files']]
     comment_data = pd.DataFrame({'time': [], 'content': [], 'group': []})
@@ -287,6 +294,7 @@ def _get_comments_data(zip_file, folders):
             comment_data = pd.concat([comment_data, temp_table])
 
     return comment_data
+
 
 def _get_likes_data(zip_file, folders):
     like_table = pd.DataFrame({'time': [], 'reaction': []})
@@ -340,6 +348,7 @@ def _get_notifications(zip_file, folders):
 
     return notify_table
 
+
 def _get_event_responses(zip_file, folders):
     events = None
     try:
@@ -348,8 +357,22 @@ def _get_event_responses(zip_file, folders):
             events = {}
             for ev_type in list(jdata['event_responses'].keys()):
                 events[ev_type] = len(jdata['event_responses'][ev_type])
-            
+
     except Exception as e:
-        pass#u
+        pass
 
     return events
+
+
+def _get_search_history(zip_file):
+    with zip_file.open('search_history/your_search_history.json') as f:
+        jdata = json.loads(f.read())
+        messages = []
+        types = []
+        for search in list(jdata['searches']):
+            if 'data' in search:
+                messages.append(fb_decode(search['data'][0]['text']))
+                types.append(fb_decode(search['title']))
+    history = pd.DataFrame({'message': messages, 'type': types})
+    return history
+
