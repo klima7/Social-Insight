@@ -5,7 +5,7 @@ import pandas as pd
 
 
 @graph(_l('Messages sent by month'))
-def messages_sent_by_day_of_week(data): #
+def messages_sent_by_month(data): #
     messages = data['messages']
     messages_for_month = messages.time.dt.month.value_counts().sort_index()
     percent_for_month = messages_for_month / messages_for_month.sum() * 100
@@ -16,7 +16,7 @@ def messages_sent_by_day_of_week(data): #
     bar_chart = pygal.Bar(style=style, show_legend=False)
     bar_chart.add('', percent_for_month)
     bar_chart.x_labels = percent_for_month.index
-    bar_chart.y_title = 'Month number'
-    bar_chart.x_title = 'Percent of sent messages'
+    bar_chart.y_title = 'Percent of sent messages'
+    bar_chart.x_title = 'Month number'
 
     return bar_chart

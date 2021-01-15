@@ -29,7 +29,7 @@
     {% for graph in container.graphs %}
         {% if graph.data is not none %}
             {{ pdf.render(graph, loop.index) }}
-            {{ update_progress(loop.index) }}
+            <span style="display: none">{{- update_progress(loop.index) }}</span>
         {% endif %}
     {% endfor %}
 

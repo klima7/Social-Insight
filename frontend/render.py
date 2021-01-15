@@ -38,10 +38,10 @@ def demojify_graph(graph):
         return
 
     if hasattr(graph, 'x_labels'):
-        graph.x_labels = [demoji.replace(x) for x in graph.x_labels if type(x) == str]
+        graph.x_labels = [demoji.replace(str(x)) for x in graph.x_labels]
 
     if hasattr(graph, 'y_labels'):
-        graph.y_labels = [demoji.replace(y) for y in graph.y_labels if type(y) == str]
+        graph.y_labels = [demoji.replace(str(y)) for y in graph.y_labels]
 
 
 def render_graph_png(chart, path, scale=1, title=True):

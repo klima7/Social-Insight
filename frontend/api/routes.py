@@ -15,7 +15,12 @@ def _get_pack_status(packid):
 
 @api.route("/packs/<packid>/status")
 def get_pack_status(packid):
-    status = _get_pack_status(packid)
+    while True:
+        try:
+            status = _get_pack_status(packid)
+            break
+        except InvalidRequestError:
+            pass
     return {"status": status}
 
 
