@@ -21,6 +21,7 @@ def preprocess(zip_file):
     notifications_data = _get_notifications(zip_file, folders)
     event_responses = _get_event_responses(zip_file, folders)
     search_history = _get_search_history(zip_file)
+    topics = _get_your_topics(zip_file)
     
     return {
         'messages': messages,
@@ -34,7 +35,8 @@ def preprocess(zip_file):
         'likes': likes_data,
         'notifications': notifications_data,
         'event_responses': event_responses,
-        'search_history': search_history
+        'search_history': search_history,
+        'topics': topics
     }
 
 
@@ -375,4 +377,14 @@ def _get_search_history(zip_file):
                 types.append(fb_decode(search['title']))
     history = pd.DataFrame({'message': messages, 'type': types})
     return history
+
+
+def _get_your_topics(zip_file):
+    with zip_file.open('your_topics/your_topics.json') as f:
+        jdata = json.loads(f.read())
+        topics = []
+        for topic in list(jdata['inferred_topics']):
+            topics.append(fb_decode(topic))
+    topics = pd.DataFrame({'topic': topics})
+    return topics
 
