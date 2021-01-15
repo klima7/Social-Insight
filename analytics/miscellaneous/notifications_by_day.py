@@ -3,6 +3,7 @@ from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
+
 @graph(_l('Percent of notifications by day'))
 def notifications_by_day(data):
     notify_table = data['notifications']
@@ -18,7 +19,7 @@ def notifications_by_day(data):
 
     days_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-    pie_chart = pygal.Pie()
+    pie_chart = pygal.Pie(style=style)
     for day, count in zip(days_names, round(by_day, 2)):
         pie_chart.add(day, count)
 

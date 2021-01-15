@@ -20,7 +20,7 @@ def number_of_reactions(data):
     by_type = like_table.groupby(like_table.type).count().time
     indexes = [i + ' ' + name_to_e[i] for i in by_type.index]
 
-    chart = pygal.Pie()
+    chart = pygal.Pie(style=style)
     for i, t in zip(indexes, list(by_type)):
         chart.add(i, t)
 
