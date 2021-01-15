@@ -22,6 +22,7 @@ def preprocess(zip_file):
     event_responses = _get_event_responses(zip_file, folders)
     search_history = _get_search_history(zip_file)
     topics = _get_your_topics(zip_file)
+    following = _get_following_data(zip_file, folders)
     
     return {
         'messages': messages,
@@ -36,7 +37,8 @@ def preprocess(zip_file):
         'notifications': notifications_data,
         'event_responses': event_responses,
         'search_history': search_history,
-        'topics': topics
+        'topics': topics,
+        'following': following
     }
 
 
@@ -150,16 +152,33 @@ def _get_messages_and_reactions_table(zip_file, folders):
 def _get_friends_table(zip_file, folders):
     friends_file_name = folders['friends']['__files'][0][1]
 
-    with zip_file.open(friends_file_name) as f:
-        json_file = json.loads(f.read())
+    friends_table = None
 
-        names = []
-        dates = []
-        for i in json_file['friends']:
-            names.append(i['name'].encode('latin1').decode('utf8'))
-            dates.append(i['timestamp'])
-        friends_table = pd.DataFrame({'name': names, 'date_added': dates})
-        friends_table['date_added'] = pd.to_datetime(friends_table['date_added'], unit='s')
+    paths = [i[1] for i in folders['friends']['__files']]
+
+    for path in paths:
+        try:
+            with zip_file.open(path) as f:
+                jdata = json.loads(f.read())
+
+                names = []
+                times = []
+                types = []
+                list_name = list(jdata.keys())[0]
+                for i in jdata[list_name]:
+                    names.append(i['name'].encode('latin1').decode('utf8'))
+                    times.append(i['timestamp'])
+                    types.append(list_name)
+
+                temp_table = pd.DataFrame({'name': names, 'time': times, 'type': types})
+                temp_table.time = pd.to_datetime(temp_table.time, unit='s')
+
+                if friends_table is None:
+                    friends_table = temp_table
+                else:
+                    friends_table = pd.concat([friends_table, temp_table])
+        except:
+            pass
 
     return friends_table
 
@@ -367,24 +386,68 @@ def _get_event_responses(zip_file, folders):
 
 
 def _get_search_history(zip_file):
-    with zip_file.open('search_history/your_search_history.json') as f:
-        jdata = json.loads(f.read())
-        messages = []
-        types = []
-        for search in list(jdata['searches']):
-            if 'data' in search:
-                messages.append(fb_decode(search['data'][0]['text']))
-                types.append(fb_decode(search['title']))
-    history = pd.DataFrame({'message': messages, 'type': types})
-    return history
+    try:
+        with zip_file.open('search_history/your_search_history.json') as f:
+            jdata = json.loads(f.read())
+            messages = []
+            types = []
+            for search in list(jdata['searches']):
+                if 'data' in search:
+                    messages.append(fb_decode(search['data'][0]['text']))
+                    types.append(fb_decode(search['title']))
+        history = pd.DataFrame({'message': messages, 'type': types})
+        return history
+    except:
+        return None
 
 
 def _get_your_topics(zip_file):
-    with zip_file.open('your_topics/your_topics.json') as f:
-        jdata = json.loads(f.read())
-        topics = []
-        for topic in list(jdata['inferred_topics']):
-            topics.append(fb_decode(topic))
-    topics = pd.DataFrame({'topic': topics})
-    return topics
+    try:
+        with zip_file.open('your_topics/your_topics.json') as f:
+            jdata = json.loads(f.read())
+            topics = []
+            for topic in list(jdata['inferred_topics']):
+                topics.append(fb_decode(topic))
+        topics = pd.DataFrame({'topic': topics})
+        return topics
+        
+    except:
+        return None
 
+def _get_following_data(zip_file, folders):
+    follows = None
+
+    try:
+        with zip_file.open('following_and_followers/following.json') as f:
+            jdata = json.loads(f.read())
+            
+            times = []
+            
+            for i in list(jdata['following']):
+                times.append(i['timestamp'])
+            
+            follows = pd.DataFrame({'time': times, 'type': ['person'] * len(times)})
+    except Exception as e:
+        pass
+    
+    try:
+        with zip_file.open('following_and_followers/followed_pages.json') as f:
+            jdata = json.loads(f.read())
+            
+            times = []
+            
+            for i in list(jdata['pages_followed']):
+                times.append(i['timestamp'])
+            
+            temp_follows = pd.DataFrame({'time': times, 'type': ['page'] * len(times)})
+            if follows is None:
+                follows = temp_follows
+            else:
+                follows = pd.concat([follows, temp_follows])
+    except Exception as e:
+        pass
+    
+    if follows is not None:
+        follows.time = pd.to_datetime(follows.time, unit='s')
+
+    return follows
