@@ -41,7 +41,7 @@
                     <div class="card-columns">
                         <ol class="graph-style-list">
                             {% for graph in graphs %}
-                            <a class="js-scroll-trigger" href="#graph-{{graph.id}}" onclick="highlightGraph({{graph.id}})"><li style="color: black">{{ graph.get_name() }}</li></a>
+                            <a class="js-scroll-trigger" href="#graph-{{graph.id}}" onclick="highlightGraph({{graph.id}})"><li style="color: black">{{ graph.name_trans }}</li></a>
                             {% endfor %}
                         </ol>
                     </div>

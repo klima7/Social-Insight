@@ -47,7 +47,7 @@ def demojify_graph(graph):
 def render_graph_png(chart, path, scale=1, title=True):
     graph = chart.data
     if title:
-        graph.title = chart.name
+        graph.title = chart.name_trans
 
     scale_graph(graph, scale)
     demojify_graph(graph)
@@ -132,7 +132,7 @@ def render_zip(container, path, file, categories=False):
     count = len(container.graphs) if isinstance(container, Collation) else container.graphs.count()
 
     for nr, graph in enumerate(container.graphs):
-        png_name = str(graph.get_name()) + ".png"
+        png_name = graph.name + ".png"
         if categories:
             category_dir = os.path.join(directory, graph.category)
             if not os.path.exists(category_dir):

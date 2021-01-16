@@ -1,7 +1,7 @@
 {% extends "standard.html" %}
 {% import "macros/render_browser.html" as browser %}
 
-{% block title %}{{ graph.get_name() }}{% endblock %}
+{% block title %}{{ graph.name_trans }}{% endblock %}
 
 {% block topscripts %}
 {{ super() }}

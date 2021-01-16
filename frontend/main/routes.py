@@ -224,7 +224,7 @@ def download_graph_png(id):
         abort(404)
 
     directory = tempfile.mkdtemp()
-    name = graph.get_name() + ".png"
+    name = graph.name_without_accents + ".png"
     path = os.path.join(directory, name)
     render.render_chart_png(graph, path)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)
@@ -237,7 +237,7 @@ def download_graph_svg(id):
         abort(404)
 
     directory = tempfile.mkdtemp()
-    name = graph.get_name() + ".svg"
+    name = graph.name_without_accents + ".svg"
     path = os.path.join(directory, name)
     render.render_chart_svg(graph, path)
     return send_from_directory(directory=directory, filename=name, as_attachment=True)

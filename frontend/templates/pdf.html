@@ -20,7 +20,7 @@
         <ol>
         {% for graph in container.graphs %}
             {% if graph.data is not none %}
-            <li>{{ graph.get_name() }}</li>
+            <li>{{ graph.name_trans }}</li>
             {% endif %}
         {% endfor %}
         </ol>

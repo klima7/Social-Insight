@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from flask_login import UserMixin
+from flask_babel import _
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship, backref
@@ -10,7 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from db import *
 from . import _Base
-from util import _t
+from util import _t, remove_accents
 
 
 class User(_Base, UserMixin):
@@ -116,9 +117,14 @@ class Graph(_Base):
                               backref=backref('graphs', lazy='select'),
                               lazy='select')
 
-    def get_name(self):
-        from analytics import get_translated_graph_name
-        return get_translated_graph_name(self.name)
+    @property
+    def name_trans(self):
+        from flask_babel import _
+        return _(self.name)
+
+    @property
+    def name_without_accents(self):
+        return remove_accents(self.name_trans)
 
     def render_png(self, path):
         import frontend.render as render

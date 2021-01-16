@@ -32,17 +32,10 @@ _graphs = []
 def graph(name):
     def decorator(fun):
         category = fun.__module__.split('.')[-2]
-        graphTuple = namedtuple('graph', 'fun, category, name, translated_name')
-        graph = graphTuple(fun, category, str(name), name)
+        graphTuple = namedtuple('graph', 'fun, category, name')
+        graph = graphTuple(fun, category, str(name))
         _graphs.append(graph)
     return decorator
-
-
-def get_translated_graph_name(english_name):
-    for graph in _graphs:
-        if graph.name == english_name:
-            return graph.translated_name
-    return None
 
 
 def import_graphs():
@@ -58,7 +51,7 @@ def analyse(pack_id, file_path, delete=True):
 
     with zp.ZipFile(file_path) as zip:
         pdata = preprocess(zip)
-        for fun, category, name, tran_name in _graphs:
+        for fun, category, name in _graphs:
 
             try:
                 data = fun(pdata)
