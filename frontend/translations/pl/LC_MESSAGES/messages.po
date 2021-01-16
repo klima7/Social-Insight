@@ -621,7 +621,7 @@ msgstr "Pobierz zip"
 
 #: frontend/templates/collation.html:47
 msgid "No graphs in this collation"
-msgstr "Grak wykresów w tym zestawieniu"
+msgstr "Brak wykresów w tym zestawieniu"
 
 #: frontend/templates/contact.html:4 frontend/templates/contact.html:16
 #: frontend/templates/contact.html:23 frontend/templates/standard.html:14

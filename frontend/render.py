@@ -166,8 +166,7 @@ def render_chart_svg(chart, path, title=True):
 def render_graph_svg(chart, path, title=True):
     graph = chart.data
     if title:
-        graph.title = chart.name
+        graph.title = chart.name_trans
 
-    # demojify_graph(graph)
     graph.render_to_file(path)
     graph.title = None
