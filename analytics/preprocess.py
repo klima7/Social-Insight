@@ -23,6 +23,7 @@ def preprocess(zip_file):
     search_history = _get_search_history(zip_file)
     topics = _get_your_topics(zip_file)
     following = _get_following_data(zip_file, folders)
+    groups_join = _get_group_join(zip_file, folders)
     
     return {
         'messages': messages,
@@ -38,7 +39,8 @@ def preprocess(zip_file):
         'event_responses': event_responses,
         'search_history': search_history,
         'topics': topics,
-        'following': following
+        'following': following,
+        'groups_join': groups_join
     }
 
 
@@ -451,3 +453,25 @@ def _get_following_data(zip_file, folders):
         follows.time = pd.to_datetime(follows.time, unit='s')
 
     return follows
+
+def _get_group_join(zip_file, folders):
+    group_join = None
+    try:
+        with zip_file.open('groups/your_group_membership_activity.json') as f:
+            jdata = json.loads(f.read())
+
+            names = []
+            times = []
+
+            for i in jdata['groups_joined']:
+                times.append(i['timestamp'])
+#                 likes.append(i['title'])
+
+            temp_table = pd.DataFrame({'time': times})
+            temp_table.time = pd.to_datetime(temp_table.time, unit='s')
+            group_join = temp_table
+#             like_table = pd.concat([like_table, temp_table])
+    except:
+        pass
+
+    return group_join
