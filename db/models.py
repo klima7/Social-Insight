@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from db import *
 from . import _Base
+from util import _t
 
 
 class User(_Base, UserMixin):
@@ -86,10 +87,10 @@ class Pack(_Base):
     graphs = relationship("Graph", backref="pack", lazy='dynamic', passive_deletes=True)
     example = Column(Boolean, default=False)
 
-    STATUS_PENDING = 'pending'
-    STATUS_PROCESSING = 'processing'
-    STATUS_SUCCESS = 'success'
-    STATUS_FAILURE = 'failure'
+    STATUS_PENDING = _t('pending')
+    STATUS_PROCESSING = _t('processing')
+    STATUS_SUCCESS = _t('success')
+    STATUS_FAILURE = _t('failure')
 
     def __repr__(self):
         return f"<Pack(id={self.id}, userid='{self.userid}'"

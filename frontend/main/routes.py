@@ -29,7 +29,7 @@ def index():
 
 @main.route('/', methods=['POST'])
 def index_post():
-    pack = Pack(status=Pack.STATUS_PENDING)
+    pack = Pack(status=Pack.STATUS_PENDING, name=_('Pack'))
 
     if current_user.is_authenticated:
         pack.user = current_user
@@ -101,7 +101,7 @@ def remove_pack(id):
 @main.route('/collations/create')
 @login_required
 def create_collation():
-    collation = Collation()
+    collation = Collation(name=_('Collation'))
     collation.user = current_user
     db_session.add(collation)
     db_session.commit()

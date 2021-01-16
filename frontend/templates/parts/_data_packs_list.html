@@ -28,7 +28,7 @@
                                             {{ pack.name }}
                                         </div>
                                         <div class="col-12 col-sm-4 m-auto">
-                                            {{ pack.status }}
+                                            {{ _(pack.status) }}
                                         </div>
                                         <div class="col-12 col-sm-4">
                                             {{ moment(pack.creation_date).format('l') }} {{ moment(pack.creation_date).format('HH:mm') }}

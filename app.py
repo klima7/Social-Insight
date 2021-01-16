@@ -36,7 +36,7 @@ def init(lang):
 @translate.command(help="Update all languages.")
 def update():
     pot_location = os.path.join(config.BABEL_TRANSLATIONS_LOCATION, 'messages.pot')
-    if os.system(f'pybabel extract -F {config.BABEL_CONFIG_LOCATION} -k _l -o {pot_location} .'):
+    if os.system(f'pybabel extract -F {config.BABEL_CONFIG_LOCATION} -k "_l _t" -o {pot_location} .'):
         raise RuntimeError('extract command failed')
     if os.system(f'pybabel update -i {pot_location} -d {config.BABEL_TRANSLATIONS_LOCATION}'):
         raise RuntimeError('update command failed')
@@ -60,8 +60,6 @@ def example(name):
         print("Unable to find file " + name)
     else:
         print("Updating example pack")
-
-
 
 
 
