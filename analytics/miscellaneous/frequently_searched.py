@@ -10,6 +10,9 @@ MAX_COUNT = 10
 @graph(_l('Most frequently searched phrases'))
 def time_to_post(data):
     history = data['search_history']
+    if history is None:
+        return None
+       
     history.message.value_counts()
     counts = history.message.value_counts()
     table = pd.DataFrame({'searched phrase': counts.index, 'count': counts})
