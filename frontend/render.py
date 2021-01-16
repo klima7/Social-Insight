@@ -4,7 +4,7 @@ import base64
 import pygal
 import pandas as pd
 import shutil
-from flask_babel import force_locale
+from flask_babel import force_locale, _
 import frontend.common as common
 
 import flask
@@ -126,32 +126,34 @@ def render_pdf(container, path, file, lang, style):
     db_session.commit()
 
 
-def render_zip(container, path, file, categories=False):
-    directory = tempfile.mkdtemp()
+def render_zip(container, path, file, lang, categories=False):
+    with app.app.app_context():
+        with force_locale(lang):
+            directory = tempfile.mkdtemp()
 
-    count = len(container.graphs) if isinstance(container, Collation) else container.graphs.count()
+            count = len(container.graphs) if isinstance(container, Collation) else container.graphs.count()
 
-    for nr, graph in enumerate(container.graphs):
-        png_name = graph.name + ".png"
-        if categories:
-            category_dir = os.path.join(directory, graph.category)
-            if not os.path.exists(category_dir):
-                os.makedirs(category_dir)
-            png_path = os.path.join(category_dir, png_name)
-        else:
-            png_path = os.path.join(directory, png_name)
+            for nr, graph in enumerate(container.graphs):
+                png_name = graph.name_without_accents + ".png"
+                if categories:
+                    category_dir = os.path.join(directory, graph.category_without_accents)
+                    if not os.path.exists(category_dir):
+                        os.makedirs(category_dir)
+                    png_path = os.path.join(category_dir, png_name)
+                else:
+                    png_path = os.path.join(directory, png_name)
 
-        render_chart_png(graph, png_path)
+                render_chart_png(graph, png_path)
 
-        file.progress = round((nr+1) / count * 100)
-        db_session.add(file)
-        db_session.commit()
+                file.progress = round((nr+1) / count * 100)
+                db_session.add(file)
+                db_session.commit()
 
-    common.zipdir(directory, path)
+            common.zipdir(directory, path)
 
-    file.ready = True
-    db_session.add(file)
-    db_session.commit()
+            file.ready = True
+            db_session.add(file)
+            db_session.commit()
 
 
 def render_chart_svg(chart, path, title=True):

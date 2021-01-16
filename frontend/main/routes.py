@@ -284,7 +284,7 @@ def generate_charts_zip(container, categories):
 
     session['fileid'] = file.id
 
-    thread = Thread(target=render.render_zip, args=[container, path, file, categories])
+    thread = Thread(target=render.render_zip, args=[container, path, file, str(get_locale()), categories])
     thread.start()
 
 

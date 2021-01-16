@@ -119,12 +119,19 @@ class Graph(_Base):
 
     @property
     def name_trans(self):
-        from flask_babel import _
         return _(self.name)
 
     @property
     def name_without_accents(self):
         return remove_accents(self.name_trans)
+
+    @property
+    def category_trans(self):
+        return _(self.category)
+
+    @property
+    def category_without_accents(self):
+        return remove_accents(self.category_trans)
 
     def render_png(self, path):
         import frontend.render as render
