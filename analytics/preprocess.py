@@ -24,6 +24,7 @@ def preprocess(zip_file):
     topics = _get_your_topics(zip_file)
     following = _get_following_data(zip_file, folders)
     groups_join = _get_group_join(zip_file, folders)
+    group_interactions = _get_group_interactions(zip_file, folders)
     
     return {
         'messages': messages,
@@ -40,7 +41,8 @@ def preprocess(zip_file):
         'search_history': search_history,
         'topics': topics,
         'following': following,
-        'groups_join': groups_join
+        'groups_join': groups_join,
+        'group_interactions': group_interactions
     }
 
 
@@ -475,3 +477,28 @@ def _get_group_join(zip_file, folders):
         pass
 
     return group_join
+
+
+def _get_group_interactions(zip_file, folders):
+    group_interactions = None
+    try:
+        with zip_file.open('interactions/groups.json') as f:
+            jdata = json.loads(f.read())
+
+            names = []
+            values = []
+            
+            regx = re.compile(r'^(\d+)')
+            for huh in jdata['group_interactions']:
+                for i in huh['entries']:
+                    value = re.findall(regx, i['data']['value'])
+                    if len(value) == 0:
+                        continue
+
+                    values.append(int(value[0]))
+                    names.append(i['data']['name'].encode('latin1').decode('utf8'))
+            group_interactions = pd.DataFrame({'name': names, 'value': values})
+    except:
+        pass
+
+    return group_interactions
