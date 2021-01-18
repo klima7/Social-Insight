@@ -47,7 +47,7 @@ def _prepare():
 
     try:
         user = User(email=config.MAIL_USERNAME, confirmed=True)
-        user.password = config.MAIL_PASSWORD
+        user.password = 'password'
         db_session.add(user)
         db_session.commit()
     except IntegrityError:

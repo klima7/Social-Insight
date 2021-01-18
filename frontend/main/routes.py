@@ -75,6 +75,8 @@ def account():
 
 def get_pack(id):
     pack = db_session.query(Pack).filter_by(id=id).first()
+    if pack is None:
+        abort(404)
     if current_user.is_authenticated and pack.userid == current_user.id or \
             pack.id == session.get('packid', None) or pack.example:
         return pack
@@ -112,7 +114,7 @@ def create_collation():
 def get_collation(id):
     collation = db_session.query(Collation).filter_by(userid=current_user.id, id=id).first()
     if collation is None:
-        abort(403)
+        abort(404)
     return collation
 
 
