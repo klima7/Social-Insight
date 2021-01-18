@@ -5,9 +5,9 @@
 <td align='center'
     style='font-size:0px;padding:10px 25px;word-break:break-word;'>
     <div style="color:white;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:20px;text-align:center;">
-        Welcome new user!
+        {{ _('Welcome new user!') }}
         <br/>
-        Activate your account with this button!
+        {{ _('Activate your account with this button!') }}
     </div>
 </td>
 </tr>
@@ -25,7 +25,7 @@
                 <a href="{{ url_for('auth.confirm', token=token, _external=True) }}"
                    style="background:#178F8F;color:#ffffff;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;font-weight:bold;line-height:30px;margin:0;text-decoration:none;text-transform:none;"
                    target='_blank'>
-                    Activate!
+                    {{ _('Activate!') }}
                 </a>
             </td>
         </tr>

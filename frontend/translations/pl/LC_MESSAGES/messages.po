@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-18 08:31+0100\n"
+"POT-Creation-Date: 2021-01-18 09:28+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -145,7 +145,7 @@ msgstr "Urządzenia"
 
 #: analytics/other/firends_pie.py:9
 msgid "Friends invites, deleted and aquired."
-msgstr ""
+msgstr "Liczba przyjaciół zaproszonych, usuniętych i uzyskanych"
 
 #: analytics/other/friends_cumsum.py:9
 msgid "Friends count"
@@ -215,7 +215,8 @@ msgstr "sukces"
 msgid "failure"
 msgstr "porażka"
 
-#: frontend/admin/forms.py:8
+#: frontend/admin/forms.py:8 frontend/templates/mails/reply.html:8
+#: frontend/templates/mails/reply.html:10
 msgid "Response"
 msgstr "Odpowiedź"
 
@@ -416,11 +417,12 @@ msgstr "Inne"
 msgid "Your email"
 msgstr "Twój email"
 
-#: frontend/main/forms.py:31
+#: frontend/main/forms.py:31 frontend/templates/mails/contact.html:10
 msgid "Topic"
 msgstr "Temat"
 
 #: frontend/main/forms.py:32 frontend/templates/admin_reply.html:37
+#: frontend/templates/mails/contact.html:11
 msgid "Content"
 msgstr "Treść"
 
@@ -436,51 +438,51 @@ msgstr "Paczka"
 msgid "Sorry, example pack is not available"
 msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 
-#: frontend/main/routes.py:88
+#: frontend/main/routes.py:90
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:88 frontend/main/routes.py:136
+#: frontend/main/routes.py:90 frontend/main/routes.py:138
 #: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:97
+#: frontend/main/routes.py:99
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:104 frontend/templates/collation.html:5
+#: frontend/main/routes.py:106 frontend/templates/collation.html:5
 #: frontend/templates/collation.html:32
 msgid "Collation"
 msgstr "Zestawienie"
 
-#: frontend/main/routes.py:108
+#: frontend/main/routes.py:110
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:126
+#: frontend/main/routes.py:128
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:136
+#: frontend/main/routes.py:138
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestawenie?"
 
-#: frontend/main/routes.py:145
+#: frontend/main/routes.py:147
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:156
+#: frontend/main/routes.py:158
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:192
+#: frontend/main/routes.py:194 frontend/templates/mails/contact.html:8
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:193
+#: frontend/main/routes.py:195
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
@@ -934,6 +936,38 @@ msgstr "Przepraszamy, wystąpił błąd"
 msgid "Unknown type of data to render"
 msgstr "Nierozpoznany typ danych do wyrenderowania"
 
+#: frontend/templates/mails/basic.html:173
+msgid "Social Insight, like us on Facebook"
+msgstr "Social Insight, polub nas na Facebooku"
+
+#: frontend/templates/mails/confirmation.html:8
+msgid "Welcome new user!"
+msgstr "Witaj nowy użytkowniku!"
+
+#: frontend/templates/mails/confirmation.html:10
+msgid "Activate your account with this button!"
+msgstr "Aktywuj swoje konto za pomocą tego przycisku!"
+
+#: frontend/templates/mails/confirmation.html:28
+msgid "Activate!"
+msgstr "Aktywuj!"
+
+#: frontend/templates/mails/contact.html:9
+msgid "Author"
+msgstr "Autor"
+
+#: frontend/templates/mails/reply.html:9
+msgid "Your message"
+msgstr "Twoja wiadomość"
+
+#: frontend/templates/mails/reset_password.html:8
+msgid "Reset your password with the button bellow."
+msgstr "Zresetuj swoje hasło za pomocą poniższego przycisku."
+
+#: frontend/templates/mails/reset_password.html:26
+msgid "Reset!"
+msgstr "Resetuj!"
+
 #: frontend/templates/parts/_categories.html:10
 msgid "Results"
 msgstr "Wyniki"
@@ -1017,4 +1051,10 @@ msgstr "Zmień nazwę paczki"
 #: frontend/templates/scripts/waiting_file.js:14
 msgid "Here you are!"
 msgstr "Proszę bardzo!"
+
+#~ msgid "Social Insight, like on on Facebook"
+#~ msgstr ""
+
+#~ msgid "Reset you password with the button bellow."
+#~ msgstr ""
 

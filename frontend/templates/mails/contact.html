@@ -5,10 +5,10 @@
 <td align='left'
     style='font-size:0px;padding:10px 25px;word-break:break-word;'>
     <div style="color:black;font-family:'Droid Sans', 'Helvetica Neue', Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;">
-        <h1 style="text-align: center;">Message</h1>
-        <p><b>Nadawca:</b> {{form.email.data}}</p>
-        <p><b>Temat:</b> {{form.topic.data}}</p>
-        <p style="text-align: justify"><b>Content:</b> {{form.content.data}}</p>
+        <h1 style="text-align: center;">{{ _('Message') }}</h1>
+        <p><b>{{ _('Author') }}:</b> {{form.email.data}}</p>
+        <p><b>{{ _('Topic') }}:</b> {{form.topic.data}}</p>
+        <p style="text-align: justify"><b>{{ _('Content') }}:</b> {{form.content.data}}</p>
     </div>
 </td>
 </tr>
