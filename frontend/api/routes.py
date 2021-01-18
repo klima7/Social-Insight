@@ -15,12 +15,7 @@ def _get_pack_status(packid):
 
 @api.route("/packs/<packid>/status")
 def get_pack_status(packid):
-    while True:
-        try:
-            status = _get_pack_status(packid)
-            break
-        except InvalidRequestError:
-            pass
+    status = _get_pack_status(packid)
     return {"status": status}
 
 
@@ -93,12 +88,7 @@ def christmas_post():
 @api.route('/files/progress')
 def file_progress():
     fileid = session.get('fileid', None)
-    while True:
-        try:
-            file = db_session.query(File).filter_by(id=fileid).first()
-            break
-        except InvalidRequestError:
-            pass
+    file = db_session.query(File).filter_by(id=fileid).first()
 
     progress = 0
     ready = False

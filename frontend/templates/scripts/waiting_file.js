@@ -6,7 +6,6 @@ function check() {
         url: '/api/files/progress',
         cache: false,
         success: function(data) {
-			console.log(data);
 			if(data.progress != null) {
 				$('#progress').text(data.progress)
 				if(data.ready) {
@@ -14,7 +13,7 @@ function check() {
 					$('#message').text('{{ _('Here you are!') }} ')
 					setTimeout(() => window.close(), 2000);
 				}
-				else setTimeout(check, 500);
+				else setTimeout(check, 20);
             }
         },
         error: function() {
@@ -23,4 +22,4 @@ function check() {
     });
 }
 
-setTimeout(check, 2000);
+check();

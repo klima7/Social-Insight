@@ -10,7 +10,7 @@ function check() {
                 redirect();
             }
             else if(data.status == 'pending' || data.status == 'processing') {
-                setTimeout(check, 1000);
+                setTimeout(check, 50);
             }
             else {
             	alert(`Error: pack status is ${data.status}`)
@@ -26,4 +26,4 @@ function redirect() {
 	window.location.href = `/packs/${packid}/messages`;
 }
 
-setTimeout(check, 2000);
+setTimeout(check, 1000);

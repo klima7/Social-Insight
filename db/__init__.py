@@ -16,9 +16,8 @@ def _set_sqlite_pragma(dbapi_connection, connection_record):
 
 
 _engine = create_engine(f'sqlite:///{config.DATABASE_LOCATION}', echo=config.DATABASE_DEBUG, connect_args={"check_same_thread": False})
+db_session = scoped_session(sessionmaker(bind=_engine))
 _Base = declarative_base()
-DBSession = scoped_session(sessionmaker(bind=_engine))
-db_session = DBSession()
 
 # Import musi być tutaj (nie u góry) by uniknąć zależności cyklicznych
 from .models import *

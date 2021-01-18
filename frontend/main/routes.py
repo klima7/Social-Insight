@@ -44,6 +44,8 @@ def index_post():
     path = os.path.join(tempfile.mkdtemp(), 'something')
     uploaded_file.save(path)
 
+    db_session.expunge(pack)
+
     thread = Thread(target=analytics.analyse, args=[pack.id, path])
     thread.start()
 
@@ -257,6 +259,8 @@ def something2pdf(container):
 
     session['fileid'] = file.id
 
+    db_session.expunge(file)
+
     thread = Thread(target=render.render_pdf, args=[container, path, file, str(get_locale()), style])
     thread.start()
 
@@ -285,6 +289,8 @@ def generate_charts_zip(container, categories):
     db_session.commit()
 
     session['fileid'] = file.id
+
+    db_session.expunge(file)
 
     thread = Thread(target=render.render_zip, args=[container, path, file, str(get_locale()), categories])
     thread.start()
