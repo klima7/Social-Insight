@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-16 10:37+0100\n"
+"POT-Creation-Date: 2021-01-18 08:31+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -94,6 +94,14 @@ msgstr "Liczba obserwowanych osób"
 #: analytics/miscellaneous/frequently_searched.py:10
 msgid "Most frequently searched phrases"
 msgstr "Najczęściej wyszukiwane frazy"
+
+#: analytics/miscellaneous/group_interactions.py:14
+msgid "Number of interactions with groups"
+msgstr "Liczba interakcji z grupami"
+
+#: analytics/miscellaneous/group_join_graph.py:7
+msgid "Number of group memberships"
+msgstr "Liczba grup do których należysz"
 
 #: analytics/miscellaneous/likes_by_hour.py:6
 msgid "Percent of likes by hour"
