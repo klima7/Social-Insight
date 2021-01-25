@@ -29,8 +29,7 @@ def login():
 
         # Niepotwierdzony mail
         if user is not None and not user.confirmed:
-            session['email'] = form.email.data
-            url = url_for('auth.resend')
+            url = url_for('auth.resend', email=form.email.data)
             flash(_('Please confirm this email first! Click %(start)shere%(end)s to resend confirmation', start='<a href="%s">'%url, end='</a>'), 'warning')
             return render_template('login.html', form=form)
 
@@ -101,9 +100,9 @@ def confirm(token):
     return redirect(url_for('main.index'))
 
 
-@auth.route('/resend/', methods=['GET', 'POST'])
-def resend():
-    user = db_session.query(User).filter_by(email=session.get('email', 'unknown')).first()
+@auth.route('/resend/<email>', methods=['GET', 'POST'])
+def resend(email):
+    user = db_session.query(User).filter_by(email=email).first()
     token = user.generate_confirmation_token()
     send_email(user.email, _('Account Confirmation'), 'confirmation', user=user, token=token)
     flash(_('Email confirmation was sent again'), 'success')
