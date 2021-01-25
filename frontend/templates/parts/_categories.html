@@ -15,7 +15,7 @@
         <div class="text-center mt-2">
             {% if current_user.is_authenticated and pack.userid == current_user.id %}
             <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-pack-modal">{{ _("rename") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id) }}">{{ _("remove") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id, next=request.url) }}">{{ _("remove") }}</a></div>
             {% endif %}
             <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='fancy') }}" target="_blank">{{ _("download pdf") }}</a></div>
             <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='print') }}" target="_blank">{{ _("download pdf to print") }}</a></div>

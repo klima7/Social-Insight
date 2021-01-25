@@ -8,14 +8,6 @@ from . import auth
 from .forms import LoginForm, RegisterForm, ChangePasswordForm, ResetPasswordEmailForm, ResetPasswordForm
 
 
-@auth.after_app_request
-def after_request(response):
-    if request.endpoint != 'static' and request.endpoint != 'auth.login':
-        session['prev'] = request.endpoint
-        session['prev_url'] = request.url
-    return response
-
-
 def add_anonymous_pack_to_user(user):
     pack_id = session.get('packid', None)
     if pack_id is not None:
@@ -36,7 +28,7 @@ def login():
         user = db_session.query(User).filter_by(email=form.email.data).first()
 
         # Niepotwierdzony mail
-        if user is not None and not user.confirmed and session.get('prev') != 'auth.confirm':
+        if user is not None and not user.confirmed:
             session['email'] = form.email.data
             url = url_for('auth.resend')
             flash(_('Please confirm this email first! Click %(start)shere%(end)s to resend confirmation', start='<a href="%s">'%url, end='</a>'), 'warning')
@@ -93,16 +85,19 @@ def register():
 
 
 @auth.route('/confirm/<token>')
-@login_required
 def confirm(token):
-    if current_user.confirmed:
+    user = User.get_user_from_confirm_token(token)
+    if user is None:
+        flash(_('The confirmation link is invalid or has expired'), 'warning')
+    elif user.confirmed:
         flash(_('Your account is already confirmed'), 'success')
-        return redirect(url_for('main.index'))
-    if current_user.confirm(token):
+    elif user.confirm(token):
         db_session.commit()
+        login_user(user, True)
         flash(_('You have confirmed your account. Thanks!'), 'success')
     else:
         flash(_('The confirmation link is invalid or has expired'), 'warning')
+
     return redirect(url_for('main.index'))
 
 

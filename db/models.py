@@ -46,6 +46,15 @@ class User(_Base, UserMixin):
         s = Serializer(config.SECRET_KEY, config.CONFIRMATION_TIME*60)
         return s.dumps({'confirm': self.id}).decode('utf-8')
 
+    @staticmethod
+    def get_user_from_confirm_token(token):
+        s = Serializer(config.SECRET_KEY)
+        try:
+            data = s.loads(token.encode('utf-8'))
+            return db_session.query(User).filter_by(id=data.get('confirm')).first()
+        except:
+            return None
+
     def confirm(self, token):
         s = Serializer(config.SECRET_KEY)
         try:

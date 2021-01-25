@@ -63,10 +63,11 @@ def example():
 
 @main.route('/lang/<lang>')
 def change_language(lang):
+    next = request.args.get('next', url_for('main.index'))
     if lang not in config.LANGUAGES:
         return abort(404)
     session['lang'] = lang
-    return redirect(session.get('prev_url', url_for('main.index')))
+    return redirect(next)
 
 
 @main.route('/account/')
@@ -87,10 +88,11 @@ def get_pack(id):
 
 @main.route('/packs/<id>/remove/confirm')
 def remove_pack_confirm(id):
+    next = request.args.get('next', url_for('main.account'))
     get_pack(id)
     address = url_for('main.remove_pack', id=id)
     flash(_('Are you sure that you want to remove this pack?')+f' <a href="{address}">'+_('Yes')+'</a>', 'warning')
-    return redirect(session.get('prev_url', url_for('main.account')))
+    return redirect(next)
 
 
 @main.route('/packs/<id>/remove')
@@ -206,14 +208,16 @@ def contact():
 
 @main.route('/mode/dark')
 def dark_mode():
+    next = request.args.get('next', url_for('main.index'))
     session['dark_mode'] = True
-    return redirect(session.get('prev_url', url_for('main.index')))
+    return redirect(next)
 
 
 @main.route('/mode/light')
 def light_mode():
+    next = request.args.get('next', url_for('main.index'))
     session['dark_mode'] = False
-    return redirect(session.get('prev_url', url_for('main.index')))
+    return redirect(next)
 
 
 @main.route('/authors')
