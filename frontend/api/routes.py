@@ -85,10 +85,9 @@ def christmas_post():
     return {"status": Global.get_christmas_event()}
 
 
-@api.route('/files/progress')
-def file_progress():
-    fileid = session.get('fileid', None)
-    file = db_session.query(File).filter_by(id=fileid).first()
+@api.route('/files/<file_id>/progress')
+def file_progress(file_id):
+    file = db_session.query(File).filter_by(id=file_id).first()
 
     progress = 0
     ready = False

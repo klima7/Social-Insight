@@ -261,26 +261,27 @@ def something2pdf(container):
     db_session.add(file)
     db_session.commit()
 
-    session['fileid'] = file.id
-
+    file_id = file.id
     db_session.expunge(file)
 
     thread = Thread(target=render.render_pdf, args=[container, path, file, str(get_locale()), style])
     thread.start()
 
+    return file_id
+
 
 @main.route("/collations/<id>/pdf")
 def collation2pdf(id):
     collation = get_collation(id)
-    something2pdf(collation)
-    return redirect(url_for('main.file_waiting'))
+    file_id = something2pdf(collation)
+    return redirect(url_for('main.file_waiting', file_id=file_id))
 
 
 @main.route("/packs/<id>/pdf")
 def pack2pdf(id):
     pack = get_pack(id)
-    something2pdf(pack)
-    return redirect(url_for('main.file_waiting'))
+    file_id = something2pdf(pack)
+    return redirect(url_for('main.file_waiting', file_id=file_id))
 
 
 def generate_charts_zip(container, categories):
@@ -292,39 +293,39 @@ def generate_charts_zip(container, categories):
     db_session.add(file)
     db_session.commit()
 
-    session['fileid'] = file.id
-
+    file_id = file.id
     db_session.expunge(file)
 
     thread = Thread(target=render.render_zip, args=[container, path, file, str(get_locale()), categories])
     thread.start()
 
+    return file_id
+
 
 @main.route('/packs/<id>/download')
 def download_pack_zip(id):
     pack = get_pack(id)
-    generate_charts_zip(pack, True)
-    return redirect(url_for('main.file_waiting'))
+    file_id = generate_charts_zip(pack, True)
+    return redirect(url_for('main.file_waiting', file_id=file_id))
 
 
 @main.route('/collations/<id>/download')
 def download_collation_zip(id):
     collation = get_collation(id)
-    generate_charts_zip(collation, False)
-    return redirect(url_for('main.file_waiting'))
+    file_id = generate_charts_zip(collation, False)
+    return redirect(url_for('main.file_waiting', file_id=file_id))
 
 
-@main.route('/files/waiting')
-def file_waiting():
-    return render_template('waiting_file.html')
+@main.route('/files/<file_id>/waiting')
+def file_waiting(file_id):
+    return render_template('waiting_file.html', file_id=file_id)
 
 
-@main.route('/files/download')
-def file_download():
-    fileid = session.get('fileid', None)
-    if fileid is None:
+@main.route('/files/<file_id>/download')
+def file_download(file_id):
+    if file_id is None:
         abort(404)
-    file = db_session.query(File).filter_by(id=fileid).first()
+    file = db_session.query(File).filter_by(id=file_id).first()
     if file is None or not file.ready:
         abort(404)
 

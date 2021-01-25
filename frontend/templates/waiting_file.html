@@ -8,7 +8,9 @@
 
 {% block bottomscripts %}
     {{ super() }}
-    {{ m.script("scripts/waiting_file.js") }}
+    <script type="text/javascript">
+    {% include "scripts/waiting_file.js" %}
+    </script>
 {% endblock %}
 
 {% block sections %}
