@@ -6,9 +6,9 @@ Dropzone.options.uploadZone = {
     acceptedFiles: ".zip",
     clickable: '#uploadLogo',
 
-    dictFileTooBig: 'This file is too big',
-    dictInvalidFileType: 'Only zip files are acceptible',
-    dictResponseError: 'Server response is invalid',
+    dictFileTooBig: "{{ _('This file is too big') }}",
+    dictInvalidFileType: "{{ _('Only zip files are acceptible') }}",
+    dictResponseError: "{{ _('Server response is invalid') }}",
 
     init: function() {
     	dz = this;

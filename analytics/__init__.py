@@ -39,7 +39,7 @@ def graph(name):
 
 
 def import_graphs():
-    packages = ['messages', 'posts', 'miscellaneous', 'other']
+    packages = ['messages', 'posts', 'administration', 'other']
 
     for package in packages:
         modules = [name for _, name, _ in pkgutil.iter_modules([f'analytics/{package}'])]

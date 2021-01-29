@@ -43,16 +43,16 @@
                 </div>
             </div>
             <!-- Portfolio Item 3-->
-            <div class="col-6 col-lg-3 mb-4">
-                <div class="portfolio-item mx-auto category {% if category=='miscellaneous' %}category-selected{% endif %}">
-                    <a class="no-underline" href="{{ url_for('main.graphs_category', id=pack.id, category='miscellaneous') }}">
+            <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="portfolio-item mx-auto category {% if category=='administration' %}category-selected{% endif %}">
+                    <a class="no-underline" href="{{ url_for('main.graphs_category', id=pack.id, category='administration') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
-                        <div class="bg-secondary text-light text-center">{{ _("miscellaneous") }}</div>
+                        <div class="bg-secondary text-light text-center">{{ _("administration") }}</div>
                     </a>
                 </div>
             </div>
             <!-- Portfolio Item 4-->
-            <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="col-6 col-lg-3 mb-4">
                 <div class="portfolio-item mx-auto category {% if category=='other' %}category-selected{% endif %}">
                     <a class="no-underline" href="{{ url_for('main.graphs_category', id=pack.id, category='other') }}">
                         <img class="img-fluid" src="{{ m.static('images/foo.png') }}" alt="" />
