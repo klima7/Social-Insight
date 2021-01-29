@@ -5,13 +5,12 @@ import pygal
 import pandas as pd
 import shutil
 from flask_babel import force_locale, _
-import frontend.common as common
-
 import flask
 import imgkit
 import pdfkit
 import demoji
 import app
+import util
 from db import *
 
 
@@ -145,7 +144,7 @@ def render_zip(container, path, file, lang, categories=False):
                 db_session.add(file)
                 db_session.commit()
 
-            common.zipdir(directory, path)
+            util.zipdir(directory, path)
 
             file.ready = True
             db_session.add(file)

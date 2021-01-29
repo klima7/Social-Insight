@@ -1,4 +1,4 @@
-from frontend.common import display_errors_with_flash
+from frontend.flask_util import display_errors_with_flash
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_babel import _
