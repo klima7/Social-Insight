@@ -1,6 +1,6 @@
 from pygal.style import Style
 from db import *
-from .preprocess import preprocess
+import analytics.preprocess as preprocess
 import zipfile as zp
 from collections import namedtuple
 import traceback
@@ -50,7 +50,7 @@ def import_graphs():
 def analyse(pack_id, file_path, delete=True):
 
     with zp.ZipFile(file_path) as zip:
-        pdata = preprocess(zip)
+        pdata = preprocess.preprocess(zip)
         for fun, category, name in _graphs:
 
             try:
