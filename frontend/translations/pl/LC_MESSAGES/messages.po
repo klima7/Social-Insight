@@ -697,7 +697,7 @@ msgid ""
 msgstr ""
 "Nasza aplikacja używa bezpiecznego protokołu https, aby twoje dane były "
 "bezpieczne podczas wysyłania. Następnie są one przetwarzane po stronie "
-"serwera i niezwłocznie usówanie."
+"serwera i niezwłocznie usuwanie."
 
 #: frontend/templates/index.html:85
 msgid "Generating PDFs"
