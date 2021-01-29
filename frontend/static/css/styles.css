@@ -37,12 +37,12 @@
 
 /* Categories */
 .category-selected {
-	box-sizing: border-box;
-	background-color: #2C3E50;
-	border: 5px solid #2C3E50;
+	background-color: var(--border-category-selected) !important;
+	border: 4px solid var(--border-category-selected) !important;
 }
 
 .category {
+	background-color: var(--border-category);
 	border: 2px solid var(--border-category);
 	transition: 0.3s;
 }
