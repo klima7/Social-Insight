@@ -14,8 +14,6 @@ import demoji
 import app
 from db import *
 
-from config import config
-
 
 SCALE = 2
 
@@ -60,14 +58,13 @@ def render_table_png(chart, path, title=True):
     with app.app.app_context():
         html = flask.render_template('parts/_table.html', chart=chart, title=title)
     css = 'frontend/static/css/pdf_print.css'
-    configuration = imgkit.config(wkhtmltoimage=config.WKHTMLTOIMAGE_PATH)
     options = {
         'format': 'png',
         'width': 600,
         'encoding': "UTF-8",
         'quiet': ''
     }
-    imgkit.from_string(html, path, options=options, css=[css], config=configuration)
+    imgkit.from_string(html, path, options=options, css=[css])
 
 
 def render_chart_png(chart, path, title=True):
@@ -103,7 +100,6 @@ def render_pdf(container, path, file, lang, style):
             html = flask.render_template('pdf.html', container=container, update_progress=update_progress)
 
     css = f'frontend/static/css/pdf_{style}.css'
-    configuration = pdfkit.configuration(wkhtmltopdf=config.WKHTMLTOPDF_PATH)
     options = {
         'page-size': 'A4',
         'margin-top': '0in',
@@ -112,10 +108,10 @@ def render_pdf(container, path, file, lang, style):
         'margin-left': '0in',
         'encoding': "UTF-8",
         'no-outline': None,
-        'quiet': ''
+        'quiet': '',
     }
 
-    pdf_data = pdfkit.from_string(html, False, options=options, css=[css], configuration=configuration)
+    pdf_data = pdfkit.from_string(html, False, options=options, css=[css])
 
     pdf_file = open(path, 'wb')
     pdf_file.write(pdf_data)

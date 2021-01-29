@@ -7,8 +7,6 @@ class Config:
     SECRET_KEY = environ.get('SECRET_KEY')
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
-    WKHTMLTOPDF_PATH = environ.get('WKHTMLTOPDF_PATH', '')
-    WKHTMLTOIMAGE_PATH = environ.get('WKHTMLTOIMAGE_PATH', '')
 
     # Behaviour config
     MAX_UPLOAD_SIZE_MB = 1024
