@@ -26,7 +26,7 @@ class User(_Base, UserMixin):
     collations = relationship("Collation", backref="user", lazy='select')
 
     def __repr__(self):
-        return f"<User(id={self.id}, mail='{self.mail}', packs={self.packs})>"
+        return f"<User(id={self.id})>"
 
     def is_admin(self):
         return self.email == config.MAIL_USERNAME
@@ -103,7 +103,7 @@ class Pack(_Base):
     STATUS_FAILURE = _t('failure')
 
     def __repr__(self):
-        return f"<Pack(id={self.id}, userid='{self.userid}'"
+        return f"<Pack(id={self.id})>"
 
 
 collation_entries = Table('collation_entries', _Base.metadata,
@@ -196,6 +196,9 @@ class Global(_Base):
         g = db_session.query(Global).first()
         return g.christmas_event
 
+    def __repr__(self):
+        return f"<Global(id={self.id})>"
+
 
 class Message(_Base):
     __tablename__ = 'messages'
@@ -207,6 +210,9 @@ class Message(_Base):
     date = Column(DateTime(), default=datetime.utcnow)
     language = Column(String)
 
+    def __repr__(self):
+        return f"<Message(id={self.id})>"
+
 
 class File(_Base):
     __tablename__ = 'files'
@@ -215,5 +221,8 @@ class File(_Base):
     path = Column(String)
     progress = Column(Integer, default=0)
     ready = Column(Boolean, default=False)
+
+    def __repr__(self):
+        return f"<File(id={self.id})>"
 
 
