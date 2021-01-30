@@ -1,13 +1,13 @@
-from analytics import graph, style
+from analytics import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
 
 
 MAX_PEOPLE_COUNT = 40
 
 
 @graph(_l('The people you write with most frequent'))
+@using('messages')
 def your_best_friends(data):
     table = data['messages']
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]

@@ -6,6 +6,7 @@ from collections import namedtuple
 import traceback
 import os
 import pkgutil
+import functools
 
 style = Style(
   background='white',
@@ -35,6 +36,18 @@ def graph(name):
         graphTuple = namedtuple('graph', 'fun, category, name')
         graph = graphTuple(fun, category, str(name))
         _graphs.append(graph)
+    return decorator
+
+
+def using(*values):
+    def decorator(fun):
+        @functools.wraps(fun)
+        def wrapper(data):
+            for value in values:
+                if value not in data or data[value] is None:
+                    return None
+            return fun(data)
+        return wrapper
     return decorator
 
 

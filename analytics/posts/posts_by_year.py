@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
+
 
 @graph(_l('Number of posts by year'))
+@using('posts')
 def device_usage(data):
     post_data = data['posts']
     posts_by_year = post_data.groupby(post_data.time.dt.year).count()

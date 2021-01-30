@@ -1,10 +1,11 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
 
 @graph(_l('Messages sent by year'))
+@using('messages')
 def messages_sent_by_day_of_week(data):
     messages = data['messages']
     messages_for_year = messages.time.dt.year.value_counts().sort_index()

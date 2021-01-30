@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
+
 
 @graph(_l('Number of each notification type'))
+@using('notifications')
 def types_of_notifications(data):
     notify_table = data['notifications']
 

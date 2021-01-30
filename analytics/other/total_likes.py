@@ -1,10 +1,11 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
 from ..posts.total_posts_graph import get_cum_graph
 
+
 @graph(_l('Cumulated number of likes'))
+@using('likes')
 def number_of_likes(data):
     comment_data = data['likes']
     vals, index = get_cum_graph(comment_data['time'])

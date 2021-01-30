@@ -1,15 +1,15 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
 from ..posts.total_posts_graph import get_cum_graph
 
 
 # wykres liczby znajomych 2
 @graph(_l('Friends count'))
+@using('friends')
 def friends_cumsum(data):
     frens = data['friends']
-    if frens is None: # User has no friends. :(
+    if frens is None:   # User has no friends. :(
         return None 
 
     chart = pygal.Line(style=style, fill=True, x_label_rotation=-45, show_legend=False)

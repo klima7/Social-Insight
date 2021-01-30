@@ -1,10 +1,11 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
 from ..posts.total_posts_graph import get_cum_graph
 
+
 @graph(_l('Number of followed people'))
+@using('following')
 def following_people(data):
     follows = data['following']
 

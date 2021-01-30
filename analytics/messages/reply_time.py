@@ -1,4 +1,4 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -23,6 +23,7 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
 
 
 @graph(_l('Reply time by user'))
+@using('messages')
 def reply_time(data):
     messages = data['messages']
     reply_times = pd.DataFrame()

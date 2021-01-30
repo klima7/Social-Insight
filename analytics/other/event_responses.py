@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 
 
 @graph(_l('Event responses'))
+@using('event_responses')
 def device_usage(data):
     events = data['event_responses']
 

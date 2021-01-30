@@ -1,10 +1,9 @@
-from .. import graph, style
+from .. import graph, using
 from flask_babel import gettext as _l
-import pygal
-import pandas as pd
 
 
 @graph(_l('Things you are interested in according to Facebook'))
+@using('topics')
 def time_to_post(data):
     topics = data['topics']
     return topics

@@ -1,10 +1,11 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
 
 @graph(_l('Percent of notifications by day'))
+@using('notifications')
 def notifications_by_day(data):
     notify_table = data['notifications']
 

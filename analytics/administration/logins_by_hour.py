@@ -1,10 +1,11 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
 
 @graph(_l('Percent of logins by hour'))
+@using('account_activity')
 def logins_by_hour(data):
     acc_act = data['account_activity']
     hour_active = acc_act[(acc_act.action == 'Login') | (acc_act.action == 'Session updated')].groupby(acc_act.time.dt.hour)

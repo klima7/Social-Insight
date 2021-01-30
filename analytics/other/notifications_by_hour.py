@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 
 
 @graph(_l('Percent of notifications by hour'))
+@using('notifications')
 def notifications_by_hour(data):
     notify_table = data['notifications']
 

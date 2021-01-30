@@ -1,4 +1,4 @@
-from .. import graph, emojistyle
+from .. import graph, using, emojistyle
 from flask_babel import gettext as _l
 import pygal
 import emoji
@@ -21,6 +21,7 @@ def check_emojis(s):
 
 
 @graph(_l('Your emoji ranking'))
+@using('messages', 'username')
 def emoji_ranking(data):
     table = data['messages']
     my_name = data['username']

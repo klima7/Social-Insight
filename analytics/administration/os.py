@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 
 
 @graph(_l('Operating system'))
+@using('account_activity')
 def device_usage(data):
     acc_act = data['account_activity']
     os = acc_act.os.value_counts()

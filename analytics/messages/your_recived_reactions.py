@@ -1,10 +1,10 @@
-from .. import graph, emojistyle
+from .. import graph, using, emojistyle
 from flask_babel import gettext as _l
 import pygal
-import emoji
 
 
 @graph(_l('Reactions given to you'))
+@using('reactions', 'username')
 def reacived_reactions(data):
     reac = data['reactions']
     your_recived_reac = reac[reac.reciver == data['username']]

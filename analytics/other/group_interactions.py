@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 
 MAX_GROUP_COUNT = 40
 MAX_TITLE_LEN = 40
+
 
 def shorten_title(s):
     if len(s) > MAX_TITLE_LEN:
@@ -12,6 +13,7 @@ def shorten_title(s):
 
 
 @graph(_l('Number of interactions with groups'))
+@using('group_interactions')
 def group_interactions(data):
     group_inter = data['group_interactions'].sort_values(by='value').tail(MAX_GROUP_COUNT)
 

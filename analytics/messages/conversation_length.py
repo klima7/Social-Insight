@@ -1,4 +1,4 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -38,6 +38,7 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
 
 
 @graph(_l('Average conversation length'))
+@using('messages')
 def conversation_length(data):  # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
     messages = data['messages']
     reply_times = pd.DataFrame()

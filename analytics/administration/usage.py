@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 
 
 @graph(_l('Usage statistics'))
+@using('account_activity')
 def device_usage(data):
     acc_act = data['account_activity']
     acc_act['agent'] = acc_act.device + ' / ' + acc_act.os + ' / ' + acc_act.browser

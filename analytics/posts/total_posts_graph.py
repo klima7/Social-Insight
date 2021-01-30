@@ -1,4 +1,4 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -69,6 +69,7 @@ def get_cum_graph(time_events):
 
 
 @graph(_l('Cumulated number of posts'))
+@using('posts')
 def device_usage(data):
     post_data = data['posts']
     vals, index = get_cum_graph(post_data['time'])

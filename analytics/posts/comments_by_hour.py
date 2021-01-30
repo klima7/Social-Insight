@@ -1,9 +1,10 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
+
 
 @graph(_l('percent of comments by hour'))
+@using('comments')
 def time_to_post(data):
     post_data = data['comments']
     total_posts_n = len(post_data)

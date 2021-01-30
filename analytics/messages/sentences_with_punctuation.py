@@ -1,6 +1,6 @@
-import pygal
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
+import pygal
 import re
 import pandas as pd
 
@@ -15,6 +15,7 @@ def get_percent_of_messages_with_punctuation(mess):
 
 
 @graph(_l('Percent of sentences with punctuation'))
+@using('messages')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()

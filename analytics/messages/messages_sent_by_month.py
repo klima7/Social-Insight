@@ -1,11 +1,12 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
 
 
 @graph(_l('Messages sent by month'))
-def messages_sent_by_month(data): #
+@using('messages')
+def messages_sent_by_month(data):
     messages = data['messages']
     messages_for_month = messages.time.dt.month.value_counts().sort_index()
     percent_for_month = messages_for_month / messages_for_month.sum() * 100

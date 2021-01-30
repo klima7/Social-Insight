@@ -1,6 +1,6 @@
-import pygal
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
+import pygal
 import re
 import pandas as pd
 
@@ -17,6 +17,7 @@ def get_sentences_percent_with_cap_letter(message):
 
 
 @graph(_l('Percent of sentences starting with capital letter'))
+@using('messages')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()

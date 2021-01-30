@@ -1,9 +1,10 @@
 import pygal
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 
 
 @graph(_l('Messages sent by sex'))
+@using('messages')
 def messages_by_sex(data):
     messages = data['messages']
 

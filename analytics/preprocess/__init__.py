@@ -1,4 +1,6 @@
 import pkgutil
+import itertools
+import traceback
 
 _preprocessors = {}
 
@@ -16,9 +18,14 @@ def preprocess(zip_file):
 
     preprocess_result = {}
     for names, fun in _preprocessors.items():
-        result = fun(zip_file, folders)
+        try:
+            result = fun(zip_file, folders)
+        except Exception:
+            result = ()
+            print(f'-------------------- Exception in preprocessor -----------------------')
+            traceback.print_exc()
         values = result if isinstance(result, tuple) else [result]
-        for name, value in zip(names, values):
+        for name, value in itertools.zip_longest(names, values):
             preprocess_result[name] = value
     return preprocess_result
 

@@ -1,11 +1,12 @@
-from .. import graph, style
+from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import emoji
 
 MAX_PEOPLE_COUNT = 40
 
+
 @graph(_l('Number of photos in conversations'))
+@using('messages')
 def reacived_reactions(data):
     msg = data['messages']
     photo_count = msg.groupby(msg.conversation).photos.sum().sort_values().tail(MAX_PEOPLE_COUNT)
