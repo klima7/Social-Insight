@@ -186,12 +186,6 @@ class Global(_Base):
             db_session.commit()
 
     @staticmethod
-    def set_christmas_event(status):
-        g = db_session.query(Global).first()
-        g.christmas_event = status
-        db_session.add(g)
-
-    @staticmethod
     def get_christmas_event():
         g = db_session.query(Global).first()
         return g.christmas_event

@@ -81,8 +81,11 @@ def collations_delete(collation_id):
 @api.route('/christmas', methods=['POST'])
 def christmas_post():
     status = request.json['status']
-    Global.set_christmas_event(status)
-    return {"status": Global.get_christmas_event()}
+    g = db_session.query(Global).first()
+    g.christmas_event = status
+    db_session.add(g)
+    db_session.commit()
+    return {"status": g.christmas_event}
 
 
 @api.route('/files/<file_id>/progress')
