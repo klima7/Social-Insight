@@ -85,4 +85,4 @@ def get_messages_and_reactions_table(zip_file, folders):
     reactions_table.reciver = reactions_table.reciver.transform(lambda text: text.encode('latin1').decode('utf8'))
     reactions_table.giver = reactions_table.giver.transform(lambda text: text.encode('latin1').decode('utf8'))
 
-    return messages_table, reactons_table
+    return messages_table, reactions_table
