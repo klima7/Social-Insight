@@ -3,10 +3,13 @@ from os import environ
 
 class Config:
 
-    # Technical config
     SECRET_KEY = environ.get('SECRET_KEY')
     LANGUAGES = ['en', 'pl']
     CACHING_DISABLED = True
+
+    ADMIN_PASSWORD = environ.get('ADMIN_PASSWORD')
+    DEFAULT_USER_EMAIL = 'user@test.com'
+    DEFAULT_USER_PASSWORD = 'password'
 
     # Behaviour config
     MAX_UPLOAD_SIZE_MB = 1024

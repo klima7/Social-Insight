@@ -29,16 +29,8 @@ def _prepare():
     Global.create()
 
     try:
-        user = User(email='user@test.com', confirmed=True)
-        user.password = 'password'
-        db_session.add(user)
-        db_session.commit()
-    except IntegrityError:
-        db_session.rollback()
-
-    try:
-        user = User(email='user2@test.com', confirmed=False)
-        user.password = 'password'
+        user = User(email=config.DEFAULT_USER_EMAIL, confirmed=True)
+        user.password = config.DEFAULT_USER_PASSWORD
         db_session.add(user)
         db_session.commit()
     except IntegrityError:
@@ -46,7 +38,7 @@ def _prepare():
 
     try:
         user = User(email=config.MAIL_USERNAME, confirmed=True)
-        user.password = 'password'
+        user.password = config.ADMIN_PASSWORD
         db_session.add(user)
         db_session.commit()
     except IntegrityError:
