@@ -13,7 +13,6 @@ class Config:
     MIN_PASSWORD_LENGTH = 8
     CONFIRMATION_TIME = 60
     PASSWORD_CHANGE_TIME = 60
-    SNOW = True
 
     # What will be logged
     DATABASE_DEBUG = False
