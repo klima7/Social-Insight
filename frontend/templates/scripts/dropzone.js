@@ -1,5 +1,5 @@
 Dropzone.options.uploadZone = {
-    maxFilesize: 10000000,
+    maxFilesize: {{ config.MAX_UPLOAD_SIZE_MB }},
     timeout: 1000000000000,
     maxFiles: 1,
     createImageThumbnails: false,

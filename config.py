@@ -12,7 +12,7 @@ class Config:
     DEFAULT_USER_PASSWORD = 'password'
 
     # Behaviour config
-    MAX_UPLOAD_SIZE_MB = 1024
+    MAX_UPLOAD_SIZE_MB = 10*1024
     MIN_PASSWORD_LENGTH = 8
     CONFIRMATION_TIME = 60
     PASSWORD_CHANGE_TIME = 60
