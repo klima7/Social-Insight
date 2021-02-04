@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 import re
@@ -39,7 +40,7 @@ def words_count_in_message(data):
 
     height = len(df.name)*25
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
-    chart.x_labels = df.name
+    chart.x_labels = shorten_strings(df.name)
     chart.add('', df.avg_word)
     chart.x_title = 'Average count of words in sentence'
     chart.y_title = 'User'

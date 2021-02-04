@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 import re
@@ -28,10 +29,6 @@ def words_count_in_message(data):
     for conv, msgs in messages.groupby(messages.conversation):
         if msgs.content is not None and len(msgs.content) > 1:
 
-            # Omijanie użytkowników o długich nazwach(np. weeia), bo psują formatowanie
-            if len(conv) > 25:
-                continue
-
             percent = get_sentences_percent_with_cap_letter(msgs.content)
             names.append(conv)
             percents.append(percent)
@@ -41,7 +38,7 @@ def words_count_in_message(data):
 
     height = len(df.name)*25
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
-    chart.x_labels = df.name
+    chart.x_labels = shorten_strings(df.name)
     chart.add('', df.percent)
 
     chart.x_title = 'Percent of sentences starting with capital letter'

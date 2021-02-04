@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -17,10 +18,6 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
 
     # sample['sender2_test'] = sample['sender2'][::-1].diff() # Można usunąć (debug purposes)
     sample['time2'] = sample['time'].diff(periods=-1) # Czas który upłynął od ostatniej wiadomości.
-
-    # Usuwanie kilku wiadomości użytkownika pod rząd. (Nie może przecież odpowiedzieć sam sobie)
-    # sample = sample[ (sample['sender2'][::-1].diff() != 0)[::-1]]
-    # sample[:50]
 
     conv_end_threshold = pd.Timedelta(hours=2)
     # Odrzucanie wartości które są początkami rozmów. (Długi czas upłynął od ostatniej wiadomości. Improve if know how.)
@@ -50,16 +47,13 @@ def conversation_length(data):  # Skopiowane reply_time, więc nazwy zmiennych n
     reply_times = reply_times.dropna()  # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'])
 
-    # Odfiltrowanie użytkowników o zbyt długich nazwach
-    reply_times = reply_times.loc[reply_times.user.str.len() <= 25]
-
     reply_times.time = reply_times.time.round(0)
     reply_times = reply_times.tail(MAX_PEOPLE)
 
     height = len(reply_times.user)*25
     gr = pygal.HorizontalBar(style=style, height=height)
     gr.add('', reply_times['time'])
-    gr.x_labels = list(reply_times['user'])
+    gr.x_labels = shorten_strings(reply_times['user'])
     gr.human_readable = True
     gr.show_legend = False
     gr.print_values = True

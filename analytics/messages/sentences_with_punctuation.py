@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 import re
@@ -39,7 +40,7 @@ def words_count_in_message(data):
 
     height = len(df.name)*25
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
-    chart.x_labels = df.name
+    chart.x_labels = shorten_strings(df.name)
     chart.add('', df.percent)
     chart.x_title = 'Percent of sentences with punctuation'
     chart.y_title = 'User'

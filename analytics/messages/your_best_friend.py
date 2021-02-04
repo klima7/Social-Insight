@@ -1,4 +1,5 @@
 from analytics import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 
@@ -21,7 +22,7 @@ def your_best_friends(data):
 
     height = len(list(counts.keys()))*25
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
-    chart.x_labels = list(counts.keys()[::-1])
+    chart.x_labels = shorten_strings(counts.keys()[::-1])
     chart.add('', counts.values[::-1])
     chart.x_title = 'Count of messages in conversation'
     chart.y_title = 'User'

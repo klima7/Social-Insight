@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -35,14 +36,12 @@ def reply_time(data):
     reply_times = reply_times.dropna()  # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'], ascending=[0])
 
-    # Odfiltrowanie użytkowników o zbyt długich nazwach
-    reply_times = reply_times.loc[reply_times.user.str.len() <= 25]
     reply_times = reply_times.tail(MAX_PEOPLE)
 
     height = len(reply_times.user)*25
     gr = pygal.HorizontalBar(style=style, height=height)
     gr.add('', reply_times['time'].dt.seconds)
-    gr.x_labels = list(reply_times['user'])
+    gr.x_labels = shorten_strings(reply_times['user'])
     gr.human_readable = True
     gr.show_legend = False
     gr.print_values = True
