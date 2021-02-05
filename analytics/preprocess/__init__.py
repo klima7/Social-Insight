@@ -14,7 +14,7 @@ def preprocessor(*names):
 
 
 def preprocess(zip_file):
-    folders = get_structure(zip_file)
+    folders = _get_structure(zip_file)
 
     preprocess_result = {}
     for names, fun in _preprocessors.items():
@@ -30,7 +30,7 @@ def preprocess(zip_file):
     return preprocess_result
 
 
-def get_structure(zip_file):
+def _get_structure(zip_file):
     folders = {}
     for i in zip_file.namelist():
         entry = i.split('/')
@@ -49,14 +49,10 @@ def get_structure(zip_file):
     return folders
 
 
-def fb_decode(text):
-    return text.encode('latin1').decode('utf8')
-
-
-def import_preprocessors():
+def _import_preprocessors():
     modules = [name for _, name, _ in pkgutil.iter_modules([f'analytics/preprocess'])]
     for module in modules:
         __import__(f'analytics.preprocess.{module}', fromlist=[f'analytics.preprocess'])
 
 
-import_preprocessors()
+_import_preprocessors()

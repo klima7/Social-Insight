@@ -51,7 +51,7 @@ def using(*values):
     return decorator
 
 
-def import_graphs():
+def _import_graphs():
     packages = ['messages', 'posts', 'administration', 'other']
 
     for package in packages:
@@ -100,5 +100,5 @@ def analyse(pack_id, file_path, delete=True):
     db_session.commit()
 
 
-import_graphs()
+_import_graphs()
 

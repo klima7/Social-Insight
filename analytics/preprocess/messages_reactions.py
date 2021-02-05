@@ -3,6 +3,7 @@ import json
 import pandas as pd
 from . import preprocessor
 
+
 def _aux_get_messages_filenames(folder):
     message_files = []
     for i in folder.keys():
@@ -37,13 +38,10 @@ def _aux_analyse_messages_file(file):
         if 'photos' in i:
             photos = len(i['photos'])
 
-        # entries.append([, , content, ])
         entries[0].append(i['sender_name'].encode('latin1').decode('utf8'))
         entries[1].append(i['timestamp_ms'])
         entries[2].append(content)
         entries[3].append(photos)
-
-    # entries = np.array(entries)
 
     data = pd.DataFrame(
         {
@@ -72,7 +70,7 @@ def get_messages_and_reactions_table(zip_file, folders):
 
     for i in message_files:
         temp_file = zip_file.getinfo(i)
-        # with io.TextIOWrapper(zip.open(temp_file), 'utf-8') as f: # Otwieranie pliku jako tekst, żeby można było odrazu zamienić escapowane znaki na właściwe.
+
         with zip_file.open(temp_file) as f:
             stats, react_stats = _aux_analyse_messages_file(f.read())
             if messages_table is None:

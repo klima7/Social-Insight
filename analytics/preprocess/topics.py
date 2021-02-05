@@ -1,6 +1,7 @@
 import json
 import pandas as pd
-from . import preprocessor, fb_decode
+from . import preprocessor
+from ..util import fb_decode
 
 
 @preprocessor('topics')
