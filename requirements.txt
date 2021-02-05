@@ -64,3 +64,4 @@ Werkzeug==1.0.1
 wkhtmltopdf==0.2
 WTForms==2.3.3
 ip2geotools==0.1.5
+geopy==2.1.0
