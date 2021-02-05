@@ -3,7 +3,10 @@ from flask_babel import gettext as _l
 import pandas as pd
 
 
-MAX_COUNT = 10
+def create_chart(df, limit=None):
+    if limit is not None:
+        df = df.tail(limit)
+    return df
 
 
 @graph(_l('Most frequently searched phrases'))
@@ -16,5 +19,5 @@ def time_to_post(data):
     history.message.value_counts()
     counts = history.message.value_counts()
     table = pd.DataFrame({'searched phrase': counts.index, 'count': counts})
-    return table.head(MAX_COUNT), table
+    return create_chart(table, 10), create_chart(table)
 
