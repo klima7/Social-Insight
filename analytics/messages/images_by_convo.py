@@ -22,4 +22,4 @@ def recived_reactions(data):
     photo_count = msg.groupby(msg.conversation).photos.sum().sort_values()
     photo_count = photo_count[photo_count != 0]
 
-    return create_chart(photo_count, 30), create_chart(photo_count)
+    return create_chart(photo_count, 10), create_chart(photo_count)

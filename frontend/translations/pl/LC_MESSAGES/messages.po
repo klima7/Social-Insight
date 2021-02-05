@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-05 13:36+0100\n"
+"POT-Creation-Date: 2021-02-05 16:02+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -83,6 +83,18 @@ msgstr "Liczba wysłanych wiadomości według miesiąca"
 msgid "Messages sent by year"
 msgstr "Liczba wysłanych wiadomości według roku"
 
+#: analytics/messages/most_common_words_friends.py:9
+msgid "Most common words your friends use (above 5 letters)"
+msgstr "Słowa najczęściej używane przez twoich znajomych (ponad 5 liter)"
+
+#: analytics/messages/most_common_words_your.py:30
+msgid "Most common words you use"
+msgstr "Słowa najczęściej używane przez ciebie"
+
+#: analytics/messages/most_common_words_your.py:36
+msgid "Most common words you use (above 5 letters)"
+msgstr "Słowa najczęściej używane przez ciebie (ponad 5 liter)"
+
 #: analytics/messages/reply_time.py:40
 msgid "Reply time by user"
 msgstr "Czas odpowiedzi Twoich znajomych"
@@ -139,7 +151,7 @@ msgstr "Najczęściej wyszukiwane frazy"
 msgid "Friends count"
 msgstr "Liczba przyjaciół"
 
-#: analytics/other/group_interactions.py:17
+#: analytics/other/group_interactions.py:18
 msgid "Number of interactions with groups"
 msgstr "Liczba interakcji z grupami"
 
