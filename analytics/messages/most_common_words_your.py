@@ -23,7 +23,7 @@ def get_most_common_words(data, min_word_width):
         text += '%s(%d), ' % (word, count)
     text = text[0:-2]
 
-    table = pd.DataFrame({'': [text]})
+    table = pd.DataFrame({'Words': [text]})
     return table
 
 
