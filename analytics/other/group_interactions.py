@@ -8,7 +8,8 @@ def create_graph(group_inter, limit=None):
     if limit is not None:
         group_inter = group_inter.tail(limit)
 
-    group_chart = pygal.HorizontalBar(style=style, show_legend=False)
+    height = len(group_inter) * 25
+    group_chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     group_chart.x_labels = shorten_strings(group_inter.name, width=40)
     group_chart.add('', group_inter.value)
     return group_chart

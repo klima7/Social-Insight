@@ -20,7 +20,8 @@ def coments_in_group(data):
     comm_by_group = comment_data.groupby(comment_data.group).time.count().dropna()
     comm_by_group = comm_by_group.sort_values().tail(MAX_GROUP_COUNT)
 
-    group_chart = pygal.HorizontalBar(style=style, show_legend=False)
+    height = len(comm_by_group) * 25
+    group_chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     group_chart.x_labels = list(map(shorten_title, comm_by_group.index))
     group_chart.add('', list(comm_by_group))    
     
