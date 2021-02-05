@@ -38,7 +38,7 @@ def create_chart(reply_times, limit=None):
 
 
 @graph(_l('Reply time by user'))
-@using('messages')
+@using('messages', 'username')
 def reply_time(data):
     messages = data['messages']
     reply_times = pd.DataFrame()

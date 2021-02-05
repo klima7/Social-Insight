@@ -7,7 +7,7 @@ import pandas as pd
 
 
 @graph(_l('Your messages analysis'))
-@using('messages')
+@using('messages', 'username')
 def your_message_stats(data):
     all_messages = data['messages']
     your_messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender == data['username'])].dropna().content

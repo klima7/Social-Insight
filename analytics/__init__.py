@@ -83,6 +83,7 @@ def analyse(pack_id, file_path, delete=True):
                 db_session.add(graph_entry)
 
             except Exception:
+                print(f'-------------------- Exception in graph %s -----------------------' % name)
                 traceback.print_exc()
                 graph_entry = Graph(name=name, category=category, packid=pack_id, data=None)
                 db_session.add(graph_entry)

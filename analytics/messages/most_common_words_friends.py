@@ -7,7 +7,7 @@ import pandas as pd
 
 
 @graph(_l('Most common words your friends use (above 5 letters)'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()

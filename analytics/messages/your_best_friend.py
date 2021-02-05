@@ -18,7 +18,7 @@ def create_chart(counts, limit=None):
 
 
 @graph(_l('The people you write with most frequent'))
-@using('messages')
+@using('messages', 'username')
 def your_best_friends(data):
     table = data['messages']
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]

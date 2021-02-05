@@ -5,9 +5,10 @@ import pandas as pd
 
 
 @graph(_l('Messages sent by day of week'))
-@using('messages')
-def messages_sent_by_day_of_week(data): #
+@using('messages', 'username')
+def messages_sent_by_day_of_week(data):
     messages = data['messages']
+    messages = messages[messages.sender == data['username']]
     messages_for_day = messages.time.dt.dayofweek.value_counts()
     percent_for_day = messages_for_day / messages_for_day.sum() * 100
 

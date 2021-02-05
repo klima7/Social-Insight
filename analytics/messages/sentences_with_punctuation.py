@@ -7,6 +7,8 @@ import pandas as pd
 
 
 def get_percent_of_messages_with_punctuation(mess):
+    if len(mess) == 0:
+        return 0
     n_messages = len(mess)
     msg_with_punctuation = sum(1 for k in mess if re.findall(r'[,.?!;:]', k))
     return round(msg_with_punctuation / n_messages * 100)
@@ -26,7 +28,7 @@ def create_chart(df, limit=None):
 
 
 @graph(_l('Percent of sentences with punctuation'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()

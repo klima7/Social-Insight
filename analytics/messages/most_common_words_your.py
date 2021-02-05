@@ -28,12 +28,12 @@ def get_most_common_words(data, min_word_width):
 
 
 @graph(_l('Most common words you use'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     return get_most_common_words(data, 1)
 
 
 @graph(_l('Most common words you use (above 5 letters)'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     return get_most_common_words(data, 5)

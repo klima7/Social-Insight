@@ -49,7 +49,7 @@ def create_chart(reply_times, limit=None):
 
 
 @graph(_l('Average conversation length'))
-@using('messages')
+@using('messages', 'username')
 def conversation_length(data):  # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
     messages = data['messages']
     reply_times = pd.DataFrame()

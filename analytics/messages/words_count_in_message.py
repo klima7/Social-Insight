@@ -8,7 +8,7 @@ import pandas as pd
 
 def get_avg_message_length(message):
     msg_lens = [len(list(filter(lambda i: len(i) > 0, re.split(r'[\s,]', i)))) for i in message if i is not None]
-    avg_word_count = sum(msg_lens)/len(msg_lens)
+    avg_word_count = sum(msg_lens)/len(msg_lens) if len(msg_lens) != 0 else 0
     return round(avg_word_count, 1)
 
 
@@ -26,7 +26,7 @@ def create_chart(df, limit=None):
 
 
 @graph(_l('Average words count in message'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()

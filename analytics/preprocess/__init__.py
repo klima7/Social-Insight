@@ -22,7 +22,7 @@ def preprocess(zip_file):
             result = fun(zip_file, folders)
         except Exception:
             result = ()
-            print(f'-------------------- Exception in preprocessor -----------------------')
+            print(f'-------------------- Exception in %s preprocessor -----------------------' % names[0])
             traceback.print_exc()
         values = result if isinstance(result, tuple) else [result]
         for name, value in itertools.zip_longest(names, values):

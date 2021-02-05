@@ -8,7 +8,7 @@ def create_chart(photo_count, limit=None):
     if limit is not None:
         photo_count = photo_count.tail(limit)
 
-    height = len(photo_count)*25
+    height = len(photo_count)*25 + 50
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     chart.x_labels = shorten_strings(photo_count.index)
     chart.add('', photo_count)

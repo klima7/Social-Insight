@@ -5,9 +5,10 @@ import pandas as pd
 
 
 @graph(_l('Messages sent by year'))
-@using('messages')
+@using('messages', 'username')
 def messages_sent_by_day_of_week(data):
     messages = data['messages']
+    messages = messages[messages.sender == data['username']]
     messages_for_year = messages.time.dt.year.value_counts().sort_index()
     percent_for_year = (messages_for_year / messages_for_year.sum() * 100).round(2)
 

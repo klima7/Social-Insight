@@ -4,7 +4,7 @@ from flask_babel import gettext as _l
 
 
 @graph(_l('Messages sent by sex'))
-@using('messages')
+@using('messages', 'username')
 def messages_by_sex(data):
     messages = data['messages']
 

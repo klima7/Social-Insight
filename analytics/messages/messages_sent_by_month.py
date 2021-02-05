@@ -5,9 +5,10 @@ import pandas as pd
 
 
 @graph(_l('Messages sent by month'))
-@using('messages')
+@using('messages', 'username')
 def messages_sent_by_month(data):
     messages = data['messages']
+    messages = messages[messages.sender == data['username']]
     messages_for_month = messages.time.dt.month.value_counts().sort_index()
     percent_for_month = messages_for_month / messages_for_month.sum() * 100
 

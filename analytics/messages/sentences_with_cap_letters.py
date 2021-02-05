@@ -11,7 +11,7 @@ def get_sentences_percent_with_cap_letter(message):
     for s in message:
         t = [1 if len(i.strip()) > 0 and i.strip()[0].isupper() else 0 for i in list(filter(lambda i: len(i) > 0, re.split(r'[.?!]', s)))] # zdania w wiadomości
         sentences.extend(t)
-    return round(sum(sentences) / len(sentences) * 100)
+    return round(sum(sentences) / len(sentences) * 100) if len(sentences) != 0 else 0
 
 
 def create_chart(df, limit=None):
@@ -28,7 +28,7 @@ def create_chart(df, limit=None):
 
 
 @graph(_l('Percent of sentences starting with capital letter'))
-@using('messages')
+@using('messages', 'username')
 def words_count_in_message(data):
     all_messages = data['messages']
     messages = all_messages[(all_messages.thread_type == 'Regular') & (all_messages.sender != data['username'])].dropna()
