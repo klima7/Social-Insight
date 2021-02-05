@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-01-29 21:35+0100\n"
+"POT-Creation-Date: 2021-02-05 12:40+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -23,23 +23,15 @@ msgstr "Przeglądarka"
 msgid "Device"
 msgstr "Urządzenia"
 
-#: analytics/administration/firends_pie.py:9
-msgid "Friends invites, deleted and aquired."
-msgstr "Liczba przyjaciół zaproszonych, usuniętych i uzyskanych"
-
-#: analytics/administration/friends_cumsum.py:9
-msgid "Friends count"
-msgstr "Liczba przyjaciół"
-
-#: analytics/administration/interests.py:7
-msgid "Things you are interested in according to Facebook"
-msgstr "Twoje zainteresowania według facebooka"
+#: analytics/administration/ips.py:7
+msgid "IP addresses"
+msgstr "Adresy ip"
 
 #: analytics/administration/logins_by_hour.py:7
 msgid "Percent of logins by hour"
 msgstr "Procent logowań względem godziny"
 
-#: analytics/administration/off_fb_activity.py:7
+#: analytics/administration/off_fb_activity.py:12
 msgid "Pages you visited while being logged into facebook"
 msgstr "Strony, który odwiedziłeś, będąc zalogowanym na facebooku"
 
@@ -51,7 +43,7 @@ msgstr "System operacyjny"
 msgid "Usage statistics"
 msgstr "Statystyki wykorzystania"
 
-#: analytics/messages/conversation_length.py:40
+#: analytics/messages/conversation_length.py:51
 msgid "Average conversation length"
 msgstr "Średnia długość konwersacji"
 
@@ -59,7 +51,7 @@ msgstr "Średnia długość konwersacji"
 msgid "Your emoji ranking"
 msgstr "Twój ranking emoji"
 
-#: analytics/messages/images_by_convo.py:8
+#: analytics/messages/images_by_convo.py:18
 msgid "Number of photos in conversations"
 msgstr "Liczba zdjęć w konwersacji"
 
@@ -83,23 +75,23 @@ msgstr "Liczba wysłanych wiadomości według miesiąca"
 msgid "Messages sent by year"
 msgstr "Liczba wysłanych wiadomości według roku"
 
-#: analytics/messages/reply_time.py:25
+#: analytics/messages/reply_time.py:40
 msgid "Reply time by user"
 msgstr "Czas odpowiedzi Twoich znajomych"
 
-#: analytics/messages/sentences_with_cap_letters.py:19
+#: analytics/messages/sentences_with_cap_letters.py:30
 msgid "Percent of sentences starting with capital letter"
 msgstr "Procent zdań zaczynających się wielką literą"
 
-#: analytics/messages/sentences_with_punctuation.py:17
+#: analytics/messages/sentences_with_punctuation.py:28
 msgid "Percent of sentences with punctuation"
 msgstr "Procent zdań ze znakami interpunkcyjnymi"
 
-#: analytics/messages/words_count_in_message.py:17
+#: analytics/messages/words_count_in_message.py:28
 msgid "Average words count in message"
 msgstr "Średnia liczba słów w wiadomości"
 
-#: analytics/messages/your_best_friend.py:10
+#: analytics/messages/your_best_friend.py:20
 msgid "The people you write with most frequent"
 msgstr "Ludzie z którymi najczęściej piszesz"
 
@@ -107,17 +99,21 @@ msgstr "Ludzie z którymi najczęściej piszesz"
 msgid "Your messages analysis"
 msgstr "Analiza Twoich wiadomości"
 
-#: analytics/messages/your_reaction_graph.py:7
+#: analytics/messages/your_reaction_graph.py:6
 msgid "Your reactions"
 msgstr "Dane przez Ciebie reakcje"
 
-#: analytics/messages/your_recived_reactions.py:7
+#: analytics/messages/your_recived_reactions.py:6
 msgid "Reactions given to you"
 msgstr "Reakcje dane Tobie"
 
 #: analytics/other/event_responses.py:6
 msgid "Event responses"
 msgstr "Reakcje na zdarzenia"
+
+#: analytics/other/firends_pie.py:7
+msgid "Friends invites, deleted and aquired."
+msgstr "Liczba przyjaciół zaproszonych, usuniętych i uzyskanych"
 
 #: analytics/other/following_pages.py:7
 msgid "Number of followed pages"
@@ -127,17 +123,25 @@ msgstr "Liczba obserwowanych stron"
 msgid "Number of followed people"
 msgstr "Liczba obserwowanych osób"
 
-#: analytics/other/frequently_searched.py:10
+#: analytics/other/frequently_searched.py:12
 msgid "Most frequently searched phrases"
 msgstr "Najczęściej wyszukiwane frazy"
 
-#: analytics/other/group_interactions.py:14
+#: analytics/other/friends_cumsum.py:8
+msgid "Friends count"
+msgstr "Liczba przyjaciół"
+
+#: analytics/other/group_interactions.py:17
 msgid "Number of interactions with groups"
 msgstr "Liczba interakcji z grupami"
 
 #: analytics/other/group_join_graph.py:7
 msgid "Number of group memberships"
 msgstr "Liczba grup do których należysz"
+
+#: analytics/other/interests.py:5
+msgid "Things you are interested in according to Facebook"
+msgstr "Twoje zainteresowania według facebooka"
 
 #: analytics/other/likes_by_hour.py:6
 msgid "Percent of likes by hour"
@@ -159,11 +163,11 @@ msgstr "Liczba notyfikacji od dnia tygodnia"
 msgid "Percent of notifications by hour"
 msgstr "Liczba notyfikacji od godziny"
 
-#: analytics/other/reaction_type_pie.py:7
+#: analytics/other/reaction_type_pie.py:6
 msgid "Number of reactions"
 msgstr "Liczba reakcji"
 
-#: analytics/other/search_type.py:10
+#: analytics/other/search_type.py:9
 msgid "Types of most frequently searched elements"
 msgstr "Typy najczęściej wyszukiwanych elementów"
 
@@ -179,7 +183,7 @@ msgstr "Procent komentarzy względem godziny"
 msgid "Number of comments by year"
 msgstr "Liczba komentarzy według roku"
 
-#: analytics/posts/comments_in_groups.py:15
+#: analytics/posts/comments_in_groups.py:16
 msgid "Comments in each group"
 msgstr "Liczba komentarzy w każdej grupie"
 
@@ -605,27 +609,27 @@ msgid "No graphs in this category"
 msgstr "Brak wykresów w tej kategorii"
 
 #: frontend/templates/collation.html:19
-#: frontend/templates/parts/_categories.html:17
+#: frontend/templates/parts/_categories.html:28
 msgid "rename"
 msgstr "zmień nazwę"
 
 #: frontend/templates/collation.html:20
-#: frontend/templates/parts/_categories.html:18
+#: frontend/templates/parts/_categories.html:29
 msgid "remove"
 msgstr "usuń"
 
 #: frontend/templates/collation.html:21
-#: frontend/templates/parts/_categories.html:20
+#: frontend/templates/parts/_categories.html:31
 msgid "download pdf"
 msgstr "pobierz pdf"
 
 #: frontend/templates/collation.html:22
-#: frontend/templates/parts/_categories.html:21
+#: frontend/templates/parts/_categories.html:32
 msgid "download pdf to print"
 msgstr "pobierz pdf do druku"
 
 #: frontend/templates/collation.html:23
-#: frontend/templates/parts/_categories.html:22
+#: frontend/templates/parts/_categories.html:33
 msgid "Download zip"
 msgstr "Pobierz zip"
 
@@ -900,39 +904,39 @@ msgstr "Generujemy żądany plik"
 msgid "Progress"
 msgstr "Postęp"
 
-#: frontend/templates/macros/render_browser.html:14
+#: frontend/templates/macros/render_browser.html:15
 msgid "Show"
 msgstr "Pokaż"
 
-#: frontend/templates/macros/render_browser.html:17
+#: frontend/templates/macros/render_browser.html:18
 msgid "Add"
 msgstr "Dodaj"
 
-#: frontend/templates/macros/render_browser.html:19
+#: frontend/templates/macros/render_browser.html:20
 msgid "PNG"
 msgstr "PNG"
 
-#: frontend/templates/macros/render_browser.html:21
+#: frontend/templates/macros/render_browser.html:22
 msgid "SVG"
 msgstr "SVG"
 
-#: frontend/templates/macros/render_browser.html:24
+#: frontend/templates/macros/render_browser.html:25
 msgid "Public"
 msgstr "Publiczny"
 
-#: frontend/templates/macros/render_browser.html:25
+#: frontend/templates/macros/render_browser.html:26
 msgid "Share"
 msgstr "Udostępnij"
 
-#: frontend/templates/macros/render_browser.html:26
+#: frontend/templates/macros/render_browser.html:27
 msgid "Copy link"
 msgstr "Kopiuj link"
 
-#: frontend/templates/macros/render_browser.html:41
+#: frontend/templates/macros/render_browser.html:42
 msgid "Sorry, error occured"
 msgstr "Przepraszamy, wystąpił błąd"
 
-#: frontend/templates/macros/render_browser.html:56
+#: frontend/templates/macros/render_browser.html:57
 msgid "Unknown type of data to render"
 msgstr "Nierozpoznany typ danych do wyrenderowania"
 
@@ -968,27 +972,27 @@ msgstr "Zresetuj swoje hasło za pomocą poniższego przycisku."
 msgid "Reset!"
 msgstr "Resetuj!"
 
-#: frontend/templates/parts/_categories.html:10
+#: frontend/templates/parts/_categories.html:21
 msgid "Results"
 msgstr "Wyniki"
 
-#: frontend/templates/parts/_categories.html:32
+#: frontend/templates/parts/_categories.html:39
 msgid "messages"
 msgstr "wiadomości"
 
-#: frontend/templates/parts/_categories.html:41
+#: frontend/templates/parts/_categories.html:40
 msgid "posts"
 msgstr "posty"
 
-#: frontend/templates/parts/_categories.html:50
+#: frontend/templates/parts/_categories.html:41
 msgid "administration"
 msgstr "administracja"
 
-#: frontend/templates/parts/_categories.html:59
+#: frontend/templates/parts/_categories.html:42
 msgid "other"
 msgstr "inne"
 
-#: frontend/templates/parts/_categories.html:73
+#: frontend/templates/parts/_categories.html:53
 #, python-format
 msgid ""
 "%(ls)sLogin%(le)s or %(rs)sRegister%(re)s to store this chart pack "
@@ -1063,3 +1067,4 @@ msgstr "Odpowiedź serwera jest niepoprawna"
 #: frontend/templates/scripts/waiting_file.js:13
 msgid "Here you are!"
 msgstr "Proszę bardzo!"
+
