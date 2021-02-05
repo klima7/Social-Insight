@@ -6,9 +6,6 @@ import pandas as pd
 import numpy as np
 
 
-MAX_PEOPLE = 35
-
-
 def determine_conversation_length(sample, my_username): # sample to tabela wiadomości. W zamyśle są tam wiadomości tylko 2 użytkowników. (time, sender required)
     # Słownik nazw użytkowników i ich unikalnych indeksów liczbowych.
     senders = {k: v for v, k in enumerate(sample['sender'].unique())}
@@ -34,6 +31,23 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     return np.array(conversation_lens).mean()
 
 
+def create_chart(reply_times, limit=None):
+    if limit is not None:
+        reply_times = reply_times.tail(limit)
+
+    height = len(reply_times.user)*25
+    gr = pygal.HorizontalBar(style=style, height=height)
+    gr.add('', reply_times['time'])
+    gr.x_labels = shorten_strings(reply_times['user'])
+    gr.human_readable = True
+    gr.show_legend = False
+    gr.print_values = True
+    gr.print_values_position = 'top'
+    gr.y_title = 'User'
+    gr.x_title = 'Conversation length in messages'
+    return gr
+
+
 @graph(_l('Average conversation length'))
 @using('messages')
 def conversation_length(data):  # Skopiowane reply_time, więc nazwy zmiennych nie mają sensu
@@ -46,19 +60,6 @@ def conversation_length(data):  # Skopiowane reply_time, więc nazwy zmiennych n
 
     reply_times = reply_times.dropna()  # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'])
-
     reply_times.time = reply_times.time.round(0)
-    reply_times = reply_times.tail(MAX_PEOPLE)
 
-    height = len(reply_times.user)*25
-    gr = pygal.HorizontalBar(style=style, height=height)
-    gr.add('', reply_times['time'])
-    gr.x_labels = shorten_strings(reply_times['user'])
-    gr.human_readable = True
-    gr.show_legend = False
-    gr.print_values = True
-    gr.print_values_position = 'top'
-    gr.y_title = 'User'
-    gr.x_title = 'Conversation length in messages'
-
-    return gr
+    return create_chart(reply_times, 30), create_chart(reply_times)

@@ -67,11 +67,21 @@ def analyse(pack_id, file_path, delete=True):
         for fun, category, name in _graphs:
 
             try:
-                data = fun(pdata)
-                if data is None:
+                result = fun(pdata)
+
+                if result is None:
                     continue
-                graph_entry = Graph(name=name, category=category, packid=pack_id, data=data)
+
+                if isinstance(result, tuple) and len(result) >= 2:
+                    data = result[0]
+                    data_extended = result[1]
+                else:
+                    data = result
+                    data_extended = None
+
+                graph_entry = Graph(name=name, category=category, packid=pack_id, data=data, data_extended=data_extended)
                 db_session.add(graph_entry)
+
             except Exception:
                 traceback.print_exc()
                 graph_entry = Graph(name=name, category=category, packid=pack_id, data=None)

@@ -6,9 +6,6 @@ import pandas as pd
 import numpy as np
 
 
-MAX_PEOPLE = 35
-
-
 def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomości. W zamyśle są tam wiadomości tylko 2 użytkowników. (time, sender required)
     if len(sample) > 0:
         senders = {k: v for v, k in enumerate(sample['sender'].unique())} # Słownik nazw użytkowników i ich unikalnych indeksów liczbowych.
@@ -21,6 +18,23 @@ def determine_avg_reply_time(sample, my_username): # sample to tabela wiadomośc
         sample = sample[sample['sender'] != my_username] # Interesuje nas jak szybko ta osoba odpowiada, ale można zamienić i dowiemy się jak szybko my jej odpowiadamy.
         return sample['time2'].median()
     return np.Nan
+
+
+def create_chart(reply_times, limit=None):
+    if limit is not None:
+        reply_times = reply_times.tail(limit)
+
+    height = len(reply_times.user)*25
+    gr = pygal.HorizontalBar(style=style, height=height)
+    gr.add('', reply_times['time'].dt.seconds)
+    gr.x_labels = shorten_strings(reply_times['user'])
+    gr.human_readable = True
+    gr.show_legend = False
+    gr.print_values = True
+    gr.print_values_position = 'top'
+    gr.x_title = 'Reply time in seconds'
+    gr.y_title = 'User'
+    return gr
 
 
 @graph(_l('Reply time by user'))
@@ -36,17 +50,4 @@ def reply_time(data):
     reply_times = reply_times.dropna()  # Usuwa osoby które nigdy nie odpowiedziały :(
     reply_times = reply_times.sort_values(['time'], ascending=[0])
 
-    reply_times = reply_times.tail(MAX_PEOPLE)
-
-    height = len(reply_times.user)*25
-    gr = pygal.HorizontalBar(style=style, height=height)
-    gr.add('', reply_times['time'].dt.seconds)
-    gr.x_labels = shorten_strings(reply_times['user'])
-    gr.human_readable = True
-    gr.show_legend = False
-    gr.print_values = True
-    gr.print_values_position = 'top'
-    gr.x_title = 'Reply time in seconds'
-    gr.y_title = 'User'
-
-    return gr
+    return create_chart(reply_times, 35), create_chart(reply_times)

@@ -16,7 +16,5 @@ def time_to_post(data):
     history.message.value_counts()
     counts = history.message.value_counts()
     table = pd.DataFrame({'searched phrase': counts.index, 'count': counts})
-    table = table.head(MAX_COUNT)
-
-    return table
+    return table.head(MAX_COUNT), table
 

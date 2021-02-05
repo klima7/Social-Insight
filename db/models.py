@@ -120,6 +120,7 @@ class Graph(_Base):
     name = Column(String)
     category = Column(String)
     data = Column(PickleType)
+    data_extended = Column(PickleType)
     public = Column(Boolean, default=False)
     collations = relationship('Collation',
                               secondary=collation_entries,
@@ -141,6 +142,12 @@ class Graph(_Base):
     @property
     def category_without_accents(self):
         return remove_accents(self.category_trans)
+
+    def get_data(self, extended=False):
+        if extended and self.data_extended is not None:
+            return self.data_extended
+        else:
+            return self.data
 
     def render_png(self, path):
         import frontend.render as render

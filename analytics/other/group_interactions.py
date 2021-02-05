@@ -1,24 +1,22 @@
 from .. import graph, using, style
+from ..util import shorten_strings
 from flask_babel import gettext as _l
 import pygal
 
-MAX_GROUP_COUNT = 40
-MAX_TITLE_LEN = 40
 
+def create_graph(group_inter, limit=None):
+    if limit is not None:
+        group_inter = group_inter.tail(limit)
 
-def shorten_title(s):
-    if len(s) > MAX_TITLE_LEN:
-        s = s[:MAX_TITLE_LEN] + '...'
-    return s
+    group_chart = pygal.HorizontalBar(style=style, show_legend=False)
+    group_chart.x_labels = shorten_strings(group_inter.name, width=40)
+    group_chart.add('', group_inter.value)
+    return group_chart
 
 
 @graph(_l('Number of interactions with groups'))
 @using('group_interactions')
 def group_interactions(data):
-    group_inter = data['group_interactions'].sort_values(by='value').tail(MAX_GROUP_COUNT)
+    group_inter = data['group_interactions'].sort_values(by='value')
 
-    group_chart = pygal.HorizontalBar(style=style, show_legend=False)
-    group_chart.x_labels = list(map(shorten_title, list(group_inter.name)))
-    group_chart.add('', list(group_inter.value))
-
-    return group_chart
+    return create_graph(group_inter, 30), create_graph(group_inter)

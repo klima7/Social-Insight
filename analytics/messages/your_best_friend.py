@@ -4,7 +4,17 @@ from flask_babel import gettext as _l
 import pygal
 
 
-MAX_PEOPLE_COUNT = 40
+def create_chart(counts, limit=None):
+    if limit is not None:
+        counts = counts.head(limit)
+
+    height = len(list(counts.keys()))*25
+    chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
+    chart.x_labels = shorten_strings(counts.keys()[::-1])
+    chart.add('', counts.values[::-1])
+    chart.x_title = 'Number of messages in conversation'
+    chart.y_title = 'User'
+    return chart
 
 
 @graph(_l('The people you write with most frequent'))
@@ -13,17 +23,6 @@ def your_best_friends(data):
     table = data['messages']
     regs = table[(table['thread_type'] == 'Regular') & (table['sender'] == data['username'])]
     group = regs.groupby('conversation')
+    counts = group['content'].count().sort_values(ascending=False)
 
-    counts = group['content'].count().sort_values(ascending=False).head(MAX_PEOPLE_COUNT)
-
-    for i in counts.index:
-        if len(i) > 25:
-            counts.drop(index=i, inplace=True)
-
-    height = len(list(counts.keys()))*25
-    chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
-    chart.x_labels = shorten_strings(counts.keys()[::-1])
-    chart.add('', counts.values[::-1])
-    chart.x_title = 'Count of messages in conversation'
-    chart.y_title = 'User'
-    return chart
+    return create_chart(counts, 30), create_chart(counts)

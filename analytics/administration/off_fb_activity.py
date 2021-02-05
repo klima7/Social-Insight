@@ -3,7 +3,6 @@ from flask_babel import gettext as _l
 import pandas as pd
 
 
-# Wyświetla się max 10, ale jak jest więcej to fajnie by było dać możliwość rozwinięcia tabelki czy coś.
 @graph(_l('Pages you visited while being logged into facebook'))
 @using('off_facebook_activity')
 def device_usage(data):
@@ -17,4 +16,5 @@ def device_usage(data):
         arrays[2].append(info.time.min())
         arrays[3].append(info.time.max())
     display = pd.DataFrame({'name': arrays[0], 'number of visits': arrays[1], 'first visited': arrays[2], 'last visit': arrays[3]})
-    return display.sort_values('number of visits', ascending=False)[:10]
+    display = display.sort_values('number of visits', ascending=False)
+    return display[:10], display
