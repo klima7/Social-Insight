@@ -1,5 +1,5 @@
 from .. import graph, using, style
-from ..util import shorten_strings
+from ..util import shorten_strings, calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -24,7 +24,7 @@ def create_chart(reply_times, limit=None):
     if limit is not None:
         reply_times = reply_times.tail(limit)
 
-    height = len(reply_times.user)*25
+    height = calc_bar_chart_height(reply_times)
     gr = pygal.HorizontalBar(style=style, height=height)
     gr.add('', reply_times['time'].dt.seconds)
     gr.x_labels = shorten_strings(reply_times['user'])

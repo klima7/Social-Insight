@@ -11,3 +11,7 @@ def shorten_strings(names_series, width=25):
 
 def fb_decode(text):
     return text.encode('latin1').decode('utf8')
+
+
+def calc_bar_chart_height(data):
+    return len(data)*25+50

@@ -1,5 +1,5 @@
 from .. import graph, using, style
-from ..util import shorten_strings
+from ..util import shorten_strings, calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 import pandas as pd
@@ -26,8 +26,7 @@ def determine_conversation_length(sample, my_username): # sample to tabela wiado
     conversation_begs.insert(0, -1)
     # indeks początku pierwszej rozmowy to len()-1
     conversation_begs.insert(len(conversation_begs), len(sample) - 1)
-    conversation_begs
-    conversation_lens = [ conversation_begs[i] - conversation_begs[i - 1] for i in range(1, len(conversation_begs)) ]
+    conversation_lens = [conversation_begs[i] - conversation_begs[i - 1] for i in range(1, len(conversation_begs)) ]
     return np.array(conversation_lens).mean()
 
 
@@ -35,7 +34,7 @@ def create_chart(reply_times, limit=None):
     if limit is not None:
         reply_times = reply_times.tail(limit)
 
-    height = len(reply_times.user)*25
+    height = calc_bar_chart_height(reply_times)
     gr = pygal.HorizontalBar(style=style, height=height)
     gr.add('', reply_times['time'])
     gr.x_labels = shorten_strings(reply_times['user'])

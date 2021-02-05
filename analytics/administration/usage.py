@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 
@@ -12,7 +13,8 @@ def device_usage(data):
     device_usage = acc_act.groupby(acc_act.agent).action.count().sort_values(ascending=True)
     total_uses = device_usage.sum()
 
-    chart = pygal.HorizontalBar(style=style, show_legend=False)
+    height = calc_bar_chart_height(device_usage)
+    chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     chart.x_labels = list(device_usage.index)
     chart.add('', [round((i / total_uses) * 100, 1) for i in list(device_usage)])
     chart.x_title = 'Percent of usage'

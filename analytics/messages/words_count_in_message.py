@@ -1,5 +1,5 @@
 from .. import graph, using, style
-from ..util import shorten_strings
+from ..util import shorten_strings, calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 import re
@@ -16,7 +16,7 @@ def create_chart(df, limit=None):
     if limit is not None:
         df = df.tail(limit)
 
-    height = len(df.name)*25
+    height = calc_bar_chart_height(df.name)
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     chart.x_labels = shorten_strings(df.name)
     chart.add('', df.avg_word)

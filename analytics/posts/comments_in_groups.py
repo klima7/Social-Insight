@@ -1,4 +1,5 @@
 from .. import graph, using, style
+from ..util import calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 
@@ -20,7 +21,7 @@ def coments_in_group(data):
     comm_by_group = comment_data.groupby(comment_data.group).time.count().dropna()
     comm_by_group = comm_by_group.sort_values().tail(MAX_GROUP_COUNT)
 
-    height = len(comm_by_group) * 25
+    height = calc_bar_chart_height(comm_by_group)
     group_chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     group_chart.x_labels = list(map(shorten_title, comm_by_group.index))
     group_chart.add('', list(comm_by_group))    

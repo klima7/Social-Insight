@@ -1,5 +1,5 @@
 from analytics import graph, using, style
-from ..util import shorten_strings
+from ..util import shorten_strings, calc_bar_chart_height
 from flask_babel import gettext as _l
 import pygal
 
@@ -8,7 +8,7 @@ def create_chart(counts, limit=None):
     if limit is not None:
         counts = counts.head(limit)
 
-    height = len(list(counts.keys()))*25
+    height = calc_bar_chart_height(list(counts.keys()))
     chart = pygal.HorizontalBar(style=style, show_legend=False, height=height)
     chart.x_labels = shorten_strings(counts.keys()[::-1])
     chart.add('', counts.values[::-1])
