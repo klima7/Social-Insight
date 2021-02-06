@@ -14,4 +14,4 @@ def fb_decode(text):
 
 
 def calc_bar_chart_height(data):
-    return len(data)*25+50
+    return len(data)*25+100
