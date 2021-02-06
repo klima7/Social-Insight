@@ -1,12 +1,11 @@
 from .. import graph, using, style
 from flask_babel import gettext as _l
 import pygal
-import pandas as pd
 
 
 @graph(_l('Your activity in group conversations'))
-@using('messages')
-def n_of_your_messages_in_group(data): #
+@using('messages', 'username')
+def n_of_your_messages_in_group(data):
     messages = data['messages']
 
     messages = messages[(messages.thread_type == 'RegularGroup') & (messages.sender == data['username'])].conversation.value_counts()
