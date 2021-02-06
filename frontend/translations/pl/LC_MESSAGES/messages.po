@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-05 16:02+0100\n"
+"POT-Creation-Date: 2021-02-05 21:41+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -63,6 +63,10 @@ msgstr "Twój ranking emoji"
 msgid "Number of photos in conversations"
 msgstr "Liczba zdjęć w konwersacji"
 
+#: analytics/messages/messages_by_group.py:7
+msgid "Number of messages in group conversations"
+msgstr "Liczba wiadomości w grupowych konwersacjach"
+
 #: analytics/messages/messages_by_sex.py:6
 msgid "Messages sent by sex"
 msgstr "Liczba wiadomości według płci"
@@ -118,6 +122,10 @@ msgstr "Ludzie z którymi najczęściej piszesz"
 #: analytics/messages/your_message_statistics.py:9
 msgid "Your messages analysis"
 msgstr "Analiza Twoich wiadomości"
+
+#: analytics/messages/your_messages_in_groups.py:7
+msgid "Your activity in group conversations"
+msgstr "Twoja aktywność w grupowych konwersacjach"
 
 #: analytics/messages/your_reaction_graph.py:6
 msgid "Your reactions"
