@@ -31,14 +31,18 @@ def scale_graph(graph, factor):
 
 
 def demojify_graph(graph):
-    if not isinstance(graph, pygal.Bar):
-        return
+    if isinstance(graph, pygal.Bar):
 
-    if hasattr(graph, 'x_labels'):
-        graph.x_labels = [demoji.replace(str(x)) for x in graph.x_labels]
+        if hasattr(graph, 'x_labels'):
+            graph.x_labels = [demoji.replace(str(x)) for x in graph.x_labels]
 
-    if hasattr(graph, 'y_labels'):
-        graph.y_labels = [demoji.replace(str(y)) for y in graph.y_labels]
+        if hasattr(graph, 'y_labels'):
+            graph.y_labels = [demoji.replace(str(y)) for y in graph.y_labels]
+
+    if isinstance(graph, pygal.Pie):
+
+        for i in range(len(graph.raw_series)):
+            graph.raw_series[i][1]['title'] = demoji.replace(graph.raw_series[i][1]['title'])
 
 
 def render_graph_png(chart, path, scale=1, title=True):
