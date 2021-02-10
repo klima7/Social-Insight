@@ -28,9 +28,9 @@
             <div class="dark-button"><a href="" data-toggle="modal" data-target="#rename-pack-modal">{{ _("rename") }}</a></div>
             <div class="dark-button"><a href="{{ url_for('main.remove_pack_confirm', id=pack.id, next=request.url) }}">{{ _("remove") }}</a></div>
             {% endif %}
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='fancy') }}" target="_blank">{{ _("download pdf") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='print') }}" target="_blank">{{ _("download pdf to print") }}</a></div>
-            <div class="dark-button"><a href="{{ url_for('main.download_pack_zip', id=pack.id) }}" target="_blank">{{ _("Download zip") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='fancy', time=cache_suffix()) }}" target="_blank">{{ _("download pdf") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.pack2pdf', id=pack.id, style='print', time=cache_suffix()) }}" target="_blank">{{ _("download pdf to print") }}</a></div>
+            <div class="dark-button"><a href="{{ url_for('main.download_pack_zip', id=pack.id, time=cache_suffix()) }}" target="_blank">{{ _("Download zip") }}</a></div>
         </div>
 
         <!-- Portfolio Grid Items-->

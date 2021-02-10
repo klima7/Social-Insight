@@ -17,9 +17,9 @@
     {% if graph.pack.user == user() %}
     <div class="graph-button"><a data-toggle="collapse" href="#graph-{{graph.id}}-collapse">{{ _("Add") }}</a></div>
     {% endif %}
-    <div class="graph-button"><a href="{{ url_for('main.download_graph_png', id=graph.id) }}">{{ _("PNG") }}</a></div>
+    <div class="graph-button"><a href="{{ url_for('main.download_graph_png', id=graph.id, time=cache_suffix()) }}">{{ _("PNG") }}</a></div>
     {% if is_pygal_chart(data) %}
-    <div class="graph-button"><a href="{{ url_for('main.download_graph_svg', id=graph.id) }}">{{ _("SVG") }}</a></div>
+    <div class="graph-button"><a href="{{ url_for('main.download_graph_svg', id=graph.id, time=cache_suffix()) }}">{{ _("SVG") }}</a></div>
     {% endif %}
     {% if graph.pack.user == user() %}
     <div class="graph-button {{ '' if graph.public else 'disable' }}" id="graph-{{graph.id}}-public"><a onclick="toggleGraphPublic({{graph.id}})">{{ _("Public") }}</a></div>
