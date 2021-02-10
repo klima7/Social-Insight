@@ -51,7 +51,7 @@ def emoji_ranking(data):
         if counter >= MAX_EMOJI_COUNT:
             break
 
-    chart = pygal.Bar(style=emojistyle, show_legend=False, show_minor_y_labels=False)
+    chart = pygal.Bar(style=emojistyle, show_legend=False, show_minor_y_labels=True)
     chart.add('', emoji_v)
     chart.x_labels = emoji_l
     chart.x_title = 'Emoji'
