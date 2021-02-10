@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-05 21:41+0100\n"
+"POT-Creation-Date: 2021-02-11 00:33+0100\n"
 "PO-Revision-Date: 2021-01-16 08:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
@@ -47,11 +47,11 @@ msgstr "Strony, który odwiedziłeś, będąc zalogowanym na facebooku"
 msgid "Operating system"
 msgstr "System operacyjny"
 
-#: analytics/administration/usage.py:6
+#: analytics/administration/usage.py:7
 msgid "Usage statistics"
 msgstr "Statystyki wykorzystania"
 
-#: analytics/messages/conversation_length.py:51
+#: analytics/messages/conversation_length.py:50
 msgid "Average conversation length"
 msgstr "Średnia długość konwersacji"
 
@@ -63,7 +63,7 @@ msgstr "Twój ranking emoji"
 msgid "Number of photos in conversations"
 msgstr "Liczba zdjęć w konwersacji"
 
-#: analytics/messages/messages_by_group.py:7
+#: analytics/messages/messages_by_group.py:6
 msgid "Number of messages in group conversations"
 msgstr "Liczba wiadomości w grupowych konwersacjach"
 
@@ -107,7 +107,7 @@ msgstr "Czas odpowiedzi Twoich znajomych"
 msgid "Percent of sentences starting with capital letter"
 msgstr "Procent zdań zaczynających się wielką literą"
 
-#: analytics/messages/sentences_with_punctuation.py:28
+#: analytics/messages/sentences_with_punctuation.py:30
 msgid "Percent of sentences with punctuation"
 msgstr "Procent zdań ze znakami interpunkcyjnymi"
 
@@ -123,7 +123,7 @@ msgstr "Ludzie z którymi najczęściej piszesz"
 msgid "Your messages analysis"
 msgstr "Analiza Twoich wiadomości"
 
-#: analytics/messages/your_messages_in_groups.py:7
+#: analytics/messages/your_messages_in_groups.py:6
 msgid "Your activity in group conversations"
 msgstr "Twoja aktywność w grupowych konwersacjach"
 
@@ -211,7 +211,7 @@ msgstr "Procent komentarzy względem godziny"
 msgid "Number of comments by year"
 msgstr "Liczba komentarzy według roku"
 
-#: analytics/posts/comments_in_groups.py:16
+#: analytics/posts/comments_in_groups.py:17
 msgid "Comments in each group"
 msgstr "Liczba komentarzy w każdej grupie"
 
@@ -252,7 +252,8 @@ msgstr "porażka"
 msgid "Response"
 msgstr "Odpowiedź"
 
-#: frontend/admin/forms.py:9 frontend/templates/admin_messages.html:11
+#: frontend/admin/forms.py:9 frontend/admin/routes.py:55
+#: frontend/templates/admin_messages.html:11
 #: frontend/templates/admin_reply.html:12
 #: frontend/templates/admin_reply.html:24
 msgid "Reply"
@@ -474,47 +475,47 @@ msgstr "Przepraszamy, przykładowa paczka nie jest dostępna"
 msgid "Are you sure that you want to remove this pack?"
 msgstr "Czy jesteś pewny, że chcesz usunąć tą paczkę?"
 
-#: frontend/main/routes.py:93 frontend/main/routes.py:141
+#: frontend/main/routes.py:93 frontend/main/routes.py:150
 #: frontend/templates/admin_users.html:57
 msgid "Yes"
 msgstr "Tak"
 
-#: frontend/main/routes.py:102
+#: frontend/main/routes.py:111
 msgid "Pack was removed"
 msgstr "Paczka została usunięta"
 
-#: frontend/main/routes.py:109 frontend/templates/collation.html:5
+#: frontend/main/routes.py:118 frontend/templates/collation.html:5
 #: frontend/templates/collation.html:32
 msgid "Collation"
 msgstr "Zestawienie"
 
-#: frontend/main/routes.py:113
+#: frontend/main/routes.py:122
 msgid "New collation was created"
 msgstr "Nowe zestawienie zostało stworzone"
 
-#: frontend/main/routes.py:131
+#: frontend/main/routes.py:140
 #, python-format
 msgid "Collation name changed to %(name)s"
 msgstr "Nazwa zestawienia została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:141
+#: frontend/main/routes.py:150
 msgid "Are you sure that you want to remove this collation?"
 msgstr "Czy na pewno chcesz usunąć to zestawenie?"
 
-#: frontend/main/routes.py:150
+#: frontend/main/routes.py:159
 msgid "collation was removed"
 msgstr "Zestawienie zostało usunięta"
 
-#: frontend/main/routes.py:161
+#: frontend/main/routes.py:170
 #, python-format
 msgid "Pack name changed to %(name)s"
 msgstr "Nazwa paczki została zmieniona na %(name)s"
 
-#: frontend/main/routes.py:197 frontend/templates/mails/contact.html:8
+#: frontend/main/routes.py:206 frontend/templates/mails/contact.html:8
 msgid "Message"
 msgstr "Wiadomość"
 
-#: frontend/main/routes.py:198
+#: frontend/main/routes.py:207
 msgid "Message was sent"
 msgstr "Wiadomość została wysłana"
 
