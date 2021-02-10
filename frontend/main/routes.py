@@ -97,6 +97,11 @@ def remove_pack_confirm(id):
 @main.route('/packs/<id>/remove')
 def remove_pack(id):
     pack = get_pack(id)
+
+    collations = db_session.query(Graph).filter_by(packid=pack.id).all()
+    for collation in collations:
+        db_session.delete(collation);
+
     db_session.delete(pack)
     db_session.commit()
     flash(_('Pack was removed'), 'success')
