@@ -64,7 +64,7 @@ def create_app():
 
 @babel.localeselector
 def get_locale():
-    default_lang = request.accept_languages.best_match(config.LANGUAGES)
+    default_lang = request.accept_languages.best_match(config.LANGUAGES) or 'en'
     lang = session.get('lang', default_lang)
     return lang
 
