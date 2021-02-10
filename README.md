@@ -1,8 +1,5 @@
 # Social Insight 
 
-Aplikacja dostępna pod adresem [http://social-insight.tk:8081](http://social-insight.tk:8081)
-
-
 ## Sposób uruchomienia
 1. Instalowanie zależności: `pip install -r requirements.txt`
 2. Kompilacja tłumaczeń: `flask translate compile`
