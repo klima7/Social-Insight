@@ -1,6 +1,23 @@
-# Social Insight 
+# Social Insight
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/logo.jpg" width="700" />
 
-Aplikacja dostępna pod adresem http://social-insight.cloudns.cl:8081
+## Strona główna
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/index.jpg" width="700" />
+
+## Wyniki analizy
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/results.jpg" width="700" />
+
+## Wyniki wyeksportowane do PDF
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/exported.png" width="700" />
+
+## Interfejs administratora
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/admin.png" width="700" />
+
+## Strona użytkownika i kontaktowa
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/user_contact.png" width="700" />
+
+## Wersja mobilna
+<img src="https://github.com/klima7/Social-Insight/blob/images/images/screen4.jpg" width="200" />
 
 ## Sposób uruchomienia
 1. Instalowanie zależności: `pip install -r requirements.txt`
